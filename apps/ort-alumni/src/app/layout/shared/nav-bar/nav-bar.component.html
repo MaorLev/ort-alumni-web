@@ -1,0 +1,14 @@
+<p>nav-bar works!</p>
+<!-- classic buttons : home, about -->
+<!-- drop down Clasic button -->
+<!-- diffrent button : כניסה , יציאה, החשבון שלי -->
+
+<div
+*ngFor="let link of links$ | async"
+routerLinkActive="active"
+>
+  <a *ngIf="link.isshow" [routerLink]="link.route" >
+  {{link.label}}
+  </a>
+
+</div>

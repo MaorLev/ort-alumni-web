@@ -1,0 +1,28 @@
+{
+  "root": "apps/ort-alumni-e2e",
+  "sourceRoot": "apps/ort-alumni-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/ort-alumni-e2e/cypress.json",
+        "devServerTarget": "ort-alumni:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "ort-alumni:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ort-alumni-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["ort-alumni"]
+}
