@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    
+    <IsPackable>false</IsPackable>
+    
+    <OutputPath>../../dist/apps/alumni-ort-server-test</OutputPath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
+    
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
+    
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+    
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\alumni-ort-server\OrtAlumniWeb.AlumniOrtServer.csproj" />
+  </ItemGroup>
+  
+  <Target Name="CheckNxModuleBoundaries" BeforeTargets="Build">
+    
+    <Exec Command="node ../../node_modules/@nx-dotnet/core/src/tasks/check-module-boundaries.js -p alumni-ort-server-test" />
+    
+  </Target>
+</Project>
