@@ -45,3 +45,5 @@ apps/*/obj
 libs/*/bin
 libs/*/obj
 .vs/*
+apps/alumni-ort-server/appsettings.json
+apps/alumni-ort-server/appsettings.Development.json
