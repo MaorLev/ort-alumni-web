@@ -1,5 +1,6 @@
-export interface Links {
+export interface Link {
   label: string;
+  name: string;
   route: string;
   position: string;
   order: number;

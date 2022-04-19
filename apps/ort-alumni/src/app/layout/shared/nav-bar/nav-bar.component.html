@@ -3,12 +3,24 @@
 <!-- drop down Clasic button -->
 <!-- diffrent button : כניסה , יציאה, החשבון שלי -->
 
-<div
-*ngFor="let link of links$ | async"
-routerLinkActive="active"
->
-  <a *ngIf="link.isshow" [routerLink]="link.route" >
-  {{link.label}}
-  </a>
-
-</div>
+<ng-container *ngFor="let link of links$ | async">
+  <ng-container [ngSwitch]="link.name">
+    <ng-container *ngIf="link.isshow">
+      <a
+        *ngSwitchCase="'logout'"
+        routerLinkActive="active"
+        (click)="logout()"
+        [routerLink]="link.route"
+      >
+        <ml-mat-button [color]="'primary'">
+          {{ link.label }}
+        </ml-mat-button>
+      </a>
+      <a *ngSwitchDefault routerLinkActive="active" [routerLink]="link.route">
+        <ml-mat-button [color]="'primary'">
+          {{ link.label }}
+        </ml-mat-button>
+      </a>
+    </ng-container>
+  </ng-container>
+</ng-container>

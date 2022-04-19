@@ -1,59 +1,22 @@
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Injectable } from '@angular/core';
-import { Links } from './links.interface';
-import { Observable } from 'rxjs';
+import { Link } from './link.interface';
+import { map, Observable } from 'rxjs';
+import { Links } from './links';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NavBarService {
-  private Links(isLogin: boolean): Links[] {
-    return [
-      {
-        label: 'אודות',
-        route: '/about',
-        order: 1,
-        position: 'center',
-        isshow: true
-      },
-      {
-        label: 'בית',
-        route: '/home',
-        position: 'center',
-        order: 2,
-        isshow: true
-      },
-      {
-        label: 'החשבון שלי',
-        route: '/profile',
-        order: 3,
-        position: 'right',
-        isshow: isLogin
-      },
-      {
-        label: 'התחבר',
-        route: '/login',
-        order: 4,
-        position: 'right',
-        isshow: !isLogin
-      },
-      {
-        label: 'התנתק',
-        route: '',
-        order: 5,
-        position: 'right',
-        isshow: isLogin
-      }
-    ];
-  }
-  links = new BehaviorSubject<Links[]>(this.Links(false));
+  private links = new BehaviorSubject<Link[]>(Links(true));
 
-  constructor() {}
-
-  public getLinks(): Observable<Links[]> {
-    return this.links.asObservable();
+  public getLinks(): Observable<Link[]> {
+    return this.links
+      .asObservable()
+      .pipe(map((link) => link.sort((a, b) => a.order - b.order)));
   }
+
   public IsLogin(isLogin: boolean) {
-    this.links.next(this.Links(isLogin));
+    this.links.next(Links(isLogin));
   }
 }
