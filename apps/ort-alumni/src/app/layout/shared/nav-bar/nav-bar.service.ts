@@ -2,13 +2,13 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Link } from './link.interface';
 import { map, Observable } from 'rxjs';
-import { Links } from './links';
+import { DynamicLinks } from './dynamic-links';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavBarService {
-  private links = new BehaviorSubject<Link[]>(Links(true));
+  private links = new BehaviorSubject<Link[]>(DynamicLinks(true));
 
   public getLinks(): Observable<Link[]> {
     return this.links
@@ -17,6 +17,6 @@ export class NavBarService {
   }
 
   public IsLogin(isLogin: boolean) {
-    this.links.next(Links(isLogin));
+    this.links.next(DynamicLinks(isLogin));
   }
 }

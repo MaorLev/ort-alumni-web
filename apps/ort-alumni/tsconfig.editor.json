@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts", "src/app/layout/shared/nav-bar/links.ts"],
+  "include": ["**/*.ts", "src/app/layout/shared/nav-bar/dynamic-links.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/ort-alumni",
         "index": "apps/ort-alumni/src/index.html",
@@ -20,10 +18,10 @@
           "apps/ort-alumni/src/favicon.ico",
           "apps/ort-alumni/src/assets"
         ],
-        "styles": [
-          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-          "apps/ort-alumni/src/styles.scss"
-        ],
+        "styles": ["apps/ort-alumni/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/ort-alumni/src/assets/styles"]
+        },
         "scripts": []
       },
       "configurations": {
@@ -88,16 +86,12 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/ort-alumni"
-      ],
+      "outputs": ["coverage/apps/ort-alumni"],
       "options": {
         "jestConfig": "apps/ort-alumni/jest.config.js",
         "passWithNoTests": true
       }
     }
   },
-  "tags": [
-    "scope:ort-alumni"
-  ]
+  "tags": ["scope:ort-alumni"]
 }

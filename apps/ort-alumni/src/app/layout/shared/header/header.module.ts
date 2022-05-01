@@ -3,6 +3,7 @@ import { HeaderComponent } from './header.component';
 import { NgModule } from '@angular/core';
 import { QuicklinkModule } from 'ngx-quicklink';
 
+
 @NgModule({
   declarations: [HeaderComponent],
   imports: [CommonModule, QuicklinkModule],

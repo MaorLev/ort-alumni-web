@@ -1,0 +1,54 @@
+@import "mixin";
+$color-primary: #4267b2;
+$darker-primary: #2b4a99;
+$color-accent: #898f9c;
+$color-accent-lighter: #dcdde1;
+$color-accent-darker: #6c7280;
+$sub-title-darker: #f26a76;
+$sub-title-lighter: #f26a76;
+$sidebar-color-primary: #f5cec9;
+$btn-color-border: #f5cec9;
+$color-second: #eebf03;
+$gray-background: #f4f4f4;
+$gray-dot:#c4c4c4;
+$white-title: #c8d8ff;
+$white: #ffffff;
+
+$nav-bar-height: 100px;
+$content-height: calc(100vh - #{$nav-bar-height});
+
+$arr: 1 2 3 4 5 6 7 8 9 10 16;
+@each $size in $arr {
+  .mrg-t-#{$size} {
+    margin-top: times5($size);
+  }
+  .mrg-x-#{$size} {
+    margin-right: times5($size);
+    margin-left: times5($size);
+  }
+  .mrg-y-#{$size} {
+    margin-bottom: times5($size);
+    margin-top: times5($size);
+  }.mrg-b-#{$size} {
+    margin-bottom: times5($size);
+  }
+  .mrg-l-#{$size} {
+    margin-left: times5($size);
+  }
+  .mrg-#{$size} {
+    margin: times5($size);
+  }
+  .grd-col-#{$size} {
+    display: grid;
+    grid-template-columns: repeat($size, auto);
+  }
+  .grd-gap-#{$size} {
+    grid-gap: times5($size);
+  }
+  .app-col-gap-#{$size} {
+    column-gap: times5($size);
+  }
+  .app-row-gap-#{$size} {
+    row-gap: times5($size);
+  }
+}

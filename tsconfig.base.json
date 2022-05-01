@@ -13,9 +13,19 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
-      "@shared/ui": ["libs/shared/ui/buttons/src/index.ts"]
+      "@ort-alumni/data-access": [
+        "libs/ort-alumni-client/data-access/src/index.ts"
+      ],
+      "@ort-alumni/feature": ["libs/ort-alumni-client/feature/src/index.ts"],
+      "@ort-alumni/ui": ["libs/ort-alumni-client/ui/src/index.ts"],
+      "@ort-alumni/util": ["libs/ort-alumni-client/util/src/index.ts"],
+      "@shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@shared/feature": ["libs/shared/feature/src/index.ts"],
+      "@shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@shared/util": ["libs/shared/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -24,9 +24,17 @@
                 ]
               },
               {
+                "sourceTag": "scope:ort-alumni-client",
+                "onlyDependOnLibsWithTags": [
+                  "scope:ort-alumni-client",
+                  "scope:shared"
+                ]
+              },
+              {
                 "sourceTag": "scope:ort-alumni",
                 "onlyDependOnLibsWithTags": [
-                  "scope:ort-alumni","scope:shared"
+                  "scope:ort-alumni","scope:shared",
+                  "scope:ort-alumni-client"
                 ]
               },
               {

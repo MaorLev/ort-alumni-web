@@ -1,26 +1,40 @@
-<p>nav-bar works!</p>
-<!-- classic buttons : home, about -->
-<!-- drop down Clasic button -->
-<!-- diffrent button : כניסה , יציאה, החשבון שלי -->
+<mat-toolbar color="primary">
+  <div class="box start">
+    <ng-container *ngFor="let link of dynamic_links$ | async">
+      <ng-container [ngSwitch]="link.name">
+        <ng-container *ngIf="link.isshow">
+          <a
+            *ngSwitchCase="'logout'"
+            class="dlink"
 
-<ng-container *ngFor="let link of links$ | async">
-  <ng-container [ngSwitch]="link.name">
-    <ng-container *ngIf="link.isshow">
-      <a
-        *ngSwitchCase="'logout'"
-        routerLinkActive="active"
-        (click)="logout()"
-        [routerLink]="link.route"
-      >
-        <ml-mat-button [color]="'primary'">
-          {{ link.label }}
-        </ml-mat-button>
-      </a>
-      <a *ngSwitchDefault routerLinkActive="active" [routerLink]="link.route">
-        <ml-mat-button [color]="'primary'">
-          {{ link.label }}
-        </ml-mat-button>
-      </a>
+            (click)="logout()"
+            [routerLink]="link.route"
+          >
+            {{ link.label }}
+          </a>
+          <a *ngSwitchDefault class="dlink" [routerLink]="link.route">
+            {{ link.label }}
+          </a>
+          <span class="line"></span>
+        </ng-container>
+      </ng-container>
     </ng-container>
-  </ng-container>
-</ng-container>
+  </div>
+  <div class="box center">
+    <ng-container *ngFor="let link of const_links">
+      <ng-container *ngIf="link.isshow">
+        <a class="clink" routerLinkActive="active" [routerLink]="link.route">
+          {{ link.label }}
+        </a>
+        <span class="line"></span>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="box end">
+    <ort-search-button></ort-search-button>
+    <a [routerLink]="ort_logo.route">
+      <ort-img [img_detail]="ort_logo"></ort-img>
+    </a>
+  </div>
+</mat-toolbar>

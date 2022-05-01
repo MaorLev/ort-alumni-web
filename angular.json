@@ -4,7 +4,14 @@
     "alumni-ort-server": "apps/alumni-ort-server",
     "alumni-ort-server-test": "apps/alumni-ort-server-test",
     "ort-alumni": "apps/ort-alumni",
+    "ort-alumni-client-data-access": "libs/ort-alumni-client/data-access",
+    "ort-alumni-client-feature": "libs/ort-alumni-client/feature",
+    "ort-alumni-client-ui": "libs/ort-alumni-client/ui",
+    "ort-alumni-client-util": "libs/ort-alumni-client/util",
     "ort-alumni-e2e": "apps/ort-alumni-e2e",
-    "shared-ui-buttons": "libs/shared/ui/buttons"
+    "shared-data-access": "libs/shared/data-access",
+    "shared-feature": "libs/shared/feature",
+    "shared-ui": "libs/shared/ui",
+    "shared-util": "libs/shared/util"
   }
 }
