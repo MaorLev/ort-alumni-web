@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/ort-alumni-client/data-access",
   "sourceRoot": "libs/ort-alumni-client/data-access/src",
-  "prefix": "ort",
+  "prefix": "alumni",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

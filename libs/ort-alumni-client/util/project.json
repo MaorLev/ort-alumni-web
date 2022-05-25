@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/ort-alumni-client/util",
   "sourceRoot": "libs/ort-alumni-client/util/src",
-  "prefix": "ort",
+  "prefix": "alumni",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

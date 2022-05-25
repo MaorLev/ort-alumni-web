@@ -16,6 +16,10 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
+      "@environments": [
+        "libs/ort-alumni-client/alumni-shared/environments/src/index.ts"
+      ],
+      "@ort-alumni/auth": ["libs/ort-alumni-client/auth/src/index.ts"],
       "@ort-alumni/data-access": [
         "libs/ort-alumni-client/data-access/src/index.ts"
       ],

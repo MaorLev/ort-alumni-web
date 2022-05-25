@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "projects": {
+    "alumni-ort-server": "apps/alumni-ort-server",
+    "alumni-ort-server-test": "apps/alumni-ort-server-test",
+    "ort-alumni-client-alumni-shared-assets": "libs/ort-alumni-client/alumni-shared/assets",
+    "ort-alumni-client-alumni-shared-environments": "libs/ort-alumni-client/alumni-shared/environments",
+    "ort-alumni-client-alumni-shared-styles": "libs/ort-alumni-client/alumni-shared/styles",
+    "ort-alumni-client-app": "apps/ort-alumni-client-app",
+    "ort-alumni-client-app-e2e": "apps/ort-alumni-client-app-e2e",
+    "ort-alumni-client-auth": "libs/ort-alumni-client/auth",
+    "ort-alumni-client-data-access": "libs/ort-alumni-client/data-access",
+    "ort-alumni-client-feature": "libs/ort-alumni-client/feature",
+    "ort-alumni-client-ui": "libs/ort-alumni-client/ui",
+    "ort-alumni-client-util": "libs/ort-alumni-client/util",
+    "shared-data-access": "libs/shared/data-access",
+    "shared-feature": "libs/shared/feature",
+    "shared-ui": "libs/shared/ui",
+    "shared-util": "libs/shared/util"
+  }
+}

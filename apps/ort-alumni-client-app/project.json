@@ -1,0 +1,109 @@
+{
+  "projectType": "application",
+  "root": "apps/ort-alumni-client-app",
+  "sourceRoot": "apps/ort-alumni-client-app/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ort-alumni-client-app",
+        "index": "apps/ort-alumni-client-app/src/index.html",
+        "main": "apps/ort-alumni-client-app/src/main.ts",
+        "polyfills": "apps/ort-alumni-client-app/src/polyfills.ts",
+        "tsConfig": "apps/ort-alumni-client-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "favicon.ico",
+            "input": "libs/ort-alumni-client/alumni-shared/assets/src",
+            "output": "./"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/ort-alumni-client/alumni-shared/assets/src/assets",
+            "output": "assets"
+          }
+        ],
+        "styles": [
+          "libs/ort-alumni-client/alumni-shared/styles/src/lib/styles.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/ort-alumni-client/alumni-shared/styles/src/lib/accessories"
+          ]
+        },
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "5kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "libs/ort-alumni-client/alumni-shared/environments/src/lib/environment.ts",
+              "with": "libs/ort-alumni-client/alumni-shared/environments/src/lib/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ort-alumni-client-app:build:production"
+        },
+        "development": {
+          "browserTarget": "ort-alumni-client-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ort-alumni-client-app:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ort-alumni-client-app/src/**/*.ts",
+          "apps/ort-alumni-client-app/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ort-alumni-client-app"],
+      "options": {
+        "jestConfig": "apps/ort-alumni-client-app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["scope:ort-alumni-client-app"]
+}

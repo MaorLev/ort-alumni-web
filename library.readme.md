@@ -39,3 +39,12 @@
 - https://github.com/angular/components
 - https://materialtheme.arcsine.dev
 - https://angularexpo.com/tag/themes/
+
+
+### another
+- Tutorial for global type
+- https://nx.dev/guides/environment-variables#using-environment-variables-in-angular-applications
+- Tut and code for tiny app and video
+- https://github.com/LayZeeDK/nx-tiny-app-project
+- https://www.youtube.com/watch?v=SVdT4_aNpl0
+- https://dev.to/this-is-angular/tiny-angular-application-projects-in-nx-workspaces-229a

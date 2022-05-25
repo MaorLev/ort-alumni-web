@@ -31,27 +31,27 @@
                 ]
               },
               {
-                "sourceTag": "scope:ort-alumni",
+                "sourceTag": "scope:ort-alumni-client-app",
                 "onlyDependOnLibsWithTags": [
-                  "scope:ort-alumni","scope:shared",
+                  "scope:ort-alumni-client-app","scope:shared",
                   "scope:ort-alumni-client"
                 ]
               },
               {
                 "sourceTag": "type:ui",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:auth"]
               },
               {
                 "sourceTag": "type:data-access",
-                "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:util","type:shared-evironments", "type:auth"]
               },
               {
                 "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": ["type:util"]
+                "onlyDependOnLibsWithTags": ["type:util", "type:auth"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util","shared-evironments" , "type:auth"]
               }
             ]
           }

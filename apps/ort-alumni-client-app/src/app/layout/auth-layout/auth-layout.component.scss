@@ -1,0 +1,24 @@
+// :host {
+//   main {
+//     min-height: 100%;
+//     .header {
+//       height: auto;
+//     }
+//     .auth-content {
+//       min-height: 88%;
+//     }
+//   }
+// }
+
+@use 'global' as glob;
+:host {
+  main {
+    height: 100vh;
+    .header {
+      height: glob.$nav-bar-height;
+    }
+    .auth-content {
+      height: glob.$content-height-by-nav-bar
+    }
+  }
+}

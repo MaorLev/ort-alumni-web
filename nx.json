@@ -18,12 +18,7 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -50,8 +45,6 @@
       "style": "scss"
     }
   },
-  "defaultProject": "ort-alumni",
-  "plugins": [
-    "@nx-dotnet/core"
-  ]
+  "defaultProject": "ort-alumni-client-app",
+  "plugins": ["@nx-dotnet/core"]
 }
