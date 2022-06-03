@@ -6,10 +6,12 @@ import { NavBarModule } from '@ort-alumni/feature';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderModule } from '@ort-alumni/feature';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [MainLayoutComponent],
   imports: [
+    QuicklinkModule,
     CommonModule,
     NavBarModule,
     FooterModule,
@@ -17,6 +19,6 @@ import { HeaderModule } from '@ort-alumni/feature';
     RouterModule,
     HeaderModule,
   ],
-  exports: [],
+  exports: [QuicklinkModule,],
 })
 export class MainLayoutModule {}

@@ -33,7 +33,8 @@
   </div>
 
   <div class="box end">
-    <ort-search-button></ort-search-button>
+
+    <ort-button className="mat-icon-button" icon="search" (click)="onOpenDialog()"> </ort-button>
     <a [routerLink]="ort_logo.route">
       <ort-img [img_detail]="ort_logo"></ort-img>
     </a>

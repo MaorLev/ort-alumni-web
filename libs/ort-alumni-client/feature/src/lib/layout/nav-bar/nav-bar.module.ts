@@ -6,7 +6,6 @@ import { QuicklinkModule } from 'ngx-quicklink';
 import { ButtonModule, ImgModule } from '@shared/ui';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SearchButtonModule } from '@shared/feature';
 import { ShowIfLoggedInDirectiveModule } from '@ort-alumni/auth';
 
 @NgModule({
@@ -16,12 +15,11 @@ import { ShowIfLoggedInDirectiveModule } from '@ort-alumni/auth';
     QuicklinkModule,
     RouterModule,
     ButtonModule,
-    SearchButtonModule,
     ImgModule,
     MatIconModule,
     MatToolbarModule,
-    ShowIfLoggedInDirectiveModule,
+    ShowIfLoggedInDirectiveModule
   ],
-  exports: [NavBarComponent, QuicklinkModule],
+  exports: [QuicklinkModule, NavBarComponent ],
 })
 export class NavBarModule {}

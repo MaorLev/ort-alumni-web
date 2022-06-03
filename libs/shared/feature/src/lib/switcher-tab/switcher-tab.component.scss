@@ -1,4 +1,4 @@
-@use 'global' as global;
+@use 'variables' as va;
 
 :host {
   .wrapper {
@@ -31,19 +31,19 @@
         font-family: 'Open Sans';
         background-color: inherit;
         &:hover {
-          background-color: global.$color-accent;
+          background-color: va.$color-accent;
         }
         cursor: pointer;
       }
       .router-link-active {
         opacity: 1;
-        background-color: global.$gray-background;
-        border-bottom: global.$color-accent 1px solid;
+        background-color: va.$gray-background;
+        border-bottom: va.$color-accent 1px solid;
       }
       .content-tab {
         padding: 8px 12px;
         color: white;
-        background-color: global.$color-accent;
+        background-color: va.$color-accent;
         border-radius: 4px;
       }
       nav {

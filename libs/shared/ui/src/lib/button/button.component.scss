@@ -1,22 +1,29 @@
-@use 'global' as global;
+@use 'variables' as va;
+@import 'mixins';
 
 :host {
+  #none{
+    display: none;
+  }
   mat-icon {
     margin-right: 5px;
-  }
-  .bar-btn-negative-primary{
-    color: global.$color-primary;
-    width: 100%;
-    &:hover{
-      background-color: global.$light-hover;
+    &:hover {
+      @include scale(1.1);
     }
   }
-  .bar-btn-primary{
-    background-color: global.$color-primary;
-    &:hover{
+  .bar-btn-negative-primary {
+    color: va.$color-primary;
+    width: 100%;
+    &:hover {
+      background-color: va.$light-hover;
+    }
+  }
+  .bar-btn-primary {
+    background-color: va.$color-primary;
+    &:hover {
       opacity: 0.9;
     }
-    color: global.$white;
+    color: va.$white;
     width: 100%;
     letter-spacing: 3px;
   }
@@ -35,7 +42,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      .btn-text {
+      &-btn-text {
         font-weight: 500;
       }
     }
@@ -50,19 +57,16 @@
         0px -20px 0px -10px RGB(247, 246, 249),
         20px 0px 0px -10px RGB(247, 246, 249),
         -20px 0px 0px -10px RGB(247, 246, 249),
-        0px 0px 0px 10px global.$color-accent-300,
-        5px 5px 15px 5px rgba(0, 0, 0, 0);
+        0px 0px 0px 10px va.$color-accent-300, 5px 5px 15px 5px rgba(0, 0, 0, 0);
       box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
         0px -20px 0px -10px RGB(247, 246, 249),
         20px 0px 0px -10px RGB(247, 246, 249),
         -20px 0px 0px -10px RGB(247, 246, 249),
-        0px 0px 0px 10px global.$color-accent-300,
-        5px 5px 15px 5px rgba(0, 0, 0, 0);
+        0px 0px 0px 10px va.$color-accent-300, 5px 5px 15px 5px rgba(0, 0, 0, 0);
       background: RGB(247, 246, 249);
 
-      color: global.$color-primary;
-      text-shadow: 2px 2px 0px global.$color-accent,
-        5px 4px 0px global.$color-accent;
+      color: va.$color-primary;
+      text-shadow: 2px 2px 0px va.$color-accent, 5px 4px 0px va.$color-accent;
       color: transparent;
 
       &:hover {
@@ -73,7 +77,7 @@
         transform: scale(1.1);
       }
       .content {
-        background: global.$color-primary-darker;
+        background: va.$color-primary-darker;
         -webkit-background-clip: text;
         -moz-background-clip: text;
         background-clip: text;

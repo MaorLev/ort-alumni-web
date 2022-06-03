@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [ButtonComponent],
-  imports: [CommonModule, MatButtonModule, RouterModule, QuicklinkModule, MatIconModule],
-  exports: [ButtonComponent, QuicklinkModule],
+  imports: [CommonModule, QuicklinkModule, MatButtonModule, RouterModule,  MatIconModule],
+  exports: [QuicklinkModule, ButtonComponent],
 })
 export class ButtonModule {}

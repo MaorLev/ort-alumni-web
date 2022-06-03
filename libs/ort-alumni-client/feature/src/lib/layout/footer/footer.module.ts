@@ -8,6 +8,6 @@ import { SvgIconModule } from '@shared/ui';
 @NgModule({
   declarations: [FooterComponent],
   imports: [CommonModule, QuicklinkModule, MatIconModule, SvgIconModule],
-  exports: [FooterComponent, QuicklinkModule]
+  exports: [QuicklinkModule, FooterComponent ]
 })
 export class FooterModule {}

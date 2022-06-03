@@ -1,4 +1,4 @@
-import { MatButtonModule } from '@angular/material/button';
+
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,12 +11,11 @@ import { QuicklinkModule } from 'ngx-quicklink';
   declarations: [SwitcherTabComponent],
   imports: [
     CommonModule,
+    QuicklinkModule,
     RouterModule,
     MatTabsModule,
-    MatIconModule,
-    QuicklinkModule,
-    MatButtonModule
+    MatIconModule
   ],
-  exports: [SwitcherTabComponent, QuicklinkModule],
+  exports: [QuicklinkModule, SwitcherTabComponent ],
 })
 export class SwitcherTabModule {}

@@ -27,11 +27,11 @@
           }
         ],
         "styles": [
-          "libs/ort-alumni-client/alumni-shared/styles/src/lib/styles.scss"
+          "libs/ort-alumni-client/alumni-shared/styles/src/lib/global.scss"
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "libs/ort-alumni-client/alumni-shared/styles/src/lib/accessories"
+            "libs/ort-alumni-client/alumni-shared/styles/src/lib/styles"
           ]
         },
         "scripts": []
@@ -105,5 +105,6 @@
       }
     }
   },
-  "tags": ["scope:ort-alumni-client-app"]
+  "tags": ["scope:ort-alumni-client-app"],
+  "implicitDependencies": ["ort-alumni-client-alumni-shared-assets", "ort-alumni-client-alumni-shared-styles"]
 }

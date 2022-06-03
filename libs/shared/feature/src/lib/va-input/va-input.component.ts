@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {
   Component,
   OnInit,
@@ -7,7 +10,6 @@ import {
   OnDestroy,
 } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
   FormControl,
   NG_VALIDATORS,
@@ -45,9 +47,12 @@ export class VAInputComponent implements OnInit, ControlValueAccessor,Validator,
 
   @Input() config: ortInput;
   onDestroy$ = new Subject<void>();
-  onChange = (str: any) => {};
-
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange = (obj: any) => {};
+  onTouched = () => {};
+  onValidatorChange = () => {};
   ngOnInit(): void {
+
     if (this.config.type) {
       this.oparteLogicType(this.config.name);
     }
@@ -64,6 +69,7 @@ export class VAInputComponent implements OnInit, ControlValueAccessor,Validator,
   }
   oparteLogicType(type:string | undefined)
   {
+
     this.type = type;
     switch(this.config.name)
     {
@@ -73,20 +79,29 @@ export class VAInputComponent implements OnInit, ControlValueAccessor,Validator,
     }
   }
   writeValue(obj: string): void {
+
     this.formControl.setValue(obj);
+
   }
   registerOnChange(fn: any): void {
+
     this.onChange = fn;
   }
-  registerOnTouched(fn: any): void {
-    // throw new Error('Method not implemented.');
+  registerOnTouched(onTouched: any): void {
+    this.onTouched = onTouched;
   }
   setDisabledState(isDisabled: boolean): void {
+
     isDisabled ? this.formControl.disable() : this.formControl.enable();
   }
 
-  validate(control: AbstractControl): ValidationErrors | null {
+  registerOnValidatorChange(onValidatorChange: () => void) {
+    this.onValidatorChange = onValidatorChange;
+}
+  validate(control: FormControl): ValidationErrors | null {
+    this.formControl = control;
     const validators: ValidatorFn [] = [];
+
     if(this.config.validators?.isRequired)
     {
      validators.push(Validators.required);
@@ -103,8 +118,7 @@ export class VAInputComponent implements OnInit, ControlValueAccessor,Validator,
     {
       validators.push(Validators.maxLength(this.config.validators.maxLength));
     }
-
-    this.formControl.setValidators(validators)
+    this.formControl.setValidators(validators);
 
     return validators;
   }

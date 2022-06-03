@@ -9,10 +9,10 @@ import { SwitcherTabModule } from '@shared/feature';
   declarations: [AuthSwitcherComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: AuthSwitcherComponent }]),
     QuicklinkModule,
+    RouterModule.forChild([{ path: '', component: AuthSwitcherComponent }]),
     SwitcherTabModule
   ],
-  exports: [AuthSwitcherComponent, QuicklinkModule],
+  exports: [QuicklinkModule, AuthSwitcherComponent],
 })
 export class AuthSwitcherModule {}

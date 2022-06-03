@@ -10,15 +10,15 @@
 //   }
 // }
 
-@use 'global' as glob;
+@use 'variables' as va;
 :host {
   main {
     height: 100vh;
     .header {
-      height: glob.$nav-bar-height;
+      height: va.$nav-bar-height;
     }
     .auth-content {
-      height: glob.$content-height-by-nav-bar
+      height: va.$content-height-by-nav-bar
     }
   }
 }

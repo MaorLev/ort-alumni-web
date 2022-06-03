@@ -8,7 +8,9 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "prepare": "nx g @nx-dotnet/core:restore"
+    "prepare": "nx g @nx-dotnet/core:restore",
+    "run many": "npx nx run-many --target=serve --projects=alumni-ort-server,ort-alumni-client-app",
+    "server": "npx nx serve alumni-ort-server "
   },
   "private": true,
   "dependencies": {

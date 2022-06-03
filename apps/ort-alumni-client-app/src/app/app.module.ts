@@ -10,6 +10,8 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '@environments';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,7 @@ import { environment } from '@environments';
     AkitaNgRouterStoreModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     {

@@ -24,8 +24,10 @@ export class LoginComponent {
   constructor(private authService: SessionService, private router: Router) {}
 
   onSubmit() {
-    this.authService
-      .login(this.group.value)
-      .subscribe(() => this.router.navigateByUrl(''));
+    if (this.group.valid) {
+      this.authService
+        .login({...this.group.value})
+        .subscribe(() => this.router.navigateByUrl(''));
+    }
   }
 }

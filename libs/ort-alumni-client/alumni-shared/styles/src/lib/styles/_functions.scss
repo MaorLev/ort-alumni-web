@@ -1,0 +1,3 @@
+@function times5($num) {
+  @return #{$num * 5}px;
+}

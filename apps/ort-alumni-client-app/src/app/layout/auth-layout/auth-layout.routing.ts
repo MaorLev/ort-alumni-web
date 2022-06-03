@@ -22,6 +22,11 @@ const routes: Routes = [
             loadChildren: () =>
               import('@ort-alumni/auth').then((m) => m.PreRegisterationModule),
           },
+          {
+            path: 'reset-password',
+            loadChildren: () =>
+              import('@ort-alumni/auth').then((m) => m.ResetPasswordModule),
+          },
           { path: '', redirectTo: 'login', pathMatch: 'full' },
         ],
       },

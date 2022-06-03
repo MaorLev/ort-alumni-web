@@ -5,15 +5,18 @@ import { CommonModule } from '@angular/common';
 import { FooterModule } from '@ort-alumni/feature';
 import { HeaderModule } from '@ort-alumni/feature';
 import { NgModule } from '@angular/core';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [AuthLayoutComponent],
   imports: [
     CommonModule,
+    QuicklinkModule,
     HeaderModule,
     FooterModule,
     AuthLayoutRoutingModule,
-    NavBarModule,
+    NavBarModule
   ],
+  exports:[QuicklinkModule]
 })
 export class AuthLayoutModule {}

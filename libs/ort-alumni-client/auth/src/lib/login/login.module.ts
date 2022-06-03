@@ -17,10 +17,9 @@ import { VAInputModule } from '@shared/feature';
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
     ReactiveFormsModule,
     VAInputModule,
-    MatButtonModule,
     ButtonModule
 
   ],
-  exports: [LoginComponent],
+  exports: [QuicklinkModule, LoginComponent],
 })
 export class LoginModule {}

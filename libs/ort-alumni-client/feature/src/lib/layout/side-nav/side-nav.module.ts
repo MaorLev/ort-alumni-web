@@ -6,6 +6,6 @@ import { SideNavComponent } from './side-nav.component';
 @NgModule({
   declarations: [SideNavComponent],
   imports: [CommonModule, QuicklinkModule],
-  exports: [SideNavComponent, QuicklinkModule]
+  exports: [QuicklinkModule, SideNavComponent]
 })
 export class SideNavModule {}

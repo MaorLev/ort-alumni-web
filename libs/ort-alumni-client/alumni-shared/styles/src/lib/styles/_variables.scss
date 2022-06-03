@@ -1,0 +1,121 @@
+
+// Primary
+$color-primary-50: #e7ebf3;
+$color-primary-100: #c4cde0;
+$color-primary-200: #9daccc;
+$color-primary-300: #768bb7;
+$color-primary-400: #5872a7;
+$color-primary-500: #3b5998;
+$color-primary-600: #355190;
+$color-primary-700: #2d4885;
+$color-primary-800: #263e7b;
+$color-primary-900: #192e6a;
+$color-primary-A100: #a4b9ff;
+$color-primary-A200: #7192ff;
+$color-primary-A400: #3e6bff;
+$color-primary-A700: #2558ff;
+$color-primary-lighter: #c6d1e8;
+$color-primary: #4267b2;
+$color-primary-darker: #2b4a99;
+
+// Accent
+
+$color-accent-50: #f1f2f3;
+$color-accent-100: #dcdde1;
+$color-accent-200: #c4c7ce;
+$color-accent-300: #acb1ba;
+$color-accent-400: #9ba0ab;
+$color-accent-500: #898f9c;
+$color-accent-600: #818794;
+$color-accent-700: #767c8a;
+$color-accent-800: #6c7280;
+$color-accent-900: #59606e;
+$color-accent-A100: #dce7fe;
+$color-accent-A200: #abc5fc;
+$color-accent-A400: #75a1ff;
+$color-accent-A700: #5c90ff;
+$color-accent: #898f9c;
+$color-accent-darker: #6c7280;
+$color-accent-lighter: #dcdde1;
+
+
+$gray-background: #f4f4f4;
+$gray-dot: #c4c4c4;
+$white-title: #c8d8ff;
+$white: #ffffff;
+$light-hover: RGB(240,240,246);
+
+
+$nav-bar-height: 110px;
+$header-height: 200px;
+$content-height-by-header: calc(100vh - #{$header-height});
+$content-height-by-nav-bar: calc(100vh - #{$nav-bar-height});
+
+
+$arr: 1 2 3 4 5 6 7 8 9 10 16;
+// Foreground Elements
+
+// Light Theme Text
+$dark-text: #000000;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+// Dark Theme text
+$light-text: #ffffff;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+
+// Dark bg
+$dark-background: #2c2c2c;
+$dark-bg-lighter-5: lighten($dark-background, 5%);
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
+$light-bg-alpha-4: rgba(#fafafa, 0.04);
+$light-bg-alpha-12: rgba(#fafafa, 0.12);
+
+// Background config
+// Light bg
+$light-background: #fafafa;
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+$dark-bg-tooltip: lighten(#2c2c2c, 20%);
+$dark-bg-alpha-4: rgba(#2c2c2c, 0.04);
+$dark-bg-alpha-12: rgba(#2c2c2c, 0.12);
+
+body {
+  // Primary Colors
+  --primary-color: #4267b2;
+  --primary-lighter-color: #c6d1e8;
+  --primary-darker-color: #2b4a99;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+
+  // Accent Colors
+  --accent-color: #898f9c;
+  --accent-lighter-color: #dcdde1;
+  --accent-darker-color: #6c7280;
+  --text-accent-color: #{$dark-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
+
+// Warning Colors
+  --warn-color: #ff0000;
+  --warn-lighter-color: #ffb3b3;
+  --warn-darker-color: #ff0000;
+  --text-warn-color: #{$light-primary-text};
+  --text-warn-lighter-color: #{$dark-primary-text};
+  --text-warn-darker-color: #{$light-primary-text};
+}
+

@@ -12,6 +12,10 @@ export class SessionDataService {
   baseUrl?: string = environment.endPointApi + '/auth';
   constructor(private httpClient: HttpClient){}
   login(creds: credentials): Observable<SessionState> {
-    return this.httpClient.post(`${this.baseUrl}/login`, creds) as Observable<SessionState>
+    return this.httpClient.post(`${this.baseUrl}/login`, creds) as Observable<SessionState>;
+  }
+
+  resetPassword(email:string):Observable<string>{
+    return this.httpClient.post(`${this.baseUrl}/resetpassword`,email) as Observable<string>;
   }
 }

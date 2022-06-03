@@ -10,7 +10,7 @@ import { svgIcon } from './svg-icon.interface';
 @Component({
   selector: 'ort-svg-icon[src_icon]',
   template: `
-    <span class="icon" [ngStyle]="style" [innerHtml]="view_icon"></span>
+    <span class="svg-icon" [ngStyle]="style" [innerHtml]="view_icon"></span>
   `,
   styleUrls: ['./svg-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

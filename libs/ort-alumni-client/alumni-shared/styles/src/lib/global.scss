@@ -1,0 +1,155 @@
+@use "variables" as va;
+@use "palette" as pal;
+@import "mixins";
+@import "functions";
+@import "media";
+@import "theme";
+
+html,
+body {
+  height: 100%;
+  direction: rtl;
+}
+body {
+  margin: 0;
+
+
+  // font-family: Roboto, "Helvetica Neue";
+}
+html[dir='rtl'] .icon {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: 'FlipH';
+
+}
+* {
+  box-sizing: border-box;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include dont-break-out;
+}
+* {
+  @each $name, $value in pal.$primary-palette {
+    &.#{$name} {
+      background-color: $value;
+    }
+    &.#{$name}:hover {
+      background-color: lighten($color: $value, $amount: 5%);
+    }
+  }
+  @each $name, $value in pal.$primary-contrast {
+    &.#{$name} {
+      background-color: $value;
+    }
+  }
+
+  @each $name, $value in pal.$accent-palette {
+    &.#{$name} {
+      background-color: $value;
+    }
+    &.#{$name}:hover {
+      background-color: lighten($color: $value, $amount: 5%);
+    }
+  }
+  @each $name, $value in pal.$accent-contrast {
+    &.#{$name} {
+      background-color: $value;
+    }
+  }
+
+  @each $name, $value in pal.$mat-light-theme-foreground {
+    &.#{$name} {
+      background-color: $value;
+    }
+  }
+  @each $name, $value in pal.$mat-light-theme-background {
+    &.#{$name} {
+      background-color: $value;
+    }
+  }
+}
+
+
+@each $size in va.$arr {
+  .mrg-t-#{$size} {
+    margin-top: times5($size);
+  }
+  .mrg-x-#{$size} {
+    margin-right: times5($size);
+    margin-left: times5($size);
+  }
+  .mrg-y-#{$size} {
+    margin-bottom: times5($size);
+    margin-top: times5($size);
+  }
+  .mrg-b-#{$size} {
+    margin-bottom: times5($size);
+  }
+  .mrg-l-#{$size} {
+    margin-left: times5($size);
+  }
+  .mrg-#{$size} {
+    margin: times5($size);
+  }
+  .grd-col-#{$size} {
+    display: grid;
+    grid-template-columns: repeat($size, auto);
+  }
+  .grd-gap-#{$size} {
+    grid-gap: times5($size);
+  }
+  .app-col-gap-#{$size} {
+    column-gap: times5($size);
+  }
+  .app-row-gap-#{$size} {
+    row-gap: times5($size);
+  }
+}
+
+// Handle buttons appropriately, with respect to line-height
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-icon-button {
+  padding: 1.15em 1.15em;
+  margin: 0 0.65em;
+  min-width: 3em;
+  line-height: 36.4px;
+  font-weight: bold;
+}
+.mat-standard-chip {
+  padding: 0.5em 0.85em;
+  min-height: 2.5em;
+}
+.material-icons {
+  font-size: 24px;
+  font-family: 'Material Icons', 'Material Icons';
+  .mat-badge-content {
+    font-family: 'Open Sans';
+  }
+}
+// // theming tutorial
+// // https://www.youtube.com/watch?v=99T-zQLcluM
+// // https://github.com/DMezhenskyi/angular-theming
+// // generator for angular
+// // http://mcg.mbitson.com/#!?ortplatte=%233b5998&mcgpalette1=%233f51b5&themename=3b5998
+// // facebook pallate
+// // https://www.color-hex.com/color-palette/185
+// https://usbrandcolors.com/facebook-colors/
+// toturial in-depth
+// https://lzomedia.com/blog/angular-material-theming-system-complete-guide/amp/
+
+// https://materialtheme.arcsine.dev/
+//icons
+// https://fonts.google.com/icons?icon.query=search&icon.set=Material+Icons
+// icons8
+// https://icons8.com/icons/set/instegram

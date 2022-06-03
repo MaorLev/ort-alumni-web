@@ -1,4 +1,7 @@
-@use 'global' as global;
+@use 'variables' as va;
+
+
+
 :host {
   mat-toolbar {
     display: -webkit-flex;
@@ -14,7 +17,7 @@
   }
   a {
     text-decoration: none;
-    color: global.$white;
+    color: va.$white;
     font-weight: bold;
     cursor: pointer;
   }

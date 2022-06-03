@@ -7,6 +7,6 @@ import { QuicklinkModule } from 'ngx-quicklink';
 @NgModule({
   declarations: [HeaderComponent],
   imports: [CommonModule, QuicklinkModule],
-  exports: [HeaderComponent, QuicklinkModule]
+  exports: [QuicklinkModule, HeaderComponent]
 })
 export class HeaderModule {}
