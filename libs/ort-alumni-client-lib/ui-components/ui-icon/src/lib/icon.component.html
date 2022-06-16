@@ -1,0 +1,9 @@
+<ng-container *ngIf="svgPath else regularIcon ">
+  <mat-icon [svgIcon]="svgPath" [class]="className" [color]="color" aria-hidden="false" aria-label="icon"></mat-icon>
+</ng-container>
+
+<ng-template #regularIcon >
+  <mat-icon [class]="className" [color]="color" aria-hidden="false" aria-label="icon">
+    <ng-content></ng-content>
+  </mat-icon>
+</ng-template>

@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-modal",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-modal/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ort-alumni-client-lib/features/feature-modal"],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-modal/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-modal/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-modal/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

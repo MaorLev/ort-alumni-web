@@ -1,0 +1,119 @@
+@use 'variables' as va;
+@use 'mixins' as mix;
+@use 'functions' as fa;
+// @use 'theme' as theme;
+// @use 'palette' as pal;
+
+// * {
+//   @each $name, $value in pal.$primary-palette {
+//     &.#{$name} {
+//       background-color: $value;
+//     }
+//   }
+//   &.#{$name}:hover {
+//     background-color: lighten($color: $value, $amount: 5%);
+//   }
+// @each $name, $value in pal.$primary-contrast {
+//   &.#{$name} {
+//     background-color: $value;
+//   }
+// }
+
+// @each $name, $value in pal.$accent-palette {
+//   &.#{$name} {
+//     background-color: $value;
+//   }
+//   &.#{$name}:hover {
+//     background-color: lighten($color: $value, $amount: 5%);
+//   }
+// }
+// @each $name, $value in pal.$accent-contrast {
+//   &.#{$name} {
+//     background-color: $value;
+//   }
+// }
+
+//   @each $name, $value in theme.$mat-light-theme-foreground {
+//     &.#{$name} {
+//       background-color: $value;
+//     }
+//   }
+//   @each $name, $value in theme.$mat-light-theme-background {
+//     &.#{$name} {
+//       background-color: $value;
+//     }
+//   }
+// }
+* {
+
+  @include mix.color-pallete($hover: false);
+
+
+  @each $size in va.$arr {
+    &.mrg-t-#{$size} {
+      margin-top: times5($size);
+    }
+    &.mrg-x-#{$size} {
+      margin-right: fa.times5($size);
+      margin-left: fa.times5($size);
+    }
+    &.mrg-y-#{$size} {
+      margin-bottom: fa.times5($size);
+      margin-top: fa.times5($size);
+    }
+    &.mrg-b-#{$size} {
+      margin-bottom: fa.times5($size);
+    }
+    &.mrg-l-#{$size} {
+      margin-left: fa.times5($size);
+    }
+    &.mrg-#{$size} {
+      margin: fa.times5($size);
+    }
+    &.grd-col-#{$size} {
+      display: grid;
+      grid-template-columns: repeat($size, auto);
+    }
+    &.grd-gap-#{$size} {
+      grid-gap: fa.times5($size);
+    }
+    &.app-col-gap-#{$size} {
+      column-gap: fa.times5($size);
+    }
+    &.app-row-gap-#{$size} {
+      row-gap: fa.times5($size);
+    }
+  }
+}
+
+/* Utility Classes */
+// Handle buttons appropriately, with respect to line-height
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-icon-button {
+  padding: 1.15rem 1.15rem;
+  margin: 0 0.65rem;
+  min-width: 3rem;
+  line-height: 3.64rem;
+  font-weight: bold;
+}
+.mat-standard-chip {
+  padding: 0.5rem 0.85rem;
+  min-height: 2.5rem;
+}
+.material-icons {
+  direction: rtl;
+  font-size: 2.4rem;
+  font-family: 'Material Icons', 'Material Icons';
+  .mat-badge-content {
+    font-family: 'Open Sans';
+  }
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 2rem 0;
+  overflow: hidden;
+}

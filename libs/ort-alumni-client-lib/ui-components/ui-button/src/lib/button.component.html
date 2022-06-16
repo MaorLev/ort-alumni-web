@@ -1,0 +1,12 @@
+<button [type]="type"  [class]="className" [disabled]="disabled" [routerLink]="routeTo">
+  <div class="content">
+    <span class="content-btn_text">
+      <ng-content></ng-content>
+    </span>
+    <span *ngIf="iconName" class="content-btn_icon" >
+        <ort-icon [className]="customIcon?.className" [color]="customIcon?.color" [svgPath]="customIcon?.svgPath"  >{{ iconName }}</ort-icon>
+    </span>
+  </div>
+</button>
+
+<button id="none" mat-button ></button>

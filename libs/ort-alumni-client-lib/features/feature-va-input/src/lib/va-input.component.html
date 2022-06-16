@@ -1,0 +1,31 @@
+<!-- <div [ngClass]="config.styleClass"> -->
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>{{ config.label }}</mat-label>
+      <input
+        [type]="hide ? 'password' : (config.type || 'text')"
+        matInput
+        [formControl]="formControl"
+        [placeholder]="config.placeholder || config.label"
+      />
+      <ort-button *ngIf="config.name === 'password'"
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+      className="mat-icon-button"
+      [iconName]="hide ? 'visibility_off' : 'visibility'"
+    ></ort-button>
+      <ng-container *ngIf="config.errors">
+        <ng-container *ngFor="let error of config.errors">
+          <mat-error
+            *ngIf="
+              formControl.hasError(error.name) &&
+              formControl.touched
+            "
+            >{{ error.message }}</mat-error
+          >
+        </ng-container>
+      </ng-container>
+    </mat-form-field>
+  </div>

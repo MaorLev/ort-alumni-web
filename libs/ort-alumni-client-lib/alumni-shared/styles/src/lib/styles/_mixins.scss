@@ -1,0 +1,81 @@
+@use 'palette' as pal;
+
+
+@mixin shadow-focus($shadow, $sec) {
+  -webkit-box-shadow: 0px 0px 5px 8px $shadow;
+  -moz-box-shadow: 0px 0px 5px 8px $shadow;
+  box-shadow: 0px 0px 5px 8px $shadow;
+  transition: outline $sec ease-in-out;
+}
+
+// for title that no broken ...
+@mixin trim{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
+@mixin scale($factor) {
+  transform: scale($factor);
+}
+
+@mixin dont-break-out {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
+
+@mixin color-pallete($hover: false) {
+
+  $background: #{background-color};
+  $color: #{color};
+  $palette: pal.$primary-palette;
+  $accent: pal.$accent-palette;
+
+
+
+  @each $name, $value in $palette {
+    &.bg-#{$name} {
+      #{$background}: $value;
+    }
+    &.#{$name} {
+      #{$color}: $value;
+    }
+
+    @if $hover {
+      &.#{$name}:hover {
+      background-color: lighten($color: $value, $amount: 5%);
+    }
+  }
+}
+
+    @each $name, $value in $accent {
+      &.bg-#{$name} {
+        background-color: $value;
+      }
+      &.#{$name} {
+        #{$color}: $value;
+      }
+      @if $hover {
+        &.#{$name}:hover {
+        background-color: lighten($color: $value, $amount: 5%);
+      }
+    }
+    }
+
+}

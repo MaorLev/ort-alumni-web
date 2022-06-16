@@ -1,0 +1,8 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/alumni-shared/styles",
+  "sourceRoot": "libs/ort-alumni-client-lib/alumni-shared/styles/src",
+  "prefix": "ort-alumni-web",
+  "targets": {},
+  "tags": ["scope:client-lib", "type:shared-styles"]
+}

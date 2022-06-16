@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/ui-components/ui-icon",
+  "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-icon/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ort-alumni-client-lib/ui-components/ui-icon"],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-icon/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/ui-components/ui-icon/src/**/*.ts",
+          "libs/ort-alumni-client-lib/ui-components/ui-icon/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:ui"]
+}

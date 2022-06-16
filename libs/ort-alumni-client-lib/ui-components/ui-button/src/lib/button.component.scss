@@ -1,0 +1,91 @@
+
+@import 'mixins';
+
+:host {
+  #none{
+    display: none;
+  }
+  mat-icon {
+    margin-right: 0.5rem;
+    &:hover {
+      @include scale(1.1);
+    }
+  }
+  .bar-btn-negative-primary {
+    color: var(--primary-color);
+    width: 100%;
+    &:hover {
+      background-color: var(--light-hover);
+    }
+  }
+  .bar-btn-primary {
+    background-color: var(--primary-color);
+    &:hover {
+      opacity: 0.9;
+    }
+    color: var(--light-background);
+    width: 100%;
+    letter-spacing: 0.3rem;
+  }
+  .custom {
+    display: inline-block;
+    text-align: center;
+    border-radius: 0.4rem;
+    padding: 0.4 0.8rem;
+    margin: 1.5rem;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    .content {
+      min-width: max-content;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      &-btn-text {
+        font-weight: 500;
+      }
+    }
+    &.fancy_btn {
+      width: 15rem;
+      height: 5rem;
+      font-size: large;
+      // border: red 2px groove;
+      letter-spacing: 0.1rem;
+
+      -webkit-box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
+        0px -20px 0px -10px RGB(247, 246, 249),
+        20px 0px 0px -10px RGB(247, 246, 249),
+        -20px 0px 0px -10px RGB(247, 246, 249),
+        0px 0px 0px 10px var(--accent-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+      box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
+        0px -20px 0px -10px RGB(247, 246, 249),
+        20px 0px 0px -10px RGB(247, 246, 249),
+        -20px 0px 0px -10px RGB(247, 246, 249),
+        0px 0px 0px 10px var(--accent-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+      background: RGB(247, 246, 249);
+//300
+      color: var(--primary-color);
+      text-shadow: 2px 2px 0px var(--accent-color), 5px 4px 0px var(--accent-color);
+      color: transparent;
+
+      &:hover {
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      .content {
+        background: var(--primary-darker-color);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        text-shadow: 0px 0.3rem 0.3rem rgba(255, 255, 255, 0.5);
+      }
+      font-weight: 800;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+}

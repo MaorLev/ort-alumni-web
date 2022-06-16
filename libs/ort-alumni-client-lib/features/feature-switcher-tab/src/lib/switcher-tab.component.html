@@ -1,0 +1,23 @@
+<div class="wrapper">
+
+  <main [@inOutZoom] class="container">
+    <nav>
+      <button
+        class="bt-tab"
+        *ngFor="let tab of dataTab"
+        [routerLink]="tab.route"
+        routerLinkActive="router-link-active"
+        [skipLocationChange]="true"
+        >
+        <!-- [routerLinkActiveOptions]="{ exact: dataTab.defaultRoute ? true : false}" -->
+        <div class="content-tab">
+            {{ tab.label }}
+          <mat-icon>{{ tab.tabIcon }}</mat-icon>
+        </div>
+      </button>
+    </nav>
+    <section class="compenent">
+      <router-outlet> </router-outlet>
+    </section>
+  </main>
+</div>

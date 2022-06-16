@@ -1,0 +1,8 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/alumni-shared/assets",
+  "sourceRoot": "libs/ort-alumni-client-lib/alumni-shared/assets/src",
+  "prefix": "ort",
+  "targets": {},
+  "tags": ["scope:client-lib", "type:shared-assets"]
+}
