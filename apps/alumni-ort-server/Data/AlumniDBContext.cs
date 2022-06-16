@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.Entities;
+using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.Extensions;
 using AlumniOrtServer.Models;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +18,7 @@ namespace AlumniOrtServer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+      //                                  !!Remember you can loads cities and same others ear with has data!!
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
