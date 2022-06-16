@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '**',
     pathMatch: 'full',
     loadChildren: () =>
-      import('@ort-alumni/feature').then((m) => m.PageNotFoundModule),
+      import('./pages/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule),
     data: {
       preload: false,
     },

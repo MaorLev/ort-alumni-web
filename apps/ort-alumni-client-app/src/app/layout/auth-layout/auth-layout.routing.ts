@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
-import { AuthLayoutComponent } from './auth-layout.component';
 import { NgModule } from '@angular/core';
-import { AuthSwitcherComponent } from '@ort-alumni/auth';
+import { AuthLayoutComponent } from './auth-layout.component';
+
 
 const routes: Routes = [
   {
@@ -10,25 +10,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AuthSwitcherComponent,
-        children: [
-          {
-            path: 'login',
-            loadChildren: () =>
-              import('@ort-alumni/auth').then((m) => m.LoginModule),
-          },
-          {
-            path: 'register',
-            loadChildren: () =>
-              import('@ort-alumni/auth').then((m) => m.PreRegisterationModule),
-          },
-          {
-            path: 'reset-password',
-            loadChildren: () =>
-              import('@ort-alumni/auth').then((m) => m.ResetPasswordModule),
-          },
-          { path: '', redirectTo: 'login', pathMatch: 'full' },
-        ],
+        loadChildren: () =>
+        import('../../auth/auth-switcher/auth-switcher.module').then((m) => m.AuthSwitcherModule),
       },
     ],
   },

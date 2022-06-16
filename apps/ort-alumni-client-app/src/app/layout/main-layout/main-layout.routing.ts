@@ -10,12 +10,12 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('@ort-alumni/feature').then((m) => m.HomeModule),
+          import('../../pages/home/home.module').then((m) => m.HomeModule),
       },
       {
         path: 'home',
         loadChildren: () =>
-          import('@ort-alumni/feature').then((m) => m.HomeModule),
+          import('../../pages/home/home.module').then((m) => m.HomeModule),
       },
     ],
   },

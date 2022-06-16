@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { FooterModule } from '@ort-alumni/feature';
+
 import { MainLayoutComponent } from './main-layout.component';
 import { MainLayoutRoutingModule } from './main-layout.routing';
-import { NavBarModule } from '@ort-alumni/feature';
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderModule } from '@ort-alumni/feature';
+
 import { QuicklinkModule } from 'ngx-quicklink';
+import { NavBarModule } from '../common-layout/nav-bar/nav-bar.module';
+import { FooterModule } from '../common-layout/footer/footer.module';
+import { HeaderModule } from '../common-layout/header/header.module';
 
 @NgModule({
   declarations: [MainLayoutComponent],
@@ -19,6 +22,6 @@ import { QuicklinkModule } from 'ngx-quicklink';
     RouterModule,
     HeaderModule,
   ],
-  exports: [QuicklinkModule,],
+  exports: [QuicklinkModule],
 })
 export class MainLayoutModule {}

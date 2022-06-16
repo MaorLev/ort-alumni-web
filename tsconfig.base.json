@@ -16,20 +16,33 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
+      "@assets": [
+        "libs/ort-alumni-client-lib/alumni-shared/assets/src/index.ts"
+      ],
       "@environments": [
-        "libs/ort-alumni-client/alumni-shared/environments/src/index.ts"
+        "libs/ort-alumni-client-lib/alumni-shared/environments/src/index.ts"
       ],
-      "@ort-alumni/auth": ["libs/ort-alumni-client/auth/src/index.ts"],
-      "@ort-alumni/data-access": [
-        "libs/ort-alumni-client/data-access/src/index.ts"
+      "@features/feature-file-upload": [
+        "libs/ort-alumni-client-lib/features/feature-file-upload/src/index.ts"
       ],
-      "@ort-alumni/feature": ["libs/ort-alumni-client/feature/src/index.ts"],
-      "@ort-alumni/ui": ["libs/ort-alumni-client/ui/src/index.ts"],
-      "@ort-alumni/util": ["libs/ort-alumni-client/util/src/index.ts"],
-      "@shared/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@shared/feature": ["libs/shared/feature/src/index.ts"],
-      "@shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@shared/util": ["libs/shared/util/src/index.ts"]
+      "@features/feature-modal": [
+        "libs/ort-alumni-client-lib/features/feature-modal/src/index.ts"
+      ],
+      "@features/feature-switcher-tab": [
+        "libs/ort-alumni-client-lib/features/feature-switcher-tab/src/index.ts"
+      ],
+      "@features/feature-va-input": [
+        "libs/ort-alumni-client-lib/features/feature-va-input/src/index.ts"
+      ],
+      "@ui-components/ui-button": [
+        "libs/ort-alumni-client-lib/ui-components/ui-button/src/index.ts"
+      ],
+      "@ui-components/ui-icon": [
+        "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
+      ],
+      "@ui-components/ui-img": [
+        "libs/ort-alumni-client-lib/ui-components/ui-img/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

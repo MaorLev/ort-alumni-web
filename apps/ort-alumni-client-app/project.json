@@ -17,21 +17,21 @@
         "assets": [
           {
             "glob": "favicon.ico",
-            "input": "libs/ort-alumni-client/alumni-shared/assets/src",
+            "input": "libs/ort-alumni-client-lib/alumni-shared/assets/src",
             "output": "./"
           },
           {
             "glob": "**/*",
-            "input": "libs/ort-alumni-client/alumni-shared/assets/src/assets",
+            "input": "libs/ort-alumni-client-lib/alumni-shared/assets/src/assets",
             "output": "assets"
           }
         ],
         "styles": [
-          "libs/ort-alumni-client/alumni-shared/styles/src/lib/global.scss"
+          "libs/ort-alumni-client-lib/alumni-shared/styles/src/lib/global.scss"
         ],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "libs/ort-alumni-client/alumni-shared/styles/src/lib/styles"
+            "libs/ort-alumni-client-lib/alumni-shared/styles/src/lib/styles"
           ]
         },
         "scripts": []
@@ -52,8 +52,8 @@
           ],
           "fileReplacements": [
             {
-              "replace": "libs/ort-alumni-client/alumni-shared/environments/src/lib/environment.ts",
-              "with": "libs/ort-alumni-client/alumni-shared/environments/src/lib/environment.prod.ts"
+              "replace": "libs/ort-alumni-client-lib/alumni-shared/environments/src/lib/environment.ts",
+              "with": "libs/ort-alumni-client-lib/alumni-shared/environments/src/lib/environment.prod.ts"
             }
           ],
           "outputHashing": "all"
@@ -106,5 +106,8 @@
     }
   },
   "tags": ["scope:ort-alumni-client-app"],
-  "implicitDependencies": ["ort-alumni-client-alumni-shared-assets", "ort-alumni-client-alumni-shared-styles"]
+  "implicitDependencies": [
+    "ort-alumni-client-lib-alumni-shared-assets",
+    "ort-alumni-client-lib-alumni-shared-styles"
+  ]
 }

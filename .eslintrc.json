@@ -6,6 +6,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
+        "@angular-eslint/prefer-on-push-component-change-detection": "error",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
@@ -13,45 +14,27 @@
             "allow": [],
             // https://nx.dev/structure/monorepo-tags documentaion nx scope & type
             "depConstraints": [
-              // {
-              //   "sourceTag": "*",
-              //   "onlyDependOnLibsWithTags": ["*"]
-              // },
-              {
-                "sourceTag": "scope:shared",
-                "onlyDependOnLibsWithTags": [
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:ort-alumni-client",
-                "onlyDependOnLibsWithTags": [
-                  "scope:ort-alumni-client",
-                  "scope:shared"
-                ]
-              },
               {
                 "sourceTag": "scope:ort-alumni-client-app",
                 "onlyDependOnLibsWithTags": [
-                  "scope:ort-alumni-client-app","scope:shared",
-                  "scope:ort-alumni-client"
+                  "scope:client-lib"
                 ]
               },
               {
                 "sourceTag": "type:ui",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:auth"]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:shared-assets"]
               },
               {
-                "sourceTag": "type:data-access",
-                "onlyDependOnLibsWithTags": ["type:data-access", "type:util","type:shared-evironments", "type:auth"]
+                "sourceTag": "type:data-accesses",
+                "onlyDependOnLibsWithTags": ["type:data-accesses", "type:util","type:shared-evironments"]
               },
               {
                 "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": ["type:util", "type:auth"]
+                "onlyDependOnLibsWithTags": ["type:util"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util","shared-evironments" , "type:auth"]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:data-accesses","type:shared-evironments","type:shared-assets"]
               }
             ]
           }

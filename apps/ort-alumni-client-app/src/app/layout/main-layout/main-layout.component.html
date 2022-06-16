@@ -1,5 +1,16 @@
-<p>main-layout works!</p>
-<alumni-header></alumni-header>
-<alumni-nav-bar></alumni-nav-bar>
-<router-outlet></router-outlet>
-<alumni-footer></alumni-footer>
+<div id="main-layout">
+  <nav>
+    <app-nav-bar></app-nav-bar>
+  </nav>
+  <main id="main-content">
+    <header>
+        <app-header></app-header>
+    </header>
+    <section id="main-content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</div>

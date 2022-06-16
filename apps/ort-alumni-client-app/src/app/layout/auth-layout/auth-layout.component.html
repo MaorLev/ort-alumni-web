@@ -1,10 +1,13 @@
-<!-- <p>auth-layout works!</p> -->
-<main class="auth-main">
-  <div class="header">
-    <alumni-header><alumni-nav-bar></alumni-nav-bar></alumni-header>
-  </div>
-  <div class="auth-content">
-
-    <router-outlet></router-outlet>
-  </div>
-</main>
+<div id="auth-layout">
+  <nav>
+      <app-nav-bar></app-nav-bar>
+  </nav>
+  <main id="auth-main">
+    <!-- <header>
+        <app-header></app-header>
+    </header> -->
+    <section id="auth-content">
+        <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>
