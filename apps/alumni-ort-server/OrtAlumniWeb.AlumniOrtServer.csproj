@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="StaticFiles\JsonData\Courses.data.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
@@ -18,7 +22,10 @@
 
   <ItemGroup>
     <Folder Include="StaticFiles\ImgJoboffer\" />
-    <Folder Include="StaticFiles\ImgTeacher\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="StaticFiles\JsonData\Courses.data.json" />
   </ItemGroup>
 
 </Project>

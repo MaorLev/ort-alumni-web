@@ -1,0 +1,36 @@
+@use 'mixins' as mix;
+
+
+// * {
+//   margin: 0;
+//   padding: 0;
+// }
+html {
+  font-size: 62.5%; /* 10px */
+  direction: rtl;
+}
+html[dir='rtl'] .icon {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: 'FlipH';
+}
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.8rem;
+}
+h1,
+h2 {
+  @include mix.trim;
+  @include mix.dont-break-out;
+}

@@ -16,8 +16,8 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           {
-            "glob": "favicon.ico",
-            "input": "libs/ort-alumni-client-lib/alumni-shared/assets/src",
+            "glob": "**/*",
+            "input": "libs/ort-alumni-client-lib/alumni-shared/assets/src/favicons",
             "output": "./"
           },
           {

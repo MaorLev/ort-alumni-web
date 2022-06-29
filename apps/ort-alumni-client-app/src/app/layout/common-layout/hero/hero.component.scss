@@ -1,0 +1,84 @@
+:host {
+  #hero {
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+    }
+    .anchor {
+      position: relative;
+      a {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        // top: -80px;
+        left: 0px;
+        // height: 80px;
+        width: 100%;
+        background-color: transparent;
+        background-blend-mode: multiply;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        height: 40px;
+        top: -40px;
+
+        div {
+          display: block;
+
+        }
+
+        &::before {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          height: 80px;
+          width: 100%;
+          content: '';
+          mix-blend-mode: multiply;
+          width: calc(100% - 122px);
+          background-color: var(--accent-color);
+
+        }
+
+        .main-anchor {
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAPCAYAAACm25zCAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAMqADAAQAAAABAAAADwAAAAAPsvGmAAABQElEQVRIDdWVDZHCMBCFWwcnAQlIqIPDAZWAA5CAA3DSSsBBcEAdlO/BMncNSWj5LTvzSLJNdt+XMpC1bVuiA6rQb/YlgdfCPMt7mfHhhyMxHyuPvKEKdUIgdSfzt3BMRwMkL8ihUNSni+fJCu1DO8g5NEc/n3hL1tsxhqIhKe9dbyRKFAPSd3GJuodeQKce1ssxhkIeFyjthQ0fAZIxtES6tFAIoBx8dzqEdqGK5C5vaDK4sHeAWq8B8PpkNCpQjWKx4cFgIJ1BOht7A+o58/08vKboU4CocwFgGgwBFA8bvlVATdA2aOGc3DBcGSE3DgAf0IylgCoBmTSPhWpM/fpvX2NCN50CSgFM3m74VkMDWjM2MeeWF/T4AHxATOrndIX+A2muXPpPzC/Wc5333HfXNjO9sMPrPM+buwr1OHQEUeVx0LRnpbYAAAAASUVORK5CYII=);
+          z-index: 3;
+          width: 50px;
+          height: 15px;
+          margin: 0px auto;
+          color: transparent;
+          background-size: cover;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+        .after-anchor {
+          position: absolute;
+          top: 0px;
+          right: -45px;
+          height: 80px;
+          width: 222px;
+          z-index: 4;
+
+          transform: skew(135deg);
+          background-image: none;
+          background-color: var(--accent-color);
+        }
+        &::after {
+          position: absolute;
+          top: 0px;
+          right: -45px;
+          height: 40px;
+          width: 161px;
+          content: "";
+          transform: skew(135deg);
+          width: 222px;
+
+        }
+      }
+    }
+  }
+}

@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar.component';
 import { NgModule } from '@angular/core';
 import { QuicklinkModule } from 'ngx-quicklink';
-import { UiImgModule } from '@ui-components/ui-img';
 import { UiButtonModule } from '@ui-components/ui-button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-logged-in.directive';
 
 
@@ -17,9 +14,6 @@ import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-log
     QuicklinkModule,
     RouterModule,
     UiButtonModule,
-    UiImgModule,
-    MatIconModule,
-    MatToolbarModule,
     ShowIfLoggedInDirectiveModule
   ],
   exports: [QuicklinkModule, NavBarComponent ],

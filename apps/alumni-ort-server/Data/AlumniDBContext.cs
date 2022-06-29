@@ -2,8 +2,11 @@ using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.Extensions;
 using AlumniOrtServer.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,9 +19,8 @@ namespace AlumniOrtServer.Context
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-      //                                  !!Remember you can loads cities and same others ear with has data!!
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
@@ -123,22 +125,26 @@ namespace AlumniOrtServer.Context
              .HasOne(t => t.teacher)
              .WithOne(a => a.Alumanus)
              .HasForeignKey<Teacher>(a => a.AlumnusId)
-             .OnDelete(DeleteBehavior.Restrict); 
+             .OnDelete(DeleteBehavior.Restrict);
 
-            City city1 = new City(1, "אונליין");
-            City city2 = new City(2, "ירושלים");
-            City city3 = new City(3, "בית מאיר");
-            modelBuilder.Entity<City>().HasData(city1, city2, city3);
-            StudyProgram studyProgram1 = new StudyProgram(2, "תוכנה");
-            StudyProgram studyProgram2 = new StudyProgram(1, "בנייין");
-            modelBuilder.Entity<StudyProgram>().HasData(studyProgram2, studyProgram1);
 
-            College college = new College(1, "אורט");
+      JsonToList<City> citiesToList = new JsonToList<City>();
+      string pathCity = "Cities.data.json";
+      List<City> cities = citiesToList.GetData(pathCity);
+      modelBuilder.Entity<City>().HasData(cities);
 
-            modelBuilder.Entity<College>().HasData(college);
+      JsonToList<StudyProgram> studyProgramToList = new JsonToList<StudyProgram>();
+      string pathSP = "StudyProgram.data.json";
+      List<StudyProgram> studyPrograms = studyProgramToList.GetData(pathSP);
+      modelBuilder.Entity<StudyProgram>().HasData(studyPrograms);
 
-           Alumnus alumnus = new Alumnus(1,"danny@gmail", "Maor", "Levy", MD5Service.Encrypt("1234"), "054231", 1
-                , 1,1, "dcdscdscsd", "sdcsdcsd", "cdscdscsd", "dcsdcsd", 3, "2015",DateTime.Now);
+      JsonToList<College> collegeToList = new JsonToList<College>();
+      string pathCollege = "Colleges.data.json";
+      List<College> colleges = collegeToList.GetData(pathCollege);
+      modelBuilder.Entity<College>().HasData(colleges);
+
+           Alumnus alumnus = new Alumnus(1,"maor0749@gmail", "Maor", "Levy", MD5Service.Encrypt("Ml123456"), "0507985556", 525
+                , 3,14, "203053764", "2020", "https://www.linkedin.com/in/maor-levy-565237173/", "מרכז חרידי להכשרה מקצועית", 3, "2018",new DateTime(1993,01,29));
             modelBuilder.Entity<Alumnus>().HasData(alumnus);
 
             modelBuilder.Entity<TeacherLanguage>()
@@ -153,17 +159,19 @@ namespace AlumniOrtServer.Context
                 .WithMany(l => l.TeacherLanguages)
                 .HasForeignKey(tl => tl.LanguageId)
                 .OnDelete(DeleteBehavior.Restrict);
+      /*
+                  Language language1 = new Language(1, "אנגלית");
+                  Language language2 = new Language(2, "צרפתית");*/
+      /*Language.data*/
+      JsonToList<Language> languageToList = new JsonToList<Language>();
+      string pathLanguage = "Language.data.json";
+      List<Language> languages = languageToList.GetData(pathLanguage);
+      modelBuilder.Entity<Language>().HasData(languages);
 
-            Language language1 = new Language(1, "אנגלית");
-            Language language2 = new Language(2, "צרפתית");
-
-
-            modelBuilder.Entity<Language>().HasData(language1, language2);
-
-            Teacher teacher = new Teacher(1, "sdcdscsd", "sdcdscs", "43", "dcscsdc",1);
+            Teacher teacher = new Teacher(1, "maor0749@gmail", "defaultLogo.jpg", "90", "מרצה Full Stack במכללה 'מרכז החרדי להכשרה מקצועית', עיסוק עיקרי Angular. אשמח שנתקדם יחד :)", 1);
             modelBuilder.Entity<Teacher>().HasData(teacher);
 
-            TeacherLanguage teacherLanguage1 = new TeacherLanguage(1, 2);
+            TeacherLanguage teacherLanguage1 = new TeacherLanguage(1, 1);
             modelBuilder.Entity<TeacherLanguage>().HasData(teacherLanguage1);
 
 
@@ -173,7 +181,7 @@ namespace AlumniOrtServer.Context
             .HasForeignKey(e => e.EmployerId);//checl if you have onDelte on foreign key in JobOffers
 
 
-            Employer emp1 = new Employer(2, "maor1100@gmail.com", "maor", "Levy", MD5Service.Encrypt("2882"), "CTO", "Elbit", "HI", "Jerusalem", 2);
+            Employer emp1 = new Employer(2, "maor1100@gmail.com", "maor", "Levy", MD5Service.Encrypt("Ml123456"), "CTO", "Elbit", "HI", "Jerusalem", 2);
             modelBuilder.Entity<Employer>().HasData(emp1);
 
             JobOffer JO1 = new JobOffer(1, "junior", "sh@gmail.com", "fvfvfvf", "sdcdscsdcsd", true, "05079855556", "Logo", 2);
@@ -201,12 +209,16 @@ namespace AlumniOrtServer.Context
             .OnDelete(DeleteBehavior.Restrict);
 
 
+      /*
+                  Course_StudyProgram course1 = new Course_StudyProgram(1,1 ,"C Sharp");
+                  Course_StudyProgram course3 = new Course_StudyProgram(2,1 ,"SQL");
+                  Course_StudyProgram course2 = new Course_StudyProgram(3,2 ,"Autocad");*/
 
-            Course_StudyProgram course1 = new Course_StudyProgram(1,1 ,"C Sharp");
-            Course_StudyProgram course3 = new Course_StudyProgram(2,1 ,"SQL");
-            Course_StudyProgram course2 = new Course_StudyProgram(3,2 ,"Autocad");
+      JsonToList<Course_StudyProgram> CoursestoList = new JsonToList<Course_StudyProgram>();
+      string coursesPath = "Courses.data.json";
+      List<Course_StudyProgram> courses = CoursestoList.GetData(coursesPath);
 
-            modelBuilder.Entity<Course_StudyProgram>().HasData(course1, course2, course3);
+      modelBuilder.Entity<Course_StudyProgram>().HasData(courses);
 
             TeacherCourse teacherCourse1 = new TeacherCourse(1, 1);
             TeacherCourse teacherCourse2 = new TeacherCourse(1, 2);
@@ -280,7 +292,7 @@ namespace AlumniOrtServer.Context
             modelBuilder.Entity<JobOffer_StudyProgram>().HasData(JOP1,JOP2);
 
 
-            Admin adm = new Admin(3, "csdcdc", "admin", "sdsd", MD5Service.Encrypt("123"), 1);
+            Admin adm = new Admin(3, "maor79855@gmail.com", "Maor", "Levy", MD5Service.Encrypt("Ml123456"), 1);
 
             modelBuilder.Entity<Admin>().HasData(adm);
 
@@ -297,7 +309,13 @@ namespace AlumniOrtServer.Context
             Claim claim3adm = new Claim(9, "userId", adm.Id.ToString(), adm.Id);
 
             modelBuilder.Entity<Claim>().HasData(claim1alu, claim2alu, claim3alu,
-                claim1emp, claim2emp, claim3emp, claim1adm, claim2adm, claim3adm);
+            claim1emp, claim2emp, claim3emp, claim1adm, claim2adm, claim3adm);
+           Category cat1 = new Category(Constants.CategoryId.Events,Constants.CategoryName.Events);
+           Category cat2 = new Category(Constants.CategoryId.General,Constants.CategoryName.General);
+           modelBuilder.Entity<Category>().HasData(cat1, cat2);
+
+
+
         }
 
         public DbSet<Employer> Employers { get; set; }
@@ -324,10 +342,22 @@ namespace AlumniOrtServer.Context
 
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Claim> Claim { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
+  }
+}
+class JsonToList<T>
+{
+  public List<T> GetData(string path)
+  {
 
-
-
-
+    string fullPath = "C:\\Projects\\OrtAlumni\\Repo\\Git\\ort-alumni-web\\apps\\alumni-ort-server\\StaticFiles\\JsonData\\" + path;
+    string jsonFromFile;
+    using (StreamReader reader = new StreamReader(fullPath))
+    {
+      jsonFromFile = reader.ReadToEnd();
     }
+    return JsonConvert.DeserializeObject<List<T>>(jsonFromFile);
+  }
 }

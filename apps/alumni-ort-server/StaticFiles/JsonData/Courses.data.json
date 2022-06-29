@@ -1,0 +1,317 @@
+[
+  {
+    "id": 1,
+    "StudyProgramId": 2,
+    "Name": "חישובים סטטיים"
+  },
+  {
+    "id": 2,
+    "StudyProgramId": 2,
+    "Name": "גאומטריה תאורית"
+  },
+  {
+    "id": 3,
+    "StudyProgramId": 2,
+    "Name": "פרטי בניין"
+  },
+  {
+    "id": 4,
+    "StudyProgramId": 2,
+    "Name": "תורת הבניה"
+  },
+  {
+    "id": 5,
+    "StudyProgramId": 2,
+    "Name": "פרטי בניין"
+  },
+  {
+    "id": 6,
+    "StudyProgramId": 2,
+    "Name": "תכנון אדריכלי"
+  },
+  {
+    "id": 7,
+    "StudyProgramId": 2,
+    "Name": "יסודות העיצוב"
+  },
+  {
+    "id": 8,
+    "StudyProgramId": 2,
+    "Name": "עיבוד תכניות"
+  },
+  {
+    "id": 9,
+    "StudyProgramId": 2,
+    "Name": "תיב''מ"
+  },
+  {
+    "id": 10,
+    "StudyProgramId": 2,
+    "Name": "אוטוקד"
+  },
+  {
+    "id": 11,
+    "StudyProgramId": 2,
+    "Name": "סקאטצ'אפ"
+  },
+  {
+    "id": 12,
+    "StudyProgramId": 2,
+    "Name": "תולדות האדריכלות"
+  },
+  {
+    "id": 13,
+    "StudyProgramId": 2,
+    "Name": " הנדסת אנוש וארגונומיה"
+  },
+  {
+    "id": 14,
+    "StudyProgramId": 2,
+    "Name": "קלימטולוגיה"
+  },
+  {
+    "id": 15,
+    "StudyProgramId": 2,
+    "Name": "עיצוב ריהוט ופרטי ריהוט"
+  },
+  {
+    "id": 16,
+    "StudyProgramId": 2,
+    "Name": "חומרי בניין ופנים"
+  },
+  {
+    "id": 17,
+    "StudyProgramId": 2,
+    "Name": "מערכת המבנה ותשתיות"
+  },
+  {
+    "id": 18,
+    "StudyProgramId": 2,
+    "Name": "עקרונות התכנון האדריכלי"
+  },
+  {
+    "id": 19,
+    "StudyProgramId": 4,
+    "Name": "פיזיקה"
+  },
+  {
+    "id": 20,
+    "StudyProgramId": 4,
+    "Name": "מתמטיקה"
+  },
+  {
+    "id": 21,
+    "StudyProgramId": 4,
+    "Name": "תורת החשמל"
+  },
+  {
+    "id": 22,
+    "StudyProgramId": 4,
+    "Name": "אנרגיות מתחדשות"
+  },
+  {
+    "id": 23,
+    "StudyProgramId": 4,
+    "Name": "אלקטרוניקה תקבילית"
+  },
+  {
+    "id": 24,
+    "StudyProgramId": 3,
+    "Name": "אלקטרוניקה"
+  },
+  {
+    "id": 25,
+    "StudyProgramId": 5,
+    "Name": "ביוכימיה"
+  },
+  {
+    "id": 26,
+    "StudyProgramId": 5,
+    "Name": "ביולוגיה מולקולארית והנדסה גנטית"
+  },
+  {
+    "id": 27,
+    "StudyProgramId": 5,
+    "Name": "כימיה כללית"
+  },
+  {
+    "id": 28,
+    "StudyProgramId": 5,
+    "Name": "מיקרוביולוגיה כללית"
+  },
+  {
+    "id": 29,
+    "StudyProgramId": 5,
+    "Name": "ביולוגיה מולקולרית"
+  },
+  {
+    "id": 30,
+    "StudyProgramId": 5,
+    "Name": "פיזיולוגיה של בעלי חיים"
+  },
+  {
+    "id": 31,
+    "StudyProgramId": 5,
+    "Name": "גנטיקה"
+  },
+  {
+    "id": 32,
+    "StudyProgramId": 5,
+    "Name": "שיטות הפרדה"
+  },
+  {
+    "id": 33,
+    "StudyProgramId": 6,
+    "Name": "חישוב סטטי וחוזק חומרים"
+  },
+  {
+    "id": 34,
+    "StudyProgramId": 6,
+    "Name": "קונסטרוקציות בטון"
+  },
+  {
+    "id": 35,
+    "StudyProgramId": 6,
+    "Name": "ארגון אתר ובחירת ציוד בנייה בהיבט מערכתי"
+  },
+  {
+    "id": 36,
+    "StudyProgramId": 6,
+    "Name": "קונסטרוקציות פלדה ועץ"
+  },
+  {
+    "id": 37,
+    "StudyProgramId": 6,
+    "Name": "יישומי מחשב בתכן מבנים"
+  },
+  {
+    "id": 38,
+    "StudyProgramId": 6,
+    "Name": "יישומי מחשב בניהול הבנייה"
+  },
+  {
+    "id": 39,
+    "StudyProgramId": 8,
+    "Name": "שירטוט +תיב''ם (אוטוקאד)"
+  },
+  {
+    "id": 40,
+    "StudyProgramId": 8,
+    "Name": "מבוא לכימיה כללית ואנליטית"
+  },
+  {
+    "id": 41,
+    "StudyProgramId": 8,
+    "Name": "צנרת ואביזרי מים"
+  },
+  {
+    "id": 42,
+    "StudyProgramId": 8,
+    "Name": "משאבות"
+  },
+  {
+    "id": 43,
+    "StudyProgramId": 8,
+    "Name": "מז''ח (מוסמך משרד הבריאות)"
+  },
+  {
+    "id": 44,
+    "StudyProgramId": 8,
+    "Name": "כימיה סניטרית"
+  },
+  {
+    "id": 45,
+    "StudyProgramId": "14",
+    "Name": "בסיסי נתונים SQL"
+  },
+  {
+    "id": 46,
+    "StudyProgramId": "14",
+    "Name": "תקשורת נתונים ואבטחת מידע"
+  },
+  {
+    "id": 47,
+    "StudyProgramId": "14",
+    "Name": "MongoDB No SQL"
+  },
+  {
+    "id": 48,
+    "StudyProgramId": "14",
+    "Name": "React"
+  },
+  {
+    "id": 49,
+    "StudyProgramId": "14",
+    "Name": "Angular "
+  },
+  {
+    "id": 50,
+    "StudyProgramId": "14",
+    "Name": "תכנות מונחה עצמים Java"
+  },
+  {
+    "id": 51,
+    "StudyProgramId": "14",
+    "Name": "תכנות מונחה עצמים C Sharp"
+  },
+  {
+    "id": 52,
+    "StudyProgramId": "14",
+    "Name": "מבנה נתונים Java"
+  },
+  {
+    "id": 53,
+    "StudyProgramId": "14",
+    "Name": "מבנה נתונים C Sharp"
+  },
+  {
+    "id": 54,
+    "StudyProgramId": "14",
+    "Name": ""
+  },
+  {
+    "id": 55,
+    "StudyProgramId": "14",
+    "Name": "Node JS"
+  },
+  {
+    "id": 56,
+    "StudyProgramId": "14",
+    "Name": "PHP"
+  },
+  {
+    "id": 57,
+    "StudyProgramId": "14",
+    "Name": "Asp.Net"
+  },
+  {
+    "id": 58,
+    "StudyProgramId": "14",
+    "Name": "הנחיית פרויקט"
+  },
+  {
+    "id": 59,
+    "StudyProgramId": "14",
+    "Name": "אלגוריתמיקה ותכנות"
+  },
+  {
+    "id": 60,
+    "StudyProgramId": "14",
+    "Name": "מערכות הפעלה ולינוקס"
+  },
+  {
+    "id": 61,
+    "StudyProgramId": "14",
+    "Name": "פייתון"
+  },
+  {
+    "id": 62,
+    "StudyProgramId": "14",
+    "Name": "ניתוח מערכות"
+  },
+  {
+    "id": 63,
+    "StudyProgramId": "14",
+    "Name": "בדיקות תוכנה - QA"
+  }
+]

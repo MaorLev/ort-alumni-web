@@ -1,1 +1,106 @@
+.container {
+  padding: 0.4rem 1rem;
 
+  #boxes {
+    // height: 10vh;
+
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 1fr;
+    place-content: center;
+    align-items: center;
+    text-align: left;
+    column-gap: 2rem;
+    .search {
+      ort-button {
+        &:hover {
+          color: var(--primary-darker-color);
+        }
+      }
+    }
+    .img {
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .links {
+      font-size: 2rem;
+      font-weight: 400;
+      font-family: 'David Libre', serif;
+      color: rgb(60, 60, 60);
+      align-self: flex-end;
+      text-align: right;
+      padding-bottom: 1.5rem;
+      a {
+        margin-right: 1.5rem;
+        &:hover {
+          color: var(--primary-darker-color);
+          text-decoration: underline;
+        }
+      }
+    }
+    img {
+      width: 12.2rem;
+      height: 10.4rem;
+    }
+  }
+}
+.menu {
+  width: 3.5rem;
+  display: block;
+  -webkit-box-align: center;
+  align-items: center;
+  padding-top: 2rem;
+  cursor: pointer;
+  .wrapper {
+    display: contents;
+    background-color: rgb(60, 60, 60);
+    width: 100%;
+    height: 100%;
+    &:hover {
+      background-color: var(--primary-darker-color);
+      color: var(--primary-darker-color);
+    }
+    span {
+      display: block;
+      background-color: inherit;
+      height: 0.3rem;
+      transition: all 0.3s linear 0s;
+      align-self: center;
+      position: relative;
+      transform: none;
+      &:before {
+        width: 3.5rem;
+        height: 0.3rem;
+        background-color: inherit;
+        content: '';
+        position: absolute;
+        transition: all 0.3s linear 0s;
+        transform: rotate(0deg);
+        top: -0.9rem;
+        left: 0;
+      }
+
+      &:after {
+        width: 3.5rem;
+        height: 0.3rem;
+        background-color: inherit;
+        content: '';
+        position: absolute;
+        transition: all 0.3s linear 0s;
+        opacity: 1;
+        transform: rotate(0deg);
+        top: 0.9rem;
+        left: 0;
+      }
+    }
+    div {
+      color: inherit;
+      font-weight: 500;
+      margin-top: 0.9rem;
+      text-transform: uppercase;
+      display: block;
+      text-align: center;
+    }
+  }
+}

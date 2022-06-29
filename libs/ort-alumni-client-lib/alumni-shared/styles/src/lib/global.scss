@@ -1,51 +1,10 @@
-@use 'mixins' as mix;
-@use 'functions';
-@use 'theme';
-@use 'variables';
-@use 'utility-classes';
-@use 'palette' as pal;
-// https://developers.google.com/fonts/docs/material_icons
+@use 'styles/resets/normalize';
+@use 'styles/resets/local-resets';
+@use 'styles/functions';
+@use 'styles/theme';
+@use 'styles/variables';
+@use 'styles/utility-classes';
+@use 'styles/palette' as pal;
+@use 'styles/resets/my-resets';
 
-// https://material.angular.io/components/icon/api
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  font-size: 62.5%; /* 10px */
-  direction: rtl;
-}
-html[dir='rtl'] .icon {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: 'FlipH';
-}
-body {
-  height: 100%;
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-ul {
-  list-style: none;
-}
-p,
-h3,
-h4,
-h5,
-h6 {
-  margin: 1rem 0;
-}
-h1, h2{
-  @include mix.trim;
-  @include mix.dont-break-out;
-}
 

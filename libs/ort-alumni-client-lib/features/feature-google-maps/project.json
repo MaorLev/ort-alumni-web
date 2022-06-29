@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-google-maps",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-google-maps/src",
+  "prefix": "ort-alumni-web",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-google-maps"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-google-maps/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-google-maps/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-google-maps/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

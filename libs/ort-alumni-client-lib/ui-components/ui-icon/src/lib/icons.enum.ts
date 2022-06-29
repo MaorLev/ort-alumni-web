@@ -3,4 +3,5 @@ export enum Icons {
   Linkedin = "assets/svgs/linkedin.svg",
   Youtube = "assets/svgs/youtube.svg",
   Waze = "assets/svgs/waze.svg",
+  Ort = "assets/svgs/ort-icon.svg",
 }

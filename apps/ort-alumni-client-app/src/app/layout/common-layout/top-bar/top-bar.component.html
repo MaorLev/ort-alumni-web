@@ -1,0 +1,19 @@
+
+<section id="top-bar">
+  <div class="items">
+    <div class="item">
+      <a class="img-item" href="dcsdcs">
+        <img src="assets/images/ort-white.png"  alt="ort icon">
+      </a>
+
+    </div>
+    <div class="item">
+      <div class="login-item">
+        <ng-container *ngFor="let link of loginLinksDataService.loginLinks" >
+          <a class="login mat-body-strong" *appShowIfLoggedIn="link.showIfLogin" (click)="link?.onClick()" [routerLink]="link.route" >{{link.label === 'התחבר' ? 'התחבר' : 'התנתק'}}</a>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+</section>

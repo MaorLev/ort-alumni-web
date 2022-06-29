@@ -1,7 +1,7 @@
 <div [@fadeInOut] class="login-container">
 
   <form  [formGroup]="group" (ngSubmit)="onSubmit()" >
-    <h1 >התחברות</h1>
+    <h1 class="mat-h1">התחברות</h1>
     <ort-va-input [config]="controls[0]" [formControlName]="controls[0].name" ></ort-va-input>
     <ort-va-input [config]="controls[1]" [formControlName]="controls[1].name" ></ort-va-input>
     <ort-button type="submit"  className="mat-raised-button bar-btn-primary" >התחבר</ort-button>

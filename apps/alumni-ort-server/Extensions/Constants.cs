@@ -1,4 +1,4 @@
-﻿namespace AlumniOrtServer.Extensions
+namespace AlumniOrtServer.Extensions
 {
     public static class Constants
     {
@@ -19,6 +19,17 @@
             public const string Student = "Student";
 
         }
+        public static class CategoryId
+        {
+            public const int Events = 1;
+            public const int General = 2;
+        }
+
+        public static class CategoryName
+        {
+            public const string Events = "Events";
+            public const string General = "General";
+        }
 
         public static class ModeStudiesId
         {
@@ -26,6 +37,8 @@
             public const int Frontally = 1;
 
         }
+
+
 
     }
 }

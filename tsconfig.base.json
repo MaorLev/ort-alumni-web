@@ -25,6 +25,9 @@
       "@features/feature-file-upload": [
         "libs/ort-alumni-client-lib/features/feature-file-upload/src/index.ts"
       ],
+      "@features/feature-google-maps": [
+        "libs/ort-alumni-client-lib/features/feature-google-maps/src/index.ts"
+      ],
       "@features/feature-modal": [
         "libs/ort-alumni-client-lib/features/feature-modal/src/index.ts"
       ],
@@ -39,9 +42,6 @@
       ],
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
-      ],
-      "@ui-components/ui-img": [
-        "libs/ort-alumni-client-lib/ui-components/ui-img/src/index.ts"
       ]
     }
   },

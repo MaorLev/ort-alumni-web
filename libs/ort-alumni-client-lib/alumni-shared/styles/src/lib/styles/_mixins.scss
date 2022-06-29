@@ -1,6 +1,5 @@
 @use 'palette' as pal;
 
-
 @mixin shadow-focus($shadow, $sec) {
   -webkit-box-shadow: 0px 0px 5px 8px $shadow;
   -moz-box-shadow: 0px 0px 5px 8px $shadow;
@@ -9,7 +8,7 @@
 }
 
 // for title that no broken ...
-@mixin trim{
+@mixin trim {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -21,7 +20,6 @@
 }
 
 @mixin dont-break-out {
-
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -37,17 +35,13 @@
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-
 }
 
 @mixin color-pallete($hover: false) {
-
   $background: #{background-color};
   $color: #{color};
   $palette: pal.$primary-palette;
   $accent: pal.$accent-palette;
-
-
 
   @each $name, $value in $palette {
     &.bg-#{$name} {
@@ -59,23 +53,62 @@
 
     @if $hover {
       &.#{$name}:hover {
-      background-color: lighten($color: $value, $amount: 5%);
+        background-color: lighten($color: $value, $amount: 5%);
+      }
+    }
+  }
+
+  @each $name, $value in $accent {
+    &.bg-#{$name} {
+      background-color: $value;
+    }
+    &.#{$name} {
+      #{$color}: $value;
+    }
+    @if $hover {
+      &.#{$name}:hover {
+        background-color: lighten($color: $value, $amount: 5%);
+      }
     }
   }
 }
 
-    @each $name, $value in $accent {
-      &.bg-#{$name} {
-        background-color: $value;
-      }
-      &.#{$name} {
-        #{$color}: $value;
-      }
-      @if $hover {
-        &.#{$name}:hover {
-        background-color: lighten($color: $value, $amount: 5%);
+@mixin custom-checkbox {
+  // .custom-checkbox{
+    all:unset;
+    position:relative;
+    display:block;
+    box-sizing:border-box;
+    width:38rem;
+    height:20rem;
+    padding:2rem;
+    border-radius:10rem;
+    background-color:rgb(255, 232, 232);
+    transition:0.2s;
+    &::before{
+      content:"";
+      display:block;
+      box-sizing:border-box;
+      transition:0.2s;
+      width:16rem;
+      height:16rem;
+      border-radius:50%;
+      border:solid 4rem #ffffff;
+      background-color:rgb(255, 42, 43);
+    }
+    &:checked{
+      background-color:rgb(223, 247, 237);
+      &::before{
+        background-color:rgb(15, 202, 128);
+        transform:translateX(18rem);}
+    }
+    &:hover,
+    &:focus{
+      &:not(:disabled){
+        outline:none;
+        box-shadow:0 0 1px #fff, 0 0 3px #fff, 0 0 6px #0ba9ca;
+        cursor:pointer;
       }
     }
-    }
-
+  // }
 }

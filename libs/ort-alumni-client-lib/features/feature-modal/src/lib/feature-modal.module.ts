@@ -8,13 +8,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { UiButtonModule } from '@ui-components/ui-button';
 import { MatInputModule } from '@angular/material/input';
 import { SearchTamplateComponent } from './tamplates/search-data/search-tamplate.component';
+import { FeatureGoogleMapsModule } from '@features/feature-google-maps';
 
 @NgModule({
   declarations: [SearchTamplateComponent],
   imports: [CommonModule,
     MatDialogModule,
     MatFormFieldModule,
-    UiButtonModule, MatInputModule],
+    UiButtonModule, MatInputModule,
+    FeatureGoogleMapsModule
+  ],
   exports: [SearchTamplateComponent],
 })
 export class FeatureModalModule {}

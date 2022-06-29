@@ -7,10 +7,13 @@ import { QuicklinkModule } from 'ngx-quicklink';
 import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
-import { HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '@environments';
-import { MatDialogModule } from '@angular/material/dialog';
+
+import { FeatureModalModule } from '@features/feature-modal';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -23,13 +26,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     AkitaNgRouterStoreModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    FeatureModalModule
   ],
   providers: [
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
     },
+    MatDialog,
   ],
   bootstrap: [AppComponent],
 })

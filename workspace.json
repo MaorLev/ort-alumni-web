@@ -9,11 +9,11 @@
     "ort-alumni-client-lib-alumni-shared-environments": "libs/ort-alumni-client-lib/alumni-shared/environments",
     "ort-alumni-client-lib-alumni-shared-styles": "libs/ort-alumni-client-lib/alumni-shared/styles",
     "ort-alumni-client-lib-features-feature-file-upload": "libs/ort-alumni-client-lib/features/feature-file-upload",
+    "ort-alumni-client-lib-features-feature-google-maps": "libs/ort-alumni-client-lib/features/feature-google-maps",
     "ort-alumni-client-lib-features-feature-modal": "libs/ort-alumni-client-lib/features/feature-modal",
     "ort-alumni-client-lib-features-feature-switcher-tab": "libs/ort-alumni-client-lib/features/feature-switcher-tab",
     "ort-alumni-client-lib-features-feature-va-input": "libs/ort-alumni-client-lib/features/feature-va-input",
     "ort-alumni-client-lib-ui-components-ui-button": "libs/ort-alumni-client-lib/ui-components/ui-button",
-    "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon",
-    "ort-alumni-client-lib-ui-components-ui-img": "libs/ort-alumni-client-lib/ui-components/ui-img"
+    "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon"
   }
 }

@@ -1,40 +1,30 @@
-
-
-    <ng-container *ngFor="let link of links | slice: 0:3">
-      <ng-container [ngSwitch]="link.name">
-        <ng-container *ngSwitchCase="'logout'">
-          <ng-container *appShowIfLoggedIn="link.showIfLogin">
-            <a class="dlink" (click)="logout()">
-              {{ link.label }}
-            </a>
-          </ng-container>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <ng-container *appShowIfLoggedIn="link.showIfLogin">
-            <a
-              class="dlink"
-              [routerLink]="link.route"
-            >
-              {{ link.label }}
-            </a>
-          </ng-container>
-        </ng-container>
-
+<div class="container">
+  <div id="boxes">
+    <div class="box menu" >
+      <div class="wrapper">
+        <span  ></span>
+        <div class="mat-small">תפריט</div>
+      </div>
+    </div>
+    <div class="box links">
+      <ng-container *ngFor="let link of links">
+        <a class="clink" routerLinkActive="active" [routerLink]="link.route">
+          {{ link.label }}
+        </a>
       </ng-container>
-    </ng-container>
-
-    <ng-container *ngFor="let link of links | slice: 3">
-      <a class="clink" routerLinkActive="active" [routerLink]="link.route">
-        {{ link.label }}
+    </div>
+    <div class="box search">
+      <ort-button
+        className="custom"
+        iconName="search"
+        (click)="onOpenDialog()"
+      >
+      </ort-button>
+    </div>
+    <div class="box img">
+      <a [routerLink]="''">
+        <img src="assets/images/header_logo.jpg" alt="ort medium logo" />
       </a>
-
-    </ng-container>
-
-
-
-
-    <ort-button className="mat-icon-button" iconName="search" (click)="onOpenDialog()"> </ort-button>
-    <a [routerLink]="ort_logo.route">
-      <ort-img [img_detail]="ort_logo"></ort-img>
-    </a>
-
+    </div>
+  </div>
+</div>

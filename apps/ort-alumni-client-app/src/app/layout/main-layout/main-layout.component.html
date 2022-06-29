@@ -1,14 +1,16 @@
 <div id="main-layout">
-  <nav>
-    <app-nav-bar></app-nav-bar>
-  </nav>
+  <header>
+    <app-header>
+      <nav>
+        <app-top-bar></app-top-bar>
+        <app-nav-bar></app-nav-bar>
+      </nav>
+    </app-header>
+  </header>
   <main id="main-content">
-    <header>
-        <app-header></app-header>
-    </header>
-    <section id="main-content">
-      <router-outlet></router-outlet>
-    </section>
+      <router-outlet>
+        <app-hero></app-hero>
+      </router-outlet>
   </main>
   <footer>
     <app-footer></app-footer>

@@ -50,8 +50,8 @@
 
 
   @each $size in va.$arr {
-    &.mrg-t-#{$size} {
-      margin-top: times5($size);
+    &.mrg-#{$size} {
+      margin: fa.times5($size);
     }
     &.mrg-x-#{$size} {
       margin-right: fa.times5($size);
@@ -61,38 +61,82 @@
       margin-bottom: fa.times5($size);
       margin-top: fa.times5($size);
     }
+    &.mrg-t-#{$size} {
+      margin-top: times5($size);
+    }
     &.mrg-b-#{$size} {
       margin-bottom: fa.times5($size);
     }
     &.mrg-l-#{$size} {
       margin-left: fa.times5($size);
     }
-    &.mrg-#{$size} {
+    &.mrg-r-#{$size} {
+      margin-right: fa.times5($size);
+    }
+
+
+    &.pad-#{$size} {
       margin: fa.times5($size);
     }
-    &.grd-col-#{$size} {
+    &.pad-x-#{$size} {
+      margin-right: fa.times5($size);
+      margin-left: fa.times5($size);
+    }
+    &.pad-y-#{$size} {
+      margin-bottom: fa.times5($size);
+      margin-top: fa.times5($size);
+    }
+    &.pad-t-#{$size} {
+      margin-top: times5($size);
+    }
+    &.pad-b-#{$size} {
+      margin-bottom: fa.times5($size);
+    }
+    &.pad-l-#{$size} {
+      margin-left: fa.times5($size);
+    }
+    &.pad-r-#{$size} {
+      margin-right: fa.times5($size);
+    }
+
+
+    &.gr-co-#{$size} {
       display: grid;
       grid-template-columns: repeat($size, auto);
     }
-    &.grd-gap-#{$size} {
+    &.gr-ro-#{$size} {
+      display: grid;
+      grid-template-rows: repeat($size, auto);
+    }
+    &.gr-au-ro#{$size} {
+      grid-auto-rows: fa.times5($size);
+    }
+    &.gr-ga-#{$size} {
       grid-gap: fa.times5($size);
     }
-    &.app-col-gap-#{$size} {
+    &.co-ga-#{$size} {
       column-gap: fa.times5($size);
     }
-    &.app-row-gap-#{$size} {
+    &.ro-ga-#{$size} {
       row-gap: fa.times5($size);
+    }
+
+    &.gr-co-fi-#{$size} {
+      grid-template-columns: repeat(auto-fit, minmax(times5($size), 1fr));
     }
   }
 }
 
 /* Utility Classes */
 // Handle buttons appropriately, with respect to line-height
+
+// https://developers.google.com/fonts/docs/material_icons
+// https://material.angular.io/components/icon/api
 .mat-raised-button,
 .mat-stroked-button,
 .mat-flat-button,
 .mat-icon-button {
-  padding: 1.15rem 1.15rem;
+  padding: 1.15rem 1.15rem ;
   margin: 0 0.65rem;
   min-width: 3rem;
   line-height: 3.64rem;
@@ -103,8 +147,8 @@
   min-height: 2.5rem;
 }
 .material-icons {
-  direction: rtl;
-  font-size: 2.4rem;
+  direction: rtl !important;
+  font-size: 2.4rem !important;
   font-family: 'Material Icons', 'Material Icons';
   .mat-badge-content {
     font-family: 'Open Sans';
@@ -114,6 +158,7 @@
 .container {
   max-width: 1100px;
   margin: auto;
-  padding: 0 2rem 0;
+  padding: 3rem;
   overflow: hidden;
 }
+

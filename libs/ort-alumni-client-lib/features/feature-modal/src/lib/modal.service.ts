@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { FeatureModalModule } from './feature-modal.module';
 import { ModalType } from './modal.type';
 
-@Injectable({providedIn:'root'})
+@Injectable({providedIn:FeatureModalModule})
 export class ModalService{
   private _value = new Observable<string>()
   constructor(private dialog: MatDialog) { }

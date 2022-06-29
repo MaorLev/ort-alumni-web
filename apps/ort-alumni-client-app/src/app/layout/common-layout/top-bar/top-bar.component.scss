@@ -1,0 +1,48 @@
+:host {
+  #top-bar {
+    height: 3vh;
+    background-color: var(--primary-color);
+    .items {
+      padding: 0 2rem 0 12rem;
+      height: 100%;
+      display: flex;
+      text-align: center;
+
+      .item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        &:nth-child(2) {
+          align-items: center;
+          padding-right: 4rem;
+        }
+      }
+      .img-item {
+        width: 4.5rem;
+        height: 2rem;
+      }
+      .login-item {
+        height: 100%;
+        width: 9rem;
+        transform: skew(135deg);
+        padding: .3rem 2rem;
+        background-color: var(--primary-300);
+
+      }
+      .login {
+        color: var(--primary-50);
+        display: inline-block;
+        transform: skew(45deg);
+        font-size: 1.7rem;
+        font-weight: 400;
+        font-family: 'David Libre', serif;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

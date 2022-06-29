@@ -4,4 +4,5 @@ export interface Link {
   route: string;
   order: number;
   showIfLogin?: boolean;
+  onClick?:() => void;
 }

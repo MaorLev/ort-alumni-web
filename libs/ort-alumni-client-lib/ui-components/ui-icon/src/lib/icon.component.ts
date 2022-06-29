@@ -33,4 +33,5 @@ export class IconComponent implements OnInit {
       );
     }
   }
+
 }
