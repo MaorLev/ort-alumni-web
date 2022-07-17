@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '@environments';
 
 import { FeatureModalModule } from '@features/feature-modal';
-import { MatDialog } from '@angular/material/dialog';
+import {  MAT_DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import { MatDialog } from '@angular/material/dialog';
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
     },
-    MatDialog,
+    MAT_DIALOG_SCROLL_STRATEGY_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,7 +1,6 @@
-﻿using AlumniOrtServer.DTO;
-using System;
+using AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.DTO;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Services

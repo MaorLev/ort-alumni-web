@@ -41,7 +41,7 @@ namespace AlumniOrtServer.Services
             response.StatusText = "";
             if (c == 0)
             {
-                response.Status = StatusCode.Faild;
+                response.Status = StatusCODE.Faild;
                 response.StatusText = "Teacher Not Created";
             }
 
@@ -50,7 +50,7 @@ namespace AlumniOrtServer.Services
             {
                 //ResponseDTO res = new ResponseDTO();
                 //await Delete(TeacherFromDB.Id);
-                response.Status = StatusCode.Warning;
+                response.Status = StatusCODE.Warning;
                 response.StatusText += "\nOne or More Languages in Teacher NO Adedd";
                 //return response;
             }
@@ -59,7 +59,7 @@ namespace AlumniOrtServer.Services
             if (!objectsCreated && teacher.ModeStudyIDs.Length > 0)
             {
                 //await Delete(TeacherFromDB.Id);
-                response.Status = StatusCode.Warning;
+                response.Status = StatusCODE.Warning;
                 response.StatusText += "\nOne or More ModeStudy or City in Teacher NO Adedd";
                 //return response;
             }
@@ -68,13 +68,13 @@ namespace AlumniOrtServer.Services
             if (!objectsCreated && teacher.CourseIDs.Length > 0)
             {
                 //await Delete(TeacherFromDB.Id);
-                response.Status = StatusCode.Warning;
+                response.Status = StatusCODE.Warning;
                 response.StatusText += "\nCourses in Teacher NO Adedd";
                 //return response;
             }
 
             if (response.StatusText == "")
-                response.Status = StatusCode.Success;
+                response.Status = StatusCODE.Success;
 
 
             return response;
@@ -94,7 +94,7 @@ namespace AlumniOrtServer.Services
 
                 if (teacher == null)
                 {
-                    return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCode.Faild };
+                    return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCODE.Faild };
                 }
 
                 m_db.Teachers.Remove(new Teacher { Id = teacher.Id });
@@ -103,11 +103,11 @@ namespace AlumniOrtServer.Services
                 if (c > 0)
                 {
                     response.StatusText = "Successfully object deleted";
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                 }
                 else
                 {
-                    response.Status = StatusCode.Error;
+                    response.Status = StatusCODE.Error;
                 }
                 return response;
             }
@@ -115,7 +115,7 @@ namespace AlumniOrtServer.Services
             {
                 return new ResponseDTO()
                 {
-                    Status = StatusCode.Error,
+                    Status = StatusCODE.Error,
                     StatusText = $"Erorrs in service"
                 };
             }
@@ -301,7 +301,7 @@ namespace AlumniOrtServer.Services
                 {
                     return new ResponseDTO()
                     {
-                        Status = StatusCode.Error,
+                        Status = StatusCODE.Error,
                         StatusText = $"Item with id {id} not found in DB"
                     };
                 }
@@ -325,11 +325,11 @@ namespace AlumniOrtServer.Services
                 if (c > 0)
                 {
                     response.StatusText = c + " Teachers affected";
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                 }
                 else
                 {
-                    response.Status = StatusCode.Faild;
+                    response.Status = StatusCODE.Faild;
                     response.StatusText = "faild no Teachers affacted";
                 }
                 return response;

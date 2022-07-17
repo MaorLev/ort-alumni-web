@@ -34,11 +34,20 @@
       "@features/feature-switcher-tab": [
         "libs/ort-alumni-client-lib/features/feature-switcher-tab/src/index.ts"
       ],
+      "@features/feature-va-dropdown-selection": [
+        "libs/ort-alumni-client-lib/features/feature-va-dropdown-selection/src/index.ts"
+      ],
       "@features/feature-va-input": [
         "libs/ort-alumni-client-lib/features/feature-va-input/src/index.ts"
       ],
+      "@ui-components/progress": [
+        "libs/ort-alumni-client-lib/ui-components/progress/src/index.ts"
+      ],
       "@ui-components/ui-button": [
         "libs/ort-alumni-client-lib/ui-components/ui-button/src/index.ts"
+      ],
+      "@ui-components/ui-card": [
+        "libs/ort-alumni-client-lib/ui-components/ui-card/src/index.ts"
       ],
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"

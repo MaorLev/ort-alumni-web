@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // endPointApi: 'https://localhost:44324',
-  endPointApi: 'https://localhost:5001',
+  endPointApi: 'https://localhost:44324',
+  // endPointApi: 'https://localhost:5001',
 };
 
 /*

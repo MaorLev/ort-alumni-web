@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,7 +78,7 @@ namespace AlumniOrtServer.Controllers
                     if (!await service.Validation(employer.Mail))
                     {
                         ResponseDTO respone = await service.Add(employer);
-                        if (respone.Status == DTO.StatusCode.Success)
+                        if (respone.Status == Data.DTO.StatusCODE.Success)
                         {
                             return Created("", respone.userId);
                         }
@@ -109,7 +109,7 @@ namespace AlumniOrtServer.Controllers
             }
 
                 response = await service.Update(id, employer);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }
@@ -125,7 +125,7 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 ResponseDTO response = await service.Delete(id);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }

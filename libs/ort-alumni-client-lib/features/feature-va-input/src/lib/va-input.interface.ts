@@ -6,7 +6,7 @@ export interface ortInput {
   label: string;
   styleClass?: string;
   type?:string;
-  data?:unknown;
+  data?:any;
   validators?: formValidators;
   asyncValidators?: AsyncValidatorFn[];
   errors?: { name: string; message: string }[];

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -53,7 +53,7 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 ResponseDTO response = await service.Add(teacher);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Created("", null);
                 }
@@ -63,7 +63,7 @@ namespace AlumniOrtServer.Controllers
             catch (Exception)
             {
 
-                return BadRequest(new ResponseDTO { Status = DTO.StatusCode.Error, StatusText = "Error in Server" });
+                return BadRequest(new ResponseDTO { Status = Data.DTO.StatusCODE.Error, StatusText = "Error in Server" });
             }
 
         }
@@ -96,14 +96,14 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 response = await service.Update(id, teacher);
-            if (response.Status == DTO.StatusCode.Success)
+            if (response.Status == Data.DTO.StatusCODE.Success)
             {
                 return Ok(response);
             }
             }
             catch
             {
-                response.Status = DTO.StatusCode.Error;
+                response.Status = Data.DTO.StatusCODE.Error;
                 response.StatusText = "ERROR";
                 return BadRequest(response);
             }
@@ -117,7 +117,7 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 ResponseDTO response = await service.Delete(id);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }

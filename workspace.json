@@ -12,8 +12,11 @@
     "ort-alumni-client-lib-features-feature-google-maps": "libs/ort-alumni-client-lib/features/feature-google-maps",
     "ort-alumni-client-lib-features-feature-modal": "libs/ort-alumni-client-lib/features/feature-modal",
     "ort-alumni-client-lib-features-feature-switcher-tab": "libs/ort-alumni-client-lib/features/feature-switcher-tab",
+    "ort-alumni-client-lib-features-feature-va-dropdown-selection": "libs/ort-alumni-client-lib/features/feature-va-dropdown-selection",
     "ort-alumni-client-lib-features-feature-va-input": "libs/ort-alumni-client-lib/features/feature-va-input",
+    "ort-alumni-client-lib-ui-components-progress": "libs/ort-alumni-client-lib/ui-components/progress",
     "ort-alumni-client-lib-ui-components-ui-button": "libs/ort-alumni-client-lib/ui-components/ui-button",
+    "ort-alumni-client-lib-ui-components-ui-card": "libs/ort-alumni-client-lib/ui-components/ui-card",
     "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon"
   }
 }

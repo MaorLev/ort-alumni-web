@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="StaticFiles\ImgJoboffer\" />
+    <Folder Include="StaticFiles\ImgArticles\" />
   </ItemGroup>
 
   <ItemGroup>

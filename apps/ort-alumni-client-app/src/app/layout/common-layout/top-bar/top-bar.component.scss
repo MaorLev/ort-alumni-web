@@ -1,6 +1,6 @@
 :host {
   #top-bar {
-    height: 3vh;
+    height: 4vh;
     background-color: var(--primary-color);
     .items {
       padding: 0 2rem 0 12rem;
@@ -22,6 +22,7 @@
       .img-item {
         width: 4.5rem;
         height: 2rem;
+        cursor: pointer;
       }
       .login-item {
         height: 100%;
@@ -29,6 +30,9 @@
         transform: skew(135deg);
         padding: .3rem 2rem;
         background-color: var(--primary-300);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
       }
       .login {

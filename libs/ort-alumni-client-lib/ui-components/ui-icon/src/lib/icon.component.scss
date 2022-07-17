@@ -3,26 +3,17 @@
 //   height: 100%;
 // }
 
-
 // .svg-icon {
 // width: 26px;
 // height: 26px;
 // display: inline-block;
 // }
 // mat-icon {
-  // line-height: unset !important;
+// line-height: unset !important;
 
 // }
-.twenty {
-
-}
-
-.thirty {
-width: 30px;
-height: 30px;
-}
-.forthy {
-width: 50px;
-height: 50px;
-
+.mat-icon {
+  font-size: inherit !important;
+  width: 100%;
+  height: 100%;
 }

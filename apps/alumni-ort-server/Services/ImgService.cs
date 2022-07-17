@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Context;
+using AlumniOrtServer.Context;
 using AlumniOrtServer.DTO;
 using System;
 using System.Collections.Generic;
@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
+using OrtAlumniWeb.AlumniOrtServer.Services.Interfaces;
+using AlumniOrtServer.Data.DTO;
+using Microsoft.AspNetCore.Http;
 
 namespace AlumniOrtServer.Services
 {
-    public class ImgService
+    public class ImgService : IImgService
     {
         private readonly AlumniDBContext m_db;
         public ImgService(AlumniDBContext mdb )
@@ -18,49 +21,48 @@ namespace AlumniOrtServer.Services
             m_db = mdb;
         }
 
-        //public bool Upload(ControllerBase request, string Img)
-        //{
-        //    try
-        //    {
-        //        var file = request.Request.Form.Files[0];
-        //        var folderName = Path.Combine("StaticFiles", Img);
-        //        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+    public ResponseDTO Upload(IFormFileCollection files, string img)
+    {
+      var file = files.First();
+      var folderName = Path.Combine("StaticFiles", img);
+      var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-        //        if (file.Length > 0)
-        //        {
-        //            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", "");
-        //            var fullPath = Path.Combine(pathToSave, fileName);
-        //           // string urlToDB = "http://localhost:44324/StaticFiles/ImgTeacher/" + fileName.ToString();
 
-        //            if (IsAPhotoFile(fileName))
-        //            {
-        //                using (var stream = new FileStream(fullPath, FileMode.Create))
-        //                {
-        //                    file.CopyTo(stream);
-        //                }
-        //                return true;
-        //               // return Ok(new { urlToDB });
-        //            }
-        //            return false;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch 
-        //    {
-        //        return false;
-        //    }
-        //}
+      ResponseDTO response = new ResponseDTO();
+      response.Status = StatusCODE.Error;
+      if (file.Length > 0)
+      {
+        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Replace(" ", "");
+        var fullPath = Path.Combine(pathToSave, fileName);
+        //for show image in the front side, use diynamic variable environment of angular
+        var dbpath = Path.Combine(folderName, fileName);
+        //string message = "https://localhost:44324/StaticFiles/"+ img + '/' + fileName.ToString();
+        if (IsAPhotoFile(fileName))
+        {
+          response.Status = StatusCODE.Success;
+          response.StatusText = dbpath;
+          using (var stream = new FileStream(fullPath, FileMode.Create))
+          {
+            file.CopyTo(stream);
+          }
 
-        ////בדיקת תקינות התמונה
-        //private bool IsAPhotoFile(string fileName)
-        //{
-        //    return fileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
-        //           || fileName.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase)
-        //           || fileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase);
-        //}
-
+          return response;
+        }
+        return response;
+      }
+      else
+      {
+        return response;
+      }
     }
+
+    //בדיקת תקינות התמונה
+    private static bool IsAPhotoFile(string fileName)
+    {
+      return fileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+             || fileName.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase)
+             || fileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase);
+    }
+
+  }
 }

@@ -1,16 +1,41 @@
-
 @import 'mixins';
 
 :host {
-  #none{
-    display: none;
+
+.custom {
+  display: inherit;
+  text-align: center;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  letter-spacing: 0.1rem;
+  &.sz-1 {
+    font-size: 2.6rem;
+    width: 2.6rem;
+    height: 2.6rem;
   }
-  mat-icon {
-    margin-right: 0.5rem;
-    &:hover {
-      @include scale(1.1);
-    }
+  &.sz-2 {
+
+    font-size: 7rem;
+    width: fit-content;
+    height: 4rem;
   }
+  &.sz-3 {
+
+    font-size: 5rem;
+    width: fit-content;
+    height: 3rem;
+  }
+
+
+
+}
+
+
+
+
+
+
   .bar-btn-negative-primary {
     color: var(--primary-color);
     width: 100%;
@@ -27,7 +52,16 @@
     width: 100%;
     letter-spacing: 0.3rem;
   }
-  .custom {
+  .scale {
+    &:hover {
+      @include scale(1.1);
+    }
+  }
+
+
+
+  .fancy_btn {
+    //custom
     display: inline-block;
     text-align: center;
     border-radius: 0.4rem;
@@ -37,55 +71,52 @@
     background-color: transparent;
     color: inherit;
     cursor: pointer;
+    width: 15rem;
+    height: 5rem;
+    font-size: large;
+    // border: red 2px groove;
+    letter-spacing: 0.1rem;
+    font-weight: 800;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    -webkit-box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
+      0px -20px 0px -10px RGB(247, 246, 249),
+      20px 0px 0px -10px RGB(247, 246, 249),
+      -20px 0px 0px -10px RGB(247, 246, 249),
+      0px 0px 0px 10px var(--accent-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
+      0px -20px 0px -10px RGB(247, 246, 249),
+      20px 0px 0px -10px RGB(247, 246, 249),
+      -20px 0px 0px -10px RGB(247, 246, 249),
+      0px 0px 0px 10px var(--accent-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    background: RGB(247, 246, 249);
+    //300
+    color: var(--primary-color);
+    text-shadow: 2px 2px 0px var(--accent-color),
+      5px 4px 0px var(--accent-color);
+    color: transparent;
+
+    &:hover {
+      -moz-transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+      -o-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+    }
     .content {
       min-width: max-content;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+      background: var(--primary-darker-color);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      text-shadow: 0px 0.3rem 0.3rem rgba(255, 255, 255, 0.5);
       &-btn-text {
         font-weight: 500;
       }
-    }
-    &.fancy_btn {
-      width: 15rem;
-      height: 5rem;
-      font-size: large;
-      // border: red 2px groove;
-      letter-spacing: 0.1rem;
-
-      -webkit-box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
-        0px -20px 0px -10px RGB(247, 246, 249),
-        20px 0px 0px -10px RGB(247, 246, 249),
-        -20px 0px 0px -10px RGB(247, 246, 249),
-        0px 0px 0px 10px var(--accent-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
-      box-shadow: 0px 20px 0px -10px RGB(247, 246, 249),
-        0px -20px 0px -10px RGB(247, 246, 249),
-        20px 0px 0px -10px RGB(247, 246, 249),
-        -20px 0px 0px -10px RGB(247, 246, 249),
-        0px 0px 0px 10px var(--accent-color), 5px 5px 15px 5px rgba(0, 0, 0, 0);
-      background: RGB(247, 246, 249);
-//300
-      color: var(--primary-color);
-      text-shadow: 2px 2px 0px var(--accent-color), 5px 4px 0px var(--accent-color);
-      color: transparent;
-
-      &:hover {
-        -moz-transform: scale(1.1);
-        -webkit-transform: scale(1.1);
-        -o-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-      }
-      .content {
-        background: var(--primary-darker-color);
-        -webkit-background-clip: text;
-        -moz-background-clip: text;
-        background-clip: text;
-        text-shadow: 0px 0.3rem 0.3rem rgba(255, 255, 255, 0.5);
-      }
-      font-weight: 800;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
   }
 }

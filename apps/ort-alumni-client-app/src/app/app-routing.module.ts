@@ -6,17 +6,28 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'main',
     loadChildren: () =>
       import('./layout/main-layout/main-layout.module').then(
         (m) => m.MainLayoutModule
       ),
   },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./layout/auth-layout/auth-layout.module').then(
+        (m) => m.AuthLayoutModule
+      ),
+  },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+
+  {
     path: '**',
     pathMatch: 'full',
     loadChildren: () =>
-      import('./pages/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule),
+      import('./pages/page-not-found/page-not-found.module').then(
+        (m) => m.PageNotFoundModule
+      ),
     data: {
       preload: false,
     },

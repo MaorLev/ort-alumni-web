@@ -26,6 +26,8 @@ using Microsoft.AspNetCore.Http;
 
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http.Features;
+using OrtAlumniWeb.AlumniOrtServer.Services.Interfaces;
+using OrtAlumniWeb.AlumniOrtServer.Services;
 
 namespace AlumniOrtServer
 {
@@ -100,7 +102,8 @@ namespace AlumniOrtServer
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IClaimService, ClaimService>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<ImgService>();
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IImgService, ImgService>();
         }
 
 

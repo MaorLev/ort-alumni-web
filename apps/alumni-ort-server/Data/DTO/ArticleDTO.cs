@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.DTO
     public DateTime Date { get; set; }
     [JsonProperty(PropertyName = "detail")]
     public string Detail { get; set; }
+    [JsonProperty(PropertyName = "img")]
+    public string Img { get; set; }
+
+    [JsonProperty(PropertyName = "categoryId")]
+    public int CategoryId { get; set; }
+    [JsonProperty(PropertyName = "category")]
+    public Category Category { get; set; }
   }
 }

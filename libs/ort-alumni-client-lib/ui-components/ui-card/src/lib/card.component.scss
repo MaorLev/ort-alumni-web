@@ -1,0 +1,44 @@
+@use 'mixins' as mix;
+:host {
+  #card {
+    display: grid;
+
+    padding-top: 1rem;
+    border-width: 6px 1px 1px;
+    border-style: solid;
+    border-color: rgb(148, 148, 148);
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+  .wrapper {
+    position: relative;
+    // width: 50%;
+    // max-width: 300px;
+    .image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgb(0, 0, 0);
+      background: rgba(0, 0, 0, 0.5); /* Black see-through */
+      color: #f1f1f1;
+      width: 100%;
+      transition: 0.5s ease;
+      opacity: 0;
+      color: white;
+      font-size: 20px;
+      padding: 20px;
+      text-align: center;
+      @include mix.dont-break-out;
+      @include mix.trim;
+    }
+  }
+
+  .wrapper:hover .overlay {
+    opacity: 1;
+  }
+}

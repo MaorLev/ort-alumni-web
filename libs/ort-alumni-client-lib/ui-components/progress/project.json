@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/ui-components/progress",
+  "sourceRoot": "libs/ort-alumni-client-lib/ui-components/progress/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ort-alumni-client-lib/ui-components/progress"],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/ui-components/progress/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/ui-components/progress/src/**/*.ts",
+          "libs/ort-alumni-client-lib/ui-components/progress/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:ui"]
+}

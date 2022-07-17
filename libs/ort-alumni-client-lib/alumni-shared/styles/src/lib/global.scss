@@ -6,5 +6,9 @@
 @use 'styles/utility-classes';
 @use 'styles/palette' as pal;
 @use 'styles/resets/my-resets';
+@use 'styles/media';
+
+@import '~@glidejs/glide/src/assets/sass/glide.core';
+@import '~@glidejs/glide/src/assets/sass/glide.theme';
 
 

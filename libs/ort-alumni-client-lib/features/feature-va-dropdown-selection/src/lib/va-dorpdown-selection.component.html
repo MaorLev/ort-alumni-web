@@ -1,0 +1,32 @@
+<!-- <div class="dropdown" [ngClass]="class">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  {{ selectedOption || label  }}
+</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li *ngFor="let option of options" (click)="changeSelectedOption(option)">
+      <a class="dropdown-item">{{option}}</a>
+    </li>
+  </ul>
+</div> -->
+
+<div>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>{{ config.label }}</mat-label>
+    <mat-select [formControl]="formControl" multiple= {{config.data.isMultiple}}>
+      <mat-option *ngFor="let item of config.data.options" (click)="changeSelectedOption(item)" [value]="item.id">
+        {{ item.name }}
+      </mat-option>
+    </mat-select>
+    <ng-container *ngIf="config.errors">
+      <ng-container *ngFor="let error of config.errors">
+        <mat-error
+          *ngIf="
+          formControl.hasError(error.name) &&
+          formControl.touched
+          "
+          >{{ error.message }}</mat-error
+        >
+      </ng-container>
+    </ng-container>
+  </mat-form-field>
+</div>

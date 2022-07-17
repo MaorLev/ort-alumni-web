@@ -1,0 +1,114 @@
+
+
+:host {
+  .main-title {
+    position: relative;
+
+    padding: 4rem 5rem;
+    &::after {
+      position: absolute;
+      bottom: 0px;
+      right: calc(50% - 3.2rem);
+      height: 0.7rem;
+      width: 6rem;
+      background-color: var(--white);
+      content: '';
+    }
+    &.bg-after-primary {
+      &::after {
+        background-color: var(--primary-color);
+      }
+    }
+  }
+  #short-about {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    p {
+      padding: 0rem 3rem;
+      word-spacing: 0.7rem;
+      line-height: 5rem;
+    }
+  }
+  .btn {
+    width: 50px;
+    font-size: 50px;
+    height: 50px;
+  }
+  #feature-links {
+    background-color: var(--accent-color);
+  }
+  // .mat-icon {
+  //   font-size: inherit !important;
+  //   padding: 2rem 4rem;
+  //   width: 100%;
+  //   height: 100%;
+  // }
+
+  #features-links {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+
+    .feature-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 4rem;
+      ort-button {
+        margin-bottom: 1rem;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      h1 {
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+      }
+    }
+  }
+
+  #categories {
+    background-color: var(--accent-100);
+    color: var(--primary-color);
+    text-align: center;
+    .category {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+
+  .custom-arrow {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    .ort-btn {
+      opacity: 0.7;
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.custom-arrow-left {
+      left: -7%;
+    }
+
+    &.custom-arrow-right {
+      right: -1%;
+    }
+  }
+
+
+
+  .more-btn {
+    display: inline-block;
+
+    color: var(--accent-color);
+    padding: 2rem 4rem;
+  }
+}

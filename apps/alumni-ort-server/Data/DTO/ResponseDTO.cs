@@ -1,24 +1,22 @@
-﻿using AlumniOrtServer.Data.DTO;
-using AlumniOrtServer.Models;
+
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace AlumniOrtServer.DTO
+namespace AlumniOrtServer.Data.DTO
 {
     public class ResponseDTO
     {
         [JsonProperty(PropertyName = "status")]
-        public StatusCode Status { get; set; }
+        public StatusCODE Status { get; set; }
         [JsonProperty(PropertyName = "statustext")]
         public string StatusText { get; set; }
         [JsonProperty(PropertyName = "user")]
         public int userId { get; set; }
+        [JsonProperty(PropertyName = "body")]
+        public Object body { get; set; }
 
-    }
-    public enum StatusCode
+  }
+    public enum StatusCODE
     {
         Success = 1000,
         Faild,

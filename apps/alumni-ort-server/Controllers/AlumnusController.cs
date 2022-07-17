@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
@@ -57,7 +57,7 @@ namespace AlumniOrtServer.Controllers
                     if (! await service.Validation(alumnus.Mail))
                     {
                         ResponseDTO respone = await service.Add(alumnus);
-                        if (respone.Status == DTO.StatusCode.Success)
+                        if (respone.Status == Data.DTO.StatusCODE.Success)
                         {
                             return Created("", respone.userId);
                         }
@@ -91,14 +91,14 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 response = await service.Update(id, alumnus);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }
             }
             catch
             {
-                response.Status = DTO.StatusCode.Error;
+                response.Status = Data.DTO.StatusCODE.Error;
                 response.StatusText = "ERROR";
                 return BadRequest(response);
             }
@@ -112,7 +112,7 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 ResponseDTO response = await service.Delete(id);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }

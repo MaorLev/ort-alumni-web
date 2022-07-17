@@ -32,7 +32,7 @@ namespace AlumniOrtServer.Services
                 ResponseDTO response = new ResponseDTO();
                 if (c == 0)
                 {
-                    response.Status = StatusCode.Faild;
+                    response.Status = StatusCODE.Faild;
                     response.StatusText = "Teacher Not Created";
                     return response;
                 }
@@ -41,14 +41,14 @@ namespace AlumniOrtServer.Services
                     bool objectsCreated = await Add_ManyToMany_Properties(jobOffer, JobOfferToDB.Id);
                     if (!objectsCreated)
                     {
-                        response.Status = StatusCode.Warning;
+                        response.Status = StatusCODE.Warning;
                         response.StatusText = "City or StudyProgram or Both Not Affacted";
                         return response;
                     }
                 }
 
 
-                response.Status = StatusCode.Success;
+                response.Status = StatusCODE.Success;
 
                 return response;
             }
@@ -66,7 +66,7 @@ namespace AlumniOrtServer.Services
 
                 if (jobOffer == null)
                 {
-                    return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCode.Faild };
+                    return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCODE.Faild };
                 }
 
                 m_db.JobOffers.Remove(new JobOffer { Id = jobOffer.Id });
@@ -75,11 +75,11 @@ namespace AlumniOrtServer.Services
                 if (c > 0)
                 {
                     response.StatusText = "Successfully object deleted";
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                 }
                 else
                 {
-                    response.Status = StatusCode.Error;
+                    response.Status = StatusCODE.Error;
                 }
                 return response;
             }
@@ -88,7 +88,7 @@ namespace AlumniOrtServer.Services
 
                 return new ResponseDTO()
                 {
-                    Status = StatusCode.Error,
+                    Status = StatusCODE.Error,
                     StatusText = $"Erorrs in service"
                 };
             }
@@ -191,7 +191,7 @@ namespace AlumniOrtServer.Services
                 {
                     return new ResponseDTO()
                     {
-                        Status = StatusCode.Error,
+                        Status = StatusCODE.Error,
                         StatusText = $"Item with id {id} not found in DB"
                     };
                 }
@@ -217,11 +217,11 @@ namespace AlumniOrtServer.Services
                 if (c > 0)
                 {
                     response.StatusText = c + " JobOffers affected";
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                 }
                 else
                 {
-                    response.Status = StatusCode.Faild;
+                    response.Status = StatusCODE.Faild;
                     response.StatusText = "faild no JobOffers affacted";
                 }
                 return response;
@@ -231,7 +231,7 @@ namespace AlumniOrtServer.Services
 
                 return new ResponseDTO()
                 {
-                    Status = StatusCode.Error,
+                    Status = StatusCODE.Error,
                     StatusText = $"Erorrs in service: One or More details not Updated"
                 };
             }

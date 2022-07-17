@@ -1,5 +1,4 @@
-﻿using AlumniOrtServer.Data.DTO;
-using AlumniOrtServer.DTO;
+using AlumniOrtServer.Data.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -351,10 +351,10 @@ class JsonToList<T>
 {
   public List<T> GetData(string path)
   {
-
-    string fullPath = "C:\\Projects\\OrtAlumni\\Repo\\Git\\ort-alumni-web\\apps\\alumni-ort-server\\StaticFiles\\JsonData\\" + path;
+    var folderName = Path.Combine("StaticFiles\\JsonData", path);
+    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
     string jsonFromFile;
-    using (StreamReader reader = new StreamReader(fullPath))
+    using (StreamReader reader = new StreamReader(pathToSave))
     {
       jsonFromFile = reader.ReadToEnd();
     }

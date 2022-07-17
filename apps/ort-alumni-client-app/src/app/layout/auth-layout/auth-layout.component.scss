@@ -13,11 +13,12 @@
 @use 'variables' as va;
 :host {
   #auth-layout {
+    // height: 100vh;
     nav {
-      height: va.$nav-bar-height;
+      // height: va.$nav-bar-height;
     }
     #auth-main {
-      height: va.$content-height-by-nav-bar;
+      // height: va.$content-height-by-nav-bar;
     }
 
   }

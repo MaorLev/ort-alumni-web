@@ -13,6 +13,7 @@ export class ButtonComponent {
   @Input() className: string | undefined = '';
   @Input() routeTo: string | null = null;
   @Input() iconName: string | null = null;
+  @Input() iconColor: 'primary' | 'accent' | 'warn';
   @Input() type: ButtonTypes | undefined = 'button';
   @Input() customIcon: uiIcon | undefined;
 

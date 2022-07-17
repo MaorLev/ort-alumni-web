@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
@@ -7,7 +7,14 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent implements OnInit {
-  constructor() {}
+  @Input() withDownScroll:boolean;
+  @Input() title:string;
+  @Input() anchorName:string;
 
-  ngOnInit(): void {}
+  constructor() {
+    this.withDownScroll = false;
+  }
+
+  ngOnInit(): void {
+  }
 }

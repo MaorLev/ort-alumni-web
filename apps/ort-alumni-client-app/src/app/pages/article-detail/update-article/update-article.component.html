@@ -1,0 +1,22 @@
+<section id="create-article">
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" >
+    <ort-va-input
+      [config]="headingConfig"
+      [formControlName]="headingConfig.name"
+    ></ort-va-input>
+    <ort-va-input
+      [config]="subheadingConfig"
+      [formControlName]="subheadingConfig.name"
+    ></ort-va-input>
+    <ort-va-input
+      [config]="detailConfig"
+      [formControlName]="detailConfig.name"
+    ></ort-va-input>
+    <ort-va-dorpdown-selection [config]="categoryConfig" [formControlName] = "categoryConfig.name" > </ort-va-dorpdown-selection>
+    <!-- <ort-file-upload  [requiredFileType]="'.png'" [formControlName] = "'img'" ></ort-file-upload> -->
+    <ort-file-upload  [formControlName] = "'img'" [progress]="progress" ></ort-file-upload>
+    <ort-button type="submit" className="mat-raised-button bar-btn-primary"
+      >עדכן</ort-button
+    >
+  </form>
+</section>

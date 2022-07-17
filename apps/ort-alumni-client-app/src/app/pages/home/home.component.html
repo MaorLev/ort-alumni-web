@@ -1,2 +1,83 @@
-<p>home works!</p>
-<ng-content></ng-content>
+<div id="home-page" appScrollManager>
+  <app-hero [anchorName]="'short-about'" [withDownScroll]="true"></app-hero>
+  <section id="short-about" appScrollSection="short-about">
+    <div class="container">
+      <h1 class="mat-display-2 main-title">במיוחד בשבילכם</h1>
+      <p class="mat-display-1">
+        בוגרים וסטודנטים יקרים השקנו במיוחד עבורכם אתר המכיל שלל פונקציות, אשר
+        יסייעו לכם עוד במהלך הלימודים וגם לאחרם.
+      </p>
+      <div id="features-links">
+        <div class="feature-link">
+          <ort-button className="custom sz-2" iconName="badge"></ort-button>
+          <h1>תעסוקה</h1>
+        </div>
+        <div class="feature-link">
+          <ort-button className="custom sz-2" iconName="groups"></ort-button>
+          <h1>רשת חברתית</h1>
+        </div>
+        <div class="feature-link">
+          <ort-button
+            className="custom sz-2 "
+            iconName="support_agent"
+          ></ort-button>
+          <h1>מורים פרטיים</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories">
+    <div class="container">
+      <div class="category generally">
+        <h1 class="mat-display-2 bg-after-primary main-title">כללי</h1>
+        <ng-container *ngIf="articles$ | async as arts;">
+          <div class="pre-articles">
+            <ngx-glide
+              [perView]="2"
+              [showBullets]="false"
+              [bound]="true"
+              direction="rtl"
+              [arrowLeftTemplate]="arrowLeftTemplate"
+              [arrowRightTemplate]="arrowRightTemplate"
+              [breakpoints]="{ '768': { perView: 1 }, '1200': { perView: 2 } }"
+              #ngxGlide
+            >
+              <ng-container *ngFor="let article of arts">
+                <a [routerLink]="['../article-detail', article.id]" >
+                  <ort-card [heading]="article.heading" [subheading]="article.subheading" [img]="endPoint+article.img" [detail]="article.detail"></ort-card>
+                </a>
+              </ng-container>
+            </ngx-glide>
+          </div>
+        </ng-container>
+        <ng-template #arrowLeftTemplate>
+          <div class="custom-arrow custom-arrow-left">
+            <!-- <button color="accent" mat-raised-button>></button> -->
+
+            <ort-button
+              class="ort-btn"
+              [className]="'custom sz-3'"
+              iconName="arrow_circle_left"
+              iconColor="accent"
+            ></ort-button>
+          </div>
+        </ng-template>
+        <ng-template #arrowRightTemplate>
+          <div class="custom-arrow custom-arrow-right">
+            <ort-button
+              class="ort-btn"
+              [className]="'custom sz-3'"
+              iconName="arrow_circle_right"
+              iconColor="accent"
+            ></ort-button>
+          </div>
+        </ng-template>
+        <ort-button class="more-btn" routerLink="../create-article" className="custom" [iconColor]="'primary'" >ראה עוד</ort-button>
+      </div>
+      <div class="category events">
+        <h1 class="mat-display-2 bg-after-primary main-title">אירועים</h1>
+      </div>
+    </div>
+  </section>
+</div>

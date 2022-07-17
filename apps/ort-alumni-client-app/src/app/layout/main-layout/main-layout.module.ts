@@ -1,4 +1,4 @@
-import { HeroModule } from './../common-layout/hero/hero.module';
+
 import { TopBarModule } from './../common-layout/top-bar/top-bar.module';
 import { CommonModule } from '@angular/common';
 
@@ -23,8 +23,7 @@ import { HeaderModule } from '../common-layout/header/header.module';
     MainLayoutRoutingModule,
     RouterModule,
     HeaderModule,
-    TopBarModule,
-    HeroModule
+    TopBarModule
   ],
   exports: [QuicklinkModule],
 })

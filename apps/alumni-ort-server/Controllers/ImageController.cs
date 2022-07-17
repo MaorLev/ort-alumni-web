@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -64,7 +64,6 @@ namespace AlumniOrtServer.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
-
         //בדיקת תקינות התמונה
         private bool IsAPhotoFile(string fileName)
         {

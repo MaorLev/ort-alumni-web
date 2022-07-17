@@ -1,26 +1,27 @@
-// $bpoint-pc: 1440px;
-// $bpoint-min-tablet: 770px;
-// $bpoint-tablet-landscape: 1024px;
-// $bpoint-tablet: 768px;
-// $bpoint-mobile: 600px;
-
-// @media (min-width: $bpoint-pc) {
-//   .mobile {
-//     display: none;
-//   }
-// }
-// @media (max-width: $bpoint-tablet) {
-// }
-// @media (max-width: $bpoint-tablet-landscape) {
-// }
-// @media (max-width: $bpoint-mobile) {
+$break1: '(max-width: 570px)';
+$break2: '(min-width: 571px) and (max-width: 1002px)';
+$break3: '(min-width: 1003px)';
+// @media #{$break1} {
 //   .pc {
 //     display: none;
 //   }
 //   .mobile {
-//     display: block;
+//     display: none;
+//   }
+//   html {
+//     font-size: 30%;
 //   }
 // }
-$break1:"(max-width: 570px)";
-$break2:"(min-width: 571px) and (max-width: 1002px)";
-$break3:"(min-width: 1003px)";
+// @media #{$break2} {
+//   .pc {
+//     display: none;
+//   }
+//   .mobile {
+//     display: none;
+//   }
+//   html {
+//     font-size: 50%;
+//   }
+
+// }
+

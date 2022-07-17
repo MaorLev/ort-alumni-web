@@ -1,9 +1,12 @@
-<section id="hero">
+<section id="hero" >
   <img src="/assets/images/hero4-h.jpg" class="hero-image">
-  <div class="anchor">
-    <a href="#">
-      <div class="main-anchor">down</div>
-      <div class="after-anchor"></div>
-    </a>
+  <h1 class="mat-display-4 title" >
+    {{title}}
+  </h1>
+  <div *ngIf="withDownScroll" class="downscroll"  >
+    <button  [appScrollAnchor]="anchorName" >
+      <div class="main-downscroll">down</div>
+      <div class="after-downscroll"></div>
+    </button>
   </div>
 </section>

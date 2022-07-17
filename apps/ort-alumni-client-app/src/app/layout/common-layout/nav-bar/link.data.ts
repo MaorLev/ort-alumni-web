@@ -3,13 +3,13 @@ export const linkData:Link [] = [
   {
     label: 'בית',
     name: 'home',
-    route: '/home',
+    route: 'home',
     order: 2
   },
   {
     label: 'אודות',
     name: 'about',
-    route: '/about',
+    route: 'about',
     order: 3
   },
 ];

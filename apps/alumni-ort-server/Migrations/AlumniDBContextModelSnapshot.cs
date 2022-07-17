@@ -6133,6 +6133,10 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Heading");
 
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Img");
+
                     b.Property<string>("SubHeading")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("SubHeading");
@@ -6511,13 +6515,13 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 
             modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Article", b =>
                 {
-                    b.HasOne("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Category", "category")
+                    b.HasOne("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Category", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("AlumniOrtServer.Models.Alumnus", b =>

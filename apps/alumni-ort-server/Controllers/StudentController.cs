@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.DTO;
 using AlumniOrtServer.Models;
 using AlumniOrtServer.Services;
@@ -51,7 +52,7 @@ namespace AlumniOrtServer.Controllers
                     if (!await service.Validation(student.Mail))
                     {
                         ResponseDTO respone = await service.Add(student);
-                        if (respone.Status == DTO.StatusCode.Success)
+                        if (respone.Status == Data.DTO.StatusCODE.Success)
                         {
                             return Created("", null);
                         }
@@ -83,14 +84,14 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 response = await service.Update(id, student);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }
             }
             catch
             {
-                response.Status = DTO.StatusCode.Error;
+                response.Status = Data.DTO.StatusCODE.Error;
                 response.StatusText = "ERROR";
             return BadRequest(response);
             }
@@ -104,7 +105,7 @@ namespace AlumniOrtServer.Controllers
             try
             {
                 ResponseDTO response = await service.DeleteStudent(id);
-                if (response.Status == DTO.StatusCode.Success)
+                if (response.Status == Data.DTO.StatusCODE.Success)
                 {
                     return Ok(response);
                 }

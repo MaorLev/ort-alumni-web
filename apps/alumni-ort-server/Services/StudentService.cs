@@ -1,4 +1,5 @@
-﻿using AlumniOrtServer.Context;
+using AlumniOrtServer.Context;
+using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.DTO;
 using AlumniOrtServer.Extensions;
@@ -39,14 +40,14 @@ namespace AlumniOrtServer.Services
                 bool Affected = await claim.PersistClaimsForUser(StudentFromDB);
                 if (Affected)
                 {
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                     return response;
                 }
-                response.Status = StatusCode.Warning;
+                response.Status = StatusCODE.Warning;
                 response.StatusText = "student adedd BUT presist Not Apply";
                 return response;
             }
-            response.Status = StatusCode.Faild;
+            response.Status = StatusCODE.Faild;
             return response;
 
         }
@@ -164,7 +165,7 @@ namespace AlumniOrtServer.Services
                 {
                     return new ResponseDTO()
                     {
-                        Status = StatusCode.Error,
+                        Status = StatusCODE.Error,
                         StatusText = $"Item with id {id} not found in DB"
                     };
                 }//checkkk it !!
@@ -199,11 +200,11 @@ namespace AlumniOrtServer.Services
                 if (c > 0)
                 {
                     response.StatusText = c + " Students affected";
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                 }
                 else
                 {
-                    response.Status = StatusCode.Faild;
+                    response.Status = StatusCODE.Faild;
                     response.StatusText = "faild no Student affacted";
                 }
                 return response;
@@ -213,7 +214,7 @@ namespace AlumniOrtServer.Services
 
                 return new ResponseDTO()
                 {
-                    Status = StatusCode.Error,
+                    Status = StatusCODE.Error,
                     StatusText = $"Erorrs in service"
                 };
             }
@@ -228,7 +229,7 @@ namespace AlumniOrtServer.Services
 
                 if (student == null)
                 {
-                    return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCode.Faild };
+                    return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCODE.Faild };
                 }
 
                 m_db.Students.Remove(new Student { Id = student.Id });
@@ -237,11 +238,11 @@ namespace AlumniOrtServer.Services
                 if (c > 0)
                 {
                     response.StatusText = "Successfully object deleted";
-                    response.Status = StatusCode.Success;
+                    response.Status = StatusCODE.Success;
                 }
                 else
                 {
-                    response.Status = StatusCode.Error;
+                    response.Status = StatusCODE.Error;
                 }
                 return response;
             }
@@ -250,7 +251,7 @@ namespace AlumniOrtServer.Services
 
                 return new ResponseDTO()
                 {
-                    Status = StatusCode.Error,
+                    Status = StatusCODE.Error,
                     StatusText = $"Erorrs in service"
                 };
             }
