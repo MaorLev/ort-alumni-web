@@ -1,4 +1,4 @@
-import { map, Subject, takeUntil } from 'rxjs';
+import { map, Subject } from 'rxjs';
 import { ortInput } from '@features/feature-va-input';
 import {
   Component,
@@ -34,8 +34,8 @@ import { VAInputComponent } from '@features/feature-va-input';
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => VaDorpdownSelectionComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
 })
 export class VaDorpdownSelectionComponent
@@ -64,7 +64,6 @@ export class VaDorpdownSelectionComponent
 
   writeValue(obj: any): void {
     this.control.setValue(obj);
-
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -98,7 +97,7 @@ export class VaDorpdownSelectionComponent
   }
   compareFn(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
-}
+  }
   ngOnDestroy(): void {
     this.onDestroy$.next();
   }

@@ -5,32 +5,37 @@ import { CategoryInterface } from './category.interface';
 
 export interface ArticlesState extends EntityState<ArticleInterface, number> {
   areArticlesLoaded: boolean;
-  categories:CategoryInterface [];
+  categories: CategoryInterface[];
 }
 
-export function createInitialState(): ArticlesState  {
+export function createInitialState(): ArticlesState {
   return {
     areArticlesLoaded: false,
-    categories: []
+    categories: [
+    ],
   };
 }
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'articles' })
 export class ArticleStore extends EntityStore<ArticlesState> {
-
   constructor() {
     super(createInitialState());
   }
 
-  updateEntity = (id:number, entity:ArticleInterface ):void => this.update(id, entity);
+  updateEntity = (id: number, entity: ArticleInterface): void =>
+    this.update(id, entity);
 
-  loadArticles(articles: ArticleInterface[],categories: CategoryInterface [], areArticlesLoaded: boolean) {
+  loadArticles(
+    articles: ArticleInterface[],
+    categories: CategoryInterface[],
+    areArticlesLoaded: boolean
+  ) {
     this.set(articles);
-    this.update(state => ({
+    this.update((state) => ({
       ...state,
       areArticlesLoaded,
-      categories
+      categories,
     }));
   }
 }

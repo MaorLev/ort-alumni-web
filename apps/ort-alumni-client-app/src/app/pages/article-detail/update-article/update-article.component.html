@@ -16,7 +16,6 @@
         [formControlName]="detailConfig.name"
       ></ort-va-input>
       <ort-va-dorpdown-selection [config]="categoryConfig" [formControlName] = "categoryConfig.name" > </ort-va-dorpdown-selection>
-      <!-- <ort-file-upload  [requiredFileType]="'.png'" [formControlName] = "'img'" ></ort-file-upload> -->
       <ort-file-upload [nameBefore]="article?.originalimgname" [isDisabled]="true" [formControlName] = "'img'" [progress]="progress" ></ort-file-upload>
       <ort-button type="submit" class="btn" className="mat-raised-button bar-btn-primary"
         >עדכן</ort-button

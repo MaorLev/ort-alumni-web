@@ -1,0 +1,33 @@
+<ngx-glide
+  [perView]="perView"
+  [showBullets]="showBullets"
+  [bound]="bound"
+  [direction]="direction"
+  [arrowLeftTemplate]="arrowLeftTemplate"
+  [arrowRightTemplate]="arrowRightTemplate"
+  [breakpoints]="{ '768': { perView: 1 }, '1200': { perView: 2 } }"
+  #ngxGlide
+>
+  <ng-content></ng-content>
+</ngx-glide>
+
+<ng-template #arrowLeftTemplate>
+  <div class="custom-arrow custom-arrow-left">
+    <ort-button
+      class="ort-btn"
+      [className]="'custom sz-3'"
+      iconName="arrow_circle_left"
+      iconColor="primary"
+    ></ort-button>
+  </div>
+</ng-template>
+<ng-template #arrowRightTemplate>
+  <div class="custom-arrow custom-arrow-right">
+    <ort-button
+      class="ort-btn"
+      [className]="'custom sz-3'"
+      iconName="arrow_circle_right"
+      iconColor="primary"
+    ></ort-button>
+  </div>
+</ng-template>

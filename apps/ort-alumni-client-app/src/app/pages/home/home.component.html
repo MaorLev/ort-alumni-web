@@ -31,21 +31,12 @@
   </div>
 
   <section id="categories">
-    <!-- <div class="container"> -->
+
       <div class="category generally">
         <h1 class="mat-display-2 bg-after-primary main-title">כללי</h1>
         <ng-container *ngIf="articles$ | async as arts">
           <div class="pre-articles">
-            <ngx-glide
-              [perView]="2"
-              [showBullets]="false"
-              [bound]="true"
-              direction="rtl"
-              [arrowLeftTemplate]="arrowLeftTemplate"
-              [arrowRightTemplate]="arrowRightTemplate"
-              [breakpoints]="{ '768': { perView: 1 }, '1200': { perView: 2 } }"
-              #ngxGlide
-            >
+            <ort-carousel>
               <ng-container *ngFor="let article of arts">
                 <a [routerLink]="['../article-detail', article.id]">
                   <ort-card
@@ -56,31 +47,10 @@
                   ></ort-card>
                 </a>
               </ng-container>
-            </ngx-glide>
+            </ort-carousel>
+
           </div>
         </ng-container>
-        <ng-template #arrowLeftTemplate>
-          <div class="custom-arrow custom-arrow-left">
-            <!-- <button color="accent" mat-raised-button>></button> -->
-
-            <ort-button
-              class="ort-btn"
-              [className]="'custom sz-3'"
-              iconName="arrow_circle_left"
-              iconColor="primary"
-            ></ort-button>
-          </div>
-        </ng-template>
-        <ng-template #arrowRightTemplate>
-          <div class="custom-arrow custom-arrow-right">
-            <ort-button
-              class="ort-btn"
-              [className]="'custom sz-3'"
-              iconName="arrow_circle_right"
-              iconColor="primary"
-            ></ort-button>
-          </div>
-        </ng-template>
         <ort-button
           class="more-btn"
           routerLink="../create-article"
@@ -92,6 +62,5 @@
       <div class="category events">
         <h1 class="mat-display-2 bg-after-primary main-title">אירועים</h1>
       </div>
-    <!-- </div> -->
   </section>
 </div>

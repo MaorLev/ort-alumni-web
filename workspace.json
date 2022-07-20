@@ -17,6 +17,7 @@
     "ort-alumni-client-lib-ui-components-progress": "libs/ort-alumni-client-lib/ui-components/progress",
     "ort-alumni-client-lib-ui-components-ui-button": "libs/ort-alumni-client-lib/ui-components/ui-button",
     "ort-alumni-client-lib-ui-components-ui-card": "libs/ort-alumni-client-lib/ui-components/ui-card",
+    "ort-alumni-client-lib-ui-components-ui-carousel": "libs/ort-alumni-client-lib/ui-components/ui-carousel",
     "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon"
   }
 }

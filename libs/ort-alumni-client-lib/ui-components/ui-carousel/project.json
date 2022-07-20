@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/ui-components/ui-carousel",
+  "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-carousel/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/ui-components/ui-carousel"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-carousel/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/ui-components/ui-carousel/src/**/*.ts",
+          "libs/ort-alumni-client-lib/ui-components/ui-carousel/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:ui"]
+}

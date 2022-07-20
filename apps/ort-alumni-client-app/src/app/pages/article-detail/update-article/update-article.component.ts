@@ -26,12 +26,11 @@ import { CATEGORYSELECTION } from '../article-form-config/category-selection';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateArticleComponent implements OnInit {
-  updateArticleSub: Subscription;
+
   articleForm: FormGroup;
   article: ArticleInterface | undefined;
-  id: string | null;
-  usableId: number;
-  endPoint = environment.endPointApi;
+  id: number;
+
   headingConfig = HeadingConfig;
   subheadingConfig = SubheadingConfig;
   detailConfig = DetailConfig;
@@ -44,10 +43,9 @@ export class UpdateArticleComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder
   ) {
-    this.id = activatedRouter.snapshot.paramMap.get('id');
-    if (this.id) this.usableId = parseInt(this.id);
-    this.article = this.articleQuary.getEntitySnapshot(this.usableId);
-    // this.article == this.articleQuary.getEntity(1);
+    const id = activatedRouter.snapshot.paramMap.get('id');
+    if (id) this.id = parseInt(id);
+    this.article = this.articleQuary.getEntitySnapshot(this.id);
   }
   ngOnInit(): void {
 
@@ -62,22 +60,20 @@ export class UpdateArticleComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     if (this.articleForm.valid) {
       const art:ArticleInterface = this.articleForm.value;
       art.id = this.article?.id;
       art.categoryid = art.category?.id;
       this.articleService
-        .updateArticle(this.usableId, art)
+        .updateArticle(this.id, art)
         .subscribe(event => {
 
-          if ( event.type === HttpEventType.UploadProgress ) {
-            this.progress = of(Math.round((100 * event.loaded) / (event.total ? event.total : 0) ));
-          }
+          // if ( event.type === HttpEventType.UploadProgress ) {
+          //   this.progress = of(Math.round((100 * event.loaded) / (event.total ? event.total : 0) ));
+          // }
 
           if ( event.type === HttpEventType.Response ) {
-            console.log(event.body);
-            this.router.navigateByUrl(`main/article-detail/${this.usableId}`);
+            this.router.navigateByUrl(`main/article-detail/${this.id}`);
           }
 
         });

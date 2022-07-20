@@ -6,7 +6,7 @@ import { ArticleService } from './../state/article.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SubheadingConfig } from '../article-form-config/subheading.config';
-import { Observable, of, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpEventType } from '@angular/common/http';
 import { CATEGORYSELECTION } from '../article-form-config/category-selection';
 
@@ -38,7 +38,6 @@ export class CreateArticleComponent{
 
   onSubmit() {
     console.log(this.articleForm.get("image")?.valid);
-    debugger;
     if (this.articleForm.valid) {
        const article:ArticleInterface = this.articleForm.value;
        article.categoryid = article.category?.id;
@@ -47,15 +46,15 @@ export class CreateArticleComponent{
         .createArticle(article)
         .subscribe(event => {
 
-          if ( event.type === HttpEventType.UploadProgress ) {
-            this.progress.pipe(map(res => Math.round((100 * event.loaded) / (event.total ? event.total : 0) )));
-          }
+          // if ( event.type === HttpEventType.UploadProgress ) {
+          //   this.progress.pipe(map(res => Math.round((100 * event.loaded) / (event.total ? event.total : 0) )));
+          // }
 
           if ( event.type === HttpEventType.Response ) {
             console.log(event.body);
             setTimeout(() => {
               this.router.navigateByUrl(`main/article-detail/${event.body?.id}`);
-            }, 3000);
+            }, 500);
 
           }
 
@@ -63,13 +62,10 @@ export class CreateArticleComponent{
     }
     this.articleForm.markAllAsTouched();
   }
-
-  // (res) => {
-  //   this.router.navigateByUrl('');
-  // }
-
-
 }
+
+
+
 export function requiredFileType( types: string [] ) {
   return function (control: FormControl) {
     const file = control.value;

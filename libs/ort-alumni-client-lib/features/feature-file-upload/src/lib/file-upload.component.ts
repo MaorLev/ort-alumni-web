@@ -20,7 +20,7 @@ import {
   Validator,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
-// import { catchError, finalize, Observable, of } from 'rxjs';
+
 
 
 export interface UploadError{
@@ -46,142 +46,12 @@ export interface UploadError{
 //   multi: true,
 // },
 export class FileUploadComponent implements ControlValueAccessor {
-//   @Input() requiredFileType: string;
-
-//   fileName = '';
-
-//   fileUploadError = false;
-
-//   fileUploadSuccess = false;
-
-//   uploadProgress: Observable<number | null>;
-
-//   disabled = false;
-
-//   constructor(private httpClient: HttpClient) {}
-
-//   onChange = (fileName: any) => {
-
-
-//   };
-
-//   onTouched = () => {
-
-
-//   };
-
-//   onValidatorChange = () => {
-//     debugger;
-
-//   };
-
-//   onClick(fileUpload: HTMLInputElement) {
-//     debugger;
-
-//     this.onTouched();
-//     fileUpload.click();
-//   }
-
-//   onFileSelected(event: any) {
-//     debugger;
-//     const file: File = event.target.files[0];
-//     if (file) {
-//       this.fileName = file.name;
-
-//       const formData = new FormData();
-
-//       formData.append('image', file);
-
-//       this.fileUploadError = false;
-
-//       this.httpClient
-//       .post<{
-//         dbpath: string
-//       }>("https://localhost:44324" + '/Image/Add/ImgTeacher', formData, {
-//         reportProgress: true,
-//         observe: 'events',
-//       })
-//       .pipe(
-//         catchError((error) => {
-//             debugger;
-
-//             this.fileUploadError = true;
-//             return of(error);
-//           }),
-//           finalize(() => {
-
-//             debugger;
-//             this.uploadProgress = of(null);
-//           })
-//           )
-//           .subscribe((event) => {
-
-//             debugger;
-//             if (event.type == HttpEventType.UploadProgress) {
-//               this.uploadProgress = of(Math.round(
-//                 100 * (event.loaded / event.total)
-//                 ));
-//               } else if (event.type == HttpEventType.Response) {
-//             this.fileUploadSuccess = true;
-//             this.onChange(this.fileName);
-//             this.onValidatorChange();
-//           }
-//         });
-//     }
-//   }
-
-//   writeValue(value: any) {
-//     debugger;
-//     this.fileName = value;
-//   }
-//   registerOnChange(onChange: any): void {
-//     debugger;
-//     this.onChange = onChange;
-//   }
-//   registerOnTouched(onTouched: any): void {
-//     debugger;
-//     this.onTouched = onTouched;
-//   }
-//   setDisabledState(disabled: boolean) {
-//     debugger;
-//     this.disabled = disabled;
-//   }
-
-//   registerOnValidatorChange(onValidatorChange: () => void) {
-//     debugger;
-//     this.onValidatorChange = onValidatorChange;
-//   }
-
-//   validate(control: AbstractControl): ValidationErrors | null {
-//   debugger;
-
-//   if (this.fileUploadSuccess) {
-//       return null;
-//   }
-
-//   const errors: UploadError = {
-//       requiredFileType: this.requiredFileType
-//   };
-
-//   if (this.fileUploadError) {
-//       errors.uploadFailed = true;
-//   }
-
-//   return errors;
-// }
 
 @Input() progress:Observable<number>;
 @Input() nameBefore:string | undefined;
 onChange: Function;
 @Input() isDisabled:boolean;
 file: File | null = null;
-// onFileDropped($event: any) {
-//   debugger;
-
-//   const files = $event;
-//   this.emitFiles(files)
-
-// }
 
 @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
 
@@ -197,7 +67,6 @@ constructor( private host: ElementRef<HTMLInputElement> ) {
 }
 
 writeValue( value: null ) {
-  // clear file input
   this.host.nativeElement.value = '';
   this.file = null;
 }
@@ -206,7 +75,7 @@ registerOnChange( fn: Function ) {
   this.onChange = fn;
 }
 setDisabledState(isDisabled: boolean): void {
-debugger;
+
   this.isDisabled = isDisabled;
   isDisabled ? this.isDisabled = true  : this.isDisabled = false;
 }
@@ -231,6 +100,31 @@ deleteFile() {
   this.file = file;
   this.setDisabledState(false);
 }
+//   onValidatorChange = () => {
+//     debugger;
 
+//   };
+//   registerOnValidatorChange(onValidatorChange: () => void) {
+//     debugger;
+//     this.onValidatorChange = onValidatorChange;
+//   }
+
+//   validate(control: AbstractControl): ValidationErrors | null {
+//   debugger;
+
+//   if (this.fileUploadSuccess) {
+//       return null;
+//   }
+
+//   const errors: UploadError = {
+//       requiredFileType: this.requiredFileType
+//   };
+
+//   if (this.fileUploadError) {
+//       errors.uploadFailed = true;
+//   }
+
+//   return errors;
+// }
 }
 

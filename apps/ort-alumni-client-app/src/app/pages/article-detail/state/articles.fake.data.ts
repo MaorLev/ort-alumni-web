@@ -1,6 +1,6 @@
-import { ArticleInterface } from './article.interface';
+import { ArticleInterface } from '../article.interface';
 
-export const ArticlesData: ArticleInterface[] = [
+export const ArticlesFakeData: ArticleInterface[] = [
   {
     id: 1,
     heading: 'כנס חדשנות ויזמות 2022',

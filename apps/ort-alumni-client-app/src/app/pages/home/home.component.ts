@@ -17,7 +17,6 @@ import {
   switchMap,
   map,
 } from 'rxjs';
-import { ArticlesState } from '../article-detail/state/article.store';
 import { ArticleQuery } from '../article-detail/state/article.query';
 
 @Component({
@@ -31,9 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   articles$: Observable<ArticleInterface[]>;
   listArticlesSub: Subscription;
   endPoint = environment.endPointApi + '/';
-  cstate: ArticlesState;
 
-  // courses$: Observable<ArticleInterface[]> = this.articleQuery.selectAll();
   constructor(
     private articleService: ArticleService,
     private articleQuery: ArticleQuery

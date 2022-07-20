@@ -1,3 +1,4 @@
+import { UiCarouselModule } from '@ui-components/ui-carousel';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { UiCardModule } from '@ui-components/ui-card';
 
@@ -17,6 +18,7 @@ import { UiButtonModule } from '@ui-components/ui-button';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
+    QuicklinkModule,
     HeroModule,
     RouterModule.forChild([{ path: '', component: HomeComponent }]),
     ScrollerModule,
@@ -25,7 +27,7 @@ import { UiButtonModule } from '@ui-components/ui-button';
     NgxGlideModule,
     UiButtonModule,
     UiCardModule,
-    QuicklinkModule
+    UiCarouselModule
 
   ],
   exports:[QuicklinkModule ,HomeComponent]

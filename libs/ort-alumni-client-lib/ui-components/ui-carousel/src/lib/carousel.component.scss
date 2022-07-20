@@ -1,0 +1,20 @@
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  // transform: translateY(-50%);
+  .ort-btn {
+    transition: all 0.3s;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.custom-arrow-left {
+    left: -.5%;
+  }
+
+  &.custom-arrow-right {
+    right: 6.5%;
+  }
+}

@@ -1,9 +1,9 @@
-import { Blog } from "@features/feature-blog";
+// import { Blog } from "@features/feature-blog";
 
 
 export interface ArticleCarousel {
   category:number,
-  articles:Blog [],
+  // articles:Blog [],
   perView:number,
   showBullets:boolean,
   bound:boolean,

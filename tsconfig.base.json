@@ -49,6 +49,9 @@
       "@ui-components/ui-card": [
         "libs/ort-alumni-client-lib/ui-components/ui-card/src/index.ts"
       ],
+      "@ui-components/ui-carousel": [
+        "libs/ort-alumni-client-lib/ui-components/ui-carousel/src/index.ts"
+      ],
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
       ]
