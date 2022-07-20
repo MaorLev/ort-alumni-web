@@ -6,12 +6,9 @@ export const DetailConfig : ortInput = {
   type: 'text',
   placeholder: 'מלא פרטים',
   validators: {
-    isRequired: true
+
   },
   errors: [
-    {
-      name: 'required',
-      message: 'שדה חובה',
-    }
+
   ],
 }

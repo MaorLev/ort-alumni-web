@@ -23,6 +23,8 @@ export class ArticleStore extends EntityStore<ArticlesState> {
     super(createInitialState());
   }
 
+  updateEntity = (id:number, entity:ArticleInterface ):void => this.update(id, entity);
+
   loadArticles(articles: ArticleInterface[],categories: CategoryInterface [], areArticlesLoaded: boolean) {
     this.set(articles);
     this.update(state => ({

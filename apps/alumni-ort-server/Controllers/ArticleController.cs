@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace OrtAlumniWeb.AlumniOrtServer.Controllers
 {
@@ -49,7 +50,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
     {
       try
       {
-        var formCollection = await Request.ReadFormAsync();
+        IFormCollection formCollection = await Request.ReadFormAsync();
 
 
 
@@ -74,23 +75,25 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
 
     }
 
-    [HttpPut]
+    [HttpPut, DisableRequestSizeLimit]
     [Route("{id}")]
-    public async Task<ActionResult> PutArticle(int id, ArticleDTO article)
+    public async Task<ActionResult> PutArticle(int id)
     {
+
       ResponseDTO response = new ResponseDTO();
-      if (id != article.Id)
+      try
+      {
+      IFormCollection formCollection = await Request.ReadFormAsync();
+      if (id.ToString() != formCollection["id"])
       {
         response.StatusText = "id does not match";
         return BadRequest(response);
       }
 
-      try
-      {
-        response = await articleService.Update(id, article);
+        response = await articleService.Update(id, formCollection);
         if (response.Status == StatusCODE.Success)
         {
-          return Ok(response);
+          return Ok(response.body);
         }
       }
       catch

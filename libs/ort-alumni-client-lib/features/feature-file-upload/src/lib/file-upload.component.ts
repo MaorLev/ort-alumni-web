@@ -171,17 +171,29 @@ export class FileUploadComponent implements ControlValueAccessor {
 // }
 
 @Input() progress:Observable<number>;
+@Input() nameBefore:string | undefined;
 onChange: Function;
-
+@Input() isDisabled:boolean;
 file: File | null = null;
+// onFileDropped($event: any) {
+//   debugger;
+
+//   const files = $event;
+//   this.emitFiles(files)
+
+// }
 
 @HostListener('change', ['$event.target.files']) emitFiles( event: FileList ) {
+
   const file = event && event.item(0);
   this.onChange(file);
   this.file = file;
+  this.nameBefore = undefined;
+
 }
 
 constructor( private host: ElementRef<HTMLInputElement> ) {
+  this.isDisabled = false;
 }
 
 writeValue( value: null ) {
@@ -193,8 +205,32 @@ writeValue( value: null ) {
 registerOnChange( fn: Function ) {
   this.onChange = fn;
 }
-
+setDisabledState(isDisabled: boolean): void {
+debugger;
+  this.isDisabled = isDisabled;
+  isDisabled ? this.isDisabled = true  : this.isDisabled = false;
+}
 registerOnTouched( fn: Function ) {
 }
+formatBytes(bytes: number) {
+  if (bytes === 0) {
+    return '0 Bytes';
+  }
+  const k = 1024;
+  const decimals = 0;
+  const dm = decimals <= 0 ? 0 : decimals || 2;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+deleteFile() {
+  const file = null;
+  this.onChange(file);
+  this.host.nativeElement.value = '';
+  this.nameBefore = undefined;
+  this.file = file;
+  this.setDisabledState(false);
+}
+
 }
 

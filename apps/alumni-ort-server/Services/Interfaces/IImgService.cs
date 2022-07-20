@@ -10,6 +10,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services.Interfaces
   public interface IImgService
   {
 
-    public ResponseDTO Upload(IFormFileCollection file, string Img);
+    public ResponseDTO Upload(IFormFileCollection file, string Img, string currentDate);
+    public ResponseDTO Update(IFormFileCollection file, string Img,string originalPath, string currentDate);
+    public bool Delete(string path);
   }
 }

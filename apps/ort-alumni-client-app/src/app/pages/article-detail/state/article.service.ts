@@ -19,26 +19,23 @@ export class ArticleService {
   ) {}
 
   getAllArticles(): Observable<ArticleInterface[]> {
-
     return this.articleDataService
       .getAllArticles();
   }
   getAllCategories(): Observable<CategoryInterface[]> {
-
     return this.articleDataService.getAllCategories();
   }
 
-  
+
 
   LoadArticlesAndCategories():Observable<any> {
     return combineLatest([this.getAllArticles(), this.getAllCategories()]).pipe(
       tap(([articles,categories]:[ArticleInterface[],CategoryInterface[] ] ) =>{
-
         this.articleStore.loadArticles(articles, categories, true)
       }
       )
-    );
-  }
+      );
+    }
 
   createArticle(article: ArticleInterface ):  Observable<HttpEvent<ArticleInterface>> {
     return this.articleDataService.createArticle(article).pipe(
@@ -49,8 +46,22 @@ export class ArticleService {
         }
 
       })
-    );
-  }
+      );
+    }
+    updateArticle(articleId: number, article: ArticleInterface): Observable<HttpEvent<ArticleInterface>> {
+      return this.articleDataService.updateArticle(articleId, article).pipe(
+        tap((event) => {
+
+          if ( event.type === HttpEventType.Response ) {
+            debugger;
+            const art = event.body;
+            this.articleStore.updateEntity(articleId, {...art} as ArticleInterface );
+          }
+
+        })
+        );
+      }
+
 
   deleteCourse(articleId: number): Observable<any> {
     return this.articleDataService.deleteArticle(articleId).pipe(
@@ -60,11 +71,4 @@ export class ArticleService {
     );
   }
 
-  updateArticle(articleId: number, article: ArticleInterface): Observable<any> {
-    return this.articleDataService.updateArticle(articleId, article).pipe(
-      tap((res) => {
-        this.articleStore.update(articleId, article);
-      })
-    );
-  }
 }

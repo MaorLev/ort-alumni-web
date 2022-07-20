@@ -1,8 +1,9 @@
+
 <mat-progress-bar
-class="example-margin"
+class="progress-cont"
 [color]="color"
 [mode]="mode"
 [value]="value | async"
-[bufferValue]="bufferValue"
+[bufferValue]="bufferValue || 0"
 >
 </mat-progress-bar>

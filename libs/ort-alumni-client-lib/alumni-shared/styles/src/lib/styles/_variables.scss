@@ -10,6 +10,7 @@ $arr: 1 2 3 4 5 6 7 8 9 10 13 15 18 20 23 25 28 30 33 35 38 40;
 :root {
   // Primary Colors
   --primary-color: #4267b2;
+  --trans-primary-color: #4267b23f;
   --primary-lighter-color: #c6d1e8;
   --primary-darker-color: #2b4a99;
   --text-primary-color: theme.$light-primary-text;
@@ -32,6 +33,7 @@ $arr: 1 2 3 4 5 6 7 8 9 10 13 15 18 20 23 25 28 30 33 35 38 40;
   --primary-A700: #2558ff;
   // Others
   --light-background: #fafafa;
+  --light-background-a: #fafafa2c;
   --light-hover: RGB(240, 240, 246);
 
   // Accent Colors

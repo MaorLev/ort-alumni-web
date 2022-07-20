@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CategoryList.ConfigService } from './category-list.config.service';
+import { CategoryList.ConfigService } from './category-selection';
 
 describe('CategoryList.ConfigService', () => {
   let service: CategoryList.ConfigService;

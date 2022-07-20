@@ -6,12 +6,8 @@ export const SubheadingConfig : ortInput = {
   type: 'text',
   placeholder: 'הכנס תת כותרת',
   validators: {
-    isRequired: true
+
   },
   errors: [
-    {
-      name: 'required',
-      message: 'שדה חובה',
-    }
   ],
 }

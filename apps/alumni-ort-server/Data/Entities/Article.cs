@@ -13,7 +13,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
     {
 
     }
-    public Article(int id, string heading,string subheading,DateTime date,string img, string detail, int categoryId )
+    public Article(int id, string heading,string subheading,DateTime date,string img, string originalImgName, string detail, int categoryId )
     {
       Id = id;
       Heading = heading;
@@ -22,6 +22,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
       Detail = detail;
       CategoryId = categoryId;
       Img = img;
+      OriginalImgName = originalImgName;
     }
     [Key]
     [Column("Id")]
@@ -34,6 +35,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
     public DateTime Date { get; set; }
     [Column("Img")]
     public string Img { get; set; }
+    [Column("OriginalImgName")]
+    public string OriginalImgName { get; set; }
     
     [Column("Detail")]
     public string Detail { get; set; }

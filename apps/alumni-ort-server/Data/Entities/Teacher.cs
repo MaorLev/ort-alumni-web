@@ -1,4 +1,5 @@
-﻿using AlumniOrtServer.Data.Entities;
+using AlumniOrtServer.Data.Entities;
+using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -40,5 +41,6 @@ namespace AlumniOrtServer.Models
         public virtual List<TeacherLanguage> TeacherLanguages { get; set; }
         public virtual List<TeacherCourse> TeacherCourses { get; set; }
         public virtual List<ModeStudy_City> ModeStudy_Cities { get; set; }
-    }
+
+  }
 }

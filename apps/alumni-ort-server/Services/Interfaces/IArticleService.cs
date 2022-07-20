@@ -17,7 +17,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services.Interfaces
 
     public Task<ArticleDTO> GetArticle(int id);
 
-    public Task<ResponseDTO> Update(int id, ArticleDTO article);
+    public Task<ResponseDTO> Update(int id, IFormCollection form);
 
     public Task<ResponseDTO> DeleteArticle(int id);
     public Task<List<CategoryDTO>> getCategoris();

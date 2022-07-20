@@ -1,11 +1,12 @@
 import { map, Subject, takeUntil } from 'rxjs';
-import { ortInput } from './../../../feature-va-input/src/lib/va-input.interface';
+import { ortInput } from '@features/feature-va-input';
 import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
   forwardRef,
   Input,
+  OnDestroy,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -13,6 +14,7 @@ import {
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
+  Validator,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -37,22 +39,22 @@ import { VAInputComponent } from '@features/feature-va-input';
   ],
 })
 export class VaDorpdownSelectionComponent
-  implements OnInit, ControlValueAccessor
+  implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
-  formControl = new FormControl();
-  @Input() config: ortInput;
   onDestroy$ = new Subject<void>();
+  control = new FormControl();
+  @Input() config: ortInput;
+
   constructor() {}
 
   onChange = (obj: any) => {};
   onTouched = () => {};
   onValidatorChange = () => {};
   ngOnInit() {
-    this.formControl.valueChanges
+    this.control.valueChanges
       .pipe(
-        takeUntil(this.onDestroy$),
         map((val) => {
-          if (this.formControl.valid) {
+          if (this.control.valid) {
             this.onChange(val);
           }
         })
@@ -60,18 +62,15 @@ export class VaDorpdownSelectionComponent
       .subscribe();
   }
 
-  writeValue(obj: string): void {
-    this.formControl.setValue(obj);
-  }
+  writeValue(obj: any): void {
+    this.control.setValue(obj);
 
-  // registerOnChange(fn: (_: any) => {}) {
-  //   this.onChange = fn;
-  // }
+  }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  changeSelectedOption(option: string) {
+  changeSelectedOption(option: any) {
     // this.selectedOption = option;
     this.onChange(option);
   }
@@ -79,24 +78,27 @@ export class VaDorpdownSelectionComponent
   registerOnTouched(onTouched: any): void {
     this.onTouched = onTouched;
   }
+
   setDisabledState(isDisabled: boolean): void {
-    isDisabled ? this.formControl.disable() : this.formControl.enable();
+    isDisabled ? this.control.disable() : this.control.enable();
   }
   registerOnValidatorChange(onValidatorChange: () => void) {
     this.onValidatorChange = onValidatorChange;
   }
   validate(control: FormControl): ValidationErrors | null {
-    this.formControl = control;
+    this.control = control;
     const validators: ValidatorFn[] = [];
 
     if (this.config.validators?.isRequired) {
       validators.push(Validators.required);
     }
-
-    this.formControl.setValidators(validators);
+    this.control.setValidators(validators);
 
     return validators;
   }
+  compareFn(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+}
   ngOnDestroy(): void {
     this.onDestroy$.next();
   }

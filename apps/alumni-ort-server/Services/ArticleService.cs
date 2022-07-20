@@ -26,21 +26,39 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
 
     public async Task<ResponseDTO> Add(IFormCollection formCollection)
     {
-
-
+      ResponseDTO responeImg = new ResponseDTO();
+      responeImg.Status = StatusCODE.Faild;
       var file = formCollection.Files;
-
-      ResponseDTO responeImg = imgService.Upload(file, "ImgArticles");
-
+      string originalName = file.First().FileName;
+      DateTime currentDate = DateTime.Now;
+      string imgPath = FixPathImg(originalName, currentDate);
+      if (imgPath != "-1")
+      {
+      responeImg = imgService.Upload(file, "ImgArticles", imgPath);
+      }
       if (responeImg.Status == StatusCODE.Success)
       {
-        Article articleFromDB = new Article(0, formCollection["heading"], formCollection["subheading"], DateTime.Now, responeImg.StatusText, formCollection["detail"], int.Parse(formCollection["categoryid"]));
+        originalName = originalName.Trim('"').Replace(" ", "");
+        Article articleFromDB = new Article(0, formCollection["heading"], formCollection["subheading"], currentDate, responeImg.shortBody, originalName, formCollection["detail"], int.Parse(formCollection["categoryid"]));
+
 
         await m_db.Articles.AddAsync(articleFromDB);
 
         int c = await m_db.SaveChangesAsync();
 
-        responeImg.body = articleFromDB;
+        ArticleDTO articleToTransfer = new ArticleDTO()
+        {
+          Id = articleFromDB.Id,
+          Img = articleFromDB.Img,
+          Category = articleFromDB.Category,
+          CategoryId = articleFromDB.CategoryId,
+          Date = articleFromDB.Date,
+          Detail = articleFromDB.Detail,
+          Heading = articleFromDB.Heading,
+          SubHeading = articleFromDB.SubHeading,
+          OriginalImgName = articleFromDB.OriginalImgName
+        };
+        responeImg.body = articleToTransfer;
         if (c > 0)
         {
           return responeImg;
@@ -53,6 +71,17 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       return responeImg;
     }
 
+    private static string FixPathImg(string originalName, DateTime currentDate)
+    {
+      int index = originalName.IndexOf('.');
+      if (index != -1)
+      {
+        string suffixImg = originalName.Substring(index);
+        string ImgPath = currentDate.ToString().Trim('"').Replace(" ", "").Replace("/", "_").Replace(":", "-") + suffixImg;
+        return ImgPath;
+      }
+      return "-1";
+      }
 
     public async Task<ResponseDTO> DeleteArticle(int id)
     {
@@ -62,7 +91,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       {
         return new ResponseDTO() { StatusText = "this object not exists", Status = StatusCODE.Faild };
       }
-
+      this.imgService.Delete(article.Img);
       m_db.Articles.Remove(new Article { Id = article.Id });
       int c = await m_db.SaveChangesAsync();
       ResponseDTO response = new ResponseDTO();
@@ -89,7 +118,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         Heading = s.Heading,
         SubHeading = s.SubHeading,
         CategoryId = s.CategoryId,
-        Img = s.Img
+        Img = s.Img,
+        OriginalImgName = s.OriginalImgName
 
       }).FirstOrDefaultAsync(a => a.Id == id);
       return article;
@@ -106,17 +136,17 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         Heading = s.Heading,
         SubHeading = s.SubHeading,
         CategoryId = s.CategoryId,
-        Img = s.Img
+        Img = s.Img,
+        OriginalImgName = s.OriginalImgName
       }).ToListAsync();
       return articles;
     }
 
-    public async Task<ResponseDTO> Update(int id, ArticleDTO article)
+    public async Task<ResponseDTO> Update(int id, IFormCollection form)
     {
-      Article ArticleFromDB = new Article();
       ArticleDTO OriginalArticle = await GetArticle(id);
 
-      if (ArticleFromDB == null)
+      if (OriginalArticle == null)
       {
         return new ResponseDTO()
         {
@@ -124,19 +154,52 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
           StatusText = $"Item with id {id} not found in DB"
         };
       }
+      var file = form.Files;
+      ResponseDTO responeImg = new ResponseDTO();
+      Article ArticleFromDB = new Article();
+
+      string newpath = null;
+      DateTime currentDate = DateTime.Now;
+
+      if(file.Count != 0)
+      {
+      newpath = file.First().FileName;
+      string imgPath = FixPathImg(newpath, currentDate);
+
+      if(imgPath != "-1" && "ImgArticle/StaticFiles/" + imgPath != OriginalArticle.Img)
+        responeImg = imgService.Update(file, "ImgArticles", OriginalArticle.Img, imgPath);
+
+        newpath = newpath.Trim('"').Replace(" ", "");
+      }
+
 
       ArticleFromDB.Id = Convert.ToInt32(OriginalArticle.Id.ToString());
-      ArticleFromDB.Heading = article.Heading ?? OriginalArticle.Heading;
-      ArticleFromDB.SubHeading = article.SubHeading ?? OriginalArticle.SubHeading;
-      ArticleFromDB.Img = article.Img ?? OriginalArticle.Img;
-      ArticleFromDB.Detail = article.Detail?? OriginalArticle.Detail;
-      ArticleFromDB.Date = OriginalArticle.Date;
-      ArticleFromDB.CategoryId= Convert.ToInt32(article.CategoryId.ToString() ?? OriginalArticle.CategoryId.ToString());
+      ArticleFromDB.Heading = form["heading"].ToString() ?? OriginalArticle.Heading;
+      ArticleFromDB.SubHeading = form["subheading"].ToString() ?? OriginalArticle.SubHeading;
+      ArticleFromDB.Img = responeImg.shortBody ?? OriginalArticle.Img;
+      ArticleFromDB.OriginalImgName = newpath ?? OriginalArticle.OriginalImgName;
+      ArticleFromDB.Detail = form["detail"].ToString() ?? OriginalArticle.Detail;
+      ArticleFromDB.Date = currentDate;
+      ArticleFromDB.CategoryId= Convert.ToInt32(form["categoryid"].ToString() ?? OriginalArticle.CategoryId.ToString());
 
       m_db.Entry(ArticleFromDB).State = EntityState.Modified;
 
       int c = await m_db.SaveChangesAsync();
       ResponseDTO response = new ResponseDTO();
+
+      ArticleDTO articleToTransfer = new ArticleDTO()
+      {
+        Id = ArticleFromDB.Id,
+        Img = ArticleFromDB.Img,
+        Category = ArticleFromDB.Category,
+        CategoryId = ArticleFromDB.CategoryId,
+        Date = ArticleFromDB.Date,
+        Detail = ArticleFromDB.Detail,
+        Heading = ArticleFromDB.Heading,
+        SubHeading = ArticleFromDB.SubHeading,
+        OriginalImgName = ArticleFromDB.OriginalImgName
+      };
+      response.body = articleToTransfer;
       if (c > 0)
       {
         response.StatusText = c + " Article affected";

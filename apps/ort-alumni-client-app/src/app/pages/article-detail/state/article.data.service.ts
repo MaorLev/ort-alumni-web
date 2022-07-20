@@ -17,6 +17,7 @@ export class ArticleDataService {
       .get<ArticleInterface[]>(this.endPoint + `/article`);
   }
   getAllCategories(): Observable<CategoryInterface[]> {
+
     return this.httpClient
       .get<CategoryInterface[]>(this.endPoint + `/article/GetAllCategory`);
   }
@@ -36,8 +37,12 @@ export class ArticleDataService {
     return this.httpClient.delete(this.endPoint +'/article' + articleId);
   }
 
-  updateArticle(articleId: number, article: ArticleInterface): Observable<any> {
-    return this.httpClient.put(this.endPoint +'/article' + articleId, article)
+  updateArticle(articleId: number, article: ArticleInterface): Observable<HttpEvent<ArticleInterface>> {
+    return this.httpClient.put<ArticleInterface>(this.endPoint +'/article/' + articleId, toFormData(article), {
+      reportProgress: true,
+      observe: 'events'
+    })
+
   }
 }
 
@@ -49,6 +54,7 @@ export function toFormData<T>( formValue: T | any ) {
   for ( const key of Object.keys(formValue) ) {
     const value = formValue[key];
     formData.append(key, value);
+
   }
 
   return formData;

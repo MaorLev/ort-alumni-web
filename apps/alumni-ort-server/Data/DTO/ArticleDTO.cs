@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
 using System;
@@ -21,6 +22,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.DTO
     public string Detail { get; set; }
     [JsonProperty(PropertyName = "img")]
     public string Img { get; set; }
+    [JsonProperty(PropertyName = "originalimgname")]
+    public string OriginalImgName { get; set; }
 
     [JsonProperty(PropertyName = "categoryId")]
     public int CategoryId { get; set; }

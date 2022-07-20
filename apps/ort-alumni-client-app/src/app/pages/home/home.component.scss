@@ -1,6 +1,20 @@
 
 
 :host {
+  .hero-about {
+    position: relative;
+    scroll-behavior: smooth;
+    margin-bottom: -80px;
+    z-index: 4;
+    overflow: hidden;
+    display: grid;
+  }
+  // .downanchor {
+  //   display: block;
+  //   width: 1px;
+  //   height: 0px;
+  // }
+
   .main-title {
     position: relative;
 
@@ -24,6 +38,10 @@
     background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
+    position: relative;
+    top: -80px;
+    padding: 20px 0;
+    margin-top: 79px;
     p {
       padding: 0rem 3rem;
       word-spacing: 0.7rem;
@@ -58,7 +76,9 @@
       justify-content: center;
       padding: 2rem 4rem;
       ort-button {
+        cursor: pointer;
         margin-bottom: 1rem;
+        transition: all 0.6s;
         &:hover {
           transform: scale(1.1);
         }
@@ -81,13 +101,17 @@
       justify-content: center;
       align-content: center;
     }
+    .pre-articles {
+      padding: .5rem 1rem;
+    }
   }
 
   .custom-arrow {
     position: absolute;
-    top: 60%;
-    transform: translateY(-50%);
+    top: 50%;
+    // transform: translateY(-50%);
     .ort-btn {
+      transition: all 0.3s;
       opacity: 0.7;
       &:hover {
         opacity: 1;
@@ -95,11 +119,11 @@
     }
 
     &.custom-arrow-left {
-      left: -7%;
+      left: -.5%;
     }
 
     &.custom-arrow-right {
-      right: -1%;
+      right: 6.5%;
     }
   }
 

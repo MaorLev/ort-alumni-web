@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,7 +24,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
     public int Id { get; set; }
     [Column("Name")]
     public string Name { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<Article> Articles { get; set; }
   }
 }

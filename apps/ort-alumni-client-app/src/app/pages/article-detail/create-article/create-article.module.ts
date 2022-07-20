@@ -1,3 +1,4 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ import { FeatureVaDropdownSelectionModule } from '@features/feature-va-dropdown-
     UiButtonModule,
     FeatureVaDropdownSelectionModule,
     FeatureFileUploadModule,
+    MatFormFieldModule
   ],
   exports: [QuicklinkModule, CreateArticleComponent],
 })

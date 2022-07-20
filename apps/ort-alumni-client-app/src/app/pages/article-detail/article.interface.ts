@@ -5,6 +5,7 @@ export interface ArticleInterface {
   subheading:string;
   date?:string;
   img:string;
+  originalimgname?:string;
   detail:string;
   category?:CategoryInterface;
   categoryid?:number;

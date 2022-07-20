@@ -1,3 +1,4 @@
+
 import { environment } from '@environments';
 import { ArticleQuery } from './../state/article.query';
 import {
@@ -13,7 +14,10 @@ import { ArticleService } from '../state/article.service';
 import { HeadingConfig } from '../article-form-config/heading.config';
 import { SubheadingConfig } from '../article-form-config/subheading.config';
 import { DetailConfig } from '../article-form-config/detail.config';
-import { CategoryListConfigService } from '../article-form-config/category-list.config.service';
+import { requiredFileType } from '../create-article/create-article.component';
+import { HttpEventType } from '@angular/common/http';
+import { CATEGORYSELECTION } from '../article-form-config/category-selection';
+
 
 @Component({
   selector: 'app-update-article',
@@ -31,15 +35,14 @@ export class UpdateArticleComponent implements OnInit {
   headingConfig = HeadingConfig;
   subheadingConfig = SubheadingConfig;
   detailConfig = DetailConfig;
-  categoryConfig = this.categoryListConfig.CATEGORYLIST;
+  categoryConfig = CATEGORYSELECTION;
   progress:Observable<number> = of(0);
   constructor(
     private activatedRouter: ActivatedRoute,
     private articleService: ArticleService,
     private articleQuary: ArticleQuery,
     private router: Router,
-    private formBuilder: FormBuilder,
-    private categoryListConfig:CategoryListConfigService
+    private formBuilder: FormBuilder
   ) {
     this.id = activatedRouter.snapshot.paramMap.get('id');
     if (this.id) this.usableId = parseInt(this.id);
@@ -47,22 +50,36 @@ export class UpdateArticleComponent implements OnInit {
     // this.article == this.articleQuary.getEntity(1);
   }
   ngOnInit(): void {
+
     this.articleForm = this.formBuilder.group({
       heading: [this.article?.heading,[]],
       subheading: [this.article?.subheading,[]],
       date: [this.article?.date,[]],
-      img: [],
+      img: [null, [ requiredFileType(['png', 'jpg', 'jpeg'])]],
       detail: [this.article?.detail,[]],
-      category: [this.article?.categoryid,[]],
+      category: [this.article?.category,[]],
     });
   }
 
   onSubmit() {
+    debugger;
     if (this.articleForm.valid) {
+      const art:ArticleInterface = this.articleForm.value;
+      art.id = this.article?.id;
+      art.categoryid = art.category?.id;
       this.articleService
-        .updateArticle(this.usableId, this.articleForm.value)
-        .subscribe((res) => {
-          this.router.navigateByUrl('');
+        .updateArticle(this.usableId, art)
+        .subscribe(event => {
+
+          if ( event.type === HttpEventType.UploadProgress ) {
+            this.progress = of(Math.round((100 * event.loaded) / (event.total ? event.total : 0) ));
+          }
+
+          if ( event.type === HttpEventType.Response ) {
+            console.log(event.body);
+            this.router.navigateByUrl(`main/article-detail/${this.usableId}`);
+          }
+
         });
     }
   }

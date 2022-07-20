@@ -315,8 +315,7 @@ namespace AlumniOrtServer.Context
            modelBuilder.Entity<Category>().HasData(cat1, cat2);
 
 
-
-        }
+    }
 
         public DbSet<Employer> Employers { get; set; }
         public DbSet<Student> Students { get; set; }//virtual attention

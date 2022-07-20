@@ -4,14 +4,16 @@ using AlumniOrtServer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 {
     [DbContext(typeof(AlumniDBContext))]
-    partial class AlumniDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220719161037_added_propery_nameImg")]
+    partial class added_propery_nameImg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

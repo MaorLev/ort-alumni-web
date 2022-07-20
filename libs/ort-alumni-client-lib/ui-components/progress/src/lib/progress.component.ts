@@ -15,7 +15,7 @@ export class ProgressComponent implements OnInit {
   @Input() color: ThemePalette = 'primary';
   @Input() mode: ProgressBarMode = 'determinate';
   @Input() value: Observable<number>;
-  @Input() bufferValue:number;
+  @Input() bufferValue:number | undefined;
   constructor() {}
 
   ngOnInit(): void {}
