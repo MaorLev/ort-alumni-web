@@ -8,9 +8,15 @@ import { FileUploadComponent } from './file-upload.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DndDirective } from './dnd.directive';
 import { UiIconModule } from '@ui-components/ui-icon';
+import { AbstractFileUploadComponent } from './abstract-file-upload/abstract-file-upload.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [FileUploadComponent, DndDirective],
+  declarations: [
+    FileUploadComponent,
+    DndDirective,
+    AbstractFileUploadComponent,
+  ],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -18,8 +24,9 @@ import { UiIconModule } from '@ui-components/ui-icon';
     MatButtonModule,
     MatProgressBarModule,
     MatIconModule,
-    UiIconModule
+    UiIconModule,
+    ReactiveFormsModule
   ],
-  exports: [FileUploadComponent, DndDirective],
+  exports: [FileUploadComponent, DndDirective, AbstractFileUploadComponent],
 })
 export class FeatureFileUploadModule {}

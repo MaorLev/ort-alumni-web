@@ -45,7 +45,6 @@ export interface UploadError {
   ],
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
-
   @Input() nameBefore: string | undefined;
 
   formControl: FormControl;
@@ -76,7 +75,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
   setDisabledState(isDisabled: boolean): void {
     this.config = {
       ...this.config,
-      data:{...this.config.data,isDisabled: isDisabled }
+      data: { ...this.config.data, isDisabled: isDisabled },
     };
   }
   registerOnTouched(onTouched: any): void {
@@ -108,11 +107,10 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
 
   validate(control: FormControl): ValidationErrors | null {
     this.formControl = control;
-    const validators: ValidatorFn [] = [];
+    const validators: ValidatorFn[] = [];
 
-    if(!(this.nameBefore || control.value))
-    {
-     validators.push(Validators.required);
+    if (!(this.nameBefore || control.value)) {
+      validators.push(Validators.required);
     }
 
     return validators;

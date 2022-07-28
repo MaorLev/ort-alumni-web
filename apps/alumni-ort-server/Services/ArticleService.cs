@@ -28,18 +28,22 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
     {
       ResponseDTO responeImg = new ResponseDTO();
       responeImg.Status = StatusCODE.Faild;
+      string originalName = null;
       var file = formCollection.Files;
-      string originalName = file.First().FileName;
       DateTime currentDate = DateTime.Now;
-      string imgPath = FixPathImg(originalName, currentDate);
-      if (imgPath != "-1")
+      if (file.Count() != 0)
       {
-      responeImg = imgService.Upload(file, "ImgArticles", imgPath);
+        originalName = file.First().FileName;
+        responeImg = preCreateImage(currentDate, originalName, responeImg, file);
+
       }
       if (responeImg.Status == StatusCODE.Success)
       {
         originalName = originalName.Trim('"').Replace(" ", "");
-        Article articleFromDB = new Article(0, formCollection["heading"], formCollection["subheading"], currentDate, responeImg.shortBody, originalName, formCollection["detail"], int.Parse(formCollection["categoryid"]));
+        Article articleFromDB = new Article(0, formCollection["heading"], formCollection["subheading"],
+          currentDate, responeImg.shortBody,
+          originalName, formCollection["detail"]
+          , int.Parse(formCollection["categoryid"]));
 
 
         await m_db.Articles.AddAsync(articleFromDB);
@@ -67,6 +71,15 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         responeImg.Status = StatusCODE.Faild;
         responeImg.StatusText = "faild when tring to add entity";
         return responeImg;
+      }
+      return responeImg;
+    }
+    private ResponseDTO preCreateImage(DateTime currentDate, string path, ResponseDTO responeImg, IFormFileCollection files)
+    {
+      string imgPath = FixPathImg(path, currentDate);
+      if (imgPath != "-1")
+      {
+        responeImg = imgService.Upload(files, "ImgArticles", imgPath);
       }
       return responeImg;
     }

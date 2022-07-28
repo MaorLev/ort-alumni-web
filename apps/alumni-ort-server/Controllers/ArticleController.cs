@@ -16,11 +16,10 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
   public class ArticleController : ControllerBase
   {
     private readonly IArticleService articleService;
-    private readonly IImgService imgService;
-    public ArticleController(IArticleService articleService, IImgService imgService)
+ 
+    public ArticleController(IArticleService articleService)
     {
       this.articleService = articleService;
-      this.imgService = imgService;
     }
     [HttpGet]
     [Route("{id?}")]
@@ -45,27 +44,19 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
     }
 
     [HttpPost, DisableRequestSizeLimit]
-    //public async Task<ActionResult> PostArticle(ArticleDTO article)
     public async Task<ActionResult> PostArticle()
     {
       try
       {
         IFormCollection formCollection = await Request.ReadFormAsync();
 
+        ResponseDTO respone = await articleService.Add(formCollection);
+        if (respone.Status == StatusCODE.Success)
+        {
+        return Created("", respone.body);
+        }
+        return BadRequest(respone);
 
-
-
-        //if (formCollection.ContainsKey("id") && formCollection.ContainsKey("categoryid"))
-        //{
-          ResponseDTO respone = await articleService.Add(formCollection);
-          if (respone.Status == StatusCODE.Success)
-          {
-          return Created("", respone.body);
-          }
-          return BadRequest(respone);
-
-        //}
-        //return BadRequest();
       }
       catch (Exception ex)
       {
@@ -133,9 +124,9 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
       try
       {
 
-          List<CategoryDTO> result = await articleService.getCategoris();
+        List<CategoryDTO> result = await articleService.getCategoris();
 
-          return Ok(result);
+        return Ok(result);
         
       }
       catch

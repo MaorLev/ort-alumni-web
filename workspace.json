@@ -9,6 +9,7 @@
     "ort-alumni-client-lib-alumni-shared-environments": "libs/ort-alumni-client-lib/alumni-shared/environments",
     "ort-alumni-client-lib-alumni-shared-styles": "libs/ort-alumni-client-lib/alumni-shared/styles",
     "ort-alumni-client-lib-features-feature-file-upload": "libs/ort-alumni-client-lib/features/feature-file-upload",
+    "ort-alumni-client-lib-features-feature-form": "libs/ort-alumni-client-lib/features/feature-form",
     "ort-alumni-client-lib-features-feature-google-maps": "libs/ort-alumni-client-lib/features/feature-google-maps",
     "ort-alumni-client-lib-features-feature-modal": "libs/ort-alumni-client-lib/features/feature-modal",
     "ort-alumni-client-lib-features-feature-switcher-tab": "libs/ort-alumni-client-lib/features/feature-switcher-tab",

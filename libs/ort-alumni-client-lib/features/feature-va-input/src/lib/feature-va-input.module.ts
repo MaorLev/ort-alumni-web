@@ -5,17 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UiButtonModule } from '@ui-components/ui-button';
-
+import { AbstractInputComponent } from './abstract-input/abstract-input.component';
 
 @NgModule({
-  declarations: [VAInputComponent],
+  declarations: [VAInputComponent, AbstractInputComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    UiButtonModule
+    UiButtonModule,
   ],
-  exports: [VAInputComponent],
+  exports: [VAInputComponent, AbstractInputComponent],
 })
 export class FeatureVaInputModule {}

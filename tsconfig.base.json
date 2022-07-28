@@ -22,8 +22,14 @@
       "@environments": [
         "libs/ort-alumni-client-lib/alumni-shared/environments/src/index.ts"
       ],
+      "@features/dynamic-form": [
+        "libs/ort-alumni-client-lib/features/dynamic-form/src/index.ts"
+      ],
       "@features/feature-file-upload": [
         "libs/ort-alumni-client-lib/features/feature-file-upload/src/index.ts"
+      ],
+      "@features/feature-form": [
+        "libs/ort-alumni-client-lib/features/feature-form/src/index.ts"
       ],
       "@features/feature-google-maps": [
         "libs/ort-alumni-client-lib/features/feature-google-maps/src/index.ts"

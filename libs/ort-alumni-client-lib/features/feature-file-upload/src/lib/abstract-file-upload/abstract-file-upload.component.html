@@ -1,0 +1,8 @@
+<div [formGroup]="group">
+  <ort-file-upload
+    [config]="config"
+    [formControlName]="config.name"
+    [nameBefore]="config.data?.nameBefore || undefined"
+  >
+  </ort-file-upload>
+</div>

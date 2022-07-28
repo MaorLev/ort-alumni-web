@@ -1,0 +1,20 @@
+<form [formGroup]="group" (ngSubmit)="submitted.emit(group)">
+  <div *ngFor="let config of configuration | keyvalue: asIsOrder">
+    <ng-container
+      *ngComponentOutlet="
+        config.value.component;
+        ndcDynamicInputs: {
+          config: config.value,
+          group: group
+        }
+      "
+    ></ng-container>
+  </div>
+
+  <ort-button
+    type="submit"
+    class="btn"
+    className="mat-raised-button bar-btn-primary"
+    >צור</ort-button
+  >
+</form>

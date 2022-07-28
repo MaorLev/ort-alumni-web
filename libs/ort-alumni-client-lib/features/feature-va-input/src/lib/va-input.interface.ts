@@ -1,7 +1,7 @@
 import { AsyncValidatorFn } from "@angular/forms";
-import { formValidators } from "./form-validators.interface";
 
 export interface ortInput {
+  component?:any;
   name: string;
   label: string;
   placeholder?: string;

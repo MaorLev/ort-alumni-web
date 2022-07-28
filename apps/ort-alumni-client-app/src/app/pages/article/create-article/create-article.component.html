@@ -1,36 +1,58 @@
 <section id="create-article">
   <div class="container">
     <h1>יצירת פוסט</h1>
-    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-      <ort-va-input
-        formControlName="heading"
-        [config]="articleConfig['heading']"
-      ></ort-va-input>
-      <ort-va-input
-        formControlName="subheading"
-        [config]="articleConfig['subheading']"
-      ></ort-va-input>
-      <ort-va-dorpdown-selection
-        formControlName="category"
-        [config]="articleConfig['category']"
-      >
-      </ort-va-dorpdown-selection>
-      <ort-va-textarea
-        formControlName="detail"
-        [config]="articleConfig['detail']"
-      >
-      </ort-va-textarea>
-      <ort-file-upload
-        formControlName="image"
-        [config]="articleConfig['image']"
-      >
-      </ort-file-upload>
+    <ort-form [configuration]="articleConfig" (submitted)="onSubmit($event)" >
+
+    </ort-form>
+    <!-- <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let config of articleConfig | keyvalue : asIsOrder">
+        <ng-container
+          *ngComponentOutlet="
+            (config.value).component;
+            ndcDynamicInputs: {
+              config: (config.value),
+              group: articleForm
+            }
+          "
+        ></ng-container>
+      </div>
+
       <ort-button
         type="submit"
         class="btn"
         className="mat-raised-button bar-btn-primary"
         >צור</ort-button
       >
-    </form>
+    </form> -->
+      <!-- <ort-abstract-input
+        [group]="articleForm"
+        [config]="articleConfig['heading']"
+      >
+      </ort-abstract-input>
+      <ort-abstract-input
+      [group]="articleForm"
+      [config]="articleConfig['subheading']"
+      >
+      </ort-abstract-input>
+      <ort-abstract-select
+      [group]="articleForm"
+      [config]="articleConfig['category']"
+      >
+      </ort-abstract-select>
+
+      <ort-abstract-textarea
+      [group]="articleForm"
+      [config]="articleConfig['detail']"
+      >
+
+      </ort-abstract-textarea>
+      <ort-abstract-file-upload
+      [group]="articleForm"
+      [config]="articleConfig['image']"
+
+      >
+
+    </ort-abstract-file-upload> -->
+
   </div>
 </section>
