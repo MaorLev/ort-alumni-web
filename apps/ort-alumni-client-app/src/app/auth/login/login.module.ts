@@ -16,7 +16,7 @@ import { FeatureVaInputModule } from '@features/feature-va-input';
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
     ReactiveFormsModule,
     FeatureVaInputModule,
-    UiButtonModule
+    UiButtonModule,
   ],
   exports: [QuicklinkModule, LoginComponent],
 })

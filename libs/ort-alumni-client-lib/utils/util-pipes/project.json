@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/utils/util-pipes",
+  "sourceRoot": "libs/ort-alumni-client-lib/utils/util-pipes/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ort-alumni-client-lib/utils/util-pipes"],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/utils/util-pipes/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/utils/util-pipes/src/**/*.ts",
+          "libs/ort-alumni-client-lib/utils/util-pipes/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:util"]
+}

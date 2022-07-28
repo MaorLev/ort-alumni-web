@@ -1,23 +1,18 @@
-import { environment } from '@environments';
-import { ArticleService } from './../article-detail/state/article.service';
-import { ArticleInterface } from './../article-detail/article.interface';
+import { ArticleService } from './../article/state/article.service';
+import { ArticleInterface } from '../article/state/article.interface';
 
 import {
   ChangeDetectionStrategy,
-  Component,
-  ViewChild,
-  OnInit,
-  OnDestroy,
+  Component
 } from '@angular/core';
 
-import { NgxGlideComponent } from 'ngx-glide';
 import {
   Observable,
-  Subscription,
-  switchMap,
-  map,
+  mergeMap,
 } from 'rxjs';
-import { ArticleQuery } from '../article-detail/state/article.query';
+import { ArticleQuery } from '../article/state/article.query';
+import { ArticlesByCategory } from '../article/state/articles-by-category.type';
+
 
 @Component({
   selector: 'app-home',
@@ -25,32 +20,21 @@ import { ArticleQuery } from '../article-detail/state/article.query';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
+export class HomeComponent {
   articles$: Observable<ArticleInterface[]>;
-  listArticlesSub: Subscription;
-  endPoint = environment.endPointApi + '/';
+  articlesByCategory$: Observable<ArticlesByCategory[]>;
 
   constructor(
     private articleService: ArticleService,
     private articleQuery: ArticleQuery
-  ) {}
-  ngOnInit(): void {
-    this.articles$ = this.articleQuery.selectAreArticlesLoaded$.pipe(
-      switchMap((areArticlesLoaded) => {
-        if (!areArticlesLoaded) {
-          return this.articleService
-            .LoadArticlesAndCategories()
-            .pipe(map((articlesAndCategories) => articlesAndCategories[0]));
-        }
-        return this.articleQuery.selectAll();
-      })
-    );
+  ) {
+    this.articlesByCategory$ = this.articleService
+      .loadAndGetAllArticles()
+      .pipe(
+        mergeMap(() => {
+          return this.articleQuery.selectAllArticlesAndCategory$(5);
+        })
+      );
   }
 
-  ngOnDestroy() {
-    if (this.listArticlesSub) {
-      this.listArticlesSub.unsubscribe();
-    }
-  }
 }

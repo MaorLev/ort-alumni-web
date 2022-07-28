@@ -1,7 +1,7 @@
 <button [type]="type"  [class]="className" [disabled]="disabled" [routerLink]="routeTo">
   <div class="content">
     <span *ngIf="iconName" class="content-btn_icon" >
-      <ort-icon [className]="customIcon?.className" [color]="customIcon?.color || iconColor" [svgPath]="customIcon?.svgPath"  >{{ iconName }}</ort-icon>
+      <ort-icon [className]="customIcon?.className" [color]="customIcon?.color || iconColor" [svgName]="customIcon?.svgPath"  >{{ iconName }}</ort-icon>
     </span>
     <span class="content-btn_text">
       <ng-content></ng-content>

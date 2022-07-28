@@ -3,10 +3,11 @@ import {
   Component,
   ChangeDetectionStrategy,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Icons } from './icons.enum';
 
 @Component({
   selector: 'ort-icon',
@@ -15,23 +16,47 @@ import { DomSanitizer } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent implements OnInit {
-  @Input() svgPath: string | undefined;
+  svgIcon: string | undefined;
   @Input() className: string | undefined;
   @Input() color: ThemePalette | undefined;
-
+  @Input() svgName: string | undefined;
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
-    const path = this.svgPath;
-    if (path) {
+    const viewName = this.svgName;
+    const path = this.getSvgPath(viewName);
+    if (viewName && path) {
+      this.svgIcon = path;
       this.iconRegistry.addSvgIcon(
-        path,
+        viewName,
         this.sanitizer.bypassSecurityTrustResourceUrl(path)
       );
     }
   }
 
+  getSvgPath(name: string | undefined): string | undefined {
+    switch (name) {
+      case 'sheet_icon':
+        return Icons.Sheet;
+      case 'linkedin_icon':
+        return Icons.Linkedin;
+      case 'youtube_icon':
+        return Icons.Youtube;
+      case 'instegram_icon':
+        return Icons.Instegram;
+      case 'waze_icon':
+        return Icons.Waze;
+      case 'garbage_icon':
+        return Icons.Garbage;
+      case 'upload_icon':
+        return Icons.Upload;
+      case 'ort_icon':
+        return Icons.Ort;
+      default:
+        return undefined;
+    }
+  }
 }

@@ -30,11 +30,11 @@
               },
               {
                 "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": ["type:util"]
+                "onlyDependOnLibsWithTags": ["type:util","type:shared-evironments"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:data-accesses","type:shared-evironments","type:shared-assets"]
+                "onlyDependOnLibsWithTags": ["type:feature","type:ui", "type:util", "type:data-accesses", "type:shared-assets"]
               }
             ]
           }

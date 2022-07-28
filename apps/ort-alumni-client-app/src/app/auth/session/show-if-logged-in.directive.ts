@@ -10,7 +10,7 @@ export class ShowIfLoggedInDirective implements OnInit, OnDestroy {
   subscription: Subscription;
   @Input() appShowIfLoggedIn: boolean | undefined;
 
-  constructor(private templateRef: TemplateRef<any>,
+  constructor(private templateRef: TemplateRef<unknown>,
     private viewContainer: ViewContainerRef,
     private authQuery: SessionQuery
   ) {

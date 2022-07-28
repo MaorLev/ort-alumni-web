@@ -1,3 +1,4 @@
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,9 @@ import { environment } from '@environments';
 
 import { FeatureModalModule } from '@features/feature-modal';
 import {  MAT_DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/material/dialog';
+import { AlertsService } from '@utils/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -26,7 +30,8 @@ import {  MAT_DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/material/dialog';
     AkitaNgRouterStoreModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FeatureModalModule
+    FeatureModalModule,
+    MatSnackBarModule
   ],
   providers: [
     {
@@ -34,6 +39,8 @@ import {  MAT_DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/material/dialog';
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
     },
     MAT_DIALOG_SCROLL_STRATEGY_PROVIDER,
+
+    AlertsService
   ],
   bootstrap: [AppComponent],
 })

@@ -40,6 +40,9 @@
       "@features/feature-va-input": [
         "libs/ort-alumni-client-lib/features/feature-va-input/src/index.ts"
       ],
+      "@features/feature-va-textarea": [
+        "libs/ort-alumni-client-lib/features/feature-va-textarea/src/index.ts"
+      ],
       "@ui-components/progress": [
         "libs/ort-alumni-client-lib/ui-components/progress/src/index.ts"
       ],
@@ -54,6 +57,13 @@
       ],
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
+      ],
+      "@utils/core": ["libs/ort-alumni-client-lib/utils/core/src/index.ts"],
+      "@utils/helpers": [
+        "libs/ort-alumni-client-lib/utils/util-helpers/src/index.ts"
+      ],
+      "@utils/pipes": [
+        "libs/ort-alumni-client-lib/utils/util-pipes/src/index.ts"
       ]
     }
   },

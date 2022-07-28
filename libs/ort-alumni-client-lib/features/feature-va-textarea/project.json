@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-va-textarea",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-va-textarea/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-va-textarea"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-va-textarea/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-va-textarea/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-va-textarea/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

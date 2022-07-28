@@ -14,10 +14,14 @@
     "ort-alumni-client-lib-features-feature-switcher-tab": "libs/ort-alumni-client-lib/features/feature-switcher-tab",
     "ort-alumni-client-lib-features-feature-va-dropdown-selection": "libs/ort-alumni-client-lib/features/feature-va-dropdown-selection",
     "ort-alumni-client-lib-features-feature-va-input": "libs/ort-alumni-client-lib/features/feature-va-input",
+    "ort-alumni-client-lib-features-feature-va-textarea": "libs/ort-alumni-client-lib/features/feature-va-textarea",
     "ort-alumni-client-lib-ui-components-progress": "libs/ort-alumni-client-lib/ui-components/progress",
     "ort-alumni-client-lib-ui-components-ui-button": "libs/ort-alumni-client-lib/ui-components/ui-button",
     "ort-alumni-client-lib-ui-components-ui-card": "libs/ort-alumni-client-lib/ui-components/ui-card",
     "ort-alumni-client-lib-ui-components-ui-carousel": "libs/ort-alumni-client-lib/ui-components/ui-carousel",
-    "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon"
+    "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon",
+    "ort-alumni-client-lib-utils-core": "libs/ort-alumni-client-lib/utils/core",
+    "ort-alumni-client-lib-utils-util-helpers": "libs/ort-alumni-client-lib/utils/util-helpers",
+    "ort-alumni-client-lib-utils-util-pipes": "libs/ort-alumni-client-lib/utils/util-pipes"
   }
 }

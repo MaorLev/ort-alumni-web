@@ -31,36 +31,36 @@
   </div>
 
   <section id="categories">
-
-      <div class="category generally">
-        <h1 class="mat-display-2 bg-after-primary main-title">כללי</h1>
-        <ng-container *ngIf="articles$ | async as arts">
+    <div class="category">
+      <ng-container *ngIf="articlesByCategory$ | async as arts">
+        <ng-container *ngFor="let articles of arts">
+          <h1 class="mat-display-2 bg-after-primary main-title">
+            {{ articles.categoryView }}
+          </h1>
           <div class="pre-articles">
             <ort-carousel>
-              <ng-container *ngFor="let article of arts">
+              <ng-container *ngFor="let article of articles.articles">
                 <a [routerLink]="['../article-detail', article.id]">
                   <ort-card
                     [heading]="article.heading"
                     [subheading]="article.subheading"
-                    [img]="endPoint + article.img"
+                    [img]=" article.img | addEnvVar"
                     [detail]="article.detail"
                   ></ort-card>
                 </a>
               </ng-container>
             </ort-carousel>
-
+            <div class="more">
+              <a
+                class="more-btn"
+                [routerLink]="['../articles', articles.categoryName]"
+              >
+                <h4>ראה עוד...</h4>
+              </a>
+            </div>
           </div>
         </ng-container>
-        <ort-button
-          class="more-btn"
-          routerLink="../create-article"
-          className="custom"
-          [iconColor]="'primary'"
-          >ראה עוד</ort-button
-        >
-      </div>
-      <div class="category events">
-        <h1 class="mat-display-2 bg-after-primary main-title">אירועים</h1>
-      </div>
+      </ng-container>
+    </div>
   </section>
 </div>

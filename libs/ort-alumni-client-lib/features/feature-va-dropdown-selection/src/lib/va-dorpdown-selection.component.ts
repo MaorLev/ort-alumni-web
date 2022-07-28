@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { map, Subject } from 'rxjs';
 import { ortInput } from '@features/feature-va-input';
 import {
@@ -14,11 +17,9 @@ import {
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
-  Validator,
-  ValidatorFn,
-  Validators,
+  Validator
 } from '@angular/forms';
-import { VAInputComponent } from '@features/feature-va-input';
+
 
 @Component({
   selector: 'ort-va-dorpdown-selection',
@@ -63,14 +64,13 @@ export class VaDorpdownSelectionComponent
   }
 
   writeValue(obj: any): void {
-    this.control.setValue(obj);
+    this.control.patchValue({ ...obj });
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
   changeSelectedOption(option: any) {
-    // this.selectedOption = option;
     this.onChange(option);
   }
 
@@ -86,14 +86,7 @@ export class VaDorpdownSelectionComponent
   }
   validate(control: FormControl): ValidationErrors | null {
     this.control = control;
-    const validators: ValidatorFn[] = [];
-
-    if (this.config.validators?.isRequired) {
-      validators.push(Validators.required);
-    }
-    this.control.setValidators(validators);
-
-    return validators;
+    return this.control.validator;
   }
   compareFn(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;

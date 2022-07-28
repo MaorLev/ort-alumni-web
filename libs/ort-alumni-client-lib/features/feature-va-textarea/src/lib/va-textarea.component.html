@@ -1,0 +1,24 @@
+<div id="text-area">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>{{ config.label }}</mat-label>
+    <textarea
+      matInput
+      #message maxlength="2000"
+      [formControl]="formControl"
+      [placeholder]="config.placeholder || config.label"
+    ></textarea>
+    <mat-hint align="end"><strong>Don't disclose personal info</strong> </mat-hint>
+    <mat-hint align="start">{{message.value.length}} / 2000</mat-hint>
+    <ng-container *ngIf="config.errors">
+      <ng-container *ngFor="let error of config.errors">
+        <mat-error
+          *ngIf="
+            formControl.hasError(error.name) &&
+            formControl.touched
+          "
+          >{{ error.message }}</mat-error
+        >
+      </ng-container>
+    </ng-container>
+  </mat-form-field>
+</div>

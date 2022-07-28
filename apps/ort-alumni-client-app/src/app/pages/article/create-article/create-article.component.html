@@ -1,0 +1,36 @@
+<section id="create-article">
+  <div class="container">
+    <h1>יצירת פוסט</h1>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <ort-va-input
+        formControlName="heading"
+        [config]="articleConfig['heading']"
+      ></ort-va-input>
+      <ort-va-input
+        formControlName="subheading"
+        [config]="articleConfig['subheading']"
+      ></ort-va-input>
+      <ort-va-dorpdown-selection
+        formControlName="category"
+        [config]="articleConfig['category']"
+      >
+      </ort-va-dorpdown-selection>
+      <ort-va-textarea
+        formControlName="detail"
+        [config]="articleConfig['detail']"
+      >
+      </ort-va-textarea>
+      <ort-file-upload
+        formControlName="image"
+        [config]="articleConfig['image']"
+      >
+      </ort-file-upload>
+      <ort-button
+        type="submit"
+        class="btn"
+        className="mat-raised-button bar-btn-primary"
+        >צור</ort-button
+      >
+    </form>
+  </div>
+</section>

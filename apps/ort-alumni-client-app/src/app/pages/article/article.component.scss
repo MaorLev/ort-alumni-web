@@ -1,0 +1,29 @@
+:host {
+  #categories {
+    background-color: var(--accent-100);
+    color: var(--primary-color);
+    text-align: center;
+    .category {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+    }
+    .pre-articles {
+      padding: 0.5rem 1rem;
+      .more {
+        text-align: start;
+
+        .more-btn {
+          display: inline-block;
+          color: var(--accent-color);
+          margin: 2rem 4rem;
+
+          &:hover {
+            text-decoration: underline 0.15rem;
+          }
+        }
+      }
+    }
+  }
+}

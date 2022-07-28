@@ -5,7 +5,7 @@ import {
   ModalType,
   searchDetail,
 } from '@features/feature-modal';
-import { Observable, switchMap, take } from 'rxjs';
+import { switchMap, take } from 'rxjs';
 import { searchDataService } from './search.data.service';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class SearchService {
         })
       )
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .subscribe((content: any) => {
+      .subscribe((content: unknown) => {
         console.log('content' + '' + content);
         // save in akita store
         //route to search page

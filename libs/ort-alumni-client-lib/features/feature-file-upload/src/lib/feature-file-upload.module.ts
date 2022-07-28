@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DndDirective } from './dnd.directive';
+import { UiIconModule } from '@ui-components/ui-icon';
 
 @NgModule({
   declarations: [FileUploadComponent, DndDirective],
@@ -16,7 +17,8 @@ import { DndDirective } from './dnd.directive';
     MatInputModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    UiIconModule
   ],
   exports: [FileUploadComponent, DndDirective],
 })

@@ -41,7 +41,7 @@ export class DndDirective {
   @HostListener('drop', ['$event']) public ondrop(evt: {
     preventDefault: () => void;
     stopPropagation: () => void;
-    dataTransfer: { files: any };
+    dataTransfer: { files: File[]};
   }) {
     evt.preventDefault();
     evt.stopPropagation();

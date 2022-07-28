@@ -6,6 +6,7 @@ export const loginForm: ortInput[] = [
     label: 'אימייל',
     type: 'text',
     placeholder: 'insert text',
+    data:{},
     validators: {
       isRequired: true,
       pattern: '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$',

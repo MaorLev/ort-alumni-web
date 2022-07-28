@@ -22,6 +22,8 @@ export class LoginLinksDataService {
       label: 'התחבר',
       name: 'login',
       route: '/auth',
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onClick: () => {},
       order: 1,
       showIfLogin: false,
     }
