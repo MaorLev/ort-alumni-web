@@ -10,7 +10,7 @@ import {
   HashCategoryIdToViewName,
 } from './state/category-hashmap';
 import { ArticlesByCategory } from './state/articles-by-category.type';
-import { cloneDeep } from '@utils/helpers';
+import { cloneDeep } from '@utils/util-others';
 
 @Component({
   selector: 'app-article',
@@ -27,7 +27,6 @@ export class ArticleComponent implements OnInit {
     private articleQuery: ArticleQuery,
     activateRouter: ActivatedRoute
   ) {
-    debugger;
     const name = activateRouter.snapshot.paramMap.get('id');
     if (name) this.categoryName = name;
   }

@@ -1,0 +1,32 @@
+:host {
+  #article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    .category-headers {
+      margin-bottom: 3.5rem;
+    }
+    .title {
+      font-weight: 600;
+    }
+    .category-title {
+      border-bottom: 3px var(--accent-900) solid;
+      line-height: 1.5;
+      .category-link {
+        display: inline-block;
+      }
+    }
+    .image {
+      margin: 1.5rem 0;
+    }
+    .headers {
+      margin: 0;
+    }
+    .detail {
+      line-height: 1.5;
+    }
+  }
+  .title {
+    margin-bottom: 0.8rem !important;
+  }
+}

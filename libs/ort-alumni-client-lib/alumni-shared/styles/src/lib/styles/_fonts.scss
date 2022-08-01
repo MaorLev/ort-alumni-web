@@ -15,15 +15,15 @@ $fontConfig: (
   display-3:
     mat.define-typography-level(5.6rem, 5.6rem, 400, 'Open Sans', -0.0089rem),
   display-2: mat.define-typography-level(4.5rem, 4.8rem, 400, 'Open Sans', 0rem),
-  display-1: mat.define-typography-level(3.4rem, 4rem, 400, 'Open Sans', 0.0074rem),
+  display-1: mat.define-typography-level(3.4rem, 4rem, 600, 'Open Sans', 0.0074rem),
   headline: mat.define-typography-level(2.4rem, 3.2rem, 400, 'Open Sans', 0rem),
   title: mat.define-typography-level(2rem, 3.2rem, 500, 'Open Sans', 0.0075rem),
   subheading-2:
     mat.define-typography-level(1.6rem, 2.8rem, 400, 'Open Sans', 0.0094rem),
   subheading-1:
     mat.define-typography-level(1.5rem, 2.4rem, 500, 'Open Sans', 0.0067rem),
-  body-2: mat.define-typography-level(1.4rem, 2.4rem, 500, 'Open Sans', 0.0179rem),
-  body-1: mat.define-typography-level(1.4rem, 2rem, 400, 'Open Sans', 0.0179rem),
+  body-2: mat.define-typography-level(1.6rem, 2.5rem, 500, 'Open Sans', 0.0179rem),
+  body-1: mat.define-typography-level(1.6rem, 2.1rem, 400, 'Open Sans', 0.0179rem),
   button: mat.define-typography-level(1.4rem, 1.4rem, 500, 'Open Sans', 0.0893rem),
   caption: mat.define-typography-level(1.2rem, 2rem, 400, 'Open Sans', 0.0333rem),
   input: mat.define-typography-level(inherit, 1.125, 400, 'Open Sans',0.15rem),

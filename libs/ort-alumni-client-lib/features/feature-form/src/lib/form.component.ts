@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ortInput } from '@features/feature-va-input';
 import { FormBuilderService } from './form-builder.service';
-import { cloneDeep } from '@utils/helpers';
+import { cloneDeep } from '@utils/util-others';
 
 @Component({
   selector: 'ort-form',
@@ -28,11 +28,10 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.group = this.formBuilderService.buildStepperGroup(this.configuration);
-    if(this.dataToPatch){
+    if (this.dataToPatch) {
       const data = cloneDeep(this.dataToPatch);
       this.group.patchValue(data);
     }
-
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

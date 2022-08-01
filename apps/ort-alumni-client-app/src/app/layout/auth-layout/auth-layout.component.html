@@ -1,13 +1,14 @@
+
 <div id="auth-layout">
-  <!-- <nav> -->
-      <!-- <app-nav-bar></app-nav-bar> -->
-  <!-- </nav> -->
-  <main id="auth-main">
-    <!-- <header>
-        <app-header></app-header>
-    </header> -->
-    <section id="auth-content">
-        <router-outlet></router-outlet>
-    </section>
+  <header>
+    <app-header>
+      <nav>
+        <app-top-bar></app-top-bar>
+      </nav>
+    </app-header>
+  </header>
+  <main id="auth-content">
+    <router-outlet>
+      </router-outlet>
   </main>
 </div>

@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/utils/helpers/util-services",
+  "sourceRoot": "libs/ort-alumni-client-lib/utils/helpers/util-services/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/utils/helpers/util-services"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/utils/helpers/util-services/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/utils/helpers/util-services/src/**/*.ts",
+          "libs/ort-alumni-client-lib/utils/helpers/util-services/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:util"]
+}

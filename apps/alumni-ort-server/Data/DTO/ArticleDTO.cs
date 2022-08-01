@@ -24,6 +24,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.DTO
     public string Img { get; set; }
     [JsonProperty(PropertyName = "originalimgname")]
     public string OriginalImgName { get; set; }
+    [JsonProperty(PropertyName = "author")]
+    public string Author { get; set; }
 
     [JsonProperty(PropertyName = "categoryid")]
     public int CategoryId { get; set; }

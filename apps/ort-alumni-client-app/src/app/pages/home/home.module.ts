@@ -1,15 +1,15 @@
 import { UiCarouselModule } from '@ui-components/ui-carousel';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { UiCardModule } from '@ui-components/ui-card';
-import { ScrollerModule } from './../../core/directives/scroller/scroller.module';
+
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeroModule } from '../../layout/common-layout/hero/hero.module';
 import { UiButtonModule } from '@ui-components/ui-button';
-import { AddEnvVarPipeModule } from '@utils/pipes';
-
+import { AddEnvVarPipeModule } from '@utils/util-pipes';
+import { ScrollerModule } from '@utils/directives';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -22,9 +22,8 @@ import { AddEnvVarPipeModule } from '@utils/pipes';
     UiButtonModule,
     UiCardModule,
     UiCarouselModule,
-    AddEnvVarPipeModule
-
+    AddEnvVarPipeModule,
   ],
-  exports:[QuicklinkModule ,HomeComponent]
+  exports: [QuicklinkModule, HomeComponent],
 })
 export class HomeModule {}

@@ -15,8 +15,9 @@ import { environment } from '@environments';
 
 import { FeatureModalModule } from '@features/feature-modal';
 import {  MAT_DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/material/dialog';
-import { AlertsService } from '@utils/core';
+
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AlertsService } from '@utils/services';
 
 
 

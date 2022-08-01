@@ -104,8 +104,8 @@ namespace AlumniOrtServer
                     o.MultipartBodyLengthLimit = int.MaxValue;
                     o.MemoryBufferThreshold = int.MaxValue;
                 });
-
-            services
+  
+      services
                 .AddDbContext<AlumniDBContext>(options =>
                     options
                         .UseSqlServer(Configuration

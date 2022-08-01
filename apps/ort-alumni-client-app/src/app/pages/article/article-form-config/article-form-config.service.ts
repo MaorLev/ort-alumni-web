@@ -15,17 +15,43 @@ export class ArticleFormConfigService {
     imageNameBefore?: string
   ): Record<string, ortInput> {
     return {
-      heading: {
+      author: {
         component: AbstractInputComponent,
-        name: 'heading',
-        label: 'כותרת',
+        name: 'author',
+        label: 'מחבר',
         type: 'text',
-        validators: [Validators.required, Validators.minLength(3)],
+        validators: [Validators.required, Validators.maxLength(25)],
         data: {},
         errors: [
           {
             name: 'required',
             message: 'שדה חובה',
+          },
+          {
+            name: 'maxLength',
+            message: 'מקסימום 25 אותיות',
+          },
+        ],
+      },
+      heading: {
+        component: AbstractInputComponent,
+        name: 'heading',
+        label: 'כותרת',
+        type: 'text',
+        validators: [Validators.required, Validators.minLength(3), Validators.maxLength(80)],
+        data: {},
+        errors: [
+          {
+            name: 'required',
+            message: 'שדה חובה',
+          },
+          {
+            name: 'minLength',
+            message: 'מינימום 3 אותיות',
+          },
+          {
+            name: 'maxLength',
+            message: 'מקסימום 80 אותיות',
           },
         ],
       },
@@ -34,9 +60,12 @@ export class ArticleFormConfigService {
         name: 'subheading',
         label: 'תת כותרת',
         type: 'text',
-        validators: [],
+        validators: [Validators.maxLength(1000)],
         data: {},
-        errors: [],
+        errors: [{
+          name: 'maxLength',
+          message: 'מקסימום 150 אותיות',
+        },],
       },
       category: {
         component: AbstractSelectComponent,
@@ -48,8 +77,8 @@ export class ArticleFormConfigService {
         data: {
           isMultiple: false,
           options: [
-            { name: 'Events', id: 1 },
-            { name: 'General', id: 2 },
+            { name: 'Events',hebName: 'אירועים', id: 1 },
+            { name: 'General',hebName: 'כללי', id: 2 },
           ],
         },
         errors: [
@@ -63,8 +92,8 @@ export class ArticleFormConfigService {
         component: AbstractTextareaComponent,
         name: 'detail',
         label: 'תוכן המאמר',
-        validators: [Validators.maxLength(2000)],
-        data: {},
+        validators: [Validators.maxLength(7000)],
+        data: {maxLengthValue: 7000},
         errors: [
           {
             name: 'maxlength',

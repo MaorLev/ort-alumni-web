@@ -309,8 +309,8 @@ namespace AlumniOrtServer.Context
 
             modelBuilder.Entity<Claim>().HasData(claim1alu, claim2alu, claim3alu,
             claim1emp, claim2emp, claim3emp, claim1adm, claim2adm, claim3adm);
-           Category cat1 = new Category(Constants.CategoryId.Events,Constants.CategoryName.Events);
-           Category cat2 = new Category(Constants.CategoryId.General,Constants.CategoryName.General);
+           Category cat1 = new Category(Constants.CategoryId.Events,Constants.CategoryName.Events, Constants.CategoryHebName.Events);
+           Category cat2 = new Category(Constants.CategoryId.General,Constants.CategoryName.General, Constants.CategoryHebName.General);
            modelBuilder.Entity<Category>().HasData(cat1, cat2);
 
 

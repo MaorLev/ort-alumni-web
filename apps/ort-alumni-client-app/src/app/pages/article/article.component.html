@@ -1,39 +1,30 @@
-<!--
-  <ng-container *ngIf="articles$ | async as arts">
-    <ng-container *ngFor="let article of arts">
-
-      <a [routerLink]="['../article-detail', article.id]">
-
-        <ort-card
-          [heading]="article.heading"
-          [subheading]="article.subheading"
-          [img]="endPoint + article.img"
-          [detail]="article.detail"
-        >
-
-      </ort-card>
-
-      </a>
-    </ng-container>
-  </ng-container> -->
   <section id="categories">
-    <div class="category">
+    <ort-button
+    type="button"
+    routerLink="/main/create-article"
+    className="mat-raised-button bar-btn-primary"
+    >הוסף מאמר</ort-button
+  >
+    <div class="container">
       <ng-container *ngIf="articlesByCategory$ | async as cats">
         <ng-container *ngFor="let categories of cats">
           <h1 class="mat-display-2 bg-after-primary main-title">
             {{ categories.categoryView }}
           </h1>
-          <div class="pre-articles">
+          <div class="articles">
 
               <ng-container *ngFor="let article of categories.articles">
-                <a [routerLink]="['/main/article-detail', article.id]">
-                  <ort-card
-                    [heading]="article.heading"
-                    [subheading]="article.subheading"
-                    [img]="article.img | addEnvVar"
-                    [detail]="article.detail"
-                  ></ort-card>
-                </a>
+
+                <article class="card">
+                <a  [routerLink]="['/main/article-detail', article.id]">
+                    <ort-card
+                      [heading]="article.heading"
+                      [subheading]="article.subheading"
+                      [img]="article.img | addEnvVar"
+                      [detail]="article.detail"
+                    ></ort-card>
+                  </a>
+                </article>
               </ng-container>
           </div>
         </ng-container>

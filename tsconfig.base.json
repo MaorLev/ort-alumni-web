@@ -64,12 +64,17 @@
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
       ],
-      "@utils/core": ["libs/ort-alumni-client-lib/utils/core/src/index.ts"],
-      "@utils/helpers": [
-        "libs/ort-alumni-client-lib/utils/util-helpers/src/index.ts"
+      "@utils/directives": [
+        "libs/ort-alumni-client-lib/utils/helpers/util-directives/src/index.ts"
       ],
-      "@utils/pipes": [
-        "libs/ort-alumni-client-lib/utils/util-pipes/src/index.ts"
+      "@utils/services": [
+        "libs/ort-alumni-client-lib/utils/helpers/util-services/src/index.ts"
+      ],
+      "@utils/util-others": [
+        "libs/ort-alumni-client-lib/utils/helpers/util-others/src/index.ts"
+      ],
+      "@utils/util-pipes": [
+        "libs/ort-alumni-client-lib/utils/helpers/util-pipes/src/index.ts"
       ]
     }
   },

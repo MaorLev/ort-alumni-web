@@ -6,6 +6,7 @@
 //   padding: 0;
 // }
 html {
+
   font-size: 62.5%; /* 10px */
   direction: rtl;
 }
@@ -21,16 +22,16 @@ body {
   height: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-bottom: 0.8rem;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin-bottom: 0.8rem !important;
+// }
 h1,
 h2 {
-  @include mix.trim;
+  // @include mix.trim;
   @include mix.dont-break-out;
 }

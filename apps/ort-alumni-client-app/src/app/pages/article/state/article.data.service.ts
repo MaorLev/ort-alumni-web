@@ -2,7 +2,7 @@ import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments';
 import { Observable } from 'rxjs';
-import { toFormData } from '../../../shared/to-form-data.converter';
+import { toFormData } from '@utils/util-others';
 import { ArticleInterface } from './article.interface';
 import { CategoryInterface } from './category.interface';
 

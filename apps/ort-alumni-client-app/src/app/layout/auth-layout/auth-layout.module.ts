@@ -1,3 +1,4 @@
+import { TopBarModule } from './../common-layout/top-bar/top-bar.module';
 
 import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthLayoutRoutingModule } from './auth-layout.routing';
@@ -5,9 +6,8 @@ import { CommonModule } from '@angular/common';
 
 import { NgModule } from '@angular/core';
 import { QuicklinkModule } from 'ngx-quicklink';
-import { FooterModule } from '../common-layout/footer/footer.module';
 import { HeaderModule } from '../common-layout/header/header.module';
-import { NavBarModule } from '../common-layout/nav-bar/nav-bar.module';
+
 
 @NgModule({
   declarations: [AuthLayoutComponent],
@@ -15,9 +15,8 @@ import { NavBarModule } from '../common-layout/nav-bar/nav-bar.module';
     CommonModule,
     QuicklinkModule,
     HeaderModule,
-    FooterModule,
     AuthLayoutRoutingModule,
-    NavBarModule
+    TopBarModule
   ],
   exports:[QuicklinkModule]
 })

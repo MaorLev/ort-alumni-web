@@ -30,6 +30,11 @@ namespace AlumniOrtServer.Extensions
             public const string Events = "Events";
             public const string General = "General";
         }
+        public static class CategoryHebName
+        {
+            public const string Events = "אירועים";
+            public const string General = "כללי";
+        }
 
         public static class ModeStudiesId
         {

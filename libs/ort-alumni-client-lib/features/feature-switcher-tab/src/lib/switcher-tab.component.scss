@@ -1,60 +1,56 @@
 :host {
-  // .wrapper {
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: center;
-  //   align-items: center;
-    .container {
-      width: 100%;
-      max-width: 50rem;
-      // height: auto;
-      height: 55rem;
-      margin-top: 8rem;
-      border-radius: 2rem;
-      text-align: center;
-      -webkit-box-shadow: 0rem 0rem 1.1rem 0.3rem var(--accent-color);
-      box-shadow: 0rem 0rem 1.1rem 0.3rem var(--accent-color);
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 3fr;
-      grid-column-gap: 2rem;
-      grid-row-gap: 1.5rem;
-      justify-items: stretch;
-      align-items: center;
-      .bt-tab {
-        padding: 0 2.9rem;
-        letter-spacing: 0.2rem;
-        font-weight: 600;
-        height: 5.8rem;
-        border: 0;
-        font-family: 'Open Sans';
-        background-color: inherit;
-        &:hover {
-          background-color: var(--accent-color);
-        }
-        cursor: pointer;
-      }
-      .router-link-active {
-        opacity: 1;
-        background-color: var(--light-background);
-        border-bottom: var(--accent-color) 0.1rem solid;
-      }
-      .content-tab {
-        padding: 0.8rem 1.2rem;
-        color: white;
-        background-color: var(--accent-color);
-        border-radius: 0.4rem;
-      }
-      nav {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-      }
-    }
-    .compenent {
+  .wrapper {
+    padding-top: 8rem;
+  }
+  .container {
+    width: 100%;
+    max-width: 50rem;
+    height: 55rem;
 
-      padding: 2rem 1.5rem;
+    border-radius: 2rem;
+    text-align: center;
+    -webkit-box-shadow: 0rem 0rem 1.1rem 0.3rem var(--accent-color);
+    box-shadow: 0rem 0rem 1.1rem 0.3rem var(--accent-color);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 3fr;
+    grid-column-gap: 2rem;
+    grid-row-gap: 1.5rem;
+    justify-items: stretch;
+    align-items: center;
+    .bt-tab {
+      padding: 0 2.9rem;
+      letter-spacing: 0.2rem;
+      font-weight: 600;
+      height: 5.8rem;
+      border: 0;
+      font-family: 'Open Sans';
+      background-color: inherit;
+      transition: all 0.5s;
+      &:hover {
+        background-color: var(--accent-color);
+      }
+      cursor: pointer;
     }
-  // }
+    .router-link-active {
+      opacity: 1;
+      background-color: var(--light-background);
+      border-bottom: var(--accent-color) 0.1rem solid;
+    }
+    .content-tab {
+      padding: 0.8rem 1.2rem;
+      color: white;
+      background-color: var(--accent-color);
+      border-radius: 0.4rem;
+    }
+    nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+  }
+  .compenent {
+    padding: 2rem 1.5rem;
+  }
 }

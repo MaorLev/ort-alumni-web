@@ -4,9 +4,14 @@
   (fileDropped)="emitFiles($event)"
   [isDisabled]="this.config.data?.isDisabled || false"
 >
-  <input #fileDropRef id="fileDropRef" type="file" [disabled]="this.config.data?.isDisabled || false" />
+  <input
+    #fileDropRef
+    id="fileDropRef"
+    type="file"
+    [disabled]="this.config.data?.isDisabled || false"
+  />
 
-  <ort-icon svgName="upload_icon" className="icon-sz-2"  ></ort-icon>
+  <ort-icon svgName="upload_icon" className="icon-sz-2"></ort-icon>
   <h3>גרור ושחרר תמונה עבור הפוסט</h3>
   <h3>או</h3>
   <label for="fileDropRef">חפש כאן</label>
@@ -15,7 +20,7 @@
 <div class="files-list" *ngIf="file !== null || nameBefore">
   <div class="single-file">
     <div class="file-icon" style="width: 50px">
-      <ort-icon svgName="sheet_icon" ></ort-icon>
+      <ort-icon svgName="sheet_icon"></ort-icon>
     </div>
     <div class="info">
       <h4 class="name">
@@ -27,20 +32,12 @@
     </div>
 
     <div class="delete" (click)="deleteFile()">
-      <ort-icon svgName="garbage_icon" className="icon-sz-1" ></ort-icon>
+      <ort-icon svgName="garbage_icon" className="icon-sz-1"></ort-icon>
     </div>
   </div>
 </div>
 <!-- </div> -->
 
-<ng-container *ngIf="config.errors && formControl">
-  <ng-container *ngFor="let error of config.errors">
-    <mat-error
-      *ngIf="
-        formControl.hasError(error.name) &&
-        formControl.touched
-      "
-      >{{ error.message }}</mat-error
-    >
-  </ng-container>
+<ng-container *ngIf="counter > 0">
+  <mat-error *ngIf="internalError | async as err">{{ err }}</mat-error>
 </ng-container>

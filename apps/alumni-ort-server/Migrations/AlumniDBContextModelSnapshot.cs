@@ -6118,6 +6118,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("Author");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -6126,11 +6132,15 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         .HasColumnName("Date");
 
                     b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasMaxLength(7000)
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Detail");
 
                     b.Property<string>("Heading")
-                        .HasColumnType("nvarchar(max)")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)")
                         .HasColumnName("Heading");
 
                     b.Property<string>("Img")
@@ -6142,7 +6152,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         .HasColumnName("OriginalImgName");
 
                     b.Property<string>("SubHeading")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasColumnName("SubHeading");
 
                     b.HasKey("Id");
@@ -6160,6 +6171,10 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("HebName")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("HebName");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
@@ -6172,11 +6187,13 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         new
                         {
                             Id = 1,
+                            HebName = "אירועים",
                             Name = "Events"
                         },
                         new
                         {
                             Id = 2,
+                            HebName = "כללי",
                             Name = "General"
                         });
                 });

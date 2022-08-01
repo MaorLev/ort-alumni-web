@@ -5,9 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleDetailComponent } from './article-detail.component';
 import { UiButtonModule } from '@ui-components/ui-button';
-import { AddEnvVarPipeModule } from '@utils/pipes';
-
-
+import { AddEnvVarPipeModule, ReadableDatePipeModule } from '@utils/util-pipes';
 
 @NgModule({
   declarations: [ArticleDetailComponent],
@@ -16,9 +14,9 @@ import { AddEnvVarPipeModule } from '@utils/pipes';
     QuicklinkModule,
     RouterModule.forChild([{ path: '', component: ArticleDetailComponent }]),
     UiButtonModule,
-    AddEnvVarPipeModule
+    AddEnvVarPipeModule,
+    ReadableDatePipeModule,
   ],
-  exports: [ArticleDetailComponent,
-    QuicklinkModule],
+  exports: [ArticleDetailComponent, QuicklinkModule],
 })
 export class ArticleDetailModule {}

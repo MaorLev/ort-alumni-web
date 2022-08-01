@@ -5,4 +5,21 @@
     [nameBefore]="config.data?.nameBefore || undefined"
   >
   </ort-file-upload>
+  <ng-container
+*ngIf="statusChanged | async"
+  >
+
+  <ng-container *ngIf="config.errors ">
+  <ng-container *ngFor="let error of config.errors">
+    <mat-error
+      *ngIf="
+        formControl?.hasError(error.name) &&
+        formControl?.touched
+      "
+      >{{ error.message }}</mat-error
+    >
+  </ng-container>
+
+</ng-container>
+</ng-container>
 </div>

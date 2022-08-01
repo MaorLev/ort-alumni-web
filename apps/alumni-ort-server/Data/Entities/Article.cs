@@ -13,7 +13,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
     {
 
     }
-    public Article(int id, string heading,string subheading,DateTime date,string img, string originalImgName, string detail, int categoryId )
+    public Article(int id, string heading,string subheading,DateTime date,string img, string originalImgName, string detail, int categoryId, string author )
     {
       Id = id;
       Heading = heading;
@@ -23,21 +23,31 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
       CategoryId = categoryId;
       Img = img;
       OriginalImgName = originalImgName;
+      Author = author;
     }
     [Key]
     [Column("Id")]
     public int Id { get; set; }
+    [Required]
+    [StringLength(80)]
     [Column("Heading")]
     public string Heading { get; set; }
+    [StringLength(1000)]
     [Column("SubHeading")]
     public string SubHeading { get; set; }
     [Column("Date")]
     public DateTime Date { get; set; }
+
     [Column("Img")]
     public string Img { get; set; }
     [Column("OriginalImgName")]
     public string OriginalImgName { get; set; }
-    
+    [Required]
+    [StringLength(30)]
+    [Column("Author")]
+    public string Author { get; set; } = "אנונימי";
+    [Required]
+    [StringLength(7000)]
     [Column("Detail")]
     public string Detail { get; set; }
     [ForeignKey("CategoryId")]

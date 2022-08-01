@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, FormControlStatus } from '@angular/forms';
 import { ortInput } from '@features/feature-va-input';
 
 @Component({
@@ -12,7 +13,13 @@ export class AbstractFileUploadComponent implements OnInit {
   @Input() group:FormGroup;
   @Input() config:ortInput;
   @Input() nameBefore:string;
+  statusChanged: Observable<FormControlStatus> | undefined;
+  formControl:FormControl | null;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.formControl = this.group.get(this.config.name) as FormControl | null;
+    this.statusChanged = this.formControl?.statusChanges
+  }
 }

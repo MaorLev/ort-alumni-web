@@ -1,7 +1,7 @@
 <div id="card">
   <div class="wrapper">
-    <h1>{{ heading }}</h1>
-    <h3>{{ subheading }}</h3>
+    <h1>{{ heading | truncate: 60 }}</h1>
+    <h3>{{ subheading | truncate: 60 }}</h3>
   </div>
     <img class="image" [src]="img" alt="" />
   <div class="overlay">

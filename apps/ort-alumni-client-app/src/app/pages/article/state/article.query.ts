@@ -26,6 +26,7 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
     return state.areArticlesLoaded;
   });
 
+  
   selectAllArticlesAndCategory$ = (limitTo?: number) =>
     combineLatest([
       this.selectArticleByCategory(
@@ -61,7 +62,7 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
       filterBy: (entity) => entity.categoryid === categoryId,
     });
   }
-
+  selectEntityById = (id: number) => this.selectEntity(id);
   getEntitySnapshot = (id: number) => this.getEntity(id);
   constructor(protected override store: ArticleStore) {
     super(store);

@@ -1,20 +1,41 @@
-<article>
-  <ng-container *ngIf="article | async as arti">
-    <h1>{{ arti.heading }}</h1>
-    <h3>{{ arti.subheading }}</h3>
-    <img class="image" [src]="arti.img | addEnvVar" alt="image article" />
-    <p class="overlay">{{ arti.detail }}</p>
-    <ort-button
-      type="button"
-      [routerLink]="['/main/update-article', id]"
-      className="mat-raised-button bar-btn-primary"
-      >עדכן</ort-button
-    >
-    <ort-button
-    type="button"
-    (click)="onDeleteArticle()"
-    className="mat-raised-button bar-btn-primary"
-    >מחק</ort-button
-  >
-  </ng-container>
-</article>
+<div class="container">
+  <article id="article">
+    <ng-container *ngIf="article | async as arti">
+      <div class="category-headers">
+        <div class="category-title">
+          <a
+            class="category-link"
+            [routerLink]="'/main/articles/' + arti.category?.name"
+          >
+            <h1 class="mat-display-3 title">{{ arti.category?.hebName }}</h1>
+          </a>
+        </div>
+        <div>
+          <span> מחבר: {{arti.author}} </span> |
+          <span>
+            פורסם:
+            {{ arti.date | readableDate }}
+          </span>
+        </div>
+      </div>
+      <div class="headers">
+        <h1 class="title mat-display-2">{{ arti.heading }}</h1>
+        <h2 class="sub-title mat-h1">{{ arti.subheading }}</h2>
+      </div>
+      <img class="image" [src]="arti.img | addEnvVar" alt="image article" />
+      <p class="detail" >{{ arti.detail }}</p>
+      <ort-button
+        type="button"
+        [routerLink]="['/main/update-article', id]"
+        className="mat-raised-button bar-btn-primary"
+        >עדכן</ort-button
+      >
+      <ort-button
+        type="button"
+        (click)="onDeleteArticle()"
+        className="mat-raised-button bar-btn-primary"
+        >מחק</ort-button
+      >
+    </ng-container>
+  </article>
+</div>

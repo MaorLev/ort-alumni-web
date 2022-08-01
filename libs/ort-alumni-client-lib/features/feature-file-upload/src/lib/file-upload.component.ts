@@ -20,7 +20,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ortInput } from '@features/feature-va-input';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 export interface UploadError {
   requiredFileType: string;
@@ -45,11 +45,13 @@ export interface UploadError {
   ],
 })
 export class FileUploadComponent implements ControlValueAccessor, Validator {
-  @Input() nameBefore: string | undefined;
+  internalError:Observable<string> | null;
 
-  formControl: FormControl;
+  @Input() nameBefore: string | undefined;
+  // formControl: FormControl;
   @Input() config: ortInput;
   file: File | null = null;
+  counter:number;
   onChange: (obj: any) => {};
   onTouched = () => {};
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
@@ -66,6 +68,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
   writeValue(value: any) {
     this.host.nativeElement.value = '';
     this.file = null;
+
   }
 
   registerOnChange(fn: any) {
@@ -97,6 +100,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     this.host.nativeElement.value = '';
     this.nameBefore = undefined;
     this.file = file;
+    this.counter = 1;
     this.setDisabledState(false);
     this.onChange(file);
   }
@@ -106,11 +110,20 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: FormControl): ValidationErrors | null {
-    this.formControl = control;
+    // this.formControl = control;
     const validators: ValidatorFn[] = [];
 
     if (!(this.nameBefore || control.value)) {
       validators.push(Validators.required);
+      if(this.counter){
+        this.internalError = of("נדרש להעלות תמונה");
+        this.onTouched();
+      }
+      else
+      this.counter = 1;
+    }
+    else {
+      this.internalError = null;
     }
 
     return validators;

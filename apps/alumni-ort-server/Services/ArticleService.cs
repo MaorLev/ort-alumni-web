@@ -1,5 +1,6 @@
 using AlumniOrtServer.Context;
 using AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
@@ -43,24 +44,40 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         Article articleFromDB = new Article(0, formCollection["heading"], formCollection["subheading"],
           currentDate, responeImg.shortBody,
           originalName, formCollection["detail"]
-          , int.Parse(formCollection["categoryid"]));
+          , int.Parse(formCollection["categoryid"]), formCollection["author"]);
 
 
         await m_db.Articles.AddAsync(articleFromDB);
 
         int c = await m_db.SaveChangesAsync();
+        string categoryName = "";
+        string categoryHebName = "";
 
+        for (int i = 0; i < articleFromDB.CategoryId; i++)
+        {
+          if (articleFromDB.CategoryId == 1)
+          {
+            categoryName = Constants.CategoryName.Events;
+            categoryHebName = Constants.CategoryHebName.Events;
+          }
+          else if (articleFromDB.CategoryId == 2)
+          {
+            categoryName = Constants.CategoryName.General;
+            categoryHebName = Constants.CategoryHebName.General;
+          }
+        }
         ArticleDTO articleToTransfer = new ArticleDTO()
         {
           Id = articleFromDB.Id,
           Img = articleFromDB.Img,
-          Category = articleFromDB.Category,
+          Category = new Category() {Id = articleFromDB.CategoryId, Articles = null, HebName = categoryHebName, Name = categoryName },
           CategoryId = articleFromDB.CategoryId,
           Date = articleFromDB.Date,
           Detail = articleFromDB.Detail,
           Heading = articleFromDB.Heading,
           SubHeading = articleFromDB.SubHeading,
-          OriginalImgName = articleFromDB.OriginalImgName
+          OriginalImgName = articleFromDB.OriginalImgName,
+          Author = articleFromDB.Author
         };
         responeImg.body = articleToTransfer;
         if (c > 0)
@@ -132,7 +149,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         SubHeading = s.SubHeading,
         CategoryId = s.CategoryId,
         Img = s.Img,
-        OriginalImgName = s.OriginalImgName
+        OriginalImgName = s.OriginalImgName,
+        Author = s.Author
 
       }).FirstOrDefaultAsync(a => a.Id == id);
       return article;
@@ -150,7 +168,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         SubHeading = s.SubHeading,
         CategoryId = s.CategoryId,
         Img = s.Img,
-        OriginalImgName = s.OriginalImgName
+        OriginalImgName = s.OriginalImgName,
+        Author = s.Author
       }).ToListAsync();
       return articles;
     }
@@ -192,6 +211,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       ArticleFromDB.Img = responeImg.shortBody ?? OriginalArticle.Img;
       ArticleFromDB.OriginalImgName = newpath ?? OriginalArticle.OriginalImgName;
       ArticleFromDB.Detail = form["detail"].ToString() ?? OriginalArticle.Detail;
+      ArticleFromDB.Author = form["author"].ToString() ?? OriginalArticle.Author;
       ArticleFromDB.Date = currentDate;
       ArticleFromDB.CategoryId= Convert.ToInt32(form["categoryid"].ToString() ?? OriginalArticle.CategoryId.ToString());
 
@@ -210,7 +230,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         Detail = ArticleFromDB.Detail,
         Heading = ArticleFromDB.Heading,
         SubHeading = ArticleFromDB.SubHeading,
-        OriginalImgName = ArticleFromDB.OriginalImgName
+        OriginalImgName = ArticleFromDB.OriginalImgName,
+        Author = ArticleFromDB.Author
       };
       response.body = articleToTransfer;
       if (c > 0)
@@ -233,6 +254,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       {
         Id = c.Id,
         Name = c.Name,
+        HebName = c.HebName
 
       }).ToListAsync();
       return categories;

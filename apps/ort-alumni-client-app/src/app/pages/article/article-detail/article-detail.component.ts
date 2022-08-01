@@ -1,10 +1,12 @@
+import { tap } from 'rxjs/operators';
 import { ArticleService } from './../state/article.service';
 import { ArticleQuery } from '../state/article.query';
 import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleInterface } from '../state/article.interface';
-import { AlertsService } from '@utils/core';
+import { AlertsService } from '@utils/services';
+
 
 @Component({
   selector: 'app-article-detail',
@@ -28,7 +30,16 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.article = this.articleQuery.selectEntity(this.id);
+    this.article = this.articleQuery.selectEntityById(this.id).pipe(
+      tap((res) => {
+        if (res === undefined) {
+          this.articleService.LoadArticlesAndCategories().subscribe(() => {
+            this.ngOnInit();
+          });
+        }
+      })
+    );
+
     // const articles:ArticleInterface [] = ArticlesData;
     // this.article = of(
     //   ...articles.filter((article)=> article.id?.toString() === this.id)

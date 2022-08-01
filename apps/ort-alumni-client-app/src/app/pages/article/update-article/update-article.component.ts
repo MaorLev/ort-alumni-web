@@ -1,5 +1,8 @@
+import { Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Observable, switchMap, mergeMap } from 'rxjs';
 import { ArticleQuery } from './../state/article.query';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,33 +22,46 @@ import { ArticleFormConfigService } from '../article-form-config/article-form-co
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [ArticleFormConfigService],
 })
-export class UpdateArticleComponent implements OnInit {
-  article: ArticleInterface | undefined;
+export class UpdateArticleComponent implements OnInit, OnDestroy {
+  article: Observable<ArticleInterface | undefined>;
   id: number;
   articleConfig: Record<string, ortInput>;
-
+ subscription = new Subscription();
   constructor(
     activatedRouter: ActivatedRoute,
     private articleService: ArticleService,
-    private articleQuary: ArticleQuery,
+    private articleQuery: ArticleQuery,
     private router: Router,
     private articleConfigService: ArticleFormConfigService
   ) {
     const id = activatedRouter.snapshot.paramMap.get('id');
+    debugger;
     if (id) this.id = parseInt(id);
-    this.article = this.articleQuary.getEntitySnapshot(this.id);
+    this.article = this.articleQuery.selectAreArticlesLoaded$.pipe(
+      mergeMap((areArticlesLoaded) => {
+        if (!areArticlesLoaded) {
+          articleService.LoadArticlesAndCategories().subscribe(() => {
+            return this.articleQuery.selectEntity(this.id);
+          });
+        }
+        return this.articleQuery.selectEntity(this.id);
+      })
+    )
   }
   ngOnInit(): void {
-    this.articleConfig = this.articleConfigService.controls(
-      true,
-      this.article?.originalimgname
-    );
+    this.subscription = this.article.subscribe((article) => {
+
+      this.articleConfig = this.articleConfigService.controls(
+        true,
+        article?.originalimgname
+      );
+    })
   }
 
   onSubmit(articleForm: FormGroup) {
     if (articleForm.valid) {
       const art: ArticleInterface = articleForm.value;
-      art.id = this.article?.id;
+      art.id = this.id;
       art.categoryid = art.category?.id;
       this.articleService.updateArticle(this.id, art).subscribe((event) => {
         if (event.type === HttpEventType.Response) {
@@ -53,5 +69,9 @@ export class UpdateArticleComponent implements OnInit {
         }
       });
     }
+  }
+  ngOnDestroy(): void {
+    if(this.subscription)
+    this.subscription.unsubscribe();
   }
 }

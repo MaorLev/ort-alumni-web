@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './card.component';
+import { TruncatePipeModule } from '@utils/util-pipes';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, TruncatePipeModule],
   declarations: [CardComponent],
   exports: [CardComponent],
 })

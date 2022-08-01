@@ -3,12 +3,12 @@
     <mat-label>{{ config.label }}</mat-label>
     <textarea
       matInput
-      #message maxlength="2000"
+      #message [maxlength]="config.data?.maxLengthValue || 300"
       [formControl]="formControl"
       [placeholder]="config.placeholder || config.label"
     ></textarea>
     <mat-hint align="end"><strong>Don't disclose personal info</strong> </mat-hint>
-    <mat-hint align="start">{{message.value.length}} / 2000</mat-hint>
+    <mat-hint align="start">{{message.value.length}} / {{config.data?.maxLengthValue || 300}}</mat-hint>
     <ng-container *ngIf="config.errors">
       <ng-container *ngFor="let error of config.errors">
         <mat-error

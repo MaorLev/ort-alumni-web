@@ -1,25 +1,6 @@
-// :host {
-//   main {
-//     min-height: 100%;
-//     .header {
-//       height: auto;
-//     }
-//     .auth-content {
-//       min-height: 88%;
-//     }
-//   }
-// }
-
-@use 'variables' as va;
 :host {
-  #auth-layout {
-    // height: 100vh;
-    nav {
-      // height: va.$nav-bar-height;
-    }
-    #auth-main {
-      // height: va.$content-height-by-nav-bar;
-    }
 
+  #auth-layout {
+    background: url('https://img.freepik.com/free-vector/white-elegant-texture-background_23-2148445782.jpg') no-repeat center center/cover
   }
 }

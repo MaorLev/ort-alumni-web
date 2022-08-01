@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ArticleComponent } from './article.component';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { UiCardModule } from '@ui-components/ui-card';
-import { AddEnvVarPipeModule } from '@utils/pipes';
+import { AddEnvVarPipeModule } from '@utils/util-pipes';
+import { UiButtonModule } from '@ui-components/ui-button';
 
 @NgModule({
   declarations: [ArticleComponent],
@@ -13,7 +14,8 @@ import { AddEnvVarPipeModule } from '@utils/pipes';
     QuicklinkModule,
     UiCardModule,
     RouterModule.forChild([{ path: '', component: ArticleComponent }]),
-    AddEnvVarPipeModule
+    AddEnvVarPipeModule,
+    UiButtonModule,
   ],
   exports: [ArticleComponent, QuicklinkModule],
 })
