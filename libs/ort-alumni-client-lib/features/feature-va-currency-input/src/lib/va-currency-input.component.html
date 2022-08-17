@@ -1,0 +1,25 @@
+
+  <mat-form-field appearance="fill" class="example-full-width" floatLabel="always">
+    <mat-label>{{ config.label }}</mat-label>
+    <input
+    matInput
+    type="number"
+    class="example-right-align"
+    [placeholder]="config.placeholder || config.label"
+    [formControl]="formControl"
+ />
+    <span matPrefix>₪&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <ng-container *ngIf="config.errors">
+    <ng-container *ngFor="let error of config.errors">
+      <mat-error
+        *ngIf="
+          formControl.hasError(error.name) &&
+          formControl.touched
+        "
+        >{{ error.message }}</mat-error
+      >
+    </ng-container>
+  </ng-container>
+

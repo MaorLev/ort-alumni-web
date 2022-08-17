@@ -1,72 +1,54 @@
-import { ActivatedRoute } from '@angular/router';
-import { Observable, mergeMap, map } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ArticleQuery } from './state/article.query';
-import { ArticleService } from './state/article.service';
-import { environment } from '@environments';
+import { ArticleInterface } from './state/article.interface';
+import { Observable, Subscription, combineLatest } from 'rxjs';
 import {
-  HashCategoryIdToName,
-  HashCategoryNameToId,
-  HashCategoryIdToViewName,
-} from './state/category-hashmap';
-import { ArticlesByCategory } from './state/articles-by-category.type';
-import { cloneDeep } from '@utils/util-others';
-
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
+import { ArticleService } from './state/article.service';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { CategoryInterface } from './state/category.interface';
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleComponent implements OnInit {
-  articlesByCategory$: Observable<ArticlesByCategory[]>;
-  endPoint = environment.endPointApi + '/';
-  categoryName: string | null = null;
+export class ArticleComponent implements OnInit, OnDestroy {
+  articles$: Observable<ArticleInterface[]>;
+  subs = new Subscription();
+  searchControl: FormControl;
+  radio: FormControl;
+  categories: Observable<CategoryInterface[]>;
   constructor(
     private articleService: ArticleService,
-    private articleQuery: ArticleQuery,
-    activateRouter: ActivatedRoute
+    private changeDetector: ChangeDetectorRef
   ) {
-    const name = activateRouter.snapshot.paramMap.get('id');
-    if (name) this.categoryName = name;
+    this.searchControl = new FormControl();
+    this.radio = new FormControl();
+    this.articles$ = this.articleService.selectAllArticles(15);
+    this.categories = this.articleService.selectAllCategories();
   }
 
   ngOnInit(): void {
-    if (this.categoryName === null) {
-      this.articlesByCategory$ = this.articleService
-        .loadAndGetAllArticles()
-        .pipe(
-          mergeMap(() => {
-            return this.articleQuery.selectAllArticlesAndCategory$();
-          })
-        );
-    } else {
-      this.articlesByCategory$ = this.articleService
-        .loadAndGetAllArticles()
-        .pipe(
-          mergeMap(() => {
-            return this.articleQuery
-              .selectArticleByCategory(
-                HashCategoryNameToId[this.categoryName as string]
-              )
-              .pipe(
-                map((res) => {
-                  const articles: ArticlesByCategory[] = [];
-                  const categoryId =
-                    HashCategoryNameToId[this.categoryName as string];
-                  const arts = cloneDeep(res);
-                  articles.push({
-                    categoryId: categoryId,
-                    articles: arts,
-                    categoryView: HashCategoryIdToViewName[categoryId],
-                    categoryName: HashCategoryIdToName[categoryId],
-                  });
+    this.subs = combineLatest([
+      this.searchControl.valueChanges,
+      this.radio.valueChanges,
+    ])
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe(([query, radio]) => {
+        this.articles$ = this.articleService.filtered(query, 12, radio);
+        this.changeDetector.detectChanges();
+      });
 
-                  return articles;
-                })
-              );
-          })
-        );
+    this.radio.patchValue(2);
+  }
+  ngOnDestroy(): void {
+    if (this.subs) {
+      this.subs.unsubscribe();
     }
   }
 }

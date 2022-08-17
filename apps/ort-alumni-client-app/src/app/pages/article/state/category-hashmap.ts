@@ -4,7 +4,7 @@ export enum CategoryIdEnum {
 }
 export enum CategoryNameEnum {
   Events = "Events",
-  General = "General"
+  General = "General",
 }
 export const HashCategoryIdToViewName:Record<number, string> = {
   [CategoryIdEnum.Events] : "אירועים",

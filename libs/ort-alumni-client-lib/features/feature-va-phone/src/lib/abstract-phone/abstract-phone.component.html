@@ -1,0 +1,19 @@
+<div [formGroup]="group">
+  <mat-form-field class="control" appearance="fill">
+    <mat-label>{{config.label}}</mat-label>
+    <ort-va-phone [formControlName]="config.name"></ort-va-phone>
+    <mat-icon matSuffix>phone</mat-icon>
+    <ng-container *ngIf="config.errors">
+      <ng-container *ngFor="let error of config.errors">
+        <mat-error
+          *ngIf="
+          group.controls[config.name].hasError(error.name) &&
+          group.controls[config.name].touched &&
+          group.controls[config.name].dirty
+          "
+          >{{ error.message }}</mat-error
+        >
+      </ng-container>
+    </ng-container>
+  </mat-form-field>
+</div>

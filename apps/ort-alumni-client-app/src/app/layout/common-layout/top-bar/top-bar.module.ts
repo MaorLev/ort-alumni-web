@@ -9,11 +9,11 @@ import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-log
 @NgModule({
   declarations: [TopBarComponent],
   imports: [
+    RouterModule,
     QuicklinkModule,
     CommonModule,
     UiIconModule,
     ShowIfLoggedInDirectiveModule,
-    RouterModule,
   ],
   exports: [QuicklinkModule, TopBarComponent],
 })

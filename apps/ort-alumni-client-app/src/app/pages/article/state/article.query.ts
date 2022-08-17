@@ -10,7 +10,6 @@ import {
   HashCategoryIdToViewName,
   HashCategoryIdToName,
 } from './category-hashmap';
-import { ArticlesByCategory } from './articles-by-category.type';
 
 export interface categoryLimit {
   category: CategoryInterface;
@@ -26,44 +25,72 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
     return state.areArticlesLoaded;
   });
 
-  
-  selectAllArticlesAndCategory$ = (limitTo?: number) =>
+  filtered(
+    heading: string,
+    limitTo: number,
+    category?: number
+  ): Observable<ArticleInterface[]> {
+    return this.selectAll({
+      filterBy: (entity) =>
+        entity.heading === heading && category
+          ? entity.categoryid === category
+          : entity.heading === heading,
+      limitTo: limitTo,
+    });
+  }
+
+  selectAllArticles$ = (limitTo?: number) =>
+    this.selectAll({
+      limitTo: limitTo,
+    });
+  selectAllCategories$ = () => this.select((state) => state.categories);
+
+  selectAllCategoriesAndArticlesAsFlatArr$ = () =>
+    combineLatest([this.selectAllArticles$(), this.selectAllCategories$()]);
+
+  selectArticlesViaCategoriesByLimit$ = (limitTo?: number | undefined) =>
     combineLatest([
-      this.selectArticleByCategory(
+      this.selectArticlesViaCategoryByLimit(
         CategoryIdEnum.Events,
         limitTo ? limitTo : undefined
       ),
-      this.selectArticleByCategory(
+      this.selectArticlesViaCategoryByLimit(
         CategoryIdEnum.General,
         limitTo ? limitTo : undefined
       ),
     ]).pipe(
       map((res) => {
-        const articles: ArticlesByCategory[] = [];
-        for (let i = 0; i < 2; i++) {
-          articles.push({
-            categoryId: i + 1,
-            articles: res[i],
-            categoryView: HashCategoryIdToViewName[i + 1],
-            categoryName: HashCategoryIdToName[i + 1],
-          });
-        }
-
-        return articles;
+        return res;
       })
     );
 
-  selectArticleByCategory(
+  selectArticlesViaCategoryByLimit(
     categoryId: number,
-    limitTo?: number
-  ): Observable<ArticleInterface[]> {
+    limitTo?: number | undefined
+  ): Observable<CategoryInterface> {
     return this.selectAll({
       limitTo: limitTo ? limitTo : undefined,
       filterBy: (entity) => entity.categoryid === categoryId,
-    });
+    }).pipe(
+      map((res) => {
+        const categoryid = categoryId;
+        const arts = res;
+        const articlesViaCategory: CategoryInterface = {
+          id: categoryid,
+          articles: arts,
+          hebName: HashCategoryIdToViewName[categoryid],
+          name: HashCategoryIdToName[categoryid],
+        };
+
+        return articlesViaCategory;
+      })
+    );
   }
-  selectEntityById = (id: number) => this.selectEntity(id);
-  getEntitySnapshot = (id: number) => this.getEntity(id);
+  selectEntityById$ = (id: number) => this.selectEntity(id);
+
+  isLoading():Observable<boolean>{
+    return this.selectLoading();
+  }
   constructor(protected override store: ArticleStore) {
     super(store);
   }

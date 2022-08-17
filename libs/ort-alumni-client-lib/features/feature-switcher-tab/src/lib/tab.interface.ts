@@ -1,4 +1,4 @@
-export interface Tab {
+export interface TabInterface {
   label:string,
   route:string,
   tabIcon:string,

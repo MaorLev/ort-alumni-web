@@ -7,7 +7,7 @@
         [formControl]="formControl"
         [placeholder]="config.placeholder || config.label"
       />
-      <ort-button *ngIf="config.name === 'password'"
+      <ort-button *ngIf="config.type === 'password'"
       matSuffix
       (click)="hide = !hide"
       [attr.aria-label]="'Hide password'"

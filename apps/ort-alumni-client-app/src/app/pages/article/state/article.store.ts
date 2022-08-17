@@ -2,24 +2,25 @@ import { ArticleInterface } from './article.interface';
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 import { CategoryInterface } from './category.interface';
-
+import { produce } from 'immer';
 
 
 export interface ArticlesState extends EntityState<ArticleInterface, number> {
   areArticlesLoaded: boolean;
   categories: CategoryInterface[];
+
 }
 
 export function createInitialState(): ArticlesState {
   return {
     areArticlesLoaded: false,
     categories: [
-    ],
+    ]
   };
 }
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'articles' })
+@StoreConfig({ name: 'articles', producerFn: produce })
 export class ArticleStore extends EntityStore<ArticlesState> {
   constructor() {
     super(createInitialState());
@@ -39,7 +40,7 @@ export class ArticleStore extends EntityStore<ArticlesState> {
     this.update((state) => ({
       ...state,
       areArticlesLoaded,
-      categories,
+      categories
     }));
   }
 }

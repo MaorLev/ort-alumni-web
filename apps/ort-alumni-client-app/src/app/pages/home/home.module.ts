@@ -10,19 +10,22 @@ import { HeroModule } from '../../layout/common-layout/hero/hero.module';
 import { UiButtonModule } from '@ui-components/ui-button';
 import { AddEnvVarPipeModule } from '@utils/util-pipes';
 import { ScrollerModule } from '@utils/directives';
+import { UiSpinnerModule } from '@ui-components/ui-spinner';
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
     CommonModule,
+    RouterModule,
+    RouterModule.forChild([{ path: '', component: HomeComponent }]),
     QuicklinkModule,
     HeroModule,
-    RouterModule.forChild([{ path: '', component: HomeComponent }]),
     ScrollerModule,
     UiButtonModule,
     UiCardModule,
     UiCarouselModule,
     AddEnvVarPipeModule,
+    UiSpinnerModule,
   ],
   exports: [QuicklinkModule, HomeComponent],
 })

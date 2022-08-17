@@ -30,6 +30,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.DTO
     [JsonProperty(PropertyName = "categoryid")]
     public int CategoryId { get; set; }
     [JsonProperty(PropertyName = "category")]
-    public Category Category { get; set; }
+    public CategoryDTO Category { get; set; }
   }
 }

@@ -1,10 +1,9 @@
 import { SessionService } from './../session/state/session.service';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ortInput } from '@features/feature-va-input';
-import { loginForm } from './loginForm.data';
+import { LoginFormConfig } from './login-form-config';
 import { Router } from '@angular/router';
 import { InOutSmooth } from '@assets';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,20 +13,16 @@ import { InOutSmooth } from '@assets';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  group = new FormGroup({
-    email: new FormControl(),
-    password: new FormControl(),
-  });
 
-  controls: ortInput[] = loginForm;
+  loginConfig = LoginFormConfig;
 
   constructor(private authService: SessionService, private router: Router) {}
 
-  onSubmit() {
-    if (this.group.valid) {
+  onSubmit(group: FormGroup) {
+    if (group.valid) {
       this.authService
-        .login({...this.group.value})
+        .login({...group.value})
         .subscribe(() => this.router.navigateByUrl(''));
-    }
+    }else group.markAllAsTouched();
   }
 }

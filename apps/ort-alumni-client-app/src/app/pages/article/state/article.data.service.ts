@@ -20,7 +20,7 @@ export class ArticleDataService {
   getAllCategories(): Observable<CategoryInterface[]> {
 
     return this.httpClient
-      .get<CategoryInterface[]>(this.endPoint + `/article/GetAllCategory`);
+      .get<CategoryInterface[]>(this.endPoint + `/category`);
   }
 
   // createArticle(article: ArticleInterface): Observable<ArticleInterface> {

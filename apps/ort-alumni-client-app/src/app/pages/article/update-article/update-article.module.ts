@@ -9,8 +9,8 @@ import { FeatureFormModule } from '@features/feature-form';
   declarations: [UpdateArticleComponent],
   imports: [
     CommonModule,
-    QuicklinkModule,
     RouterModule.forChild([{ path: '', component: UpdateArticleComponent }]),
+    QuicklinkModule,
     FeatureFormModule,
   ],
   exports: [QuicklinkModule, UpdateArticleComponent],

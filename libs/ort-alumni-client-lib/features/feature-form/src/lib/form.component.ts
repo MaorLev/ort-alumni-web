@@ -8,9 +8,9 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { ortInput } from '@features/feature-va-input';
 import { FormBuilderService } from './form-builder.service';
 import { cloneDeep } from '@utils/util-others';
+import { FormInterface } from './interfaces/form.interface';
 
 @Component({
   selector: 'ort-form',
@@ -19,7 +19,7 @@ import { cloneDeep } from '@utils/util-others';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
-  @Input() configuration: Record<string, ortInput>;
+  @Input() configuration: FormInterface;
   @Input() dataToPatch: any | undefined;
   @Output() submitted = new EventEmitter<any>();
   group: FormGroup;
@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
   constructor(private formBuilderService: FormBuilderService) {}
 
   ngOnInit(): void {
-    this.group = this.formBuilderService.buildStepperGroup(this.configuration);
+    this.group = this.formBuilderService.buildStepperGroup(this.configuration.controls);
     if (this.dataToPatch) {
       const data = cloneDeep(this.dataToPatch);
       this.group.patchValue(data);

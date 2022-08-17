@@ -1,20 +1,43 @@
 <form [formGroup]="group" (ngSubmit)="submitted.emit(group)">
-  <div *ngFor="let config of configuration | keyvalue: asIsOrder">
-    <ng-container
-      *ngComponentOutlet="
-        config.value.component;
-        ndcDynamicInputs: {
-          config: config.value,
-          group: group
-        }
-      "
-    ></ng-container>
-  </div>
-
-  <ort-button
-    type="submit"
-    class="btn"
-    className="mat-raised-button bar-btn-primary"
-    >צור</ort-button
+  <ng-container
+    *ngFor="let config of configuration.controls | keyvalue: asIsOrder"
   >
+    <div class="item">
+      <ng-container
+        *ngComponentOutlet="
+          config.value.component;
+          ndcDynamicInputs: {
+            config: config.value,
+            group: group
+          }
+        "
+      ></ng-container>
+      <!-- <ng-container *ngIf="config.value.errors">
+        <ng-container *ngFor="let error of config.value.errors">
+          <mat-error
+            *ngIf="
+              group.controls[config.value.name].hasError(error.name) &&
+              group.controls[config.value.name].touched
+            "
+            >{{ error.message }}</mat-error
+          >
+        </ng-container>
+      </ng-container> -->
+    </div>
+  </ng-container>
+  <ng-container *ngIf="configuration.buttons">
+    <ng-container *ngFor="let button of configuration.buttons">
+      <div class="item">
+        <ort-button
+          [type]="button.type"
+          [class]="button.className"
+          className="mat-raised-button bar-btn-primary"
+          >{{ button.label }}</ort-button
+        >
+      </div>
+    </ng-container>
+    <mat-error *ngIf="group.invalid && group.touched"
+      >מלא את השדות הנדרשות</mat-error
+    >
+  </ng-container>
 </form>

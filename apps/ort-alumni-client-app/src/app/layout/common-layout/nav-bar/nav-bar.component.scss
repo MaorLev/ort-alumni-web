@@ -9,6 +9,10 @@
     border-bottom: var(--accent-a-color) 2px solid;
     width: 100%;
   }
+.active {
+  color:var(--primary-darker-color);
+  border-bottom: var(--primary-darker-color) 0.2rem solid;
+}
   .container {
     padding: 0.4rem 1rem;
 
@@ -20,7 +24,7 @@
       grid-template-columns: 1fr 6fr 2fr 1.5fr;
       place-content: center;
       align-items: center;
-      text-align: left;
+      text-align: end;
       column-gap: 2rem;
       .search {
         ort-button {
@@ -44,13 +48,13 @@
         font-family: 'David Libre', serif;
         color: rgb(60, 60, 60);
         align-self: flex-end;
-        text-align: right;
+        text-align: start;
         padding-bottom: 1.5rem;
         a {
           margin-right: 1.5rem;
           &:hover {
-            color: var(--primary-darker-color);
-            text-decoration: underline;
+            color:var(--primary-darker-color);
+            border-bottom: var(--primary-darker-color) 0.2rem solid;
           }
         }
       }

@@ -1,17 +1,17 @@
+import { CategoryInterface } from './../article/state/category.interface';
 import { ArticleService } from './../article/state/article.service';
 import { ArticleInterface } from '../article/state/article.interface';
 
 import {
   ChangeDetectionStrategy,
-  Component
+  Component,
+  OnInit
 } from '@angular/core';
 
 import {
-  Observable,
-  mergeMap,
+  Observable
 } from 'rxjs';
-import { ArticleQuery } from '../article/state/article.query';
-import { ArticlesByCategory } from '../article/state/articles-by-category.type';
+
 
 
 @Component({
@@ -20,21 +20,20 @@ import { ArticlesByCategory } from '../article/state/articles-by-category.type';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   articles$: Observable<ArticleInterface[]>;
-  articlesByCategory$: Observable<ArticlesByCategory[]>;
+  articlesByCategory$: Observable<CategoryInterface[]>;
 
   constructor(
-    private articleService: ArticleService,
-    private articleQuery: ArticleQuery
+    public articleService: ArticleService
   ) {
-    this.articlesByCategory$ = this.articleService
-      .loadAndGetAllArticles()
-      .pipe(
-        mergeMap(() => {
-          return this.articleQuery.selectAllArticlesAndCategory$(5);
-        })
-      );
+
   }
+  ngOnInit(): void {
+
+    this.articlesByCategory$ = this.articleService.selectArticlesViaCategoriesByLimit(5);
+
+  }
+
 
 }

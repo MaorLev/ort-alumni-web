@@ -2,8 +2,8 @@
 <div>
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>{{ config.label }}</mat-label>
-    <mat-select [formControl]="control"  multiple= {{config.data.isMultiple}} [compareWith]="compareFn" >
-      <mat-option *ngFor="let item of config.data.options" [value]="item" id="mat-option" >
+    <mat-select [formControl]="control"  [multiple]="config.data.isMultiple" [compareWith]="compareFn" >
+      <mat-option *ngFor="let item of config.data.options$ | async" [value]="item" id="mat-option" >
         {{ item.hebName }}
       </mat-option>
     </mat-select>

@@ -3,10 +3,18 @@
     background-color: var(--primary-50);
     color: var(--primary-color);
 
-    .main-title {
-      border-bottom: 3px var(--primary-color) solid;
-      display: inline-block;
-      line-height: 1.5;
+    // .main-title {
+    //   border-bottom: 3px var(--primary-color) solid;
+    //   display: inline-block;
+    //   line-height: 1.5;
+    // }
+    .query {
+      width: 100%;
+      text-align: start;
+      .radio-group {
+        display: block;
+        text-align: center;
+      }
     }
     .articles {
       text-align: center;

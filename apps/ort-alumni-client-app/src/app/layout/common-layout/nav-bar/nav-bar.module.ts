@@ -11,8 +11,8 @@ import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-log
   declarations: [NavBarComponent],
   imports: [
     CommonModule,
-    QuicklinkModule,
     RouterModule,
+    QuicklinkModule,
     UiButtonModule,
     ShowIfLoggedInDirectiveModule
   ],

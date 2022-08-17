@@ -1,13 +1,14 @@
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { shareReplay, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, switchMap } from 'rxjs';
+import { Observable, combineLatest, switchMap, of } from 'rxjs';
 import { ArticleInterface } from './article.interface';
 import { ArticleDataService } from './article.data.service';
 import { ArticleStore } from './article.store';
 import { CategoryInterface } from './category.interface';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { ArticleQuery } from './article.query';
+import { NumberFormatStyle } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -18,45 +19,26 @@ export class ArticleService {
     private articleStore: ArticleStore,
     private router: Router,
     private articleQuery: ArticleQuery
-  ) {}
-
+  ) {
+    this.loadArticlesAndCategories().pipe(shareReplay(1)).subscribe();
+    // this.loadArticlesAndCategories().pipe(take(1)).subscribe();
+  }
+  //SERVER API
   getAllArticles(): Observable<ArticleInterface[]> {
     return this.articleDataService.getAllArticles();
   }
   getAllCategories(): Observable<CategoryInterface[]> {
     return this.articleDataService.getAllCategories();
   }
-  // For internal use
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  LoadArticlesAndCategories(): Observable<any> {
-    return combineLatest([this.getAllArticles(), this.getAllCategories()]).pipe(
-      tap(
-        ([articles, categories]: [ArticleInterface[], CategoryInterface[]]) => {
-          this.articleStore.loadArticles(articles, categories, true);
-        }
-      )
-    );
-  }
-  //Use it for get all articles
-  loadAndGetAllArticles(): Observable<ArticleInterface[]> {
-    return this.articleQuery.selectAreArticlesLoaded$.pipe(
-      switchMap((areArticlesLoaded) => {
-        if (!areArticlesLoaded) {
-          return this.LoadArticlesAndCategories().pipe(
-            map((articlesAndCategories) => articlesAndCategories[0])
-          );
-        }
-        return this.articleQuery.selectAll();
-      })
-    );
-  }
+
   createArticle(
     article: ArticleInterface
   ): Observable<HttpEvent<ArticleInterface>> {
+
     return this.articleDataService.createArticle(article).pipe(
       tap((event) => {
         if (event.type === HttpEventType.Response) {
-          this.articleStore.add([{...event.body as ArticleInterface}]);
+          this.articleStore.add([event.body as ArticleInterface]);
         }
       })
     );
@@ -65,6 +47,7 @@ export class ArticleService {
     articleId: number,
     article: ArticleInterface
   ): Observable<HttpEvent<ArticleInterface>> {
+
     return this.articleDataService.updateArticle(articleId, article).pipe(
       tap((event) => {
         if (event.type === HttpEventType.Response) {
@@ -78,10 +61,84 @@ export class ArticleService {
   }
 
   deleteArticle(articleId: number): Observable<unknown> {
+
     return this.articleDataService.deleteArticle(articleId).pipe(
       tap(() => {
         this.articleStore.remove(articleId);
       })
     );
+  }
+  //LOADER
+  loadArticlesAndCategories(): Observable<
+    [Array<ArticleInterface>, Array<CategoryInterface>]
+  > {
+
+    return this.articleQuery.selectAreArticlesLoaded$.pipe(
+      switchMap((areArticlesLoaded: boolean) => {
+        if (!areArticlesLoaded) {
+          return combineLatest([
+            this.getAllArticles(),
+            this.getAllCategories(),
+          ]);
+        }
+        return of();
+      }),
+      tap(
+        ([articles, categories]: [ArticleInterface[], CategoryInterface[]]) => {
+          this.articleStore.loadArticles(articles, categories, true);
+        }
+      )
+    );
+  }
+
+  //Queries Area
+  selectAllArticles(limitTo?: number): Observable<Array<ArticleInterface>> {
+
+    return this.articleQuery.selectAllArticles$(limitTo);
+  }
+
+  selectAllCategories(): Observable<Array<CategoryInterface>> {
+
+    return this.articleQuery.selectAllCategories$();
+  }
+  selectAllCategoriesAndArticles(): Observable<
+    [Array<ArticleInterface>, Array<CategoryInterface>]
+  > {
+
+    return this.articleQuery.selectAllCategoriesAndArticlesAsFlatArr$();
+  }
+
+  selectArticlesViaCategoryByLimit(
+    categoryId: number,
+    limitTo?: number
+  ): Observable<CategoryInterface> {
+
+    return this.articleQuery.selectArticlesViaCategoryByLimit(
+      categoryId,
+      limitTo
+    );
+  }
+  selectArticlesViaCategoriesByLimit(
+    limitTo?: number
+  ): Observable<Array<CategoryInterface>> {
+
+    return this.articleQuery.selectArticlesViaCategoriesByLimit$(limitTo);
+  }
+
+  selectEntityById(id: NumberFormatStyle) {
+
+    return this.articleQuery.selectEntityById$(id);
+  }
+
+  filtered(
+    heading: string,
+    limitTo: number,
+    categoryId?: number
+  ): Observable<ArticleInterface[]> {
+
+    return this.articleQuery.filtered(heading, limitTo, categoryId);
+  }
+  isLoading():Observable<boolean> {
+    return this.articleQuery.isLoading();
   }
 }

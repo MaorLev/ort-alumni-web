@@ -4,55 +4,5 @@
     <ort-form [configuration]="articleConfig" (submitted)="onSubmit($event)" >
 
     </ort-form>
-    <!-- <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-      <div *ngFor="let config of articleConfig | keyvalue : asIsOrder">
-        <ng-container
-          *ngComponentOutlet="
-            (config.value).component;
-            ndcDynamicInputs: {
-              config: (config.value),
-              group: articleForm
-            }
-          "
-        ></ng-container>
-      </div>
-
-      <ort-button
-        type="submit"
-        class="btn"
-        className="mat-raised-button bar-btn-primary"
-        >צור</ort-button
-      >
-    </form> -->
-      <!-- <ort-abstract-input
-        [group]="articleForm"
-        [config]="articleConfig['heading']"
-      >
-      </ort-abstract-input>
-      <ort-abstract-input
-      [group]="articleForm"
-      [config]="articleConfig['subheading']"
-      >
-      </ort-abstract-input>
-      <ort-abstract-select
-      [group]="articleForm"
-      [config]="articleConfig['category']"
-      >
-      </ort-abstract-select>
-
-      <ort-abstract-textarea
-      [group]="articleForm"
-      [config]="articleConfig['detail']"
-      >
-
-      </ort-abstract-textarea>
-      <ort-abstract-file-upload
-      [group]="articleForm"
-      [config]="articleConfig['image']"
-
-      >
-
-    </ort-abstract-file-upload> -->
-
   </div>
 </section>

@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

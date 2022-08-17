@@ -1,0 +1,32 @@
+<mat-form-field class="example-chip-list" appearance="fill">
+  <mat-label>{{config.label}}</mat-label>
+  <mat-chip-list #chipList aria-label="any selection" [disabled]="isDisabled">
+    <mat-chip
+      *ngFor="let item of Chips"
+      (removed)="remove(item)">
+      {{item.name}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      [placeholder]="isDisabled ? '' : config.placeholder || config.label"
+      #chipInput
+      [formControl]="chipControl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+      <mat-option *ngFor="let chip of filteredChips | async" [value]="chip" >
+        {{chip.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-error
+  *ngIf="
+    chipControl.hasError('required');
+  "
+  >אנא בחר שם מן הרשימה</mat-error
+>

@@ -45,7 +45,7 @@ namespace AlumniOrtServer.Controllers
                 return BadRequest();
             }
         }
-
+    
 
         [HttpPost]
         public async Task<ActionResult> PostTeacher(TeacherDTO teacher)

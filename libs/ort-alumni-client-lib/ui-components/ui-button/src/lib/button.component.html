@@ -1,7 +1,18 @@
-<button [type]="type"  [class]="className" [disabled]="disabled" [routerLink]="routeTo">
+<button
+  [type]="type"
+  [value]="value"
+  [class]="className"
+  [disabled]="disabled"
+  [routerLink]="routeTo"
+>
   <div class="content">
-    <span *ngIf="iconName" class="content-btn_icon" >
-      <ort-icon [className]="customIcon?.className" [color]="customIcon?.color || iconColor" [svgName]="customIcon?.svgPath"  >{{ iconName }}</ort-icon>
+    <span *ngIf="iconName" class="content-btn_icon">
+      <ort-icon
+        [className]="customIcon?.className"
+        [color]="customIcon?.color || iconColor"
+        [svgName]="customIcon?.svgPath"
+        >{{ iconName }}</ort-icon
+      >
     </span>
     <span class="content-btn_text">
       <ng-content></ng-content>
@@ -9,4 +20,4 @@
   </div>
 </button>
 
-<button class="none" mat-button ></button>
+<button class="none" mat-button></button>

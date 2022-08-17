@@ -1,4 +1,3 @@
-import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,9 +9,9 @@ import { QuicklinkModule } from 'ngx-quicklink';
   declarations: [PreRegisterationComponent],
   imports: [
     CommonModule,
-    QuicklinkModule,
     RouterModule.forChild([{ path: '', component: PreRegisterationComponent }]),
-    MatButtonModule, UiButtonModule
+    QuicklinkModule,
+    UiButtonModule,
   ],
   exports: [QuicklinkModule, PreRegisterationComponent],
 })

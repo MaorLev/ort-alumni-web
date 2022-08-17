@@ -13,7 +13,8 @@ import { HttpEventType } from '@angular/common/http';
 
 import { ortInput } from '@features/feature-va-input';
 
-import { ArticleFormConfigService } from '../article-form-config/article-form-config.service';
+import { ArticleFormConfigService } from '../configuration/article-form-config.service';
+import { FormInterface } from '@features/feature-form';
 
 @Component({
   selector: 'app-update-article',
@@ -25,7 +26,7 @@ import { ArticleFormConfigService } from '../article-form-config/article-form-co
 export class UpdateArticleComponent implements OnInit, OnDestroy {
   article: Observable<ArticleInterface | undefined>;
   id: number;
-  articleConfig: Record<string, ortInput>;
+  articleConfig: FormInterface;
  subscription = new Subscription();
   constructor(
     activatedRouter: ActivatedRoute,
@@ -35,18 +36,8 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     private articleConfigService: ArticleFormConfigService
   ) {
     const id = activatedRouter.snapshot.paramMap.get('id');
-    debugger;
     if (id) this.id = parseInt(id);
-    this.article = this.articleQuery.selectAreArticlesLoaded$.pipe(
-      mergeMap((areArticlesLoaded) => {
-        if (!areArticlesLoaded) {
-          articleService.LoadArticlesAndCategories().subscribe(() => {
-            return this.articleQuery.selectEntity(this.id);
-          });
-        }
-        return this.articleQuery.selectEntity(this.id);
-      })
-    )
+    this.article = this.articleService.selectEntityById(this.id);
   }
   ngOnInit(): void {
     this.subscription = this.article.subscribe((article) => {

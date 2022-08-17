@@ -50,27 +50,41 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         await m_db.Articles.AddAsync(articleFromDB);
 
         int c = await m_db.SaveChangesAsync();
-        string categoryName = "";
-        string categoryHebName = "";
+        //string categoryName = "";
+        //string categoryHebName = "";
+        //List<CategoryDTO> categories = await m_db.Categories.Select(cat => new CategoryDTO()
+        //{
+        //  Id = cat.Id,
+        //  Name = cat.Name,
+        //  HebName = cat.HebName,
+        //  Articles = cat.Articles
 
-        for (int i = 0; i < articleFromDB.CategoryId; i++)
+        //}).ToListAsync();
+        CategoryDTO category = await m_db.Categories.Select(cat => new CategoryDTO()
         {
-          if (articleFromDB.CategoryId == 1)
-          {
-            categoryName = Constants.CategoryName.Events;
-            categoryHebName = Constants.CategoryHebName.Events;
-          }
-          else if (articleFromDB.CategoryId == 2)
-          {
-            categoryName = Constants.CategoryName.General;
-            categoryHebName = Constants.CategoryHebName.General;
-          }
-        }
+          Id = cat.Id,
+          Name = cat.Name,
+          HebName = cat.HebName
+
+        }).FirstOrDefaultAsync(c => c.Id == articleFromDB.CategoryId); 
+        //for (int i = 0; i < articleFromDB.CategoryId; i++)
+        //{
+        //  if (articleFromDB.CategoryId == 1)
+        //  {
+        //    categoryName = Constants.CategoryName.Events;
+        //    categoryHebName = Constants.CategoryHebName.Events;
+        //  }
+        //  else if (articleFromDB.CategoryId == 2)
+        //  {
+        //    categoryName = Constants.CategoryName.General;
+        //    categoryHebName = Constants.CategoryHebName.General;
+        //  }
+        //}
         ArticleDTO articleToTransfer = new ArticleDTO()
         {
           Id = articleFromDB.Id,
           Img = articleFromDB.Img,
-          Category = new Category() {Id = articleFromDB.CategoryId, Articles = null, HebName = categoryHebName, Name = categoryName },
+          Category = category,
           CategoryId = articleFromDB.CategoryId,
           Date = articleFromDB.Date,
           Detail = articleFromDB.Detail,
@@ -142,7 +156,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       var article = await m_db.Articles.Select(s => new ArticleDTO()
       {
         Id = s.Id,
-        Category = s.Category,
+        Category = new CategoryDTO() { Id = s.Category.Id, HebName = s.Category.HebName,
+          Name = s.Category.Name  },
         Date = s.Date,
         Detail = s.Detail,
         Heading = s.Heading,
@@ -161,7 +176,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       var articles = await m_db.Articles.Select(s => new ArticleDTO()
       {
         Id = s.Id,
-        Category = s.Category,
+        Category = new CategoryDTO()
+        {
+          Id = s.Category.Id,
+          HebName = s.Category.HebName,
+          Name = s.Category.Name
+        },
         Date = s.Date,
         Detail = s.Detail,
         Heading = s.Heading,
@@ -224,7 +244,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       {
         Id = ArticleFromDB.Id,
         Img = ArticleFromDB.Img,
-        Category = ArticleFromDB.Category,
+        Category = OriginalArticle.Category,
         CategoryId = ArticleFromDB.CategoryId,
         Date = ArticleFromDB.Date,
         Detail = ArticleFromDB.Detail,
@@ -247,17 +267,5 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       return response;
     }
 
-
-    public async Task<List<CategoryDTO>> getCategoris()
-    {
-      var categories = await m_db.Categories.Select(c => new CategoryDTO()
-      {
-        Id = c.Id,
-        Name = c.Name,
-        HebName = c.HebName
-
-      }).ToListAsync();
-      return categories;
-    }
   }
 }

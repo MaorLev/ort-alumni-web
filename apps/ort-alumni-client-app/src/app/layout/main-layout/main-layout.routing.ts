@@ -17,12 +17,17 @@ const routes: Routes = [
       {
         path: 'article-detail/:id',
         loadChildren: () =>
-          import('../../pages/article/article-detail/article-detail.module').then((m) => m.ArticleDetailModule),
+          import('../../pages/article/article-detail/article-detail.module').then((m) => m.ArticleDetailModule)
       },
       {
-        path: 'articles/:id',
+        path: 'articles-by-category/:id',
         loadChildren: () =>
-          import('../../pages/article/article.module').then((m) => m.ArticleModule)
+          import('../../pages/article/articles-by-category/articles-by-category.module').then((m) => m.ArticlesByCategoryModule)
+      },
+      {
+        path: 'articles-by-category',
+        loadChildren: () =>
+          import('../../pages/article/articles-by-category/articles-by-category.module').then((m) => m.ArticlesByCategoryModule)
       },
       {
         path: 'articles',

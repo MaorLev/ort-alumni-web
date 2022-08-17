@@ -1,4 +1,3 @@
-
 import { TopBarModule } from './../common-layout/top-bar/top-bar.module';
 import { CommonModule } from '@angular/common';
 
@@ -16,14 +15,14 @@ import { HeaderModule } from '../common-layout/header/header.module';
 @NgModule({
   declarations: [MainLayoutComponent],
   imports: [
-    QuicklinkModule,
     CommonModule,
+    MainLayoutRoutingModule,
+    QuicklinkModule,
     NavBarModule,
     FooterModule,
-    MainLayoutRoutingModule,
     RouterModule,
     HeaderModule,
-    TopBarModule
+    TopBarModule,
   ],
   exports: [QuicklinkModule],
 })

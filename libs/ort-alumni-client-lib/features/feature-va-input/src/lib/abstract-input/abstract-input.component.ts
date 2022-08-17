@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ortInput } from '../va-input.interface';
 
@@ -8,11 +8,9 @@ import { ortInput } from '../va-input.interface';
   styleUrls: ['./abstract-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AbstractInputComponent implements OnInit {
+export class AbstractInputComponent {
 
   @Input() group:FormGroup;
   @Input() config:ortInput;
-  constructor() {}
 
-  ngOnInit(): void {}
 }

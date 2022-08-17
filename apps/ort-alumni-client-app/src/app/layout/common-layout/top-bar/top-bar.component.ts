@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LoginLinksDataService } from './login-links.data.service';
+import { LoginLinksConfigService } from './login-links.config.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -8,5 +8,5 @@ import { LoginLinksDataService } from './login-links.data.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopBarComponent {
-  constructor(public loginLinksDataService: LoginLinksDataService) {}
+  constructor(public loginLinksDataService: LoginLinksConfigService) {}
 }

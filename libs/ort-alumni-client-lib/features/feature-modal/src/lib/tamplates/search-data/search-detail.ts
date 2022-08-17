@@ -1,7 +1,7 @@
-import { ModalType } from "../../modal.type";
+import { ModalInteface } from "../../modal.interface";
 import { SearchTamplateComponent } from "./search-tamplate.component";
 
-export const searchDetail:ModalType = {
+export const searchDetail:ModalInteface = {
 
   component:SearchTamplateComponent,
   direction:'rtl',

@@ -1,6 +1,4 @@
-<!-- <div class="wrapper"> -->
 <div class="wrapper">
-
   <div [@inOutZoom] class="container">
     <nav>
       <button
@@ -9,10 +7,10 @@
         [routerLink]="tab.route"
         routerLinkActive="router-link-active"
         [skipLocationChange]="true"
-        >
+      >
         <!-- [routerLinkActiveOptions]="{ exact: dataTab.defaultRoute ? true : false}" -->
         <div class="content-tab">
-            {{ tab.label }}
+          {{ tab.label }}
           <mat-icon>{{ tab.tabIcon }}</mat-icon>
         </div>
       </button>
@@ -21,5 +19,4 @@
       <router-outlet> </router-outlet>
     </section>
   </div>
-<!-- </div> -->
 </div>

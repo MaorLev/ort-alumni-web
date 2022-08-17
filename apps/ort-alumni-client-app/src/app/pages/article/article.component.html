@@ -1,33 +1,46 @@
-  <section id="categories">
-    <ort-button
+<section id="categories">
+  <ort-button
     type="button"
     routerLink="/main/create-article"
     className="mat-raised-button bar-btn-primary"
     >הוסף מאמר</ort-button
   >
-    <div class="container">
-      <ng-container *ngIf="articlesByCategory$ | async as cats">
-        <ng-container *ngFor="let categories of cats">
-          <h1 class="mat-display-2 bg-after-primary main-title">
-            {{ categories.categoryView }}
-          </h1>
-          <div class="articles">
-
-              <ng-container *ngFor="let article of categories.articles">
-
-                <article class="card">
-                <a  [routerLink]="['/main/article-detail', article.id]">
-                    <ort-card
-                      [heading]="article.heading"
-                      [subheading]="article.subheading"
-                      [img]="article.img | addEnvVar"
-                      [detail]="article.detail"
-                    ></ort-card>
-                  </a>
-                </article>
-              </ng-container>
-          </div>
-        </ng-container>
+  <div class="container">
+    <mat-form-field class="query" appearance="fill">
+      <mat-label>חיפוש</mat-label>
+      <input type="text" matInput [formControl]="searchControl" />
+      <ng-container *ngIf="categories | async as cats">
+        <mat-radio-group
+        class="radio-group"
+        [formControl]="radio"
+        aria-label="Select an option"
+        >
+        <ng-container *ngFor="let cat of cats">
+            <mat-radio-button [value]="cat.id">
+              {{ cat.hebName }}</mat-radio-button
+            >
+            <!-- <mat-radio-button value="2">כללי</mat-radio-button> -->
+          </ng-container>
+          </mat-radio-group>
       </ng-container>
-    </div>
-  </section>
+    </mat-form-field>
+
+    <ng-container> </ng-container>
+    <ng-container *ngIf="articles$ | async as arts">
+      <div class="articles">
+        <ng-container *ngFor="let article of arts">
+          <article class="card">
+            <a [routerLink]="['../article-detail', article.id]">
+              <ort-card
+                [heading]="article.heading"
+                [subheading]="article.subheading"
+                [img]="article.img | addEnvVar"
+                [detail]="article.detail"
+              ></ort-card>
+            </a>
+          </article>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</section>

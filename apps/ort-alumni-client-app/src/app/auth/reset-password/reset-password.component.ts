@@ -2,7 +2,7 @@ import { SessionDataService } from './../session/state/session.data.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ortInput } from '@features/feature-va-input';
-import { loginForm } from '../login/loginForm.data';
+import { LoginFormConfig } from '../login/login-form-config';
 
 @Component({
   selector: 'app-reset-password',
@@ -12,7 +12,7 @@ import { loginForm } from '../login/loginForm.data';
 })
 export class ResetPasswordComponent implements OnInit {
   form: FormGroup;
-  emailControl:ortInput = loginForm[0];
+  emailControl:ortInput = LoginFormConfig.controls["email"];
   constructor(
     private fb: FormBuilder,
     private authService: SessionDataService

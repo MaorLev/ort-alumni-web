@@ -1,0 +1,40 @@
+:host {
+  #categories {
+    background-color: var(--primary-50);
+    color: var(--primary-color);
+
+    .main-title {
+      border-bottom: 3px var(--primary-color) solid;
+      display: inline-block;
+      line-height: 1.5;
+    }
+    .articles {
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      .card {
+        &:nth-child(1) {
+          grid-column: 1 / span 2;
+          grid-row: 1;
+        }
+      }
+      // padding: 3rem;
+      margin-bottom: 4rem;
+      .more {
+        text-align: start;
+
+        .more-btn {
+          display: inline-block;
+          color: var(--accent-color);
+          margin: 2rem 4rem;
+
+          &:hover {
+            text-decoration: underline 0.15rem;
+          }
+        }
+      }
+    }
+  }
+}
+

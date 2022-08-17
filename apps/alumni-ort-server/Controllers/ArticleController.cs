@@ -116,24 +116,5 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
       }
 
     }
-
-    [HttpGet]
-    [Route("GetAllCategory")]
-    public async Task<ActionResult> GetAllCategory()
-    {
-      try
-      {
-
-        List<CategoryDTO> result = await articleService.getCategoris();
-
-        return Ok(result);
-        
-      }
-      catch
-      {
-        return NotFound();
-      }
-
-    }
   }
 }

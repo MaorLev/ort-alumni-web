@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {
   Component,
   OnInit,
@@ -10,7 +13,7 @@ import {
   FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  ValidationErrors
+  ValidationErrors,
 } from '@angular/forms';
 import { ortInput } from '@features/feature-va-input';
 import { map, Subject, takeUntil } from 'rxjs';
@@ -47,9 +50,7 @@ export class VaTextareaComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          if (this.formControl.valid) {
-            this.onChange(val);
-          }
+          this.onChange(val);
         })
       )
       .subscribe();
@@ -71,7 +72,7 @@ export class VaTextareaComponent implements OnInit, OnDestroy {
     this.onValidatorChange = onValidatorChange;
   }
   validate(control: FormControl): ValidationErrors | null {
-    this.formControl = control;
+    this.formControl.setValidators(control.validator);
 
     return control.validator;
   }

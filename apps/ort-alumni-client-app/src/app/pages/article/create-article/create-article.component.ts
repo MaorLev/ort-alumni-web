@@ -1,4 +1,4 @@
-import { ArticleFormConfigService } from '../article-form-config/article-form-config.service';
+import { ArticleFormConfigService } from '../configuration/article-form-config.service';
 
 import { ArticleInterface } from '../state/article.interface';
 import { Router } from '@angular/router';
@@ -6,7 +6,7 @@ import { ArticleService } from './../state/article.service';
 import { FormGroup } from '@angular/forms';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HttpEventType } from '@angular/common/http';
-import { ortInput } from '@features/feature-va-input';
+import { FormInterface } from '@features/feature-form';
 
 @Component({
   selector: 'app-create-article',
@@ -16,7 +16,7 @@ import { ortInput } from '@features/feature-va-input';
   providers: [ArticleFormConfigService],
 })
 export class CreateArticleComponent {
-  articleConfig: Record<string, ortInput>;
+  articleConfig: FormInterface;
 
   constructor(
     private articleService: ArticleService,
@@ -27,7 +27,6 @@ export class CreateArticleComponent {
   }
 
   onSubmit(articleForm: FormGroup) {
-    console.log(articleForm.get('image')?.valid);
     if (articleForm.valid) {
       const article: ArticleInterface = articleForm.value;
       article.categoryid = article.category?.id;

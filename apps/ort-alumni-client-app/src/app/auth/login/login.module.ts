@@ -3,9 +3,8 @@ import { QuicklinkModule } from 'ngx-quicklink';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { UiButtonModule } from '@ui-components/ui-button';
-import { FeatureVaInputModule } from '@features/feature-va-input';
+import { FeatureFormModule } from '@features/feature-form';
 
 
 @NgModule({
@@ -14,9 +13,8 @@ import { FeatureVaInputModule } from '@features/feature-va-input';
     CommonModule,
     QuicklinkModule,
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
-    ReactiveFormsModule,
-    FeatureVaInputModule,
     UiButtonModule,
+    FeatureFormModule
   ],
   exports: [QuicklinkModule, LoginComponent],
 })

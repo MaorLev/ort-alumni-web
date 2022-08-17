@@ -1,4 +1,23 @@
-<p>google-maps works!</p>
-<div  *ngIf="apiLoaded | async">
-  <google-map class="maps" height="400px" width="100%"   [center]="center || israel" [zoom]="zoom"></google-map>
+<div *ngIf="apiLoaded | async else spinner">
+  <p>מחכים לביקור... 😉</p>
+  <google-map
+    class="maps"
+    min-height="100px"
+    height="400px"
+    width="100%"
+    [center]="center"
+    [zoom]="zoom"
+  >
+    <map-marker
+      *ngFor="let markerPosition of markerPositions"
+      [position]="markerPosition"
+      [options]="markerOptions"
+    ></map-marker
+  ></google-map>
 </div>
+
+<ng-template #spinner >
+  <div class="container">
+    <ort-spinner></ort-spinner>
+  </div>
+</ng-template>

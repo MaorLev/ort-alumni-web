@@ -120,6 +120,7 @@ namespace AlumniOrtServer
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IImgService, ImgService>();
+            services.AddScoped<ICategoryService, CategoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,13 +5,13 @@
         <div class="category-title">
           <a
             class="category-link"
-            [routerLink]="'/main/articles/' + arti.category?.name"
+            [routerLink]="'/main/articles-by-category/' + arti.category?.name"
           >
             <h1 class="mat-display-3 title">{{ arti.category?.hebName }}</h1>
           </a>
         </div>
         <div>
-          <span> מחבר: {{arti.author}} </span> |
+          <span> מחבר: {{ arti.author }} </span> |
           <span>
             פורסם:
             {{ arti.date | readableDate }}
@@ -23,15 +23,17 @@
         <h2 class="sub-title mat-h1">{{ arti.subheading }}</h2>
       </div>
       <img class="image" [src]="arti.img | addEnvVar" alt="image article" />
-      <p class="detail" >{{ arti.detail }}</p>
+      <p class="detail">{{ arti.detail }}</p>
       <ort-button
         type="button"
+        class="btn"
         [routerLink]="['/main/update-article', id]"
         className="mat-raised-button bar-btn-primary"
         >עדכן</ort-button
       >
       <ort-button
         type="button"
+        class="btn"
         (click)="onDeleteArticle()"
         className="mat-raised-button bar-btn-primary"
         >מחק</ort-button

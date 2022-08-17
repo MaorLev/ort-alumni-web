@@ -1,8 +1,6 @@
-
-
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ModalService, ModalType } from '@features/feature-modal';
-import { GoogleMapsComponent } from '@features/feature-google-maps';
+import { ModalService, ModalInteface } from '@features/feature-modal';
+import { MAP_MODAL } from '@features/feature-google-maps';
 
 @Component({
   selector: 'app-footer',
@@ -11,15 +9,12 @@ import { GoogleMapsComponent } from '@features/feature-google-maps';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  constructor(private modalService:ModalService ) {}
+  mapmodal: ModalInteface = MAP_MODAL;
+  constructor(private modalService: ModalService) {}
 
   onGetMap() {
-    const modalData: ModalType = { component : GoogleMapsComponent,
-      direction: 'rtl',
-      width:'400px'
+    const modalData: ModalInteface = this.mapmodal;
 
-    }
-
-    this.modalService.openDialog(modalData) ;
+    this.modalService.openDialog(modalData);
   }
 }

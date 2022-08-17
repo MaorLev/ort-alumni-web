@@ -14,12 +14,11 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services.Interfaces
     public Task<ResponseDTO> Add(IFormCollection formCollection);
 
     public Task<List<ArticleDTO>> GetAll();
+    public Task<ResponseDTO> DeleteArticle(int id);
 
     public Task<ArticleDTO> GetArticle(int id);
 
     public Task<ResponseDTO> Update(int id, IFormCollection form);
 
-    public Task<ResponseDTO> DeleteArticle(int id);
-    public Task<List<CategoryDTO>> getCategoris();
   }
 }

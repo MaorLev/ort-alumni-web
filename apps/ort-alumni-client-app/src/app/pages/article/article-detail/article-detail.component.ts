@@ -1,6 +1,4 @@
-import { tap } from 'rxjs/operators';
 import { ArticleService } from './../state/article.service';
-import { ArticleQuery } from '../state/article.query';
 import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,7 +19,6 @@ export class ArticleDetailComponent implements OnInit {
   constructor(
     activatedRouter: ActivatedRoute,
     private articleService: ArticleService,
-    private articleQuery: ArticleQuery,
     private router: Router,
     private alertsService: AlertsService
   ) {
@@ -30,15 +27,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.article = this.articleQuery.selectEntityById(this.id).pipe(
-      tap((res) => {
-        if (res === undefined) {
-          this.articleService.LoadArticlesAndCategories().subscribe(() => {
-            this.ngOnInit();
-          });
-        }
-      })
-    );
+    this.article = this.articleService.selectEntityById(this.id);
 
     // const articles:ArticleInterface [] = ArticlesData;
     // this.article = of(

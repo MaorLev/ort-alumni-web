@@ -12,6 +12,12 @@ export const linkData:Link [] = [
     route: 'about',
     order: 3
   },
+  {
+    label: 'מאמרים',
+    name: 'articles',
+    route: '/main/articles',
+    order: 4
+  },
 ];
 
 

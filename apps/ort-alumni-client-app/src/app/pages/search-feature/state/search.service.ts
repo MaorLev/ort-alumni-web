@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   ModalService,
-  ModalType,
+  ModalInteface,
   searchDetail,
 } from '@features/feature-modal';
 import { switchMap, take } from 'rxjs';
@@ -17,7 +17,7 @@ export class SearchService {
     private searchData: searchDataService,
     private router: Router
   ) {}
-  modalData: ModalType = searchDetail;
+  modalData: ModalInteface = searchDetail;
   // result: Observable<string>;
   searchInThaWeb() {
     this.modalService

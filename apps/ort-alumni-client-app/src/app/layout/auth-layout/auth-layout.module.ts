@@ -13,9 +13,9 @@ import { HeaderModule } from '../common-layout/header/header.module';
   declarations: [AuthLayoutComponent],
   imports: [
     CommonModule,
-    QuicklinkModule,
     HeaderModule,
     AuthLayoutRoutingModule,
+    QuicklinkModule,
     TopBarModule
   ],
   exports:[QuicklinkModule]

@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-check-list",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-check-list/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-check-list"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-check-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-check-list/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-check-list/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

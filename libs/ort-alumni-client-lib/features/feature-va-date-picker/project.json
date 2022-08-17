@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-va-date-picker",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-va-date-picker/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-va-date-picker"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-va-date-picker/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-va-date-picker/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-va-date-picker/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

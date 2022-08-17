@@ -42,27 +42,32 @@ export class VAInputComponent
   implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
   formControl = new FormControl();
-  hide = false;
-  type: string | undefined = 'text';
+  hide: boolean;
+  type: string | undefined;
 
   @Input() config: ortInput;
   onDestroy$ = new Subject<void>();
 
   constructor() {
-    this.type = 'text';
+
+    this.hide = false;
   }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onChange = (obj: any) => {};
   onTouched = () => {};
   onValidatorChange = () => {};
   ngOnInit(): void {
+    if(this.config.type === 'password')
+    this.hide = true;
+
+
     this.formControl.valueChanges
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          if (this.formControl.valid) {
+          // if (this.formControl.valid) {
             this.onChange(val);
-          }
+          // }
         })
       )
       .subscribe();
@@ -85,7 +90,8 @@ export class VAInputComponent
     this.onValidatorChange = onValidatorChange;
   }
   validate(control: FormControl): ValidationErrors | null {
-    this.formControl = control;
+    this.formControl.setValidators(control.validator);
+
     return control.validator;
   }
   ngOnDestroy(): void {

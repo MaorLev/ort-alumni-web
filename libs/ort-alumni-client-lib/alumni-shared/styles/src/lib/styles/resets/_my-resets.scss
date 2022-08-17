@@ -8,16 +8,17 @@
 html {
 
   font-size: 62.5%; /* 10px */
-  direction: rtl;
+  // direction: rtl;
+
 }
-html[dir='rtl'] .icon {
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: 'FlipH';
-}
+// html[dir='rtl'] .icon {
+//   -moz-transform: scaleX(-1);
+//   -o-transform: scaleX(-1);
+//   -webkit-transform: scaleX(-1);
+//   transform: scaleX(-1);
+//   filter: FlipH;
+//   -ms-filter: 'FlipH';
+// }
 body {
   height: 100%;
 }
@@ -35,3 +36,4 @@ h2 {
   // @include mix.trim;
   @include mix.dont-break-out;
 }
+

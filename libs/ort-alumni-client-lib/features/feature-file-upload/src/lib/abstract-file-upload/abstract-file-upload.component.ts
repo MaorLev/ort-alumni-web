@@ -15,7 +15,6 @@ export class AbstractFileUploadComponent implements OnInit {
   @Input() nameBefore:string;
   statusChanged: Observable<FormControlStatus> | undefined;
   formControl:FormControl | null;
-  constructor() {}
 
   ngOnInit(): void {
 

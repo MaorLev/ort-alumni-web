@@ -8,15 +8,12 @@ export type ButtonTypes = 'button' | 'submit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-
   @Input() disabled: boolean | undefined = false;
   @Input() className: string | undefined = '';
   @Input() routeTo: string | null = null;
   @Input() iconName: string | null = null;
+  @Input() value: string | null = null;
   @Input() iconColor: 'primary' | 'accent' | 'warn';
   @Input() type: ButtonTypes | undefined = 'button';
   @Input() customIcon: uiIcon | undefined;
-
-
-
 }

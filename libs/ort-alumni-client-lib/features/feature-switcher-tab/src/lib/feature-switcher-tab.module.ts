@@ -8,8 +8,13 @@ import { SwitcherTabComponent } from './switcher-tab.component';
 
 @NgModule({
   declarations: [SwitcherTabComponent],
-  imports: [CommonModule,
-  QuicklinkModule,RouterModule,MatTabsModule,MatIconModule],
-  exports: [QuicklinkModule, SwitcherTabComponent ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    QuicklinkModule,
+    MatTabsModule,
+    MatIconModule,
+  ],
+  exports: [QuicklinkModule, SwitcherTabComponent],
 })
 export class FeatureSwitcherTabModule {}

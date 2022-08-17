@@ -5,9 +5,7 @@ import { InOutSmooth } from '@assets';
   selector: 'app-pre-registeration',
   templateUrl: './pre-registeration.component.html',
   styleUrls: ['./pre-registeration.component.scss'],
-  animations:[InOutSmooth],
+  animations: [InOutSmooth],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PreRegisterationComponent {
-
-}
+export class PreRegisterationComponent {}

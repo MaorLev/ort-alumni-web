@@ -31,7 +31,7 @@
     "@datorama/akita-ng-router-store": "^7.0.0",
     "@glidejs/glide": "^3.5.2",
     "@nrwl/angular": "13.10.1",
-    "immer": "^9.0.12",
+    "immer": "^9.0.15",
     "ng-dynamic-component": "^10.1.0",
     "ngx-glide": "^13.0.0",
     "ngx-quicklink": "^0.2.7",

@@ -1,23 +1,22 @@
-import { Directive, NgModule, Input, OnDestroy, OnInit  } from '@angular/core';
+import { Directive, NgModule, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TemplateRef, ViewContainerRef } from '@angular/core';
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 import { SessionQuery } from './state/session.query';
-
 
 @Directive({ selector: '[appShowIfLoggedIn]' })
 export class ShowIfLoggedInDirective implements OnInit, OnDestroy {
   subscription: Subscription;
   @Input() appShowIfLoggedIn: boolean | undefined;
 
-  constructor(private templateRef: TemplateRef<unknown>,
+  constructor(
+    private templateRef: TemplateRef<unknown>,
     private viewContainer: ViewContainerRef,
     private authQuery: SessionQuery
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.authQuery.isLoggedIn$.subscribe(isLoggedIn => {
+    this.subscription = this.authQuery.isLoggedIn$.subscribe((isLoggedIn) => {
       this.viewContainer.clear();
       if (isLoggedIn) {
         if (this.appShowIfLoggedIn) {

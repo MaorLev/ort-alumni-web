@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/ui-components/ui-spinner",
+  "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-spinner/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/ui-components/ui-spinner"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-spinner/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/ui-components/ui-spinner/src/**/*.ts",
+          "libs/ort-alumni-client-lib/ui-components/ui-spinner/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:ui"]
+}
