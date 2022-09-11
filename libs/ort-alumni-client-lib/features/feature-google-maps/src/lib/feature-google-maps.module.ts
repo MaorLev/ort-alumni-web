@@ -1,19 +1,19 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsComponent } from './google-maps.component';
-import { HttpClientJsonpModule } from '@angular/common/http';
+
 import { GoogleMapsModule } from '@angular/google-maps';
 import { UiSpinnerModule } from '@ui-components/ui-spinner';
 
 
 @NgModule({
-  imports: [CommonModule,
-    HttpClientJsonpModule,
+  imports: [
+    CommonModule,
     GoogleMapsModule,
-    UiSpinnerModule
+    UiSpinnerModule,
   ],
   declarations: [GoogleMapsComponent],
-  exports: [GoogleMapsComponent],
-  providers: []
+  exports: [GoogleMapsComponent]
 })
 export class FeatureGoogleMapsModule {}

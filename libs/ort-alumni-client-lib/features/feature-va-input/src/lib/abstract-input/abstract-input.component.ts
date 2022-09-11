@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ortInput } from '../va-input.interface';
+import { VaInputInterface } from '../va-input.interface';
 
 @Component({
   selector: 'ort-abstract-input',
@@ -11,6 +11,6 @@ import { ortInput } from '../va-input.interface';
 export class AbstractInputComponent {
 
   @Input() group:FormGroup;
-  @Input() config:ortInput;
+  @Input() config:VaInputInterface;
 
 }

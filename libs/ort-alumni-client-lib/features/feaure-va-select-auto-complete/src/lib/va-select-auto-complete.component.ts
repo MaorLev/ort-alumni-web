@@ -20,7 +20,7 @@ import {
   ValidationErrors
 } from '@angular/forms';
 
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 import { cloneDeep } from '@utils/util-others';
 import { map, Subject, startWith, Observable, of } from 'rxjs';
 
@@ -48,7 +48,7 @@ export class VaSelectAutoCompleteComponent
 {
   onDestroy$ = new Subject<void>();
   control = new FormControl();
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
   filteredOptions!: Observable<any[]>;
   options$: Observable<any>;
   onChange = (obj: any) => {};
@@ -64,9 +64,9 @@ export class VaSelectAutoCompleteComponent
       distinctUntilChanged(),
       debounceTime(400),
       map((value) => {
-        // if (this.control.valid) {
+        if (this.control.valid) {
           this.onChange(cloneDeep(value));
-        // }
+        }
         return typeof value === 'string' ? value : value.name;
       }),
       switchMap((state) => {
@@ -106,12 +106,11 @@ export class VaSelectAutoCompleteComponent
   }
 
   validate(control: FormControl): Observable<ValidationErrors | null> {
-
       const option = control.value;
 
       return this.options$.pipe(
         map((options) => {
-          if(typeof option === 'object')
+          if(typeof option === 'object' && !!option)
           for (let i = 0; i < options.length; i++) {
             if (options[i].id === option.id) return null;
           }

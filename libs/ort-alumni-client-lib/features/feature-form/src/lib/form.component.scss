@@ -5,4 +5,11 @@
     flex-direction: column;
     row-gap: 1rem;
   }
+  .item {
+    position: relative;
+  }
+  .error {
+    position: absolute;
+    bottom: -2px;
+  }
 }

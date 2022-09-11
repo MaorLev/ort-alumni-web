@@ -1,14 +1,43 @@
 import { Validators } from '@angular/forms';
 import { FormInterface } from '@features/feature-form';
+import { AbstractDatePickerComponent } from '@features/feature-va-date-picker';
 import { AbstractInputComponent } from '@features/feature-va-input';
 import { AbstractPhoneComponent } from '@features/feature-va-phone';
-
-
 
 export const LoginFormConfig: FormInterface = {
   groupName: 'loginForm',
   buttons: [{ label: 'התחבר', type: 'submit', className: 'btn' }],
   controls: {
+    // phone: {
+    //   component: AbstractPhoneComponent,
+    //   name: 'phone',
+    //   label: 'טלפון',
+    //   type: 'text',
+    //   placeholder: 'טלפון',
+    //   validators: [
+    //     Validators.required,
+    //     Validators.pattern('^0\\d([\\d]{0,1})([-]{0,1})\\d{7}$'),
+    //   ],
+    //   data: {},
+    //   errors: [
+    //     {
+    //       name: 'required',
+    //       message: 'שדה חובה',
+    //     },
+    //     {
+    //       name: 'pattern',
+    //       message: 'נדרש מספר תקין',
+    //     },
+    //   ],
+    // },
+    // date: {
+    //   component: AbstractDatePickerComponent,
+    //   name: 'date',
+    //   label: 'תאריך לידה',
+    //   validators: [],
+    //   data: {},
+    //   errors: [],
+    // },
     email: {
       component: AbstractInputComponent,
       name: 'email',
@@ -52,34 +81,3 @@ export const LoginFormConfig: FormInterface = {
     },
   },
 };
-// phone: {
-//   component: AbstractPhoneComponent,
-//   name: 'phone',
-//   label: 'טלפון',
-//   type: 'text',
-//   placeholder: 'טלפון',
-//   validators: [
-//     Validators.required,
-//     Validators.pattern('^0\\d([\\d]{0,1})([-]{0,1})\\d{7}$'),
-//   ],
-//   data: {},
-//   errors: [
-//     {
-//       name: 'required',
-//       message: 'שדה חובה',
-//     },
-//     {
-//       name: 'pattern',
-//       message: 'נדרש מספר תקין',
-//     },
-//   ],
-// },
-// date: {
-//   component: AbstractDatePickerComponent,
-//   name: 'date',
-//   label: 'תאריך לידה',
-//   validators: [],
-//   data: {},
-//   errors: [],
-// },
-

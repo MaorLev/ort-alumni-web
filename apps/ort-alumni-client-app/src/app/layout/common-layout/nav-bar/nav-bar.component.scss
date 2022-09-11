@@ -1,4 +1,8 @@
+
 :host{
+  .focused{
+    transform: rotate(-90deg);
+  }
 #nav {
   position: relative;
   &::after{
@@ -6,19 +10,18 @@
     display: block;
     content: '';
     bottom: -1%;
-    border-bottom: var(--accent-a-color) 2px solid;
+    border-bottom: var(--accent-a-color) 0.2rem solid;
+    // border-bottom: var(--accent-a-color) 2px solid;
     width: 100%;
   }
 .active {
-  color:var(--primary-darker-color);
-  border-bottom: var(--primary-darker-color) 0.2rem solid;
+  border-bottom: var(--black-color) 0.1rem solid;
 }
   .container {
     padding: 0.4rem 1rem;
 
     #boxes {
       // height: 10vh;
-
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 6fr 2fr 1.5fr;
@@ -71,6 +74,7 @@
     align-items: center;
     padding-top: 2rem;
     cursor: pointer;
+    transition: all 1s;
     .wrapper {
       display: contents;
       background-color: rgb(60, 60, 60);
@@ -83,14 +87,15 @@
       span {
         display: block;
         background-color: inherit;
-        height: 0.3rem;
+        height: 0.33rem;
+        width:3.5rem;
         transition: all 0.3s linear 0s;
         align-self: center;
         position: relative;
         transform: none;
 
         &:before {
-          width: 3.5rem;
+          width: inherit;
           height: 0.3rem;
           background-color: inherit;
           content: '';
@@ -102,7 +107,7 @@
         }
 
         &:after {
-          width: 3.5rem;
+          width: inherit;
           height: 0.3rem;
 
           background-color: inherit;

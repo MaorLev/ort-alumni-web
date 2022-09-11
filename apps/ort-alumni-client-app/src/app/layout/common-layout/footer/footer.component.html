@@ -1,36 +1,33 @@
 <div class="footer">
   <div class="boxes">
-
-    <div class="box comunication ">
+    <div class="box comunication">
       <h2 class="title">התחברו אלינו</h2>
       <div class="comunication-items">
         <div class="instegram item">
-
           <ort-icon svgName="instegram_icon"></ort-icon>
           <!-- <ort-icon  ></ort-icon> -->
         </div>
         <div class="linkedin item">
-          <ort-icon svgName="linkedin_icon" > </ort-icon>
+          <ort-icon svgName="linkedin_icon"> </ort-icon>
         </div>
         <div class="facebook item">
           <ort-icon>facebook</ort-icon>
         </div>
         <div class="youtube item">
-          <ort-icon svgName="youtube_icon" > </ort-icon>
+          <ort-icon svgName="youtube_icon"> </ort-icon>
         </div>
       </div>
     </div>
 
     <div class="box contact">
-      <h2 class="title ">דרכי התקשרות</h2>
-      <div class="phone item ">
+      <h2 class="title">דרכי התקשרות</h2>
+      <div class="phone item">
         <a>
           <ort-icon>phone</ort-icon>
         </a>
         <h4>02-5864831</h4>
       </div>
-      <div class="fax item ">
-
+      <div class="fax item">
         <ort-icon>fax</ort-icon>
         <h4>02-5864834</h4>
       </div>
@@ -49,20 +46,22 @@
       </h4>
       <div class="location-logo">
         <div class="item location">
-
           <ort-icon>place</ort-icon>
-          <a (click)="onGetMap()" >מפה</a>
+          <a
+            [ortFeatureModal]="mapConfig"
+            (afterClosedOutput)="onSearch($event)"
+            >מפה</a
+          >
         </div>
         <div class="waze item">
-          <ort-icon svgName="waze_icon"  ></ort-icon>
-          <a href="" >נווט אלינו</a>
+          <ort-icon svgName="waze_icon"></ort-icon>
+          <a href="">נווט אלינו</a>
         </div>
       </div>
     </div>
 
-    <div class="box ort-logo ">
-      <img src="'./../../../../assets/images/footer-logoo.png" >
+    <div class="box ort-logo">
+      <img src="'./../../../../assets/images/footer-logoo.png" />
     </div>
   </div>
 </div>
-

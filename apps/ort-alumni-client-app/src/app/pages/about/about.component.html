@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="main-grid">
+    <div *ngFor="let list of gridList" class="grid-level">
+
+      <button
+        *ngFor="let subList of list"
+        (click)="
+          hasChildren(subList)
+            ? open(subList.children, subList.level)
+            : routeTo(subList.route)
+        "
+      >
+        <h1 class="mat-display-1" >
+          {{ subList.name }}
+        </h1>
+      </button>
+    </div>
+  </div>
+</div>

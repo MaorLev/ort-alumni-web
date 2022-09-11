@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-expansion-panel",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-expansion-panel/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-expansion-panel"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-expansion-panel/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-expansion-panel/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-expansion-panel/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

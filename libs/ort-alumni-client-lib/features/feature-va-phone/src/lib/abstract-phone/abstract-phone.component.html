@@ -3,7 +3,7 @@
     <mat-label>{{config.label}}</mat-label>
     <ort-va-phone [formControlName]="config.name"></ort-va-phone>
     <mat-icon matSuffix>phone</mat-icon>
-    <ng-container *ngIf="config.errors">
+    <!-- <ng-container *ngIf="config.errors">
       <ng-container *ngFor="let error of config.errors">
         <mat-error
           *ngIf="
@@ -14,6 +14,6 @@
           >{{ error.message }}</mat-error
         >
       </ng-container>
-    </ng-container>
+    </ng-container> -->
   </mat-form-field>
 </div>

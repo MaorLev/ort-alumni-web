@@ -20,7 +20,7 @@ import {
   Validator,
 } from '@angular/forms';
 
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -46,7 +46,7 @@ export class VaDatePickerComponent
   implements OnInit, ControlValueAccessor, OnDestroy, Validator
 {
   formControl = new FormControl();
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
 
   onChange = (obj: any) => {};
@@ -57,6 +57,7 @@ export class VaDatePickerComponent
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
+          if(this.formControl.valid)
             this.onChange(val);
         })
       )

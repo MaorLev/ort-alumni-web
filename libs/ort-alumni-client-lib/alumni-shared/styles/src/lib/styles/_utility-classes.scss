@@ -44,10 +44,9 @@
 //     }
 //   }
 // }
+
 * {
-
   @include mix.color-pallete($hover: false);
-
 
   @each $size in va.$arr {
     &.mrg-#{$size} {
@@ -74,7 +73,6 @@
       margin-right: fa.times5($size);
     }
 
-
     &.pad-#{$size} {
       margin: fa.times5($size);
     }
@@ -98,7 +96,6 @@
     &.pad-r-#{$size} {
       margin-right: fa.times5($size);
     }
-
 
     &.gr-co-#{$size} {
       display: grid;
@@ -136,7 +133,7 @@
 .mat-stroked-button,
 .mat-flat-button,
 .mat-icon-button {
-  padding: 1.15rem 1.15rem ;
+  padding: 1.15rem 1.15rem;
   margin: 0 0.65rem;
   min-width: 3rem;
   line-height: 3.64rem;
@@ -154,9 +151,13 @@
     font-family: 'Open Sans';
   }
 }
-
+body .mat-dialog-container {
+  margin: 0;
+  padding: 0;
+}
 .container {
-  max-width: 1100px;
+  max-width: 110rem;
+  // max-width: 1100px;
   margin: auto;
   padding: 3rem;
   overflow: hidden;

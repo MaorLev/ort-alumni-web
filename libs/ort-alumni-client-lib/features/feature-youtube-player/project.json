@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-youtube-player",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-youtube-player/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-youtube-player"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-youtube-player/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-youtube-player/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-youtube-player/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

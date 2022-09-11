@@ -6,7 +6,7 @@ import {
   Input,
 } from '@angular/core';
 import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 import { map, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -29,7 +29,7 @@ import { map, Subject, takeUntil } from 'rxjs';
 })
 export class VaRadioComponent implements OnInit {
   formControl = new FormControl();
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
   onChange = (obj: any) => {};
   onTouched = () => {};

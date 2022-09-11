@@ -10,8 +10,8 @@ import { AuthSwitcherRoutingModule } from './auth-switcher.routing';
   declarations: [AuthSwitcherComponent],
   imports: [
     CommonModule,
-    QuicklinkModule,
     AuthSwitcherRoutingModule,
+    QuicklinkModule,
     FeatureSwitcherTabModule
   ],
   exports: [QuicklinkModule, AuthSwitcherComponent],

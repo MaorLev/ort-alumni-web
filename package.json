@@ -10,7 +10,8 @@
     "build": "nx build",
     "test": "nx test",
     "prepare": "nx g @nx-dotnet/core:restore",
-    "server": "npx nx serve alumni-ort-server "
+    "server": "npx nx serve alumni-ort-server ",
+    "kill:port": "npx kill-port 4200"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@angular/youtube-player": "^13.3.9",
     "@auth0/angular-jwt": "^5.0.2",
     "@datorama/akita": "^7.1.1",
     "@datorama/akita-ng-entity-service": "^7.0.0",
@@ -32,6 +34,7 @@
     "@glidejs/glide": "^3.5.2",
     "@nrwl/angular": "13.10.1",
     "immer": "^9.0.15",
+    "ng-dialog-animation": "^9.0.4",
     "ng-dynamic-component": "^10.1.0",
     "ngx-glide": "^13.0.0",
     "ngx-quicklink": "^0.2.7",

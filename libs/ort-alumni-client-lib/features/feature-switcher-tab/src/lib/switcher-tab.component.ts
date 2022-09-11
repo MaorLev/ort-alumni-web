@@ -9,5 +9,5 @@ import { inOutZoom } from '@assets';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SwitcherTabComponent {
-  @Input() dataTab: TabInterface [];
+  @Input() dataTab: TabInterface[];
 }

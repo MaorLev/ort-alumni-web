@@ -1,13 +1,13 @@
 
 <div>
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field class="wrapper-selection" appearance="fill">
     <mat-label>{{ config.label }}</mat-label>
-    <mat-select [formControl]="control"  [multiple]="config.data.isMultiple" [compareWith]="compareFn" >
+    <mat-select [formControl]="control"  [multiple]="config.data.isMultiple" [compareWith]="compareFn" (focusout)="onTouched()" >
       <mat-option *ngFor="let item of config.data.options$ | async" [value]="item" id="mat-option" >
         {{ item.hebName }}
       </mat-option>
     </mat-select>
-    <ng-container *ngIf="config.errors">
+    <!-- <ng-container *ngIf="config.errors">
       <ng-container *ngFor="let error of config.errors">
         <mat-error
           *ngIf="
@@ -17,6 +17,6 @@
           >{{ error.message }}</mat-error
         >
       </ng-container>
-    </ng-container>
+    </ng-container> -->
   </mat-form-field>
 </div>

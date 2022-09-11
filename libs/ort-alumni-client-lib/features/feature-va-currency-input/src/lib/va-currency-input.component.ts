@@ -18,7 +18,7 @@ import {
   Validator,
 } from '@angular/forms';
 import { map, Subject, takeUntil } from 'rxjs';
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 @Component({
   selector: 'ort-va-currency-input',
   templateUrl: './va-currency-input.component.html',
@@ -40,7 +40,7 @@ import { ortInput } from '@features/feature-va-input';
 export class VaCurrencyInputComponent implements OnInit, ControlValueAccessor, Validator, OnDestroy {
   formControl = new FormControl();
 
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
 
   constructor() {
@@ -55,9 +55,9 @@ export class VaCurrencyInputComponent implements OnInit, ControlValueAccessor, V
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          // if (this.formControl.valid) {
+          if (this.formControl.valid) {
             this.onChange(val);
-          // }
+          }
         })
       )
       .subscribe();

@@ -15,7 +15,7 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 import { map, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -39,7 +39,7 @@ import { map, Subject, takeUntil } from 'rxjs';
 export class VaTextareaComponent implements OnInit, OnDestroy {
   formControl = new FormControl();
 
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
 
   onChange = (obj: any) => {};
@@ -50,6 +50,7 @@ export class VaTextareaComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
+          if(this.formControl.valid)
           this.onChange(val);
         })
       )

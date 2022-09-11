@@ -1,12 +1,12 @@
 <section id="nav">
   <div class="container">
     <div id="boxes">
-      <div class="box menu" >
+      <button class="box menu" [ortFeatureModal]="modalMenuTreeData">
         <div class="wrapper">
-          <span  ></span>
+          <span></span>
           <div class="mat-small">תפריט</div>
         </div>
-      </div>
+      </button>
       <div class="box links">
         <ng-container *ngFor="let link of links">
           <a class="clink" routerLinkActive="active" [routerLink]="link.route">
@@ -16,15 +16,16 @@
       </div>
       <div class="box search">
         <ort-button
+          [ortFeatureModal]="modalData"
+          (afterClosedOutput)="onSearch($event)"
           className="custom sz-1"
           iconName="search"
-          (click)="onOpenDialog()"
         >
         </ort-button>
       </div>
       <div class="box img">
         <a routerLink="/">
-          <img src="assets/images/header_logo.jpg" alt="ort medium logo" />
+          <img src="assets/images/header_logo_gray.png" alt="ort medium logo" />
         </a>
       </div>
     </div>

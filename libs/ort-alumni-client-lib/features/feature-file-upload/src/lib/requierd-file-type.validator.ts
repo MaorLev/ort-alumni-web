@@ -1,6 +1,6 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, ValidationErrors } from "@angular/forms";
 
-export function requiredFileType( types: string [] ) {
+export function requiredFileType( types: string [] ) : ValidationErrors | null {
   return function (control: FormControl) {
     const file = control.value;
     if ( file ) {
@@ -9,9 +9,7 @@ export function requiredFileType( types: string [] ) {
         if ( types[index].toLowerCase() === extension.toLowerCase() ) {
           return null;
         }
-
       }
-
       return {
         requiredFileType: true
       };

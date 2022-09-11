@@ -1,8 +1,11 @@
-import { Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { Observable, switchMap, mergeMap } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ArticleQuery } from './../state/article.query';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,9 +13,6 @@ import { ArticleInterface } from '../state/article.interface';
 import { ArticleService } from '../state/article.service';
 
 import { HttpEventType } from '@angular/common/http';
-
-import { ortInput } from '@features/feature-va-input';
-
 import { ArticleFormConfigService } from '../configuration/article-form-config.service';
 import { FormInterface } from '@features/feature-form';
 
@@ -27,7 +27,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
   article: Observable<ArticleInterface | undefined>;
   id: number;
   articleConfig: FormInterface;
- subscription = new Subscription();
+  subscription = new Subscription();
   constructor(
     activatedRouter: ActivatedRoute,
     private articleService: ArticleService,
@@ -41,15 +41,15 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.subscription = this.article.subscribe((article) => {
-
       this.articleConfig = this.articleConfigService.controls(
         true,
         article?.originalimgname
       );
-    })
+    });
   }
 
   onSubmit(articleForm: FormGroup) {
+
     if (articleForm.valid) {
       const art: ArticleInterface = articleForm.value;
       art.id = this.id;
@@ -62,7 +62,6 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy(): void {
-    if(this.subscription)
-    this.subscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

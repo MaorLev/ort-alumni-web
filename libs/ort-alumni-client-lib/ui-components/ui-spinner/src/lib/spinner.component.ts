@@ -4,9 +4,9 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'ort-spinner',
-  template: ` 
+  template: `
     <mat-progress-spinner
-        class="example-margin"
+        class="spinner"
         [color]="color"
         [mode]="mode"
         [value]="value"

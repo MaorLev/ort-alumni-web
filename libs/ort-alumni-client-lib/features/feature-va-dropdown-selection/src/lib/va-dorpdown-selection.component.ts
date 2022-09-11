@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { map, Subject } from 'rxjs';
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 import {
   Component,
   OnInit,
@@ -44,7 +44,7 @@ export class VaDorpdownSelectionComponent
 {
   onDestroy$ = new Subject<void>();
   control = new FormControl();
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
 
   constructor() {}
 
@@ -55,6 +55,7 @@ export class VaDorpdownSelectionComponent
     this.control.valueChanges
       .pipe(
         map((val) => {
+          if(this.control.valid)
           this.onChange(val);
         })
       )

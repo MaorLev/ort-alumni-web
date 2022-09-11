@@ -13,7 +13,8 @@
     text-align: start;
 
     background-color: var(--light-background-a);
-    border-width: 6px 1px 1px;
+    border-width: .6rem .1rem .1rem;
+    // border-width: 6px 1px 1px;
     border-style: solid;
     border-color: rgb(148, 148, 148);
     transition: 0.5s ease;
@@ -35,8 +36,10 @@
       width: 100%;
       opacity: 0;
       color: white;
-      font-size: 20px;
-      padding: 20px;
+      font-size: 2rem;
+      padding: 2rem;
+      // font-size: 20px;
+      // padding: 20px;
       text-align: start;
       @include mix.dont-break-out;
       @include mix.trim;

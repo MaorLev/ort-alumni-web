@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use "sass:map";
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@200;500;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
@@ -28,7 +29,37 @@ $fontConfig: (
   caption: mat.define-typography-level(1.2rem, 2rem, 400, 'Open Sans', 0.0333rem),
   input: mat.define-typography-level(inherit, 1.125, 400, 'Open Sans',0.15rem),
 );
-// map.get($fontConfig, "display-4");
+@mixin display-3 {
+  @include mat.typography-level($fontConfig, 'display-3');
+}
+@mixin display-4 {
+  @include mat.typography-level($fontConfig, 'display-4');
+}
+@mixin display-2 {
+  @include mat.typography-level($fontConfig, 'display-2');
+}
+@mixin display-1 {
+  @include mat.typography-level($fontConfig, 'display-1');
+}
+@mixin h-1 {
+  @include mat.typography-level($fontConfig, 'headline');
+}
+@mixin h-2 {
+  @include mat.typography-level($fontConfig, 'title');
+}
+@mixin h-3 {
+  @include mat.typography-level($fontConfig, 'subheading-2');
+}
+@mixin h-4 {
+  @include mat.typography-level($fontConfig, 'subheading-1');
+}
+@mixin body-1 {
+  @include mat.typography-level($fontConfig, 'body-1');
+}
+@mixin small {
+  @include mat.typography-level($fontConfig, 'caption');
+}
+// $display-4:map.get($fontConfig, "display-4");
 // https://github.com/angular/components/blob/main/guides/typography.md
 // .mat-display-4	display-4	None
 // .mat-display-3	display-3	None

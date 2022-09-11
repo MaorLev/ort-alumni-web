@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-table",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-table/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ort-alumni-client-lib/features/feature-table"],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-table/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-table/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-table/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

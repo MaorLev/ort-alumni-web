@@ -10,11 +10,13 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { environment } from '@environments';
-import { FeatureModalModule } from '@features/feature-modal';
 
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import { FeatureModalModule } from '@features/feature-modal';
+
 import { AlertsService } from '@utils/services';
+import { HttpClientJsonpModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '@environments';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,18 +27,16 @@ import { AlertsService } from '@utils/services';
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     BrowserAnimationsModule,
-    FeatureModalModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [
-
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
     },
     AlertsService,
-
   ],
   bootstrap: [AppComponent],
 })

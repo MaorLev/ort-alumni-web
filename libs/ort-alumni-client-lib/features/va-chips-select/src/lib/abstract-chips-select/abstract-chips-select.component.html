@@ -1,11 +1,11 @@
 <div [formGroup]="group">
   <ort-va-chips-select [config]="config" [formControlName]="config.name">
   </ort-va-chips-select>
-  <mat-error
+  <!-- <mat-error
     *ngIf="
       this.group.controls[this.config.name].hasError('required') &&
       this.group.controls[this.config.name].dirty
     "
     >שדה חובה</mat-error
-  >
+  > -->
 </div>

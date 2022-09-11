@@ -31,6 +31,12 @@
       "@features/feature-chips-check-list": [
         "libs/ort-alumni-client-lib/features/feature-chips-check-list/src/index.ts"
       ],
+      "@features/feature-expansion-panel": [
+        "libs/ort-alumni-client-lib/features/feature-expansion-panel/src/index.ts"
+      ],
+      "@features/feature-expansion-panel-node": [
+        "libs/ort-alumni-client-lib/features/feature-expansion-panel-node/src/index.ts"
+      ],
       "@features/feature-file-upload": [
         "libs/ort-alumni-client-lib/features/feature-file-upload/src/index.ts"
       ],
@@ -45,6 +51,9 @@
       ],
       "@features/feature-switcher-tab": [
         "libs/ort-alumni-client-lib/features/feature-switcher-tab/src/index.ts"
+      ],
+      "@features/feature-table": [
+        "libs/ort-alumni-client-lib/features/feature-table/src/index.ts"
       ],
       "@features/feature-va-date-picker": [
         "libs/ort-alumni-client-lib/features/feature-va-date-picker/src/index.ts"
@@ -67,6 +76,9 @@
       "@features/feature-va-textarea": [
         "libs/ort-alumni-client-lib/features/feature-va-textarea/src/index.ts"
       ],
+      "@features/feature-youtube-player": [
+        "libs/ort-alumni-client-lib/features/feature-youtube-player/src/index.ts"
+      ],
       "@features/va-chips-select": [
         "libs/ort-alumni-client-lib/features/va-chips-select/src/index.ts"
       ],
@@ -88,11 +100,17 @@
       "@ui-components/ui-carousel": [
         "libs/ort-alumni-client-lib/ui-components/ui-carousel/src/index.ts"
       ],
+      "@ui-components/ui-deck-card": [
+        "libs/ort-alumni-client-lib/ui-components/ui-deck-card/src/index.ts"
+      ],
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
       ],
       "@ui-components/ui-spinner": [
         "libs/ort-alumni-client-lib/ui-components/ui-spinner/src/index.ts"
+      ],
+      "@ui-components/ui-tree-node": [
+        "libs/ort-alumni-client-lib/ui-components/ui-tree-node/src/index.ts"
       ],
       "@utils/directives": [
         "libs/ort-alumni-client-lib/utils/helpers/util-directives/src/index.ts"

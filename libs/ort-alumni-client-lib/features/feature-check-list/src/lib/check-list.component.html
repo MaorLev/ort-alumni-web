@@ -1,5 +1,5 @@
-<mat-selection-list [formControl]="formControl" >
-  <mat-list-option *ngFor="let item of config.data.options$ | async"  [value]="item.id">
+<mat-selection-list  [formControl]="formControl" (focusout)="onTouched()">
+  <mat-list-option *ngFor="let item of config.data.options$ | async"  [value]="item.id" >
     {{ item.name }}
   </mat-list-option>
 </mat-selection-list>

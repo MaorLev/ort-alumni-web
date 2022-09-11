@@ -1,10 +1,10 @@
-<div *ngIf="apiLoaded | async else spinner">
+<div *ngIf="apiLoaded | async; else spinner">
   <p>מחכים לביקור... 😉</p>
   <google-map
     class="maps"
     min-height="100px"
-    height="400px"
-    width="100%"
+    [height]="height"
+    [width]="width"
     [center]="center"
     [zoom]="zoom"
   >
@@ -16,8 +16,8 @@
   ></google-map>
 </div>
 
-<ng-template #spinner >
-  <div class="container">
+<ng-template #spinner>
+  <div class="wrapper">
     <ort-spinner></ort-spinner>
   </div>
 </ng-template>

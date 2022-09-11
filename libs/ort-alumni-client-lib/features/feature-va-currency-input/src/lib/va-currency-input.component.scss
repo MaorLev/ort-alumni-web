@@ -1,16 +1,16 @@
 :host {
   display: block;
-  .example-full-width {
+  .currency-wrapper {
     width: 100%;
     text-align: end;
     direction: ltr ;
   }
-  input.example-right-align::-webkit-outer-spin-button,
-  input.example-right-align::-webkit-inner-spin-button {
+  input.currency-input::-webkit-outer-spin-button,
+  input.currency-input::-webkit-inner-spin-button {
     display: none ;
   }
 
-  input.example-right-align {
+  input.currency-input {
     -moz-appearance: textfield;
   }
 }

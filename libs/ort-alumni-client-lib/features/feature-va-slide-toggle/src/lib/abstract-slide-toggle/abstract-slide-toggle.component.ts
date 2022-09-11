@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 
 @Component({
   selector: 'ort-abstract-slide-toggle',
@@ -10,5 +10,5 @@ import { ortInput } from '@features/feature-va-input';
 })
 export class AbstractSlideToggleComponent {
   @Input() group:FormGroup;
-  @Input() config:ortInput;
+  @Input() config:VaInputInterface;
 }

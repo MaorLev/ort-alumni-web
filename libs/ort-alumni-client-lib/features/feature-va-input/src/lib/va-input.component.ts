@@ -17,8 +17,8 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { map, Subject, takeUntil } from 'rxjs';
-import { ortInput } from './va-input.interface';
+import { map, Subject, takeUntil, tap } from 'rxjs';
+import { VaInputInterface } from './va-input.interface';
 
 @Component({
   selector: 'ort-va-input',
@@ -45,7 +45,8 @@ export class VAInputComponent
   hide: boolean;
   type: string | undefined;
 
-  @Input() config: ortInput;
+
+  @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
 
   constructor() {
@@ -68,6 +69,7 @@ export class VAInputComponent
           // if (this.formControl.valid) {
             this.onChange(val);
           // }
+
         })
       )
       .subscribe();

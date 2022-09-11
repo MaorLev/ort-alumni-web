@@ -1,9 +1,9 @@
-import { ortInput } from "@features/feature-va-input";
+import { VaInputInterface } from "@features/feature-va-input";
 
 export interface FormInterface {
   groupName: string;
   buttons: buttons [];
-  controls: Record<string, ortInput>;
+  controls: Record<string, VaInputInterface>;
 }
 export interface buttons {
   label: string;

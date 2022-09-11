@@ -20,15 +20,13 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
 } from '@angular/forms';
-import { ortInput } from '@features/feature-va-input';
+import { VaInputInterface } from '@features/feature-va-input';
 import { map, Observable, Subject, takeUntil, startWith, tap } from 'rxjs';
 import {
   MatChipInputEvent,
   MAT_CHIPS_DEFAULT_OPTIONS,
 } from '@angular/material/chips';
-import {
-  MatAutocompleteSelectedEvent
-} from '@angular/material/autocomplete';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export interface SimpleInterface {
   id: number;
   name: string;
@@ -65,9 +63,9 @@ export class VaChipsSelectComponent
   isDisabled: boolean;
 
   chipControl = new FormControl();
-  @Input() config: ortInput;
+  @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
-  constructor(    private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef) {
     this.Chips = [];
     this.allChips = [];
   }
@@ -79,7 +77,7 @@ export class VaChipsSelectComponent
     this.chips = chips;
   }
   get allChips(): SimpleInterface[] {
-    return this.allchips;
+    return this.allchips.sort((a, b) => a.id - b.id);
   }
   set allChips(chips: SimpleInterface[]) {
     this.allchips = chips;
@@ -90,7 +88,7 @@ export class VaChipsSelectComponent
   onTouched = () => {};
 
   ngOnInit(): void {
-    this.isDisabled = this.config.data.isDisabled;
+    // this.isDisabled = this.config.data.isDisabled || false;
     this.config.data.options$
       .pipe(
         tap((allChips: SimpleInterface[]) => {
@@ -131,13 +129,12 @@ export class VaChipsSelectComponent
     }
   }
   writeValue(obj: SimpleInterface[]): void {
-    if(!obj) obj = [];
+    if (!obj) obj = [];
 
     if (obj.length >= this.Chips.length) {
       this.Chips = obj;
       this.excludeExistChips();
-    }
-    else if (obj.length < this.Chips.length) {
+    } else if (obj.length < this.Chips.length) {
       this.includeExistChips();
       this.Chips = obj;
       this.changeDetector.detectChanges();
@@ -176,6 +173,7 @@ export class VaChipsSelectComponent
           const id = this.allChips.indexOf(fullVal);
           this.allChips.splice(id, 1);
           this.onChange(this.Chips);
+          this.onTouched();
         }
       });
       if (exist === false) this.chipControl.addValidators(Validators.required);
@@ -201,6 +199,7 @@ export class VaChipsSelectComponent
         onlySelf: false,
         emitEvent: true,
       });
+      this.onTouched();
     }
   }
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -212,6 +211,7 @@ export class VaChipsSelectComponent
     this.onChange(this.Chips);
     this.chipInput.nativeElement.value = '';
     this.chipControl.setValue(null);
+    this.onTouched();
   }
 
   private _filter(value: string): SimpleInterface[] {

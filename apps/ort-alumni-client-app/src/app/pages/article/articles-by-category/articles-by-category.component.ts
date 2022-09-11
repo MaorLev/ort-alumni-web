@@ -22,7 +22,7 @@ export class ArticlesByCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
+
     if (this.categoryName === null) {
       this.articlesByCategory$ =
         this.articleService.selectArticlesViaCategoriesByLimit(10);

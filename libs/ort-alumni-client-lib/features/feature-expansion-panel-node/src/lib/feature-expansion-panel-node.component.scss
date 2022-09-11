@@ -1,0 +1,106 @@
+@use 'fonts' as font;
+
+.main-grid {
+  height: inherit;
+  width: inherit;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(10rem, 1fr));
+  padding: 3rem 8rem 0 3rem;
+  .grid-level {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0;
+
+    .item-level-1 {
+      max-height: 8rem;
+      max-width: 23rem;
+      button {
+        #active {
+          color: var(--white);
+        }
+        .text-item {
+          margin: 0px;
+          @include font.display-3;
+          color: var(--accent-a-stronger-color);
+          transition: color ease-in-out 250ms;
+        }
+      }
+    }
+    .item-level-2 {
+      margin-bottom: 15px;
+      button {
+        .text-item {
+          @include font.h-1;
+          font-weight: 600;
+          color: var(--white);
+          transition: color ease-in-out 250ms;
+        }
+      }
+    }
+    .item-level-3 {
+      margin-bottom: 15px;
+      button {
+        .text-item {
+          @include font.h-2;
+          font-weight: 500;
+          color: var(--white);
+          transition: color ease-in-out 250ms;
+        }
+      }
+    }
+    #btn-links {
+      transition: all ease-in-out 0.2s;
+      position: relative;
+      cursor: pointer;
+      color: var(--accent-a-stronger-color);
+      &:hover {
+        color: var(--white);
+        transition: color ease-in-out 250ms;
+      }
+      .arrow-icon {
+        position: absolute;
+        left: -30px;
+        top: 25%;
+        color: inherit;
+
+        &:hover {
+          color: inherit;
+          transition: color ease-in-out 250ms;
+        }
+      }
+      .text-line {
+        position: absolute;
+        bottom: -10px;
+        height: 1px;
+        background: var(--white);
+        width: 0px;
+        transition: all ease-in-out 0.2s;
+      }
+      &:hover {
+        .text-item {
+          color: var(--white);
+          transition: color ease-in-out 250ms;
+        }
+        .text-line {
+          width: 100%;
+        }
+      }
+      &:focus {
+        .text-item {
+          color: var(--white);
+        }
+        .text-line {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .desc {
+    color: var(--white);
+    margin: 2rem 0 5rem;
+    // line-height:2rem;
+    @include font.h-3;
+    font-weight: 500;
+  }
+}

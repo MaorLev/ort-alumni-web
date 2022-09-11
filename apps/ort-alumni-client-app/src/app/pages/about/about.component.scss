@@ -1,0 +1,28 @@
+:host {
+  .container {
+    transition: all 3s;
+  }
+  .main-grid {
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10rem, 1fr));
+
+    .grid-level {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    button {
+      margin: auto;
+      color: var(--primary-color);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      &:hover {
+        text-decoration-line: underline;
+      }
+      h1 {
+        margin: auto;
+      }
+    }
+  }
+}

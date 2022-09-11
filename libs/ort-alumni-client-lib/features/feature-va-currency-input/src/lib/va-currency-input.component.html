@@ -1,12 +1,13 @@
 
-  <mat-form-field appearance="fill" class="example-full-width" floatLabel="always">
+  <mat-form-field appearance="fill" class="currency-wrapper" floatLabel="always">
     <mat-label>{{ config.label }}</mat-label>
     <input
     matInput
     type="number"
-    class="example-right-align"
+    class="currency-input"
     [placeholder]="config.placeholder || config.label"
     [formControl]="formControl"
+    (focusout)="onTouched()"
  />
     <span matPrefix>₪&nbsp;</span>
     <span matSuffix>.00</span>

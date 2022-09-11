@@ -1,0 +1,21 @@
+<ng-template #primaryCard let-card>
+  <div id="card">
+    <div class="wrapper">
+      <h1>{{ card.heading }}</h1>
+      <h3>{{ card.subheading }}</h3>
+    </div>
+    <img class="image" [src]="card.img" alt="" />
+    <div class="overlay">
+      {{ card.detail }}
+    </div>
+  </div>
+</ng-template>
+<ng-template #plainCard let-card>
+  <div id="card">
+    <div class="wrapper">
+      <h1>{{ card.heading }}</h1>
+      <h3>{{ card.subheading }}</h3>
+    </div>
+      {{ card.detail }}
+  </div>
+</ng-template>

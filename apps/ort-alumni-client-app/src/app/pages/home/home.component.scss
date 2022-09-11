@@ -2,7 +2,8 @@
   .hero-about {
     position: relative;
     scroll-behavior: smooth;
-    margin-bottom: -80px;
+    margin-bottom: -8rem;
+    // margin-bottom: -80px;
     z-index: 4;
     overflow: hidden;
     display: grid;
@@ -38,9 +39,12 @@
     color: var(--white);
     text-align: center;
     position: relative;
-    top: -80px;
-    padding: 20px 0;
-    margin-top: 79px;
+    top: -8rem;
+    // top: -80px;
+    padding: 2rem 0;
+    margin-top: 7.9rem;
+    // padding: 20px 0;
+    // margin-top: 79px;
     p {
       padding: 0rem 3rem;
       word-spacing: 0.7rem;
@@ -48,9 +52,12 @@
     }
   }
   .btn {
-    width: 50px;
-    font-size: 50px;
-    height: 50px;
+    width: 5rem;
+    font-size: 5rem;
+    height: 5rem;
+    // width: 50px;
+    // font-size: 50px;
+    // height: 50px;
   }
   #feature-links {
     background-color: var(--accent-color);

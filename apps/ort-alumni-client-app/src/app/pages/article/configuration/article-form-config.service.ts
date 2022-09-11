@@ -90,6 +90,93 @@ export class ArticleFormConfigService {
             },
           ],
         },
+        autocomplete: {
+          component: AbstractSelectAutoCompleteComponent,
+          name: 'autocomplete',
+          label: 'טסט סלקט',
+          type: 'text',
+          validators: [
+            // AutocompleteStringValidator.autocompleteStringValidator(
+            //   this.getOptionsMockDropSelect()
+            // ),
+          ],
+          data: {
+            options$: of([
+              { name: 'אירועים', hebName: 'אירועים', id: 1 },
+              { name: 'כללי', hebName: 'כללי', id: 2 },
+            ]),
+          },
+          errors: [
+            {
+              name: 'required',
+              message: 'שדה חובה',
+            },
+            {
+              name: 'invalidAutocompleteString',
+              message: 'בחר עיר מתוך הרשימה, חפש עם השלמה אוטומטית.',
+            },
+          ],
+        },
+        checkbox: {
+          component: AbstractCheckListComponent,
+          name: 'checkbox',
+          label: 'צק בוקס',
+          type: '',
+          placeholder: 'בחר בוקס',
+          validators: [Validators.required],
+          data: {
+            options$: of([
+              { name: 'אונליין', id: 1 },
+              { name: 'פרונטלי', id: 2 },
+            ]),
+            validate: (control: AbstractControl) =>
+              this.CheckBoxValidation(control),
+          },
+          errors: [
+            {
+              name: 'required',
+              message: 'שדה חובה',
+            },
+          ],
+        },
+        chips: {
+          component: AbstractChipsSelectComponent,
+          name: 'chips',
+          label: 'ציפס',
+          type: '',
+          placeholder: 'בחר ציפ',
+          validators: [Validators.required],
+          data: {
+            // isDisabled:true,
+            property: { value: [], disabled: true },
+            options$: of([
+              { name: 'אירועים', hebName: 'אירועים', id: 1 },
+              { name: 'כללי', hebName: 'כללי', id: 2 },
+            ]),
+          },
+          errors: [
+            {
+              name: 'required',
+              message: 'שדה חובה',
+            },
+          ],
+        },
+        currency: {
+          component: AbstractCurrencyInputComponent,
+          name: 'currency',
+          label: 'מטבע',
+          type: 'number',
+          subtype: 'currency',
+          placeholder: '0',
+          validators: [],
+          data: {},
+          errors: [
+            {
+              name: 'maxlength',
+              message: 'maxLength error',
+            },
+          ],
+        },
         category: {
           component: AbstractSelectComponent,
           name: 'category',
@@ -126,10 +213,11 @@ export class ArticleFormConfigService {
           name: 'image',
           label: '',
           type: '',
-          validators: [requiredFileType(['png', 'jpg', 'jpeg'])],
+          validators: [Validators.required, requiredFileType(['png', 'jpg', 'jpeg'])],
           // validators: [isUpdate ? null : Validators.required,requiredFileType(['png', 'jpg', 'jpeg'])],
           data: {
-            isDisabled: isUpdate ? true : false,
+            // isDisabled: isUpdate ? true : false,
+            property: { value: null, disabled: isUpdate ? true : false },
             nameBefore: imageNameBefore ? imageNameBefore : null,
           },
           errors: [
@@ -179,87 +267,4 @@ export class ArticleFormConfigService {
 
     return ctrl.validator;
   }
-  // autocomplete: {
-  //   component: AbstractSelectAutoCompleteComponent,
-  //   name: 'autocomplete',
-  //   label: 'טסט סלקט',
-  //   type: 'text',
-  //   validators: [
-  //     // AutocompleteStringValidator.autocompleteStringValidator(
-  //     //   this.getOptionsMockDropSelect()
-  //     // ),
-  //   ],
-  //   data: {
-  //     options$: of([
-  //       { name: 'אירועים', hebName: 'אירועים', id: 1 },
-  //       { name: 'כללי', hebName: 'כללי', id: 2 },
-  //     ]),
-  //   },
-  //   errors: [
-  //     {
-  //       name: 'required',
-  //       message: 'שדה חובה',
-  //     },
-  //     {
-  //       name: 'invalidAutocompleteString',
-  //       message: 'בחר עיר מתוך הרשימה, חפש עם השלמה אוטומטית.',
-  //     },
-  //   ],
-  // },
-  // checkbox: {
-  //   component: AbstractCheckListComponent,
-  //   name: 'checkbox',
-  //   label: 'צק בוקס',
-  //   type: '',
-  //   placeholder: 'בחר בוקס',
-  //   validators: [Validators.required],
-  //   data: {
-  //     options$: of([
-  //       { name: 'אונליין', id: 1 },
-  //       { name: 'פרונטלי', id: 2 }]),
-  //     validate: (control:AbstractControl) => this.CheckBoxValidation(control)
-  //   },
-  //   errors: [
-  //     {
-  //       name: 'required',
-  //       message: 'שדה חובה',
-  //     },
-  //   ]
-  // },
-  // chips: {
-  //   component: AbstractChipsSelectComponent,
-  //   name: 'chips',
-  //   label: 'ציפס',
-  //   type: '',
-  //   placeholder: 'בחר ציפ',
-  //   validators: [Validators.required],
-  //   data: {
-  //     isDisabled:true,
-  //     options$:of([
-  //       { name: 'אירועים',hebName: 'אירועים', id: 1 },
-  //       { name: 'כללי',hebName: 'כללי', id: 2 }])
-  //   },
-  //   errors: [
-  //     {
-  //       name: 'required',
-  //       message: 'שדה חובה',
-  //     },
-  //   ],
-  // },
-  // currency: {
-  //   component: AbstractCurrencyInputComponent,
-  //   name: 'currency',
-  //   label: 'מטבע',
-  //   type: 'number',
-  //   subtype: 'currency',
-  //   placeholder:'0',
-  //   validators: [],
-  //   data: {  },
-  //   errors: [
-  //     {
-  //       name: 'maxlength',
-  //       message: 'maxLength error',
-  //     },
-  //   ],
-  // },
 }

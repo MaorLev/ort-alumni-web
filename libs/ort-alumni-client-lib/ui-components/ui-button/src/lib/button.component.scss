@@ -27,12 +27,49 @@
     // width: fit-content;
     height: 100%;
   }
-
-
-
 }
 
-
+.btn-close {
+  display: flex;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+  background-color: transparent;
+  border: solid 1px var(--white);
+  border-radius: 50%;
+  color: #fff;
+  opacity: 0.8;
+  padding: 0.2rem;
+  opacity: 0.5;
+  transition: all 1000ms;
+  cursor: pointer;
+  &:hover {
+    border: solid 1px #0a0a0ade;
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+  .content {
+    display: block;
+    background-color: var(--white);
+    height: 0.2rem;
+    width: 2.5rem;
+    transition: all 0.3s linear 0s;
+    align-self: center;
+    position: relative;
+    transform: rotate(45deg);
+    &:before {
+      content: '';
+      width: inherit;
+      height: 0.2rem;
+      background-color: var(--white);
+      position: absolute;
+      transition: all 0.3s linear 0s;
+      transform: rotate(90deg);
+      top: 0rem;
+      left: 0;
+    }
+  }
+}
 
 
 

@@ -1,0 +1,34 @@
+<div class="main-grid">
+  <ng-container *ngFor="let list of gridList">
+    <ol class="grid-level">
+      <ng-container *ngFor="let subList of list; let i = index">
+        <li [class]="'item-level-' + subList.level">
+          <button
+            id="btn-links"
+            (click)="
+              hasChildren(subList)
+                ? open(subList.children, subList.level)
+                : routeTo(subList.route);
+              subList.level === 1 ? onActive(i) : null
+            "
+          >
+            <ng-container *ngIf="!hasChildren(subList)">
+              <ort-icon class="arrow-icon" className=".mat-icon">
+                navigate_before
+              </ort-icon>
+            </ng-container>
+            <div class="text-item" [id]="currActives.get(i)">
+              {{ subList.name }}
+            </div>
+            <div [class]="hasChildren(subList) ? 'text-line' : ''"></div>
+          </button>
+          <ng-template ngIf="subList?.description">
+            <div class="desc">
+              {{ subList.description }}
+            </div>
+          </ng-template>
+        </li>
+      </ng-container>
+    </ol>
+  </ng-container>
+</div>

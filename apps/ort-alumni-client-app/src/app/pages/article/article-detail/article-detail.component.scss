@@ -10,7 +10,8 @@
       font-weight: 600;
     }
     .category-title {
-      border-bottom: 3px var(--accent-900) solid;
+      border-bottom: 0.3rem var(--accent-900) solid;
+      // border-bottom: 3px var(--accent-900) solid;
       line-height: 1.5;
       .category-link {
         display: inline-block;

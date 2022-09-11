@@ -1,0 +1,12 @@
+<div class="hero-video">
+  <youtube-player
+  ortLoadYtApi
+  (sizePlayer)="customSize ? undefined : currSizePlayer = $event"
+  [videoId]="idPlayer"
+  [playerVars]="playerVars"
+  suggestedQuality="highres"
+  [width]="videoWidth"
+  [height]="videoHeight"
+  (ready)="autoplay ? isReady($event) : ''"
+  ></youtube-player>
+</div>

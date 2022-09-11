@@ -1,4 +1,7 @@
-<form [formGroup]="group" (ngSubmit)="submitted.emit(group)">
+
+
+
+<form [formGroup]="group" (ngSubmit)="submitted.emit(group); isSubmitted = true;">
   <ng-container
     *ngFor="let config of configuration.controls | keyvalue: asIsOrder"
   >
@@ -12,17 +15,19 @@
           }
         "
       ></ng-container>
-      <!-- <ng-container *ngIf="config.value.errors">
+
+      <ng-container *ngIf="config.value.errors ">
         <ng-container *ngFor="let error of config.value.errors">
           <mat-error
+          class="error"
             *ngIf="
-              group.controls[config.value.name].hasError(error.name) &&
-              group.controls[config.value.name].touched
+            groupControls[config.value.name].hasError(error.name) &&
+            groupControls[config.value.name].touched
             "
             >{{ error.message }}</mat-error
           >
         </ng-container>
-      </ng-container> -->
+      </ng-container>
     </div>
   </ng-container>
   <ng-container *ngIf="configuration.buttons">
@@ -36,7 +41,7 @@
         >
       </div>
     </ng-container>
-    <mat-error *ngIf="group.invalid && group.touched"
+    <mat-error *ngIf="isSubmitted && group.invalid && group.touched"
       >מלא את השדות הנדרשות</mat-error
     >
   </ng-container>

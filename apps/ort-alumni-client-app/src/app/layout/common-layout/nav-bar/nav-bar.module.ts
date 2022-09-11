@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { UiButtonModule } from '@ui-components/ui-button';
 import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-logged-in.directive';
+import { FeatureModalModule } from '@features/feature-modal';
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-log
     RouterModule,
     QuicklinkModule,
     UiButtonModule,
-    ShowIfLoggedInDirectiveModule
+    ShowIfLoggedInDirectiveModule,
+    FeatureModalModule
+
   ],
   exports: [QuicklinkModule, NavBarComponent ],
 })

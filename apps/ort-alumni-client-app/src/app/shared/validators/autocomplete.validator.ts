@@ -3,7 +3,7 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 export class AutocompleteStringValidator {
   static autocompleteStringValidator(validOptions: any[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      debugger;
+
       if (control?.value != null && typeof(control?.value) !== 'string' ) {
         let item;
         //situation control is object

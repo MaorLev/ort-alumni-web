@@ -2,13 +2,13 @@
   class="wrapper"
   ortDnd
   (fileDropped)="emitFiles($event)"
-  [isDisabled]="this.config.data?.isDisabled || false"
+  [isDisabled]="isDisabled || false"
 >
   <input
     #fileDropRef
     id="fileDropRef"
     type="file"
-    [disabled]="this.config.data?.isDisabled || false"
+    [disabled]="isDisabled || false"
   />
 
   <ort-icon svgName="upload_icon" className="icon-sz-2"></ort-icon>
@@ -19,7 +19,8 @@
 
 <div class="files-list" *ngIf="file !== null || nameBefore">
   <div class="single-file">
-    <div class="file-icon" style="width: 50px">
+    <div class="file-icon" style="width: 5rem">
+    <!-- <div class="file-icon" style="width: 50px"> -->
       <ort-icon svgName="sheet_icon"></ort-icon>
     </div>
     <div class="info">
@@ -37,6 +38,6 @@
   </div>
 </div>
 
-<ng-container *ngIf="counter > 0">
+<!-- <ng-container *ngIf="counter > 0">
   <mat-error *ngIf="internalError | async as err">{{ err }}</mat-error>
-</ng-container>
+</ng-container> -->

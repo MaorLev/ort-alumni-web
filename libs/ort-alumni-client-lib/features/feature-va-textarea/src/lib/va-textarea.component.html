@@ -1,11 +1,12 @@
 <div id="text-area">
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field class="textarea-wrapper" appearance="fill">
     <mat-label>{{ config.label }}</mat-label>
     <textarea
       matInput
       #message [maxlength]="config.data?.maxLengthValue || 300"
       [formControl]="formControl"
       [placeholder]="config.placeholder || config.label"
+      (focusout)="onTouched()"
     ></textarea>
     <mat-hint align="end"><strong>Don't disclose personal info</strong> </mat-hint>
     <mat-hint align="start">{{message.value.length}} / {{config.data?.maxLengthValue || 300}}</mat-hint>

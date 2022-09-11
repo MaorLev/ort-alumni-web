@@ -1,15 +1,21 @@
 <div class="main-hero">
-
-  <section id="hero" >
-    <img src="/assets/images/hero4-h.jpg" class="hero-image">
-    <h2 class="title" >
-      {{title}}
-    </h2>
-    <div *ngIf="withDownScroll" class="downscroll"  >
-      <a [appScrollAnchor]="anchorName" >
-        <div class="main-downscroll">down</div>
-        <div class="after-downscroll"></div>
-      </a>
+  <section id="hero">
+    <div class="hero-videoo">
+      <img src="/assets/images/bg-footer.jpg" class="hero-image" />
+      <!-- <youtube-player  videoId="JaCoOMPNgJE"  [width]="videoWidth" [height]="videoHeight"  ></youtube-player> -->
+      <ort-feature-youtube-player
+        class="hero-video"
+        [playerConfig]="YT_HERO_DATA"
+      ></ort-feature-youtube-player>
+      <div *ngIf="withDownScroll" class="downscroll">
+        <a [appScrollAnchor]="anchorName">
+          <div class="main-downscroll">down</div>
+          <div class="after-downscroll"></div>
+        </a>
+      </div>
     </div>
+    <h2 class="title">
+      {{ title }}
+    </h2>
   </section>
 </div>

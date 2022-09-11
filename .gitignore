@@ -47,3 +47,5 @@ libs/*/obj
 .vs/*
 apps/alumni-ort-server/appsettings.json
 apps/alumni-ort-server/appsettings.Development.json
+
+libs/ort-alumni-client-lib/alumni-shared/environments

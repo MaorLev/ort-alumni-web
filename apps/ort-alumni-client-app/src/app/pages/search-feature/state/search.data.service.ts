@@ -11,7 +11,7 @@ export class searchDataService {
   constructor(private httpClient: HttpClient){}
   searchPages(word:string): Observable<unknown> {
     // eslint-disable-next-line no-debugger
-    debugger;
+
     return this.httpClient.get(`${this.baseUrl}/searchContent/${word}`) as Observable<unknown>
   }
 }
