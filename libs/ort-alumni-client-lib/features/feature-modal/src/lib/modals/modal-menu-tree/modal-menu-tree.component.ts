@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FilesNodeInterface } from '@features/feature-expansion-panel-node';
 import { MenuDataModal } from './modal-menu.interfaces';
 
 @Component({
@@ -16,7 +15,7 @@ import { MenuDataModal } from './modal-menu.interfaces';
             <img src="assets/images/header_modal.png" alt="ort medium logo" />
           </div>
         </header>
-        <div class="container">
+        <div class="node-container">
           <div mat-dialog-content>
             <ort-feature-expansion-panel-node
               [dateSource]="data.dataSource"
@@ -33,15 +32,17 @@ import { MenuDataModal } from './modal-menu.interfaces';
               >
             </div>
 
-            <div *ngFor="let link of data.quickLinks" class="item link">
-              <button
-                [routerLink]="link.routeTo"
-                mat-dialog-close
-                class="btn-link"
-              >
-                {{ link.label }}
-              </button>
-            </div>
+            <ng-container *ngFor="let link of data.quickLinks">
+              <div class="item link">
+                <button
+                  [routerLink]="link.routeTo"
+                  mat-dialog-close
+                  class="btn-link"
+                >
+                  {{ link.label }}
+                </button>
+              </div>
+            </ng-container>
           </div>
         </footer>
       </div>
@@ -79,45 +80,52 @@ import { MenuDataModal } from './modal-menu.interfaces';
           position: absolute;
           height: 100%;
           width: 100%;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 5fr 1fr;
 
           .header-modal {
             width: inherit;
-            height: 10vh;
+            height: inherit;
             display: flex;
             justify-content: space-between;
             padding: 3rem 5rem;
           }
 
-          .container {
+          .node-container {
             width: inherit;
-            height: 80vh;
-            padding: 0;
+            height: inherit;
+            overflow: hidden;
+            padding: 1rem;
           }
 
           .footer {
             width: inherit;
-            height: 10vh;
+            height: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            padding: 3rem 0;
+            -webkit-box-shadow: inset 0px 40px 8px -10px rgba(0, 0, 0, 0.21);
+            box-shadow: inset 0px 40px 8px -10px rgba(0, 0, 0, 0.21);
+
             .items {
-              height: 100%;
-              width: 100%;
-              padding: 2rem 6rem;
+              padding: 2rem 4rem;
               border-top: 1px solid var(--accent-a-color);
               display: flex;
-              flex-wrap: nowrap;
-              overflow: hidden;
+              flex-wrap: wrap;
               color: var(--white);
 
               .item {
-                align-self: center;
-                height: 100%;
-                display: block;
-                padding: 0.5rem 1.5rem;
+                display: lockb;
+                padding: 0.5rem 1rem;
                 @include font.h-2;
                 font-weight: 600;
                 &.static {
                   color: var(--accent-a-stronger-color);
                   display: flex;
-                  flex-wrap: nowrap;
+                  flex-wrap: wrap;
                 }
               }
             }

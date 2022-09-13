@@ -1,13 +1,20 @@
 <div class="main-grid">
   <ng-container *ngFor="let list of gridList">
     <ol class="grid-level">
+      <ng-container *ngIf="list[0].level !== 1">
+        <ort-icon class="arrow-back" className=".mat-icon" (click)="onBack()">
+          turn_right
+        </ort-icon>
+      </ng-container>
       <ng-container *ngFor="let subList of list; let i = index">
         <li [class]="'item-level-' + subList.level">
           <button
             id="btn-links"
             (click)="
               hasChildren(subList)
-                ? open(subList.children, subList.level)
+                ? algoFlag
+                  ? responsiveOpen(subList.children)
+                  : open(subList.children, subList.level)
                 : routeTo(subList.route);
               subList.level === 1 ? onActive(i) : null
             "

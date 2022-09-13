@@ -4,12 +4,36 @@
   height: inherit;
   width: inherit;
   display: grid;
+
   grid-template-columns: repeat(3, minmax(10rem, 1fr));
   padding: 3rem 8rem 0 3rem;
+
+  gap: 2rem;
+  @media (max-width: 924.9px) {
+    grid-template-columns: repeat(1, minmax(10rem, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
   .grid-level {
+    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 3rem 0;
+    padding: 3rem 1rem;
+    .arrow-back {
+      position: absolute;
+      top: -2%;
+      color: var(--accent-a-stronger-color);
+      font-size: 3rem;
+      &:hover {
+        color: var(--white);
+        transition: color ease-in-out 250ms;
+        cursor: pointer;
+      }
+      @media (min-width: 925.1px) {
+        display: none;
+      }
+    }
 
     .item-level-1 {
       max-height: 8rem;
@@ -27,7 +51,6 @@
       }
     }
     .item-level-2 {
-      margin-bottom: 15px;
       button {
         .text-item {
           @include font.h-1;
@@ -38,7 +61,6 @@
       }
     }
     .item-level-3 {
-      margin-bottom: 15px;
       button {
         .text-item {
           @include font.h-2;
@@ -99,7 +121,6 @@
   .desc {
     color: var(--white);
     margin: 2rem 0 5rem;
-    // line-height:2rem;
     @include font.h-3;
     font-weight: 500;
   }
