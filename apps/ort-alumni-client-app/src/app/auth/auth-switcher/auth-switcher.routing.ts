@@ -19,6 +19,7 @@ const routes: Routes = [
             (m) => m.PreRegisterationModule
           ),
       },
+
       {
         path: 'reset-password',
         loadChildren: () =>
@@ -28,7 +29,7 @@ const routes: Routes = [
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
-  },
+  }
 ];
 
 @NgModule({

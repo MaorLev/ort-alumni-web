@@ -18,6 +18,10 @@ export interface VaDataInterface {
   options?:any;
   validate?:any;
 }
+export interface StylesControl {
+  width:string;
+  display:string;
+}
 export interface VaInputInterface {
   component: ComponentType<unknown>;
   name: string;
@@ -25,6 +29,7 @@ export interface VaInputInterface {
   placeholder?: string;
   styleClass?: string;
   type?: string;
+  styles?:StylesControl;
   subtype?: string;
   data: VaDataInterface;
   validators: ValidatorFn[] | ValidationErrors;

@@ -1,21 +1,21 @@
-import { FilesNodeInterface } from '@features/feature-expansion-panel-node';
+import { FilesTreeNodeInterface } from '@features/feature-expansion-tree';
 import { MenuQuickLink } from './modal-menu.interfaces';
 
 export const quickLinks: MenuQuickLink[] = [
   { label: 'מכללות אורט', routeTo: '/main' },
   { label: 'אורט', routeTo: '/main' },
   { label: 'מכללות', routeTo: '/main' },
-  { label: 'מכללות אורט', routeTo: '/main' }
+  { label: 'מכללות אורט', routeTo: '/main' },
 ];
 
-export const MenuRoutes: FilesNodeInterface[] = [
+export const MenuRoutes: FilesTreeNodeInterface[] = [
   {
     name: 'ראשי',
     level: 1,
     children: [
       { name: 'בית', route: '/main', level: 2, children: [] },
-      { name: 'אודות', route: '/main/about', level: 2, children: [] }
-    ]
+      { name: 'אודות', route: '/main/about', level: 2, children: [] },
+    ],
   },
   {
     name: 'השני',
@@ -27,7 +27,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
         route: '/main/articles',
         children: [],
-        level: 2
+        level: 2,
       },
       {
         name: 'קטגוריות',
@@ -41,7 +41,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
             route: '/main/articles-by-category/General',
             level: 3,
-            children: []
+            children: [],
           },
           {
             name: 'אירועים',
@@ -49,7 +49,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            children: []
+            children: [],
           },
           {
             name: 'אירועים',
@@ -57,11 +57,11 @@ export const MenuRoutes: FilesNodeInterface[] = [
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            children: []
-          }
-        ]
-      }
-    ]
+            children: [],
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'מאמרים',
@@ -74,7 +74,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
         route: '/main/articles',
         children: [],
-        level: 2
+        level: 2,
       },
       {
         name: 'קטגוריות',
@@ -88,7 +88,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
             route: '/main/articles-by-category/General',
             level: 3,
-            children: []
+            children: [],
           },
           {
             name: 'אירועים',
@@ -96,11 +96,11 @@ export const MenuRoutes: FilesNodeInterface[] = [
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            children: []
-          }
-        ]
-      }
-    ]
+            children: [],
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'השלישי',
@@ -113,7 +113,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
         route: '/main/articles',
         children: [],
-        level: 2
+        level: 2,
       },
       {
         name: 'קטגוריות',
@@ -127,7 +127,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
             route: '/main/articles-by-category/General',
             level: 3,
-            children: []
+            children: [],
           },
           {
             name: 'אירועים',
@@ -135,11 +135,11 @@ export const MenuRoutes: FilesNodeInterface[] = [
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            children: []
-          }
-        ]
-      }
-    ]
+            children: [],
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'מאמרים',
@@ -152,7 +152,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
         route: '/main/articles',
         children: [],
-        level: 2
+        level: 2,
       },
       {
         name: 'קטגוריות',
@@ -166,7 +166,7 @@ export const MenuRoutes: FilesNodeInterface[] = [
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
             route: '/main/articles-by-category/General',
             level: 3,
-            children: []
+            children: [],
           },
           {
             name: 'אירועים',
@@ -174,10 +174,10 @@ export const MenuRoutes: FilesNodeInterface[] = [
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            children: []
-          }
-        ]
-      }
-    ]
-  }
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
 ];

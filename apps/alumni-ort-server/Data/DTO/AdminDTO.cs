@@ -15,7 +15,7 @@ namespace AlumniOrtServer.Data.DTO
         public string FirstName { get; set; }
         [JsonProperty(PropertyName = "lastname")]
         public string LastName { get; set; }
-        [JsonProperty(PropertyName = "mail")]
+        [JsonProperty(PropertyName = "email")]
         public string Mail { get; set; }
         //public string FullName { get { return FirstName + " " + LastName; } set { FirstName = value; LastName = value; } }
         [JsonProperty(PropertyName = "password")]

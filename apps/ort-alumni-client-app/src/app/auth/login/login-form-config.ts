@@ -1,8 +1,7 @@
 import { Validators } from '@angular/forms';
 import { FormInterface } from '@features/feature-form';
-import { AbstractDatePickerComponent } from '@features/feature-va-date-picker';
 import { AbstractInputComponent } from '@features/feature-va-input';
-import { AbstractPhoneComponent } from '@features/feature-va-phone';
+
 
 export const LoginFormConfig: FormInterface = {
   groupName: 'loginForm',

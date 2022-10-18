@@ -38,3 +38,9 @@ h2 {
   @include mix.dont-break-out;
 }
 
+ort-central-message {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

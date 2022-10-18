@@ -1,10 +1,10 @@
-import { FilesNodeInterface } from "@features/feature-expansion-panel-node";
+import { FilesTreeNodeInterface } from '@features/feature-expansion-tree';
 
 export interface MenuQuickLink {
-  label:string;
-  routeTo:string;
+  label: string;
+  routeTo: string;
 }
 export interface MenuDataModal {
-  quickLinks:MenuQuickLink[];
-  dataSource:FilesNodeInterface[];
+  quickLinks: MenuQuickLink[];
+  dataSource: FilesTreeNodeInterface[];
 }

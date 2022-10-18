@@ -1,5 +1,6 @@
 <div [@fadeInOut] class="container">
-  <ort-button className="custom fancy_btn"  routeTo=""  >סטודנטים</ort-button>
-<br>
-  <ort-button className="custom fancy_btn" routeTo=""  >בוגרים</ort-button>
+  <ng-container *ngFor="let user of navigationUsers" >
+
+    <ort-button class=""  [className]="user.styleClass"  [routeTo]="user.routeTo"  >{{user.label}}</ort-button>
+  </ng-container>
 </div>

@@ -1,5 +1,7 @@
 :host {
-  // mat-form-field{
-  //   text-align: start;
-  // }
+  display: block;
+  .control {
+    width: 100%;
+    text-align: start;
+  }
 }

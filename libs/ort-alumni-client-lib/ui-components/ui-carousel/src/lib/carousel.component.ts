@@ -7,18 +7,21 @@ import { NgxGlideComponent } from 'ngx-glide';
   styleUrls: ['./carousel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarouselComponent{
+export class CarouselComponent {
   @ViewChild('ngxGlide') ngxGlide!: NgxGlideComponent;
   @Input() perView:number;
   @Input() showBullets:boolean;
   @Input() bound:boolean;
   @Input() direction: "rtl" | "ltr";
+  @Input() startAt:number | undefined;
   constructor() {
     this.perView = 2;
     this.showBullets = false;
     this.bound = true;
     this.direction = "rtl";
+
   }
+
 
 
 }

@@ -1,11 +1,12 @@
 
 
 
-<form [formGroup]="group" (ngSubmit)="submitted.emit(group); isSubmitted = true;">
-  <ng-container
+<form [formGroup]="group" [class]="configuration.controlsWidthClass || ''" (ngSubmit)="extractFormGroup(); isSubmitted = true;">
+  <div [class]="configuration.styleStructure || ''">
+    <ng-container
     *ngFor="let config of configuration.controls | keyvalue: asIsOrder"
   >
-    <div class="item">
+    <div class="item" [style]="config.value.styles?.width || ''">
       <ng-container
         *ngComponentOutlet="
           config.value.component;
@@ -30,13 +31,15 @@
       </ng-container>
     </div>
   </ng-container>
-  <ng-container *ngIf="configuration.buttons">
+  <ng-container *ngIf="configuration.buttons else outbuttons">
     <ng-container *ngFor="let button of configuration.buttons">
       <div class="item">
         <ort-button
           [type]="button.type"
           [class]="button.className"
           className="mat-raised-button bar-btn-primary"
+          [action]="action"
+          (actionSubmitted)="actionSubmitted.emit(action)"
           >{{ button.label }}</ort-button
         >
       </div>
@@ -45,4 +48,11 @@
       >מלא את השדות הנדרשות</mat-error
     >
   </ng-container>
+  <ng-template #outbuttons >
+    <div  class="item">
+      <ng-content></ng-content>
+    </div>
+  </ng-template>
+  </div>
+
 </form>

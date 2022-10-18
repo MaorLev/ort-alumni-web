@@ -35,7 +35,7 @@ const routes: Routes = [
 ];
 //need to treat with async way
 export function tokenGetter() {
-  const temp = localStorage.getItem('session');
+  const temp = localStorage.getItem('authSession');
   if (temp) {
     const session = JSON.parse(temp);
     return session.access_token;

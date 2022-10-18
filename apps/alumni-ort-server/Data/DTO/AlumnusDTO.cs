@@ -12,7 +12,7 @@ namespace AlumniOrtServer.Data.DTO
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
-        [JsonProperty(PropertyName = "mail")]
+        [JsonProperty(PropertyName = "email")]
         public string Mail { get; set; }
         [JsonProperty(PropertyName = "firstname")]
         public string FirstName { get; set; }

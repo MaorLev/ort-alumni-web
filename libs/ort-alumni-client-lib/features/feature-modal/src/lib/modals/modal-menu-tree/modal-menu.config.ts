@@ -12,6 +12,6 @@ export const MENU_TREE_MODAL: ModalInteface = {
     quickLinks: quickLinks
   },
   panelClass: 'menu-bgmp',
-  animation: { to: 'aside' },
+  animation: { to: 'bottom' },
   position: { rowEnd: 'right', top: '0' }
 };

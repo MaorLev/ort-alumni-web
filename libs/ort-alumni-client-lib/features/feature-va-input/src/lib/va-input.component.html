@@ -2,7 +2,7 @@
     <mat-form-field class="input-wrapper" appearance="fill">
       <mat-label>{{ config.label }}</mat-label>
       <input
-        [type]="hide ? 'password' : (config.type || 'text')"
+        [type]="hide ? 'password' : 'text'"
         matInput
         [formControl]="formControl"
         [placeholder]="config.placeholder || config.label"
@@ -13,7 +13,7 @@
       (click)="hide = !hide"
       [attr.aria-label]="'Hide password'"
       [attr.aria-pressed]="hide"
-      className="mat-icon-button"
+      className="mat-icon"
       [iconName]="hide ? 'visibility_off' : 'visibility'"
     ></ort-button>
     </mat-form-field>

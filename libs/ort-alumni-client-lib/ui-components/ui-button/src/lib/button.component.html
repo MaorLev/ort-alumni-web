@@ -1,9 +1,10 @@
 <button
   [type]="type"
   [value]="value"
-  [class]="className"
+  [class]="className + ' ' + buttonColor"
   [disabled]="disabled"
   [routerLink]="routeTo"
+  (click)="actionSubmitted.emit(action)"
 >
   <div class="content">
     <span *ngIf="iconName" class="content-btn_icon">

@@ -34,8 +34,8 @@
       "@features/feature-expansion-panel": [
         "libs/ort-alumni-client-lib/features/feature-expansion-panel/src/index.ts"
       ],
-      "@features/feature-expansion-panel-node": [
-        "libs/ort-alumni-client-lib/features/feature-expansion-panel-node/src/index.ts"
+      "@features/feature-expansion-tree": [
+        "libs/ort-alumni-client-lib/features/feature-expansion-tree/src/index.ts"
       ],
       "@features/feature-file-upload": [
         "libs/ort-alumni-client-lib/features/feature-file-upload/src/index.ts"
@@ -109,20 +109,20 @@
       "@ui-components/ui-spinner": [
         "libs/ort-alumni-client-lib/ui-components/ui-spinner/src/index.ts"
       ],
-      "@ui-components/ui-tree-node": [
-        "libs/ort-alumni-client-lib/ui-components/ui-tree-node/src/index.ts"
-      ],
       "@utils/directives": [
         "libs/ort-alumni-client-lib/utils/helpers/util-directives/src/index.ts"
       ],
       "@utils/services": [
         "libs/ort-alumni-client-lib/utils/helpers/util-services/src/index.ts"
       ],
-      "@utils/util-others": [
-        "libs/ort-alumni-client-lib/utils/helpers/util-others/src/index.ts"
-      ],
       "@utils/util-pipes": [
         "libs/ort-alumni-client-lib/utils/helpers/util-pipes/src/index.ts"
+      ],
+      "@utils/util-tools": [
+        "libs/ort-alumni-client-lib/utils/helpers/util-tools/src/index.ts"
+      ],
+      "@utils/util/core/central-message": [
+        "libs/ort-alumni-client-lib/utils/core/central-message/src/index.ts"
       ]
     }
   },

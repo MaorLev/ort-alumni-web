@@ -1,0 +1,60 @@
+@use 'fonts' as font;
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-right: 8px;
+}
+.mat-action-row {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template: 'butto messag' 1fr;
+  padding: 10px;
+  justify-content: space-between;
+  direction: ltr;
+  .submitted-error {
+    grid-area: messag;
+  }
+  .buttons {
+    grid-area: butto;
+    ort-button {
+      margin-right: 2rem;
+    }
+  }
+}
+#sz-big {
+  width: inherit;
+  height: inherit;
+  .inputs-wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(10rem, 1fr));
+    row-gap: 10px;
+    justify-content: center;
+    .input {
+      display: inline-block;
+      width: 50%;
+      max-width: 95%;
+      margin-right: 3px;
+    }
+  }
+  .panel-header {
+    height: 100px;
+    .header-title {
+      @include font.h-2;
+    }
+    .header-desc {
+      .header-icon {
+        @include font.h-3;
+        font-size: 3rem;
+      }
+    }
+  }
+}

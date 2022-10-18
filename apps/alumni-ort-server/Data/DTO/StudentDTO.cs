@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.Models;
 using Newtonsoft.Json;
@@ -15,7 +15,7 @@ namespace AlumniOrtServer.DTO
         ///
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
-        [JsonProperty(PropertyName = "mail")]
+        [JsonProperty(PropertyName = "email")]
         public string Mail { get; set; }
         [JsonProperty(PropertyName = "firstname")]
 
@@ -33,16 +33,20 @@ namespace AlumniOrtServer.DTO
         public DateTime DateOfBirth { get; set; }
         [JsonProperty(PropertyName = "studystartyear")]
         public string StudyStartYear { get; set; }
-        [JsonProperty(PropertyName = "collegename")]
-        public string CollegeName { get; set; }
-        [JsonProperty(PropertyName = "collegeid")]
-        public int CollegeId { get; set; }
-        [JsonProperty(PropertyName = "studyprogramname")]
-        public string StudyProgramName { get; set; }
-        [JsonProperty(PropertyName = "studyprogramid")]
-        public int StudyProgramId { get; set; }
+        [JsonProperty(PropertyName = "college")]
+        public College College { get; set; }
+        [JsonProperty(PropertyName = "studyprogram")]
+        public StudyProgram StudyProgram { get; set; }
         [JsonProperty(PropertyName = "city")]
         public City City { get; set; }
+        //[JsonProperty(PropertyName = "collegename")]
+        //public string CollegeName { get; set; }
+        //[JsonProperty(PropertyName = "collegeid")]
+        //public int CollegeId { get; set; }
+        //[JsonProperty(PropertyName = "studyprogramname")]
+        //public string StudyProgramName { get; set; }
+        //[JsonProperty(PropertyName = "studyprogramid")]
+        //public int StudyProgramId { get; set; }
         //[JsonProperty(PropertyName = "roleid")]
         //public int RoleId { get; set; }
     }

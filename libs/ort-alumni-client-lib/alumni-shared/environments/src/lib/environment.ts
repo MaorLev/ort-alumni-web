@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // endPointApi: 'https://localhost:44324',
-  endPointApi: 'https://localhost:5001',
+  endPointApi: 'https://localhost:44324',
+  // endPointApi: 'https://localhost:5001',
   API_GOOGLE_MAP_KEY: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDLvBsaw5DCjHumjSGMjFKUb7hNmybAdXc'
 };
 

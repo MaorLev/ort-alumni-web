@@ -1,0 +1,9 @@
+<ng-container *ngFor="let message of messages$ | async">
+  <div class="alert alert-danger alert-dismissible fade show">
+    {{message.description}}
+    <button (click)="remove(message)" class="close">
+      <span>&times;</span>
+    </button>
+  </div>
+
+</ng-container>

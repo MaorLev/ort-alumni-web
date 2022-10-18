@@ -40,7 +40,8 @@
               {{ articles.hebName }}
             </h1>
             <div class="pre-articles">
-              <ort-carousel>
+              <ort-carousel
+              [startAt]="articles.articles?.length">
                 <ng-container *ngFor="let article of articles.articles">
                   <a [routerLink]="['../article-detail', article.id]">
                     <ort-card

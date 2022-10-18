@@ -24,11 +24,11 @@ namespace AlumniOrtServer.Services
         }
         public async Task<ResponseDTO> Add(StudentDTO student)
         {
-            Role role = await m_db.Role.Where(x => x.Id == RolesId.Student).FirstOrDefaultAsync();
+      Role role = await m_db.Role.Where(x => x.Id == RolesId.Student).FirstOrDefaultAsync();
 
-            Student StudentFromDB = new Student(0, student.Mail, student.FirstName
-               , student.LastName, MD5Service.Encrypt(student.Password), student.Phone, student.City.Id, student.CollegeId
-               , student.StudyProgramId, student.CardId,student.DateOfBirth, student.StudyStartYear, RolesId.Student);
+      Student StudentFromDB = new Student(0, student.Mail, student.FirstName
+               , student.LastName, MD5Service.Encrypt(student.Password), student.Phone, student.City.Id, student.College.Id
+               , student.StudyProgram.Id, student.CardId,student.DateOfBirth, student.StudyStartYear, RolesId.Student);
 
                 await m_db.Students.AddAsync(StudentFromDB);
 
@@ -84,20 +84,22 @@ namespace AlumniOrtServer.Services
             {
                 var students = await m_db.Students.Select(s => new StudentDTO()
                 {
-                    CardId = s.CardId,
-                    City = s.City,
-                    CollegeName = s.College.Name,
-                    DateOfBirth = s.DateOfBirth,
-                    FirstName = s.FirstName,
-                    LastName = s.LastName,
-                    Id = s.Id,
-                    Mail = s.Mail,
-                    Password = s.Password,
-                    Phone = s.Phone,
-                    StudyProgramName = s.StudyProgram.Name,
-                    StudyStartYear = s.StudyStartYear,
-                    CollegeId = s.CollegeId,
-                    StudyProgramId = s.StudyProgramId
+                  CardId = s.CardId,
+                  City = s.City,
+                  College = s.College,
+                  //CollegeId = s.CollegeId,
+                  //CollegeName = s.College.Name,
+                  DateOfBirth = s.DateOfBirth,
+                  FirstName = s.FirstName,
+                  Id = s.Id,
+                  LastName = s.LastName,
+                  Mail = s.Mail,
+                  Password = MD5Service.Decrypt(s.Password),
+                  Phone = s.Phone,
+                  StudyProgram = s.StudyProgram,
+                  //StudyProgramId = s.StudyProgramId,
+                  //StudyProgramName = s.StudyProgram.Name,
+                  StudyStartYear = s.StudyStartYear
 
                 }).ToListAsync();
                 return students;
@@ -131,18 +133,20 @@ namespace AlumniOrtServer.Services
                 {
                     CardId = s.CardId,
                     City = s.City,
-                    CollegeId = s.CollegeId,
-                    CollegeName = s.College.Name,
-                    DateOfBirth = s.DateOfBirth,
+                  College = s.College,
+                  //CollegeId = s.CollegeId,
+                  //CollegeName = s.College.Name,
+                  DateOfBirth = s.DateOfBirth,
                     FirstName = s.FirstName,
                     Id = s.Id,
                     LastName = s.LastName,
                     Mail = s.Mail,
                     Password = MD5Service.Decrypt(s.Password),
                     Phone = s.Phone,
-                    StudyProgramId = s.StudyProgramId,
-                    StudyProgramName = s.StudyProgram.Name,
-                    StudyStartYear = s.StudyStartYear
+                  StudyProgram = s.StudyProgram,
+                  //StudyProgramId = s.StudyProgramId,
+                  //StudyProgramName = s.StudyProgram.Name,
+                  StudyStartYear = s.StudyStartYear
 
                 }).FirstOrDefaultAsync(i => i.Id == id);
                 return student;
@@ -184,8 +188,8 @@ namespace AlumniOrtServer.Services
                 StudentFromDB.Password = MD5Service.Encrypt(student.Password) ?? originalStudent.Password;
                 StudentFromDB.Phone = student.Phone ?? originalStudent.Phone;
                 StudentFromDB.CityId = Convert.ToInt32((student.City.Id).ToString() ?? (originalStudent.City.Id).ToString());
-                StudentFromDB.CollegeId = Convert.ToInt32(student.CollegeId.ToString() ?? originalStudent.CollegeId.ToString());
-                StudentFromDB.StudyProgramId = Convert.ToInt32(student.StudyProgramId.ToString() ?? originalStudent.StudyProgramId.ToString());
+                StudentFromDB.CollegeId = Convert.ToInt32(student.College.Id.ToString() ?? originalStudent.College.Id.ToString());
+                StudentFromDB.StudyProgramId = Convert.ToInt32(student.StudyProgram.Id.ToString() ?? originalStudent.StudyProgram.Id.ToString());
                 StudentFromDB.CardId = student.CardId ?? originalStudent.CardId;
                 StudentFromDB.StudyStartYear = student.StudyStartYear ?? originalStudent.StudyStartYear;
                 StudentFromDB.Id = Convert.ToInt32(student.Id.ToString() ?? originalStudent.Id.ToString());

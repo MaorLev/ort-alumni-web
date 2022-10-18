@@ -156,7 +156,7 @@ body .mat-dialog-container {
   padding: 0;
 }
 .container {
-  max-width: 110rem;
+  max-width: 120rem;
   // max-width: 1100px;
   margin: auto;
   padding: 3rem;
@@ -165,6 +165,10 @@ body .mat-dialog-container {
 .none {
   display: none !important;
 }
+.mat-expansion-panel-body {
+  padding: 12px 12px 10px !important;
+}
+
 // [dir=rtl] .mat-form-field {
 //   text-align: start !important;
 // }

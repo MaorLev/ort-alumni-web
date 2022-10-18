@@ -1,3 +1,4 @@
+@use 'media' as media;
 :host {
   form {
     margin: 1rem 0;
@@ -7,9 +8,26 @@
   }
   .item {
     position: relative;
+    width: 400px;
   }
   .error {
     position: absolute;
     bottom: -2px;
+  }
+  .fullWidth {
+    .item {
+      width: 100%;
+    }
+  }
+  .style-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(10rem, 1fr));
+    gap: 20px;
+    justify-content: center;
+    @media #{media.$break3max} {
+      grid-template-columns: repeat(1, minmax(10rem, 1fr));
+      // overflow: auto;
+      row-gap: 5px;
+    }
   }
 }

@@ -1,0 +1,56 @@
+<mat-accordion [class]="'example-headers-align'" [id]="'sz-big'">
+  <ng-container *ngFor="let step of stepsForm.steps; let stepIndex = index">
+    <mat-expansion-panel
+      [expanded]="Step === stepIndex"
+      (opened)="Step = stepIndex"
+      [disabled]="!getDisabledStep(stepIndex)"
+      hideToggle
+    >
+      <mat-expansion-panel-header class="panel-header">
+        <mat-panel-title class="header-title">
+          {{ step.stepHeader.title }}</mat-panel-title
+        >
+        <mat-panel-description class="header-desc">
+          {{ step.stepHeader.description }}
+          <ort-icon class="header-icon">{{ step.stepHeader?.icon }}</ort-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ng-container *ngIf="step.stepContent.header">
+        <div class="container">
+          <h1>{{ step.stepContent.header }}</h1>
+          <h2>{{ step.stepContent.subheader }}</h2>
+          <h4>{{ step.stepContent.content }}</h4>
+        </div>
+      </ng-container>
+
+      <ort-form
+        [configuration]="step.stepGroupForm"
+        (submitted)="onStepSubmit($event)"
+        #myform
+      >
+      </ort-form>
+
+      <mat-action-row>
+        <div
+          *ngIf="submittedMessage"
+          class="submitted-error"
+          style="color: red"
+        >
+          <h3>{{ submittedMessage }}</h3>
+        </div>
+        <div class="buttons">
+          <ng-container *ngFor="let button of step.stepButtons">
+            <ort-button
+              [className]="button.className"
+              [buttonColor]="button.color"
+              (click)="onAction(button.role, myform.group)"
+              [routeTo]="button.route || null"
+              >{{ button.label }}</ort-button
+            >
+          </ng-container>
+        </div>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </ng-container>
+</mat-accordion>

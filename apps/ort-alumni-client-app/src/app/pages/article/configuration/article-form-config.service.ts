@@ -232,6 +232,7 @@ export class ArticleFormConfigService {
           ],
         },
       },
+      controlsWidthClass: 'fullWidth',
     };
   }
   CheckBoxValidation(ctrl: AbstractControl): ValidatorFn | null {

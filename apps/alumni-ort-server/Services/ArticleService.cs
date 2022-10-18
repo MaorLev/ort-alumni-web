@@ -35,7 +35,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       if (file.Count() != 0)
       {
         originalName = file.First().FileName;
-        responeImg = preCreateImage(currentDate, originalName, responeImg, file);
+        responeImg = CreateImage(currentDate, originalName, responeImg, file);
 
       }
       if (responeImg.Status == StatusCODE.Success)
@@ -105,7 +105,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       }
       return responeImg;
     }
-    private ResponseDTO preCreateImage(DateTime currentDate, string path, ResponseDTO responeImg, IFormFileCollection files)
+    private ResponseDTO CreateImage(DateTime currentDate, string path, ResponseDTO responeImg, IFormFileCollection files)
     {
       string imgPath = FixPathImg(path, currentDate);
       if (imgPath != "-1")

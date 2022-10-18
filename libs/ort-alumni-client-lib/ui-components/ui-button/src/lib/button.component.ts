@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { uiIcon } from '@ui-components/ui-icon';
+import { ButtonAction } from './button-action.enum';
 export type ButtonTypes = 'button' | 'submit';
 @Component({
   selector: 'ort-button',
@@ -8,12 +9,17 @@ export type ButtonTypes = 'button' | 'submit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
+  @Output() actionSubmitted = new EventEmitter<ButtonAction>();
+  @Input() action: ButtonAction;
   @Input() disabled: boolean | undefined = false;
   @Input() className: string | undefined = '';
   @Input() routeTo: string | null = null;
   @Input() iconName: string | null = null;
   @Input() value: string | null = null;
   @Input() iconColor: 'primary' | 'accent' | 'warn';
+  @Input() buttonColor: 'primary' | 'accent' | 'warn';
   @Input() type: ButtonTypes | undefined = 'button';
   @Input() customIcon: uiIcon | undefined;
+
+
 }

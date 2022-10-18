@@ -9,9 +9,10 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormBuilderService } from './form-builder.service';
-import { cloneDeep } from '@utils/util-others';
+import { cloneDeep } from '@utils/util-tools';
 import { FormInterface } from './interfaces/form.interface';
 import { Observable } from 'rxjs';
+import { ButtonAction } from '@ui-components/ui-button';
 
 @Component({
   selector: 'ort-form',
@@ -22,19 +23,22 @@ import { Observable } from 'rxjs';
 export class FormComponent implements OnInit {
   @Input() configuration: FormInterface;
   @Input() dataToPatch: any | undefined;
+  @Input() action:ButtonAction;
   @Output() submitted = new EventEmitter<any>();
-  isSubmitted:boolean;
+  @Output() actionSubmitted = new EventEmitter<any>();
+  isSubmitted: boolean;
   group: FormGroup;
-    statusChanged: Observable<FormControlStatus> | undefined;
+  statusChanged: Observable<FormControlStatus> | undefined;
 
   get groupControls() {
     return this.group.controls;
   }
-  constructor(private formBuilderService: FormBuilderService) {
-  }
+  constructor(private formBuilderService: FormBuilderService) {}
 
   ngOnInit(): void {
-    this.group = this.formBuilderService.buildStepperGroup(this.configuration.controls);
+    this.group = this.formBuilderService.buildStepperGroup(
+      this.configuration.controls
+    );
 
     if (this.dataToPatch) {
       const data = cloneDeep(this.dataToPatch);
@@ -44,6 +48,9 @@ export class FormComponent implements OnInit {
     this.statusChanged = this.group.statusChanges;
   }
 
+  extractFormGroup() {
+    this.submitted.emit(this.group);
+  }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   asIsOrder(a: any, b: any) {
     return 1;

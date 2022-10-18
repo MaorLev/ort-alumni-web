@@ -1,4 +1,3 @@
-import { UiTreeNodeModule } from './../../../../ui-components/ui-tree-node/src/lib/ui-tree-node.module';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { MapsModalComponent } from './modals/google-maps-modal/maps-modal.component';
 import { NgModule } from '@angular/core';
@@ -16,7 +15,7 @@ import { FeatureModalDirective } from './feature-modal.directive';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { ModalMenuTreeComponent } from './modals/modal-menu-tree/modal-menu-tree.component';
 import { RouterModule } from '@angular/router';
-import { FeatureExpansionPanelNodeModule } from '@features/feature-expansion-panel-node';
+import { FeatureExpansionTreeModule } from '@features/feature-expansion-tree';
 import { UiIconModule } from '@ui-components/ui-icon';
 
 @NgModule({
@@ -35,10 +34,15 @@ import { UiIconModule } from '@ui-components/ui-icon';
     UiButtonModule,
     MatInputModule,
     FeatureGoogleMapsModule,
-    FeatureExpansionPanelNodeModule,
-    UiIconModule
+    FeatureExpansionTreeModule,
+    UiIconModule,
   ],
-  exports: [QuicklinkModule, SearchModalComponent, FeatureModalDirective, ModalMenuTreeComponent,],
+  exports: [
+    QuicklinkModule,
+    SearchModalComponent,
+    FeatureModalDirective,
+    ModalMenuTreeComponent,
+  ],
   providers: [NgDialogAnimationService],
 })
 export class FeatureModalModule {}

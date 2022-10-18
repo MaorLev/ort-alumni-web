@@ -17,10 +17,10 @@ import { MenuDataModal } from './modal-menu.interfaces';
         </header>
         <div class="node-container">
           <div mat-dialog-content>
-            <ort-feature-expansion-panel-node
+            <ort-feature-expansion-tree
               [dateSource]="data.dataSource"
               (routeClicked)="closeDialog()"
-            ></ort-feature-expansion-panel-node>
+            ></ort-feature-expansion-tree>
           </div>
         </div>
         <footer class="footer">
@@ -53,6 +53,7 @@ import { MenuDataModal } from './modal-menu.interfaces';
       @use 'fonts' as font;
       ::ng-deep {
         .menu-bgmp {
+          min-width: 100vw;
           .mat-dialog-container {
             margin: 0;
             padding: 0;

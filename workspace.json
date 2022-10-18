@@ -10,7 +10,7 @@
     "ort-alumni-client-lib-alumni-shared-styles": "libs/ort-alumni-client-lib/alumni-shared/styles",
     "ort-alumni-client-lib-features-feature-check-list": "libs/ort-alumni-client-lib/features/feature-check-list",
     "ort-alumni-client-lib-features-feature-expansion-panel": "libs/ort-alumni-client-lib/features/feature-expansion-panel",
-    "ort-alumni-client-lib-features-feature-expansion-panel-node": "libs/ort-alumni-client-lib/features/feature-expansion-panel-node",
+    "ort-alumni-client-lib-features-feature-expansion-tree": "libs/ort-alumni-client-lib/features/feature-expansion-tree",
     "ort-alumni-client-lib-features-feature-file-upload": "libs/ort-alumni-client-lib/features/feature-file-upload",
     "ort-alumni-client-lib-features-feature-form": "libs/ort-alumni-client-lib/features/feature-form",
     "ort-alumni-client-lib-features-feature-google-maps": "libs/ort-alumni-client-lib/features/feature-google-maps",
@@ -35,10 +35,10 @@
     "ort-alumni-client-lib-ui-components-ui-deck-card": "libs/ort-alumni-client-lib/ui-components/ui-deck-card",
     "ort-alumni-client-lib-ui-components-ui-icon": "libs/ort-alumni-client-lib/ui-components/ui-icon",
     "ort-alumni-client-lib-ui-components-ui-spinner": "libs/ort-alumni-client-lib/ui-components/ui-spinner",
-    "ort-alumni-client-lib-ui-components-ui-tree-node": "libs/ort-alumni-client-lib/ui-components/ui-tree-node",
+    "ort-alumni-client-lib-utils-core-central-message": "libs/ort-alumni-client-lib/utils/core/central-message",
     "ort-alumni-client-lib-utils-helpers-util-directives": "libs/ort-alumni-client-lib/utils/helpers/util-directives",
-    "ort-alumni-client-lib-utils-helpers-util-others": "libs/ort-alumni-client-lib/utils/helpers/util-others",
     "ort-alumni-client-lib-utils-helpers-util-pipes": "libs/ort-alumni-client-lib/utils/helpers/util-pipes",
-    "ort-alumni-client-lib-utils-helpers-util-services": "libs/ort-alumni-client-lib/utils/helpers/util-services"
+    "ort-alumni-client-lib-utils-helpers-util-services": "libs/ort-alumni-client-lib/utils/helpers/util-services",
+    "ort-alumni-client-lib-utils-helpers-util-tools": "libs/ort-alumni-client-lib/utils/helpers/util-tools"
   }
 }

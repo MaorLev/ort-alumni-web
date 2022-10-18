@@ -2,26 +2,41 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   template: `
-    <div class="wrapper">
-      <div class="input" mat-dialog-content>
-        <mat-form-field appearance="fill">
-          <mat-label>חפש באתר שלנו</mat-label>
-          <input matInput #val />
-        </mat-form-field>
-      </div>
-      <div class="btn-wrapper" mat-dialog-actions>
-        <ort-button
-          class="btn"
-          className="custom sz-1"
-          iconName="search"
-          [mat-dialog-close]="val.value"
-        ></ort-button>
+    <div class="container">
+      <div class="wrapper">
+        <div class="input" mat-dialog-content>
+          <mat-form-field appearance="fill">
+            <mat-label>חפש באתר שלנו</mat-label>
+            <input matInput #val />
+          </mat-form-field>
+        </div>
+        <div class="btn-wrapper" mat-dialog-actions>
+          <ort-button
+            class="btn"
+            className="custom sz-1"
+            iconName="search"
+            [mat-dialog-close]="val.value"
+          ></ort-button>
+        </div>
       </div>
     </div>
   `,
   styles: [
     `
+    ::ng-deep {
+      .bgmp{
+        width: 100%;
+        height: 100%;
+
+      }
+    }
+    .container {
+      background-color: var(--accent-lighter-color);
+
+    }
       .wrapper {
+        width: inherit;
+        height: inherit;
         display: flex;
         gap: 0.5rem;
         /* gap: 5px; */
@@ -39,7 +54,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         background: var(--primary-color);
         color: white;
         border-radius: 50%;
-        margin: .5rem .2rem;
+        margin: 0.5rem 0.2rem;
         /* margin: 5px 2px; */
         cursor: pointer;
       }
@@ -53,8 +68,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       mat-form-field {
         width: inherit;
       }
-    `,
+    `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchModalComponent {}

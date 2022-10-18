@@ -17,11 +17,11 @@ import {
   FormControl,
   NG_ASYNC_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  ValidationErrors
+  ValidationErrors,
 } from '@angular/forms';
 
 import { VaInputInterface } from '@features/feature-va-input';
-import { cloneDeep } from '@utils/util-others';
+import { cloneDeep } from '@utils/util-tools';
 import { map, Subject, startWith, Observable, of } from 'rxjs';
 
 @Component({
@@ -106,20 +106,19 @@ export class VaSelectAutoCompleteComponent
   }
 
   validate(control: FormControl): Observable<ValidationErrors | null> {
-      const option = control.value;
+    const option = control.value;
 
-      return this.options$.pipe(
-        map((options) => {
-          if(typeof option === 'object' && !!option)
+    return this.options$.pipe(
+      map((options) => {
+        if (typeof option === 'object' && !!option)
           for (let i = 0; i < options.length; i++) {
             if (options[i].id === option.id) return null;
           }
-          const error = { invalidAutocompleteString: { value: control.value } };
-          this.control.setErrors(error);
-          return error;
-        })
-      );
-
+        const error = { invalidAutocompleteString: { value: control.value } };
+        this.control.setErrors(error);
+        return error;
+      })
+    );
   }
 
   ngOnDestroy(): void {
