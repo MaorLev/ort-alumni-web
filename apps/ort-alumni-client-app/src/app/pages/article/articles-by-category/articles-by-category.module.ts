@@ -8,7 +8,7 @@ import { UiButtonModule } from '@ui-components/ui-button';
 import { UiCardModule } from '@ui-components/ui-card';
 
 @NgModule({
-  declarations: [ArticlesByCategoryComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -19,6 +19,6 @@ import { UiCardModule } from '@ui-components/ui-card';
     AddEnvVarPipeModule,
     UiButtonModule,
   ],
-  exports: [ArticlesByCategoryComponent, QuicklinkModule],
+  exports: [QuicklinkModule],
 })
 export class ArticlesByCategoryModule {}

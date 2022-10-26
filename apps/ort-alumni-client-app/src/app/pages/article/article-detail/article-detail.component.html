@@ -5,7 +5,7 @@
         <div class="category-title">
           <a
             class="category-link"
-            [routerLink]="'/main/articles-by-category/' + arti.category?.name"
+            [routerLink]="['/main/articles/articles-by-category', arti.category?.name]"
           >
             <h1 class="mat-display-3 title">{{ arti.category?.hebName }}</h1>
           </a>
@@ -27,7 +27,7 @@
       <ort-button
         type="button"
         class="btn"
-        [routerLink]="['/main/update-article', id]"
+        [routerLink]="['/main/articles/update-article', id]"
         className="mat-raised-button bar-btn-primary"
         >עדכן</ort-button
       >

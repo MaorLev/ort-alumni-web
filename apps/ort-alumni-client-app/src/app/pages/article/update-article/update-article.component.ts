@@ -36,6 +36,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     private articleConfigService: ArticleFormConfigService
   ) {
     const id = activatedRouter.snapshot.paramMap.get('id');
+    console.log(id)
     if (id) this.id = parseInt(id);
     this.article = this.articleService.selectEntityById(this.id);
   }
@@ -56,7 +57,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
       art.categoryid = art.category?.id;
       this.articleService.updateArticle(this.id, art).subscribe((event) => {
         if (event.type === HttpEventType.Response) {
-          this.router.navigateByUrl(`main/article-detail/${this.id}`);
+          this.router.navigateByUrl(`main/articles/article-detail/${this.id}`);
         }
       });
     }

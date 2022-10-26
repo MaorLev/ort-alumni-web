@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../../libs/ort-alumni-client-lib/utils/core/central-message/src/lib/state/api-error.interceptor.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

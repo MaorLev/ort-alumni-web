@@ -34,18 +34,15 @@ namespace AlumniOrtServer.Controllers
                     return Ok(result);
                 }
                 AlumnusDTO resultAlumnus = await service.Get(id);
-                if (resultAlumnus == null)
-                {
-                    return BadRequest();
-                }
+                if (resultAlumnus == null) return NotFound("יוזר לא קיים");
                 return Ok(resultAlumnus);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest();
+              return StatusCode(500, e);
             }
 
-        }
+    }
 
         [HttpPost]
         public async Task<ActionResult> PostAlumnus(AlumnusDTO alumnus)
@@ -59,19 +56,18 @@ namespace AlumniOrtServer.Controllers
                         ResponseDTO respone = await service.Add(alumnus);
                         if (respone.Status == Data.DTO.StatusCODE.Success)
                         {
-                            return Created("", respone.userId);
+                            return Created("", null);
                         }
                         return BadRequest(respone);
                     }
 
-                    return BadRequest(new ResponseDTO { StatusText = "mail already exist" });
+                  return ValidationProblem("mail already exist");
                 }
-                return BadRequest();
+              return BadRequest("Missing fields");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest("Erorr Server");
+              return StatusCode(500, e);
             }
 
         }
@@ -84,8 +80,8 @@ namespace AlumniOrtServer.Controllers
             ResponseDTO response = new ResponseDTO();
             if (id != alumnus.Id)
             {
-                response.StatusText = "id does not match";
-                return BadRequest(response);
+              response.StatusText = "id does not match";
+              return ValidationProblem(response.StatusText);
             }
 
             try
@@ -95,14 +91,13 @@ namespace AlumniOrtServer.Controllers
                 {
                     return Ok(response);
                 }
+              return StatusCode(500, "A part from the request faild or not completed");
             }
-            catch
+            catch (Exception e)
             {
-                response.Status = Data.DTO.StatusCODE.Error;
-                response.StatusText = "ERROR";
-                return BadRequest(response);
+              return StatusCode(500, e);
             }
-            return BadRequest(response);
+
         }
 
         [HttpDelete]
@@ -116,14 +111,14 @@ namespace AlumniOrtServer.Controllers
                 {
                     return Ok(response);
                 }
-                return BadRequest(response);
-            }
-            catch (Exception)
-            {
 
-                return BadRequest("Erorr server");
+              return NotFound("לא קיים יוזר למחיקה");
             }
-        }
+            catch (Exception e)
+            {
+              return StatusCode(500, e);
+            }
+          }
 
     }
 }

@@ -29,18 +29,17 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
     {
       ResponseDTO responeImg = new ResponseDTO();
       responeImg.Status = StatusCODE.Faild;
-      string originalName = null;
+
       var file = formCollection.Files;
       DateTime currentDate = DateTime.Now;
       if (file.Count() != 0)
       {
-        originalName = file.First().FileName;
-        responeImg = CreateImage(currentDate, originalName, responeImg, file);
+        responeImg = CreateImage(currentDate, responeImg, file);
 
       }
       if (responeImg.Status == StatusCODE.Success)
       {
-        originalName = originalName.Trim('"').Replace(" ", "");
+        string originalName = file.First().FileName.Trim('"').Replace(" ", "");
         Article articleFromDB = new Article(0, formCollection["heading"], formCollection["subheading"],
           currentDate, responeImg.shortBody,
           originalName, formCollection["detail"]
@@ -105,8 +104,9 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       }
       return responeImg;
     }
-    private ResponseDTO CreateImage(DateTime currentDate, string path, ResponseDTO responeImg, IFormFileCollection files)
+    private ResponseDTO CreateImage(DateTime currentDate, ResponseDTO responeImg, IFormFileCollection files)
     {
+      string path = files.First().FileName;
       string imgPath = FixPathImg(path, currentDate);
       if (imgPath != "-1")
       {
@@ -125,7 +125,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         return ImgPath;
       }
       return "-1";
-      }
+     }
 
     public async Task<ResponseDTO> DeleteArticle(int id)
     {

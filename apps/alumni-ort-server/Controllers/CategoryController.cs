@@ -32,12 +32,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
         {
           return Ok(result);
         }
-        return NotFound();
+        return NotFound("לא נמצא");
 
       }
-      catch
+      catch (Exception e)
       {
-        return BadRequest();
+        return StatusCode(500, e);
       }
 
     }
@@ -53,13 +53,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
         {
           return Created("", respone.body);
         }
-        return BadRequest(respone);
+        return StatusCode(500, respone);
 
       }
-      catch (Exception ex)
+      catch (Exception e)
       {
-        var d = ex;
-        return BadRequest("Server error");
+        return StatusCode(500, e);
       }
 
     }
@@ -74,12 +73,11 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
         {
           return Ok(response);
         }
-        return BadRequest(response);
+        return NotFound("לא קיימת ישות למחיקה");
       }
-      catch (Exception ex)
+      catch (Exception e)
       {
-        var f = ex;
-        return BadRequest("Server error");
+        return StatusCode(500, e);
       }
 
     }

@@ -12,7 +12,7 @@
         >
         <mat-panel-description class="header-desc">
           {{ step.stepHeader.description }}
-          <ort-icon class="header-icon">{{ step.stepHeader?.icon }}</ort-icon>
+          <ort-icon class="header-icon">{{ step.stepHeader.icon || ''}}</ort-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
 

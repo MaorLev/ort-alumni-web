@@ -2,7 +2,7 @@
 <section id="categories" >
   <ort-button
   type="button"
-  routerLink="/main/create-article"
+  routerLink="/main/articles/create-article"
   className="mat-raised-button bar-btn-primary"
   >הוסף מאמר</ort-button
 >
@@ -17,7 +17,7 @@
             <ng-container *ngFor="let article of category.articles">
 
               <article class="card">
-              <a  [routerLink]="['/main/article-detail', article.id]">
+              <a  [routerLink]="['/main/articles/article-detail', article.id]">
                   <ort-card
                     [heading]="article.heading"
                     [subheading]="article.subheading"

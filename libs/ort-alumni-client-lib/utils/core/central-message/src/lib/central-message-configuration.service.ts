@@ -16,6 +16,7 @@ export class CentralMessageConfigurationService {
   constructor(private httpClient: HttpClient) {}
 
   loadConfiguration() {
+
     this.config$ = this.httpClient
       .get<CentralMessageConfig>(this.CONFIG_URL)
       .pipe(shareReplay(1));

@@ -31,18 +31,16 @@ namespace AlumniOrtServer.Controllers
                     return Ok(result);
                 }
                 EmployerDTO resultEmployer = await service.Get(id);
-                if (resultEmployer == null)
-                {
-                    return BadRequest();
-                }
+
+                if (resultEmployer == null) return NotFound("יוזר לא קיים");
                 return Ok(resultEmployer);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest();
+              return StatusCode(500, e);
             }
 
-        }
+          }
         [HttpGet]
         [Route("Get_With_JobOffer/{id?}")]
         public async Task<ActionResult> GetAll_With_JobOffer(int id = 0)
@@ -55,18 +53,14 @@ namespace AlumniOrtServer.Controllers
                     return Ok(result);
                 }
                 EmployerDTO resultEmployer = await service.Get_With_JobOffer(id);
-                if (resultEmployer == null)
-                {
-                    return BadRequest();
-                }
-                return Ok(resultEmployer);
+              if (resultEmployer == null) return NotFound("יוזר לא קיים");
+              return Ok(resultEmployer);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest();
+              return StatusCode(500, e);
             }
-        }
+          }
 
         [HttpPost]
         public async Task<ActionResult> PostEmployer(EmployerDTO employer)
@@ -85,14 +79,13 @@ namespace AlumniOrtServer.Controllers
                         return BadRequest(respone);
                     }
 
-                    return BadRequest(new ResponseDTO { StatusText = "mail already exist" });
-                }
-                return BadRequest();
+              return ValidationProblem("mail already exist");
             }
-            catch (Exception)
+              return BadRequest("Missing fields");
+            }
+            catch (Exception e)
             {
-
-                return BadRequest("Erorr server");
+              return StatusCode(500, e);
             }
 
         }
@@ -104,19 +97,23 @@ namespace AlumniOrtServer.Controllers
             ResponseDTO response = new ResponseDTO();
             if (id != employer.Id)
             {
-                response.StatusText = "id does not match";
-                return BadRequest(response);
+              response.StatusText = "id does not match";
+              return ValidationProblem(response.StatusText);
             }
-
-                response = await service.Update(id, employer);
-                if (response.Status == Data.DTO.StatusCODE.Success)
-                {
-                    return Ok(response);
-                }
-            
-
-            return BadRequest(response);
-        }
+            try
+            {
+              response = await service.Update(id, employer);
+              if (response.Status == Data.DTO.StatusCODE.Success)
+              {
+                return Ok(response);
+              }
+              return StatusCode(500, "A part from the request faild or not completed");
+            }
+            catch (Exception e)
+            {
+              return StatusCode(500, e);
+            }
+    }
 
         [HttpDelete]
         [Route("{id}")]
@@ -129,13 +126,12 @@ namespace AlumniOrtServer.Controllers
                 {
                     return Ok(response);
                 }
-                return BadRequest(response);
+              return NotFound("לא קיים יוזר למחיקה");
             }
-            catch (Exception)
-            {
-
-                return BadRequest("Erorr server");
-            }
+          catch (Exception e)
+          {
+            return StatusCode(500, e);
+          }
 
         }
     }

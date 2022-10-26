@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments';
+import { Message } from '@utils/util/core/central-message';
 import { Observable, shareReplay } from 'rxjs';
 import { AlumnusModel } from './alumnus-model';
 
 
 
 @Injectable({ providedIn: 'root' })
-export class AlumnusDataService  {
+export class AlumnusDataService {
 
   private baseUrl: string = environment.endPointApi + '/alumnus';
 
@@ -20,7 +21,7 @@ export class AlumnusDataService  {
     return this.http.get<Array<AlumnusModel>>(this.baseUrl).pipe(shareReplay(1));
   }
   createAlumnus(alumnus: AlumnusModel): Observable<any> {
-    debugger;
+
     console.log(this.baseUrl);
     return this.http.post(this.baseUrl, alumnus);
   }
@@ -30,7 +31,7 @@ export class AlumnusDataService  {
   deleteAlumnus(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
   }
-
+  
 }
 
 

@@ -33,18 +33,14 @@ namespace AlumniOrtServer.Controllers
                     return Ok(result);
                 }
                 TeacherDTO resultTeacher = await service.Get(id);
-                if (resultTeacher == null)
-                {
-                    return NotFound();
-                }
+                if (resultTeacher == null) return NotFound("יוזר לא קיים");
                 return Ok(resultTeacher);
             }
-            catch
+            catch (Exception e)
             {
-
-                return BadRequest();
+              return StatusCode(500, e);
             }
-        }
+          }
     
 
         [HttpPost]
@@ -58,12 +54,11 @@ namespace AlumniOrtServer.Controllers
                     return Created("", null);
                 }
 
-                return BadRequest(response);
+              return StatusCode(500, "A part from the request faild or not completed");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest(new ResponseDTO { Status = Data.DTO.StatusCODE.Error, StatusText = "Error in Server" });
+              return StatusCode(500, e);
             }
 
         }
@@ -76,11 +71,11 @@ namespace AlumniOrtServer.Controllers
                 bool exist = await service.existAccount(alumnusId);
                 return Ok(exist);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest();
+              return StatusCode(500, e);
             }
-        }
+          }
 
         [HttpPut]
         [Route("{id}")]
@@ -90,7 +85,7 @@ namespace AlumniOrtServer.Controllers
             if (id != teacher.AlumnusId)
             {
                 response.StatusText = "id does not match";
-                return BadRequest(response);
+              return ValidationProblem(response.StatusText);
             }
 
             try
@@ -101,13 +96,11 @@ namespace AlumniOrtServer.Controllers
                 return Ok(response);
             }
             }
-            catch
+            catch (Exception e)
             {
-                response.Status = Data.DTO.StatusCODE.Error;
-                response.StatusText = "ERROR";
-                return BadRequest(response);
+              return StatusCode(500, e);
             }
-            return BadRequest(response);
+          return StatusCode(500, "A part from the request faild or not completed");
         }
 
         [HttpDelete]
@@ -121,14 +114,13 @@ namespace AlumniOrtServer.Controllers
                 {
                     return Ok(response);
                 }
-                return BadRequest(response);
+              return NotFound("לא קיים יוזר למחיקה");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest("Erorr Server");
+              return StatusCode(500, e);
             }
 
-        }
+          }
     }
 }

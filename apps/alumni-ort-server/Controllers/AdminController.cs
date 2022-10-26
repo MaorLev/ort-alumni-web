@@ -29,14 +29,15 @@ namespace AlumniOrtServer.Controllers
                     return Ok(result);
                 }
                 AdminDTO resultAdmin = await service.GetAdmin(id);
+                if (resultAdmin == null) return NotFound("יוזר לא קיים");
                 return Ok(resultAdmin);
             }
-            catch
+            catch (Exception e)
             {
-                return NotFound();
+              return StatusCode(500, e);
             }
 
-        }
+    }
 
         [HttpPost]
         public async Task<ActionResult> PostAdmin(AdminDTO admin)
@@ -54,14 +55,13 @@ namespace AlumniOrtServer.Controllers
                         }
                         return BadRequest(respone);
                     }
-                    return BadRequest(new ResponseDTO { StatusText = "mail already exist" });
+                    return ValidationProblem("mail already exist");
                 }
-                return BadRequest();
+                return BadRequest("Missing fields");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest("Server error");
+              return StatusCode(500, e);
             }
 
         }
@@ -74,7 +74,7 @@ namespace AlumniOrtServer.Controllers
             if (id != admin.Id)
             {
                 response.StatusText = "id does not match";
-                return BadRequest(response);
+              return ValidationProblem(response.StatusText);
             }
 
             try
@@ -84,14 +84,12 @@ namespace AlumniOrtServer.Controllers
                 {
                     return Ok(response);
                 }
+             return StatusCode(500, "A part from the request faild or not completed");
             }
-            catch
+            catch (Exception e)
             {
-                response.Status = Data.DTO.StatusCODE.Error;
-                response.StatusText = "ERROR";
-                return BadRequest(response);
+              return StatusCode(500, e);
             }
-            return BadRequest(response);
         }
 
         [HttpDelete]
@@ -105,12 +103,11 @@ namespace AlumniOrtServer.Controllers
                 {
                     return Ok(response);
                 }
-                return BadRequest(response);
+              return NotFound("לא קיים יוזר למחיקה");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest("Server error");
+              return StatusCode(500, e);
             }
 
         }

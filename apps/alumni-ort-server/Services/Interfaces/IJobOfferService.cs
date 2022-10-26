@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.DTO;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace AlumniOrtServer.Services
 
         public Task<List<JobOfferDTO>> GetAll();
 
-        public Task<List<JobOfferDTO>> GetJobs(int id);
+        public Task<List<JobOfferDTO>> GetJobsByEmployer(int id);
         public Task<JobOfferDTO> GetSingleJob(int id);
 
         public Task<ResponseDTO> Update(int id, JobOfferDTO jobOffer);

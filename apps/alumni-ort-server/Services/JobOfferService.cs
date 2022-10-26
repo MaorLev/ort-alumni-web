@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Context;
+using AlumniOrtServer.Context;
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.DTO;
@@ -123,7 +123,7 @@ namespace AlumniOrtServer.Services
             }
         }
 
-        public async Task<List<JobOfferDTO>> GetJobs(int employerId)
+        public async Task<List<JobOfferDTO>> GetJobsByEmployer(int employerId)
         {
             //try
             //{

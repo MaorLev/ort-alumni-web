@@ -168,7 +168,9 @@ body .mat-dialog-container {
 .mat-expansion-panel-body {
   padding: 12px 12px 10px !important;
 }
-
+.mat-snack-bar-container {
+  background-color: var(--primary-color);
+}
 // [dir=rtl] .mat-form-field {
 //   text-align: start !important;
 // }

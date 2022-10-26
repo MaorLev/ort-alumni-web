@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -39,19 +39,19 @@ namespace AlumniOrtServer.Controllers
                     {
                         return Ok(jwtResultDto);
                     }
-                    else
-                        return BadRequest("email or password is not correct");
-                }
+                else return BadRequest("email or password is not correct");
+
+             }
 
                 return BadRequest("one or more fields is empty");
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest("Erorr server");
+              return StatusCode(500, e);
             }
 
-        }
+          }
 
         [HttpGet]
         [Route("CheckEmail")]
@@ -71,10 +71,9 @@ namespace AlumniOrtServer.Controllers
                 }
                 return BadRequest();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                return BadRequest();
+              return StatusCode(500, e);
             }
 
         }

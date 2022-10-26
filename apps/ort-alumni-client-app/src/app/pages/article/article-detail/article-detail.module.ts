@@ -9,7 +9,7 @@ import { AddEnvVarPipeModule, ReadableDatePipeModule } from '@utils/util-pipes';
 import { BidiModule } from '@angular/cdk/bidi';
 
 @NgModule({
-  declarations: [ArticleDetailComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: ArticleDetailComponent }]),
@@ -19,6 +19,6 @@ import { BidiModule } from '@angular/cdk/bidi';
     ReadableDatePipeModule,
     BidiModule,
   ],
-  exports: [ArticleDetailComponent, QuicklinkModule],
+  exports: [QuicklinkModule],
 })
 export class ArticleDetailModule {}

@@ -6,9 +6,11 @@ export class StorageService {
     this.SESSION_KEY = key;
   }
   getSession() {
+
     const session = localStorage.getItem(this.SESSION_KEY);
     const seToReturen = session ? this.decrypt(session) : null;
-    return seToReturen ? JSON.parse(seToReturen) : {};
+    // return seToReturen ? JSON.parse(seToReturen) : null;
+    return seToReturen ? JSON.parse(seToReturen) : null;
   }
 
   saveSession(session: unknown) {

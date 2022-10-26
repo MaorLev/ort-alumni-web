@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 // import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { JwtModule } from '@auth0/angular-jwt';
+import { StorageService } from '@utils/util-tools';
 
 const routes: Routes = [
   {
@@ -35,12 +36,10 @@ const routes: Routes = [
 ];
 //need to treat with async way
 export function tokenGetter() {
-  const temp = localStorage.getItem('authSession');
-  if (temp) {
-    const session = JSON.parse(temp);
-    return session.access_token;
-  }
-  return '';
+  const storage:StorageService = new StorageService('authStorage');
+  const session = storage.getSession();
+
+  return session ? session.access_token : '';
 }
 @NgModule({
   // QuicklinkStrategy Liberary for drop preloadingStrategy

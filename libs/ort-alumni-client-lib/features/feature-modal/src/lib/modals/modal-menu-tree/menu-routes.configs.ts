@@ -25,7 +25,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles',
+        route: '/main/articles/articles',
         children: [],
         level: 2,
       },
@@ -39,13 +39,13 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
             name: 'כללי',
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            route: '/main/articles-by-category/General',
+            route: '/main/articles/articles-by-category/General',
             level: 3,
             children: [],
           },
           {
             name: 'אירועים',
-            route: '/main/articles-by-category/Events',
+            route: '/main/articles/articles-by-category/Events',
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
@@ -53,7 +53,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
           },
           {
             name: 'אירועים',
-            route: '/main/articles-by-category/Events',
+            route: '/main/articles/articles-by-category/Events',
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
@@ -72,7 +72,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles',
+        route: '/main/articles/articles',
         children: [],
         level: 2,
       },
@@ -86,13 +86,13 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
             name: 'כללי',
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            route: '/main/articles-by-category/General',
+            route: '/main/articles/articles-by-category/General',
             level: 3,
             children: [],
           },
           {
             name: 'אירועים',
-            route: '/main/articles-by-category/Events',
+            route: '/main/articles/articles-by-category/Events',
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
@@ -111,7 +111,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles',
+        route: '/main/articles/articles',
         children: [],
         level: 2,
       },
@@ -125,13 +125,13 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
             name: 'כללי',
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            route: '/main/articles-by-category/General',
+            route: '/main/articles/articles-by-category/General',
             level: 3,
             children: [],
           },
           {
             name: 'אירועים',
-            route: '/main/articles-by-category/Events',
+            route: '/main/articles/articles-by-category/Events',
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
@@ -150,7 +150,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles',
+        route: '/main/articles/articles',
         children: [],
         level: 2,
       },
@@ -164,13 +164,13 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
             name: 'כללי',
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-            route: '/main/articles-by-category/General',
+            route: '/main/articles/articles-by-category/General',
             level: 3,
             children: [],
           },
           {
             name: 'אירועים',
-            route: '/main/articles-by-category/Events',
+            route: '/main/articles/articles-by-category/Events',
             level: 3,
             description:
               'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',

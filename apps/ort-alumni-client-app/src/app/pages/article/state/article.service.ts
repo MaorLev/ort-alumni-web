@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { shareReplay, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, combineLatest, switchMap, of } from 'rxjs';
@@ -17,7 +16,6 @@ export class ArticleService {
   constructor(
     private articleDataService: ArticleDataService,
     private articleStore: ArticleStore,
-    private router: Router,
     private articleQuery: ArticleQuery
   ) {
     this.loadArticlesAndCategories().pipe(shareReplay(1)).subscribe();

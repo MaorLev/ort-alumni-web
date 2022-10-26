@@ -5,19 +5,22 @@ export enum MessageType {
   Info,
   Success,
 }
+export interface HttpResponseDetails {
+  statusCode:number;
+  errorDetails:unknown;
+  message: string;
+}
 
 export interface Message {
   type: MessageType;
   description: string;
+  httpResponseDetails?:HttpResponseDetails
 }
-export interface MessageLogger {
-  logMessage(message:Message): void;
-}
-
-export const MESSAGE_LOGGERS = new InjectionToken<MessageLogger [] >(
-  'logic for logging messages'
-);
 
 export interface CentralMessageConfig {
   enableLoggers: boolean;
+}
+
+export enum TimeToShow {
+  interceptorAlertTime = 3000,
 }

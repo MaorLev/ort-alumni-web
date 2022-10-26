@@ -34,11 +34,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
           return Ok(result);
         }
         ArticleDTO resultArticle = await articleService.GetArticle(id);
+        if (resultArticle == null) return NotFound("יוזר לא קיים");
         return Ok(resultArticle);
       }
-      catch
+      catch (Exception e)
       {
-        return NotFound();
+        return StatusCode(500, e);
       }
 
     }
@@ -55,13 +56,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
         {
         return Created("", respone.body);
         }
-        return BadRequest(respone);
+        return StatusCode(500, "A part from the request faild or not completed");
 
       }
-      catch (Exception ex)
+      catch (Exception e)
       {
-        var d = ex;
-        return BadRequest("Server error");
+        return StatusCode(500, e);
       }
 
     }
@@ -74,12 +74,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
       ResponseDTO response = new ResponseDTO();
       try
       {
-      IFormCollection formCollection = await Request.ReadFormAsync();
-      if (id.ToString() != formCollection["id"])
-      {
-        response.StatusText = "id does not match";
-        return BadRequest(response);
-      }
+        IFormCollection formCollection = await Request.ReadFormAsync();
+        if (id.ToString() != formCollection["id"])
+        {
+          response.StatusText = "id does not match";
+          return ValidationProblem(response.StatusText);
+        }
 
         response = await articleService.Update(id, formCollection);
         if (response.Status == StatusCODE.Success)
@@ -87,13 +87,11 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
           return Ok(response.body);
         }
       }
-      catch
+      catch (Exception e)
       {
-        response.Status = StatusCODE.Error;
-        response.StatusText = "ERROR";
-        return BadRequest(response);
+        return StatusCode(500, e);
       }
-      return BadRequest(response);
+      return StatusCode(500, "A part from the request faild or not completed");
     }
 
     [HttpDelete]
@@ -107,12 +105,11 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
         {
           return Ok(response);
         }
-        return BadRequest(response);
+        return NotFound("לא קיים יוזר למחיקה");
       }
-      catch (Exception)
+      catch (Exception e)
       {
-
-        return BadRequest("Server error");
+        return StatusCode(500, e);
       }
 
     }

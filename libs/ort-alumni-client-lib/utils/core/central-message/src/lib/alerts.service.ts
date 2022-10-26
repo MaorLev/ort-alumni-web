@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TimeToShow } from './central-message.types';
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class AlertsService {
   alertLogout() {
     this._snackBar.open('ביי ביי ', 'מנותק', {
@@ -17,9 +18,9 @@ export class AlertsService {
     });
   }
 
-  dynamicAlert(msg:string) {
-    this._snackBar.open(msg, '', {
-      duration: 3000,
+  dynamicAlert(msg:string, statusMessage?:string, duration?:number) {
+    this._snackBar.open(msg, statusMessage || '', {
+      duration: duration || TimeToShow.interceptorAlertTime,
     });
 
   }

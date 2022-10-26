@@ -20,35 +20,11 @@ const routes: Routes = [
           import('../../pages/about/about.module').then((m) => m.AboutModule),
       },
       {
-        path: 'article-detail/:id',
-        loadChildren: () =>
-          import('../../pages/article/article-detail/article-detail.module').then((m) => m.ArticleDetailModule)
-      },
-      {
-        path: 'articles-by-category/:id',
-        loadChildren: () =>
-          import('../../pages/article/articles-by-category/articles-by-category.module').then((m) => m.ArticlesByCategoryModule)
-      },
-      {
-        path: 'articles-by-category',
-        loadChildren: () =>
-          import('../../pages/article/articles-by-category/articles-by-category.module').then((m) => m.ArticlesByCategoryModule)
-      },
-      {
         path: 'articles',
         loadChildren: () =>
           import('../../pages/article/article.module').then((m) => m.ArticleModule)
       },
-      {
-        path: 'create-article',
-        loadChildren: () =>
-          import('../../pages/article/create-article/create-article.module').then((m) => m.CreateArticleModule),
-      },
-      {
-        path: 'update-article/:id',
-        loadChildren: () =>
-          import('../../pages/article/update-article/update-article.module').then((m) => m.UpdateArticleModule),
-      },
+      
 
     ],
   }

@@ -1,5 +1,5 @@
-import { ActiveState, EntityState } from "@datorama/akita";
-import { cloneDeep, StorageService } from "@utils/util-tools";
+// import { ActiveState, EntityState } from "@datorama/akita";
+// import { cloneDeep, StorageService } from "@utils/util-tools";
 
 export interface CityInterface {
   id:number;
@@ -13,9 +13,9 @@ export interface StudyProgramInterface {
   id:number;
   name:string;
 }
-export interface StudentsState extends EntityState<StudentInterface, number>, ActiveState {
-  areStudentsLoaded: boolean;
-}
+// export interface StudentsState extends EntityState<StudentInterface, number>, ActiveState {
+//   areStudentsLoaded: boolean;
+// }
 
 
 export interface StudentInterface {
@@ -33,14 +33,14 @@ export interface StudentInterface {
   city : CityInterface;
 }
 
-export function createInitialStateStudent(): StudentsState {
-  const studentStorage:StorageService = new StorageService('studentState');
-  const authStorage:StorageService = new StorageService('authStorage');
-  const authSession = authStorage.getSession();
+// export function createInitialStateStudent(): StudentsState {
+//   const studentStorage:StorageService = new StorageService('studentState');
+//   const authStorage:StorageService = new StorageService('authStorage');
+//   const authSession = authStorage.getSession();
 
-  return {
-    areStudentsLoaded: false,
-    entities: studentStorage.getSession(),
-    active: authSession ? authSession.id : null
-  };
-}
+//   return {
+//     areStudentsLoaded: false,
+//     entities: studentStorage.getSession(),
+//     active: authSession ? authSession.id : null
+//   };
+// }

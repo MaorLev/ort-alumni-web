@@ -43,7 +43,7 @@
               <ort-carousel
               [startAt]="articles.articles?.length">
                 <ng-container *ngFor="let article of articles.articles">
-                  <a [routerLink]="['../article-detail', article.id]">
+                  <a [routerLink]="['../articles/article-detail', article.id]">
                     <ort-card
                       [heading]="article.heading"
                       [subheading]="article.subheading"
@@ -56,7 +56,7 @@
               <div class="more">
                 <a
                   class="more-btn"
-                  [routerLink]="['../articles-by-category', articles.name]"
+                  [routerLink]="['../articles/articles-by-category', articles.name]"
                   >
                   <h4>ראה עוד...</h4>
                 </a>

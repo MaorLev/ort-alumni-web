@@ -26,6 +26,10 @@ import { UiSpinnerModule } from '@ui-components/ui-spinner';
     UiCarouselModule,
     AddEnvVarPipeModule,
     UiSpinnerModule,
+
+  ],
+  providers: [
+
   ],
   exports: [QuicklinkModule, HomeComponent],
 })

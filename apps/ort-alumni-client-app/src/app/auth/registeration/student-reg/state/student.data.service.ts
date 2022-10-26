@@ -5,7 +5,7 @@ import { Observable, shareReplay } from 'rxjs';
 import { StudentInterface } from './student.model';
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn:'any'})
 export class StudentDataService  {
 
   private baseUrl: string = environment.endPointApi + '/student';
@@ -19,8 +19,6 @@ export class StudentDataService  {
     return this.http.get<Array<StudentInterface>>(this.baseUrl).pipe(shareReplay(1));
   }
   createStudent(student: StudentInterface): Observable<any> {
-    debugger;
-    console.log(this.baseUrl);
     return this.http.post(this.baseUrl, student);
   }
   updateStudent(id: number, student: any): Observable<any> {
