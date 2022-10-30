@@ -1,7 +1,7 @@
 
 
 # OrtAlumniWeb
-
+![SCREENGIF1](https://github.com/MaorLev/ort-alumni-web/blob/master/.github/assets/article-modal%20gif.gif)
 This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
