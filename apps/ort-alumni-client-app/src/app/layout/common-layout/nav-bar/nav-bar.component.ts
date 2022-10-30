@@ -20,8 +20,6 @@ import {
 })
 export class NavBarComponent {
   links: Link[] = linkData;
-
-  value: Observable<string>;
   modalData: ModalInteface = searchConfig;
   modalMenuTreeData: ModalInteface = MENU_TREE_MODAL;
 

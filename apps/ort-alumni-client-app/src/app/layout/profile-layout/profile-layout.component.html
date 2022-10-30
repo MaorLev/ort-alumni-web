@@ -1,7 +1,15 @@
-<p>profile-layout works!</p>
-<app-header></app-header>
-<app-nav-bar></app-nav-bar>
+<div class="profile">
 
-<app-side-nav></app-side-nav>
+  <app-header class="header" >
+    <nav>
+      <app-top-bar></app-top-bar>
+    </nav>
+  </app-header>
 
-<router-outlet></router-outlet>
+  <main class="content container">
+    <router-outlet></router-outlet>
+  </main>
+  <nav>
+    <app-side-nav class="side-nav" [routes]="routes"></app-side-nav>
+  </nav>
+</div>

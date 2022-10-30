@@ -1,0 +1,21 @@
+.profile {
+
+  width: 100vw;
+  height: 100vh;
+  display:grid;
+  grid-template-areas: "header header"
+                        "side-nav content";
+    grid-template-rows: minmax(min-content, 5vh) minmax(max-content, 1fr);
+    grid-template-columns: minmax(max-content, 1fr) minmax(min-content, 6fr);
+    gap: 4rem;
+  .header {
+    grid-area: header;
+  }
+  .content {
+    grid-area: content;
+  }
+  .side-nav {
+    grid-area: side-nav;
+  }
+}
+

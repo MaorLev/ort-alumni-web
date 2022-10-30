@@ -24,7 +24,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../pages/article/article.module').then((m) => m.ArticleModule)
       },
-      
+
 
     ],
   }

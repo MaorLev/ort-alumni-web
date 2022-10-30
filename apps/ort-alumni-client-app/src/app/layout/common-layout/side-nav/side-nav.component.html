@@ -1,1 +1,16 @@
-<p>side-nav works!</p>
+<nav class="navigation">
+  <div [ngClass]="['links', alignment]">
+    <ng-container *ngFor="let link of routes">
+      <ort-button
+        class="link"
+        [routerLink]="getRoutingMethod('routing') ? link.route : null"
+        (click)="
+          getRoutingMethod('routing') ? this.submitted.emit(link.route) : null
+        "
+        routerLinkActive="active"
+      >
+        {{ link.label }}
+      </ort-button>
+    </ng-container>
+  </div>
+</nav>

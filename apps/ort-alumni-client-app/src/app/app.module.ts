@@ -13,15 +13,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { FeatureModalModule } from '@features/feature-modal';
 
-
 import {
   HttpClientJsonpModule,
   HttpClientModule,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { environment } from '@environments';
-import { ApiErrorInterceptor, CentralMessageModule } from '@utils/util/core/central-message';
+import {
+  ApiErrorInterceptor,
+  CentralMessageModule,
+} from '@utils/util/core/central-message';
 
 
 @NgModule({
@@ -38,15 +40,15 @@ import { ApiErrorInterceptor, CentralMessageModule } from '@utils/util/core/cent
     HttpClientJsonpModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    CentralMessageModule
+    CentralMessageModule,
   ],
   providers: [
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
-      useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }
+      useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
     },
     { provide: HTTP_INTERCEPTORS, useClass: ApiErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

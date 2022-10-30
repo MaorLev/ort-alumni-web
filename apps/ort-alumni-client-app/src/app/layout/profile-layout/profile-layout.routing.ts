@@ -6,9 +6,38 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileLayoutComponent,
-    // ,
-    // children: [
-    // ]
+    children: [
+      {
+        path: 'alumnus-edit',
+        loadChildren: () =>
+        import('../../profiles/p-alumnus/p-alumnus.module').then((m) => m.PAlumnusModule),
+        // canActivate: [AlumniGuard],
+      },
+      {
+        path: 'student-edit',
+        loadChildren: () =>
+        import('../../profiles/p-student/p-student.module').then((m) => m.PStudentModule),
+        // canActivate: [AlumniGuard],
+      },
+      {
+        path: 'teacher-edit',
+        loadChildren: () =>
+        import('../../profiles/p-teacher/p-teacher.module').then((m) => m.PTeacherModule),
+        // canActivate: [AlumniGuard],
+      },
+      {
+        path: 'employer-edit',
+        loadChildren: () =>
+        import('../../profiles/p-employer/p-employer.module').then((m) => m.PEmployerModule),
+        // canActivate: [AlumniGuard],
+      },
+      {
+        path: 'joboffer-edit',
+        loadChildren: () =>
+        import('../../profiles/p-joboffer/p-joboffer.module').then((m) => m.PJobofferModule),
+        // canActivate: [AlumniGuard],
+      },
+    ],
   },
 ];
 

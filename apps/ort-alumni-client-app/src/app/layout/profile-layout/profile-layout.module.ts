@@ -7,8 +7,8 @@ import { ProfileLayoutRoutingModule } from './profile-layout.routing';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { HeaderModule } from '../common-layout/header/header.module';
 import { NavBarModule } from '../common-layout/nav-bar/nav-bar.module';
-import { FooterModule } from '../common-layout/footer/footer.module';
 import { SideNavModule } from '../common-layout/side-nav/side-nav.module';
+import { TopBarModule } from '../common-layout/top-bar/top-bar.module';
 
 @NgModule({
   declarations: [ProfileLayoutComponent],
@@ -17,9 +17,9 @@ import { SideNavModule } from '../common-layout/side-nav/side-nav.module';
     QuicklinkModule,
     HeaderModule,
     NavBarModule,
-    FooterModule,
     SideNavModule,
     ProfileLayoutRoutingModule,
+    TopBarModule
   ],
   exports:[QuicklinkModule]
 })

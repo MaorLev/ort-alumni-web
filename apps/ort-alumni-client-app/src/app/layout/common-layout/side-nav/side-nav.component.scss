@@ -1,0 +1,27 @@
+@use 'fonts' as font;
+
+.links {
+  display: flex;
+  &.vartical{
+    border-left: var(--accent-a-color) 0.2rem solid;
+    flex-direction: column;
+  }
+  &.horizontal{
+    border-bottom: var(--accent-a-color) 0.2rem solid;
+    flex-direction: row;
+  }
+  .link {
+    transition: 0.25s ease;
+    padding: 1rem 0.5rem;
+    margin: 0.5rem 2rem 1rem;
+    @include font.large-button;
+    color: var(--black-color);
+    &:hover {
+      transform: translateX(-4px);
+    }
+    &.active {
+      transform: translateX(-4px);
+      color: var(--stronger-black-color);
+    }
+  }
+}

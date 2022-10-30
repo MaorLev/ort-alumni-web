@@ -2,7 +2,7 @@ export interface Link {
   label: string;
   name: string;
   route: string;
-  order: number;
+  order?: number;
   showIfLogin?: boolean;
   onClick?:() => void;
 }

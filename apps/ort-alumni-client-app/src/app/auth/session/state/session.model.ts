@@ -1,4 +1,5 @@
 import { StorageService } from '@utils/util-tools';
+import { JWTResult } from './session.types';
 
 export type SessionState = {
   access_token: string;
@@ -11,7 +12,7 @@ export function createInitialSessionState(): SessionState {
 
   const session = storage.getSession()
     ? { ...storage.getSession() }
-    : { access_token: null, type: null, expired: null };
+    : {} as JWTResult;
   return {
     access_token: null,
     type: null,

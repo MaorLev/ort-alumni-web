@@ -20,6 +20,13 @@ const routes: Routes = [
         (m) => m.AuthLayoutModule
       ),
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./layout/profile-layout/profile-layout.module').then(
+        (m) => m.ProfileLayoutModule
+      ),
+  },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
 
   {
