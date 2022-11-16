@@ -33,6 +33,7 @@
     "@datorama/akita-ng-router-store": "^7.0.0",
     "@glidejs/glide": "^3.5.2",
     "@nrwl/angular": "13.10.1",
+    "caniuse-lite": "^1.0.30001431",
     "crypto-js": "^4.1.1",
     "immer": "^9.0.15",
     "ng-dialog-animation": "^9.0.4",

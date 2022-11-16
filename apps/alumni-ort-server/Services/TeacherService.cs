@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -11,6 +11,9 @@ using AlumniOrtServer.Models;
 using Microsoft.EntityFrameworkCore;
 
 using static AlumniOrtServer.Extensions.Constants;
+using Microsoft.AspNetCore.Http;
+using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
+using System.IO;
 
 namespace AlumniOrtServer.Services
 {
@@ -35,13 +38,52 @@ namespace AlumniOrtServer.Services
                 null;
             return c;
         }
+        public async Task<ResponseDTO> AddLogo(IFormFileCollection logoFiles,int teacherId )
+        {
 
-        public async Task<ResponseDTO> Add(TeacherDTO teacher)
+ 
+            TeacherLogo logo = new TeacherLogo();
+            int c = 0;
+            if (logoFiles.Count > 0)
+            {
+              var file = logoFiles.First();
+
+                if (file.Length > 0)
+                {
+                  using (var memoryStream = new MemoryStream())
+                  {
+                    await file.CopyToAsync(memoryStream);
+                    // Upload the file if less than 2 MB
+                    if (memoryStream.Length < 2097152)
+                    {
+                      var newLogo = new TeacherLogo()
+                      {
+                        Bytes = memoryStream.ToArray(),
+                        Description = file.FileName,
+                        FileExtension = Path.GetExtension(file.FileName),
+                        Size = file.Length,
+                        TeacherId = teacherId,
+                      };
+                    logo = newLogo;
+                    }
+                    else
+                    {
+                      return new ResponseDTO() { Status = StatusCODE.Faild, StatusText = "some Errors" };
+                    }
+                  }
+                  await m_db.TeacherLogo.AddAsync(logo);
+                  c = await m_db.SaveChangesAsync();
+                }
+
+              }
+          return new ResponseDTO() { Status = c > 0 ? StatusCODE.Success : StatusCODE.Faild };
+        }
+      public async Task<ResponseDTO> Add(TeacherDTO teacher)
         {
             Teacher TeacherFromDB =
                 new Teacher(0,
                     teacher.MailForStudy,
-                    teacher.Logo,
+                    //teacher.Logo,
                     teacher.Rate,
                     teacher.Description,
                     teacher.AlumnusId);
@@ -60,7 +102,7 @@ namespace AlumniOrtServer.Services
             bool objectsCreated =
                 await Add_ManyToMany_Language(teacher, TeacherFromDB.Id);
             if (
-                !objectsCreated && teacher.LanguageIDs.Length > 0 //last condition for situation that front dont fill any language
+                !objectsCreated && teacher.Languages.Length > 0 //last condition for situation that front dont fill any language
             )
             {
                 //ResponseDTO res = new ResponseDTO();
@@ -150,14 +192,11 @@ namespace AlumniOrtServer.Services
                             AlumnusId = t.AlumnusId,
                             Description = t.Description,
                             Rate = t.Rate,
-                            Logo = t.Logo,
+                            //Logo = t.Logo,
                             MailForStudy = t.MailForStudy,
                             Id = t.Id
                             //CourseIDs = t.TeacherCourses.Select(cs => cs.Course_StudyProgram.Id).ToArray(),
                             //CoursesNames = t.TeacherCourses.Select(cs => cs.Course_StudyProgram.Name).ToList(),
-
-                            //LanguageNames = t.TeacherLanguages.Select(l => l.Language.Name).ToList(),
-                            //LanguageIDs = t.TeacherLanguages.Select(id => id.Language.Id).ToArray(),
 
                             //ModeStudyIDs = t.ModeStudy_Cities.Select(ms => ms.ModeStudyId).ToArray(),
                             //Frontally_Names = t.ModeStudy_Cities.Where(ms => ms.ModeStudy.ModeStudyId == 1).Select(id => id.City.Name).ToList(),
@@ -206,21 +245,15 @@ namespace AlumniOrtServer.Services
                             new TeacherDTO()
                             {
                                 AlumnusId = t.AlumnusId,
-                                LanguageNames =
+                                Languages =
                                     t
                                         .TeacherLanguages
-                                        .Select(l => l.Language.Name)
-                                        .ToList(),
-                                LanguageIDs =
-                                    t
-                                        .TeacherLanguages
-                                        .Select(id => id.Language.Id)
+                                        .Select(TLang => TLang.Language)
                                         .ToArray()
                             })
                         .FirstOrDefaultAsync(i => i.AlumnusId == id);
 
-                result.LanguageNames = teacher2.LanguageNames;
-                result.LanguageIDs = teacher2.LanguageIDs;
+                result.Languages = teacher2.Languages;
 
                 TeacherDTO teacher3 =
                     await m_db
@@ -241,7 +274,7 @@ namespace AlumniOrtServer.Services
                                             ms.ModeStudy.ModeStudyId == 1)
                                         .Select(id => id.City.Name)
                                         .ToList(),
-                                City =
+                                Cities =
                                     t
                                         .ModeStudy_Cities
                                         .Where(ms => ms.ModeStudyId == 1)
@@ -267,7 +300,7 @@ namespace AlumniOrtServer.Services
                         .FirstOrDefaultAsync(i => i.AlumnusId == id);
                 result.ModeStudyIDs = teacher3.ModeStudyIDs;
                 result.Frontally_Names = teacher3.Frontally_Names;
-                result.City = teacher3.City;
+                result.Cities = teacher3.Cities;
                 result.Is_Online = teacher3.Is_Online;
                 result.Is_Frontally = teacher3.Is_Frontally;
                 return result;
@@ -287,7 +320,7 @@ namespace AlumniOrtServer.Services
                             AlumnusId = t.AlumnusId,
                             Description = t.Description,
                             Rate = t.Rate,
-                            Logo = t.Logo,
+                            //Logo = t.Logo,
                             MailForStudy = t.MailForStudy,
                             Id = t.Id
                         })
@@ -313,13 +346,12 @@ namespace AlumniOrtServer.Services
                 {
                     teacher[i].CourseIDs = Cteacher[i].CourseIDs;
                     teacher[i].CoursesNames = Cteacher[i].CoursesNames;
-                    teacher[i].LanguageIDs = Lteacher[i].LanguageIDs;
-                    teacher[i].LanguageNames = Lteacher[i].LanguageNames;
+                    teacher[i].Languages = Lteacher[i].Languages;
                     teacher[i].ModeStudyIDs = Mteacher[i].ModeStudyIDs;
                     teacher[i].Frontally_Names = Mteacher[i].Frontally_Names;
                     teacher[i].Is_Frontally = Mteacher[i].Is_Frontally;
                     teacher[i].Is_Online = Mteacher[i].Is_Online;
-                    teacher[i].City = Mteacher[i].City;
+                    teacher[i].Cities = Mteacher[i].Cities;
                 }
             }
             return teacher;
@@ -361,15 +393,10 @@ namespace AlumniOrtServer.Services
                         {
                             AlumnusId = t.AlumnusId,
                             Id = t.Id,
-                            LanguageNames =
+                            Languages =
                                 t
                                     .TeacherLanguages
-                                    .Select(l => l.Language.Name)
-                                    .ToList(),
-                            LanguageIDs =
-                                t
-                                    .TeacherLanguages
-                                    .Select(id => id.LanguageId)
+                                    .Select(lang => lang.Language)
                                     .ToArray()
                         })
                     .ToListAsync();
@@ -394,7 +421,7 @@ namespace AlumniOrtServer.Services
                                     .Where(ms => ms.ModeStudyId == 1)
                                     .Select(id => id.City.Name)
                                     .ToList(),
-                            City =
+                            Cities =
                                 t
                                     .ModeStudy_Cities
                                     .Where(ms => ms.ModeStudyId == 1)
@@ -440,7 +467,7 @@ namespace AlumniOrtServer.Services
                 };
             }
             TeacherFromDB.Id = Convert.ToInt32(existsT.Id.ToString());
-            TeacherFromDB.Logo = teacher.Logo ?? existsT.Logo;
+            //TeacherFromDB.Logo = teacher.Logo ?? existsT.Logo;
             TeacherFromDB.MailForStudy =
                 teacher.MailForStudy ?? existsT.MailForStudy;
             TeacherFromDB.Rate = teacher.Rate ?? existsT.Rate;
@@ -495,12 +522,12 @@ namespace AlumniOrtServer.Services
             {
                 if (
                     modeFront == ModeStudiesId.Frontally &&
-                    existsT.City.Length > 0 &&
+                    existsT.Cities.Length > 0 &&
                     enter
                 )
                 {
                     enter = false;
-                    foreach (var cityId in existsT.City)
+                    foreach (var cityId in existsT.Cities)
                     {
                         if (cityId.Id != 1)
                         {
@@ -521,9 +548,9 @@ namespace AlumniOrtServer.Services
         private async Task
         Update_ManyToMany_Languges(TeacherDTO teacher, TeacherDTO existsT)
         {
-            foreach (var langId in existsT.LanguageIDs)
+            foreach (var language in existsT.Languages)
             {
-                var languageToRemove = new TeacherLanguage(existsT.Id, langId);
+                var languageToRemove = new TeacherLanguage(existsT.Id, language.Id);
                 m_db.TeacherLanguages.Remove (languageToRemove);
             }
             await m_db.SaveChangesAsync();
@@ -569,8 +596,8 @@ namespace AlumniOrtServer.Services
                     await m_db.ModeStudy_Cities.AddAsync(modeStudy_City);
                 }
                 if (
-                    modeStudyIDs[i] == ModeStudiesId.Frontally &&
-                    teacher.City.Length > 0 &&
+                    (modeStudyIDs[i] == ModeStudiesId.Frontally) && teacher.Cities != null &&
+                    teacher.Cities.Length > 0 &&
                     enter
                 )
                 {
@@ -578,7 +605,7 @@ namespace AlumniOrtServer.Services
 
                     //if (teacher.CityIDs != null)
                     //{
-                    foreach (City cityId in teacher.City)
+                    foreach (City cityId in teacher.Cities)
                     {
                         if (cityId.Id != 1)
                         {
@@ -601,9 +628,9 @@ namespace AlumniOrtServer.Services
         private async Task<bool>
         Add_ManyToMany_Language(TeacherDTO teacher, int id)
         {
-            foreach (var IdLang in teacher.LanguageIDs)
+            foreach (var language in teacher.Languages)
             {
-                var teacherLanguges = new TeacherLanguage(id, IdLang);
+                var teacherLanguges = new TeacherLanguage(id, language.Id);
                 await m_db.TeacherLanguages.AddAsync(teacherLanguges);
             }
             int change = await m_db.SaveChangesAsync();

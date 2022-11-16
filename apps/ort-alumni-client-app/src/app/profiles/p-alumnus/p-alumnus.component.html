@@ -1,1 +1,21 @@
-<p>p-alumnus works!</p>
+<ng-container *ngIf="state.state$ | async as st">
+  <div class="alumnus-profile container">
+    <div class="tab-navigation">
+      <app-side-nav
+        [alignment]="st.NavigationData.alignment"
+        [routes]="st.NavigationData.routesData"
+        [routingMethod]="st.NavigationData.routingMethod"
+        (submitted)="onActiveChange($event)"
+      ></app-side-nav>
+    </div>
+    <div class="content">
+      <ng-container *ngIf="alumnusPatchAndConfigData | async as active">
+        <ort-form
+          [configuration]="active[1]"
+          (submitted)="onSubmit($event)"
+          [dataToPatch]="active[0]"
+        ></ort-form>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

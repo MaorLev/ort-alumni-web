@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
@@ -8,6 +9,7 @@ using AlumniOrtServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace AlumniOrtServer.Controllers
 {
@@ -61,6 +63,29 @@ namespace AlumniOrtServer.Controllers
               return StatusCode(500, e);
             }
 
+        }
+
+        [Route("UploadLogo/{teacherId}")]
+        [HttpPost, DisableRequestSizeLimit]
+        public async Task<IActionResult> UploadLogo(int teacherId)
+        {
+          try
+          {
+          IFormCollection formLogo = await Request.ReadFormAsync();
+
+          ResponseDTO response = await service.AddLogo(formLogo.Files, teacherId);
+
+            if(response.Status == StatusCODE.Success)
+            {
+              return Ok(response);
+            }
+
+        return BadRequest(response);
+          }
+          catch (Exception ex)
+          {
+            return StatusCode(500, $"Internal server error: {ex}");
+          }
         }
         [HttpGet]
         [Route("teacherExist")]

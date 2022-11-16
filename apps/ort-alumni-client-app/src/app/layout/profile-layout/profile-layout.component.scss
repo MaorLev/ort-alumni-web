@@ -12,10 +12,12 @@
     grid-area: header;
   }
   .content {
+    height: 100%;
     grid-area: content;
   }
   .side-nav {
     grid-area: side-nav;
+
   }
 }
 

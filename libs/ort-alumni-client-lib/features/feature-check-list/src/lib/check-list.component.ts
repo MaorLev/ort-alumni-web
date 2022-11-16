@@ -85,7 +85,7 @@ export class CheckListComponent implements OnInit, ControlValueAccessor, Validat
     this.onValidatorChange = onValidatorChange;
   }
   validate(ctrl: FormControl): ValidationErrors | null {
-    if(this.config.name === 'checkbox')
+    if(this.config.name === 'modestudyids')
     return this.config.data.validate(ctrl)
 
     return ctrl.validator;

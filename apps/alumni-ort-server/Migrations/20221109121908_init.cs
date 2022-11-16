@@ -13,7 +13,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HebName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,10 +105,13 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Heading = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubHeading = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Heading = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    SubHeading = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OriginalImgName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Author = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Detail = table.Column<string>(type: "nvarchar(max)", maxLength: 7000, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -252,7 +256,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MailForStudy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rate = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     AlumnusId = table.Column<int>(type: "int", nullable: false)
@@ -395,13 +398,36 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TeacherLogo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bytes = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileExtension = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Size = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeacherLogo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TeacherLogo_Teacher_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teacher",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "HebName", "Name" },
                 values: new object[,]
                 {
-                    { 2, "General" },
-                    { 1, "Events" }
+                    { 2, "כללי", "General" },
+                    { 1, "אירועים", "Events" }
                 });
 
             migrationBuilder.InsertData(
@@ -1766,8 +1792,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teacher",
-                columns: new[] { "Id", "AlumnusId", "Description", "Logo", "MailForStudy", "Rate" },
-                values: new object[] { 1, 1, "מרצה Full Stack במכללה 'מרכז החרדי להכשרה מקצועית', עיסוק עיקרי Angular. אשמח שנתקדם יחד :)", "defaultLogo.jpg", "maor0749@gmail", "90" });
+                columns: new[] { "Id", "AlumnusId", "Description", "MailForStudy", "Rate" },
+                values: new object[] { 1, 1, "מרצה Full Stack במכללה 'מרכז החרדי להכשרה מקצועית', עיסוק עיקרי Angular. אשמח שנתקדם יחד :)", "maor0749@gmail", "90" });
 
             migrationBuilder.InsertData(
                 table: "JobOffer_Cities",
@@ -1864,6 +1890,12 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TeacherLogo_TeacherId",
+                table: "TeacherLogo",
+                column: "TeacherId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_CityId",
                 table: "Users",
                 column: "CityId");
@@ -1906,6 +1938,9 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "TeacherLanguages");
+
+            migrationBuilder.DropTable(
+                name: "TeacherLogo");
 
             migrationBuilder.DropTable(
                 name: "Categories");

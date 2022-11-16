@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Models;
+using AlumniOrtServer.Models;
 
 namespace AlumniOrtServer.Data.Entities
 {
@@ -18,6 +18,8 @@ namespace AlumniOrtServer.Data.Entities
 
         public int Course_StudyProgramId { get; set; }
         public virtual Course_StudyProgram Course_StudyProgram { get; set; }
+
+        
 
 
     }

@@ -8,7 +8,7 @@ describe('PAlumnusComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PAlumnusComponent],
+      declarations: [PAlumnusComponent]
     }).compileComponents();
   });
 

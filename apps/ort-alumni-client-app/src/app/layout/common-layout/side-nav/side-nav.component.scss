@@ -2,13 +2,19 @@
 
 .links {
   display: flex;
-  &.vartical{
+  &.vertical{
     border-left: var(--accent-a-color) 0.2rem solid;
     flex-direction: column;
+    .title {
+      padding: 1rem 0.5rem;
+      margin: 0.5rem 2rem 1rem;
+
+    }
   }
   &.horizontal{
     border-bottom: var(--accent-a-color) 0.2rem solid;
     flex-direction: row;
+    flex-wrap: wrap;
   }
   .link {
     transition: 0.25s ease;

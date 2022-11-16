@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.Entities;
+using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.Models;
 using Newtonsoft.Json;
 using System;
@@ -23,20 +23,17 @@ namespace AlumniOrtServer.Data.DTO
         public string Description { get; set; }
         [JsonProperty(PropertyName = "alumnusid")]
         public int AlumnusId { get; set; }
-        [JsonProperty(PropertyName = "languageids")]
-        public int [] LanguageIDs { get; set; } = { };
+        [JsonProperty(PropertyName = "languages")]
+        public Language [] Languages { get; set; } = { };
 
         [JsonProperty(PropertyName = "courseids")]
         public int[] CourseIDs { get; set; } = { };
         [JsonProperty(PropertyName = "coursenames")]
-        public List<string> CoursesNames { get; set; } 
-        [JsonProperty(PropertyName = "cityids")]
-        //public int[] CityIDs { get; set; } //if modeStudy Frontally exist cityIDs must to be full!!
-        public City [] City { get; set; }
+        public List<string> CoursesNames { get; set; }
+        [JsonProperty(PropertyName = "cities")]
+        public City [] Cities { get; set; }
         [JsonProperty(PropertyName = "modestudyids")]
         public int [] ModeStudyIDs { get; set; } = { };//לבדוק אם למפות אותו
-        [JsonProperty(PropertyName = "languagenames")]
-        public List<string> LanguageNames { get; set; }
         [JsonProperty(PropertyName = "frontally_names")]
         public List<string> Frontally_Names { get; set; }
         [JsonProperty(PropertyName = "is_online")]

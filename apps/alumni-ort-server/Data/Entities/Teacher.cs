@@ -13,12 +13,11 @@ namespace AlumniOrtServer.Models
         {
 
         }
-        public Teacher(int id, string mailForStudy, string logo, string rate, string description
+        public Teacher(int id, string mailForStudy, string rate, string description
             , int alumnusId)
         {
             Id = id;
             MailForStudy = mailForStudy;
-            Logo = logo;
             Rate = rate;
             Description = description;
             AlumnusId = alumnusId;
@@ -30,7 +29,7 @@ namespace AlumniOrtServer.Models
         [StringLength(50)]
         public string MailForStudy { get; set; }
 
-        public string Logo { get; set; }// according microsoft is byte[] (type for photo)
+        //public string Logo { get; set; }// according microsoft is byte[] (type for photo)
         [StringLength(30)]
         public string Rate { get; set; }
         [Required]
@@ -38,6 +37,7 @@ namespace AlumniOrtServer.Models
         public string Description { get; set; }
         public int AlumnusId { get; set; }
         public virtual Alumnus Alumanus { get; set; }
+        public virtual TeacherLogo Logo { get; set; }
         public virtual List<TeacherLanguage> TeacherLanguages { get; set; }
         public virtual List<TeacherCourse> TeacherCourses { get; set; }
         public virtual List<ModeStudy_City> ModeStudy_Cities { get; set; }

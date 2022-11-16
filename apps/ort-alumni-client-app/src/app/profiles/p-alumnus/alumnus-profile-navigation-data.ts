@@ -1,24 +1,14 @@
-import { Link } from "../../layout/common-layout/nav-bar/link.interface";
+import { Link } from '../../layout/common-layout/nav-bar/link.interface';
 
-export const AlumnusProfileNavigationData:Link [] = [
+export const AlumnusProfileNavigationData: Link[] = [
   {
     label: 'עריכת פרטים אישיים',
     name: '',
-    route: '/profile/alumnus-edit',
+    route: '/profile/alumnus-edit'
   },
   {
-    label: 'עריכת פרטים אישיים',
+    label: 'עריכת פרטי מורה',
     name: '',
-    route: '/profile/alumnus-edit',
-  },
-  {
-    label: 'עריכת פרטים אישיים',
-    name: '',
-    route: '/profile/alumnus-edit',
-  },
-  {
-    label: 'עריכת פרטים אישיים',
-    name: '',
-    route: '/profile/alumnus-edit',
-  },
-]
+    route: '/profile/teacher-edit'
+  }
+];

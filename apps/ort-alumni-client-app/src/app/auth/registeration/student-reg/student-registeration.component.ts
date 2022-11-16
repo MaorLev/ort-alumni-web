@@ -1,13 +1,12 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  MessageType
-} from '@utils/util/core/central-message';
-
+import { FeatureExpansionPanelComponent, PanelActionType } from '@features/feature-expansion-panel';
+import { AlertsService } from '@utils/util/core/central-message';
 import { catchError } from 'rxjs';
 import { StudentDataService } from './state/student.data.service';
 
@@ -20,11 +19,13 @@ import { StudentFormConfig } from './student-form.config';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StudentRegisterationComponent {
-  submitMode: 'success' | 'failed' | 'undefined' = 'undefined';
+
+  @ViewChild('panel') panel:FeatureExpansionPanelComponent;
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     public studentFormConfig: StudentFormConfig,
     private studentService: StudentDataService,
+    private alertService:AlertsService
 
   ) {}
 
@@ -34,14 +35,13 @@ export class StudentRegisterationComponent {
     .createStudent(group.value)
       .pipe(
         catchError((error: any) => {
-          this.submitMode = 'failed';
-          this.changeDetectorRef.detectChanges();
+          this.alertService.dynamicAlert('.שגיאת מערכת: משתמש לא התווסף, אנא נסה מאוחר יותר');
           return error;
         })
       )
-      .subscribe((res) => {
-        this.submitMode = 'success';
-        this.changeDetectorRef.detectChanges();
+      .subscribe(() => {
+        this.panel.state.actions$.next({type:PanelActionType.nextStep});
+        this.panel.state.actions$.next({type:PanelActionType.ExcludeStep});
       });
   }
 }

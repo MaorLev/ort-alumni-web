@@ -16,8 +16,9 @@ import { Link } from '../nav-bar/link.interface';
 })
 export class SideNavComponent implements AfterViewInit {
   @Input() routes: Link[];
-  @Input() alignment: string;
+  @Input() alignment: 'vertical' | 'horizontal';
   @Input() routingMethod: 'routing' | 'output';
+  @Input() title:string | undefined;
   @Output() submitted: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private router: Router) {
@@ -25,7 +26,7 @@ export class SideNavComponent implements AfterViewInit {
     this.routingMethod = 'routing';
   }
   ngAfterViewInit(): void {
-    if (this.routes)
+    if (this.routes && this.getRoutingMethod('routing'))
       this.router.navigateByUrl(this.routes[0].route, {
         skipLocationChange: true
       });

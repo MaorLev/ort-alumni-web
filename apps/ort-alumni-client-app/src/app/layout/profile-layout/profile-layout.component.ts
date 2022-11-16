@@ -19,10 +19,10 @@ export class ProfileLayoutComponent implements OnInit {
     this.roleName = this.sessionQuery.getRole();
   }
   ngOnInit(): void {
-    this.determineEntity();
+    this.setEntity();
   }
 
-  determineEntity() {
+  setEntity() {
     switch (this.roleName) {
       case 'Alumnus':
         this.routes = AlumnusProfileNavigationData;

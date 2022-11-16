@@ -1,0 +1,6 @@
+.alumnus-profile {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(max-content, 1fr) minmax(min-content, 6fr);
+}

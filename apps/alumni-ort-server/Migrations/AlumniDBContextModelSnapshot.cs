@@ -6033,9 +6033,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("Logo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MailForStudy")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -6058,7 +6055,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                             Id = 1,
                             AlumnusId = 1,
                             Description = "מרצה Full Stack במכללה 'מרכז החרדי להכשרה מקצועית', עיסוק עיקרי Angular. אשמח שנתקדם יחד :)",
-                            Logo = "defaultLogo.jpg",
                             MailForStudy = "maor0749@gmail",
                             Rate = "90"
                         });
@@ -6196,6 +6192,36 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                             HebName = "כללי",
                             Name = "General"
                         });
+                });
+
+            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("Bytes")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Size")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId")
+                        .IsUnique();
+
+                    b.ToTable("TeacherLogo");
                 });
 
             modelBuilder.Entity("AlumniOrtServer.Data.Entities.Admin", b =>
@@ -6537,12 +6563,23 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
             modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Article", b =>
                 {
                     b.HasOne("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Category", "Category")
-                        .WithMany("Articles")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", b =>
+                {
+                    b.HasOne("AlumniOrtServer.Models.Teacher", "Teacher")
+                        .WithOne("Logo")
+                        .HasForeignKey("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", "TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("AlumniOrtServer.Models.Alumnus", b =>
@@ -6642,6 +6679,8 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 
             modelBuilder.Entity("AlumniOrtServer.Models.Teacher", b =>
                 {
+                    b.Navigation("Logo");
+
                     b.Navigation("ModeStudy_Cities");
 
                     b.Navigation("TeacherCourses");
@@ -6652,11 +6691,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
             modelBuilder.Entity("AlumniOrtServer.Models.User", b =>
                 {
                     b.Navigation("Claims");
-                });
-
-            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Category", b =>
-                {
-                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("AlumniOrtServer.Models.Alumnus", b =>

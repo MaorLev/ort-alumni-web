@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PAlumnusFormData } from './p-alumnus-form-data.service';
+import { StateService } from './state.service';
 
-describe('PAlumnusFormDataService', () => {
-  let service: PAlumnusFormData;
+describe('StateService', () => {
+  let service: StateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PAlumnusFormData);
+    service = TestBed.inject(StateService);
   });
 
   it('should be created', () => {

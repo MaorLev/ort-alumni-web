@@ -167,7 +167,7 @@ namespace AlumniOrtServer.Context
       List<Language> languages = languageToList.GetData(pathLanguage);
       modelBuilder.Entity<Language>().HasData(languages);
 
-            Teacher teacher = new Teacher(1, "maor0749@gmail", "defaultLogo.jpg", "90", "מרצה Full Stack במכללה 'מרכז החרדי להכשרה מקצועית', עיסוק עיקרי Angular. אשמח שנתקדם יחד :)", 1);
+            Teacher teacher = new Teacher(1, "maor0749@gmail", "90", "מרצה Full Stack במכללה 'מרכז החרדי להכשרה מקצועית', עיסוק עיקרי Angular. אשמח שנתקדם יחד :)", 1);
             modelBuilder.Entity<Teacher>().HasData(teacher);
 
             TeacherLanguage teacherLanguage1 = new TeacherLanguage(1, 1);
@@ -344,6 +344,7 @@ namespace AlumniOrtServer.Context
         public virtual DbSet<Claim> Claim { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<TeacherLogo> TeacherLogo { get; set; }
 
   }
 }

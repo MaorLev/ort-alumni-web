@@ -28,6 +28,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'register-teacher',
+        loadChildren: () =>
+          import('../../auth/registeration/teacher-reg/teacher-registeration.module').then(
+            (m) => m.TeacherRegisterationModule
+          ),
+      },
+      {
         path: 'register-employer',
         loadChildren: () =>
           import('../../auth/registeration/employer-reg/employer-registeration.module').then(

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormControlStatus, FormGroup } from '@angular/forms';
 import {
@@ -7,6 +8,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { FormBuilderService } from './form-builder.service';
 import { cloneDeep } from '@utils/util-tools';
@@ -18,12 +21,12 @@ import { ButtonAction } from '@ui-components/ui-button';
   selector: 'ort-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnChanges {
   @Input() configuration: FormInterface;
   @Input() dataToPatch: any | undefined;
-  @Input() action:ButtonAction;
+  @Input() action: ButtonAction;
   @Output() submitted = new EventEmitter<any>();
   @Output() actionSubmitted = new EventEmitter<any>();
   isSubmitted: boolean;
@@ -34,8 +37,18 @@ export class FormComponent implements OnInit {
     return this.group.controls;
   }
   constructor(private formBuilderService: FormBuilderService) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['configuration'] && !(changes['configuration'].isFirstChange())){
+      debugger;
+      this.initialGroup();
+    }
+  }
 
   ngOnInit(): void {
+    this.initialGroup();
+  }
+
+  initialGroup() {
     this.group = this.formBuilderService.buildStepperGroup(
       this.configuration.controls
     );
@@ -47,11 +60,10 @@ export class FormComponent implements OnInit {
 
     this.statusChanged = this.group.statusChanges;
   }
-
   extractFormGroup() {
     this.submitted.emit(this.group);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   asIsOrder(a: any, b: any) {
     return 1;
   }

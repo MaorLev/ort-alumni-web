@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   EventEmitter,
+  OnDestroy
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {} from '@angular/material/expansion';
@@ -17,17 +18,49 @@ import {
 import { StepForm, StepsForm } from './stepsForm.interfaces';
 import { ButtonAction } from '@ui-components/ui-button';
 import { Router } from '@angular/router';
+import { StateService } from '@utils/util-tools';
+import { PanelActionHandler, PanelGroupSteps } from './panel-action-handler';
+import { PanelStateService } from './panel-state.service';
+import { map, Observable } from 'rxjs';
+
+
+
+export const PaneInitialState:PanelGroupSteps = {
+  steps: [{index: 0, disabled:false}],
+  activeIndex: 0,
+  lastActive:0
+}
+
+
+export enum PanelActionType  {
+  Init = 'init',
+  ExcludeStep = 'excludeStep',
+  setCurrentStep = 'setCurrentStep',
+  nextStep = 'nextStep',
+  prevStep = 'prevStep',
+  setDisabledStep = 'setDisabledStep',
+  rollBackDisabled = 'rollBackDisabled'
+}
+
 @Component({
   selector: 'ort-expansion-panel',
   templateUrl: './feature-expansion-panel.component.html',
   styleUrls: ['./feature-expansion-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: PanelStateService,
+      useFactory: () =>
+        new PanelStateService(
+          PaneInitialState,
+          new PanelActionHandler()
+        )
+    }
+  ]
 })
-export class FeatureExpansionPanelComponent implements OnInit {
+export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   @Input() stepsForm: StepsForm;
-  private step: number;
-  disabledSteps: Map<number, boolean>;
   @Output() submitted;
   initialStepsSize: number;
 
@@ -36,63 +69,21 @@ export class FeatureExpansionPanelComponent implements OnInit {
   get buttonRoles(): typeof ButtonAction {
     return ButtonAction;
   }
-  set Step(index: number) {
-    this.step = index;
-    console.log('set', this.step);
-  }
-  get Step(): number {
-    console.log('get', this.step);
-    return this.step;
-  }
-  get DisabledSteps() {
-    return this.disabledSteps;
-  }
 
-  message: string;
-
-  get submittedMessage() {
-    return this.message;
-  }
-  set submittedMessage(messageTo: string) {
-    this.message = messageTo;
-  }
-  @Input() set ifSubmitted(mode: 'success' | 'failed' | 'undefined') {
-    switch (mode) {
-      case 'success':
-        this.nextStep();
-        this.ExcludeDisabledStep();
-        break;
-      case 'failed':
-        this.submittedMessage = 'משתמש לא התווסף אנא נסה מאוחר יותר';
-        break;
-      case 'undefined':
-        break;
-    }
-  }
   constructor(
     private _formBuilderService: FormBuilderService,
-    private router: Router
+    private router: Router,
+    public state:PanelStateService
   ) {
     this.submitted = new EventEmitter<FormGroup>();
-    this.disabledSteps = new Map();
-    this.initialDisabledSteps();
   }
+
 
   ngOnInit(): void {
     this.initialStepsSize = this.stepsForm.steps.length;
+    this.state.actions$.next({type: PanelActionType.Init, data:{length: this.initialStepsSize}});
     this.formGroup = this.formGroupInitalization();
   }
-  initialDisabledSteps(stepToStart?: number) {
-    this.step = stepToStart ? stepToStart : 0;
-    this.ExcludeDisabledStep();
-  }
-  // oppositeDisabledSteps() {
-  //   for (const step in this.disabledSteps.keys) {
-  //     const stp = parseInt(step);
-  //     if (stp !== this.Step) this.DisabledSteps.set(stp, !this.disabledSteps.get(stp));
-
-  //   }
-  // }
   formGroupInitalization(): FormGroup {
     const controls: Record<string, VaInputInterface> = {};
     this.stepsForm.steps.forEach((step: StepForm) => {
@@ -105,46 +96,34 @@ export class FeatureExpansionPanelComponent implements OnInit {
     return this._formBuilderService.buildStepperGroup(controls);
   }
 
-  setDisabledStep(step: number, val: boolean) {
-    this.disabledSteps.set(step, val);
+  onRollBackDisabled(index:number)
+  {
+    this.state.actions$.next({type: PanelActionType.rollBackDisabled, data:{index: index}});
   }
-  getDisabledStep(step: number) {
-    return this.disabledSteps.get(step);
-  }
-
-  nextStep() {
-    this.step++;
-  }
-  prevStep() {
-    this.step--;
-    console.log(this.step);
-  }
-
-  ExcludeDisabledStep() {
-    for (let i = 0; i < this.initialStepsSize; i++) {
-      this.DisabledSteps.set(i, false);
-    }
-    this.setDisabledStep(this.step, true);
+  onGetDisabledStep(index: number) :Observable<boolean> {
+    return this.state.specificStep(index).pipe(map(step => step.disabled))
   }
 
   addDataToMainFormGroup(stepGroup: FormGroup) {
     this.formGroup.patchValue(stepGroup.value);
-    // console.log(this.formGroup);
   }
 
   onStepSubmit(stepGroup: FormGroup) {
     console.log(this.formStep);
-    // console.log(this.Step);
+
     if (stepGroup.valid) {
-      this.setDisabledStep(this.Step, true);
+      // this.setDisabledStep(this.Step, true);
+      // this.state.actions$.next({type:PanelActionType.setDisabledStep, data:{index: this.state.getActiveStep.index, length: null}});
       this.addDataToMainFormGroup(stepGroup);
-      this.nextStep();
+      // this.nextStep();
+      this.state.actions$.next({type:PanelActionType.nextStep})
     } else {
       stepGroup.markAllAsTouched();
     }
   }
   onStepsSubmit(stepGroup: FormGroup) {
     this.addDataToMainFormGroup(stepGroup);
+
     if (this.formGroup.valid) this.submitted.emit(this.formGroup);
     else {
       stepGroup.markAllAsTouched();
@@ -157,16 +136,20 @@ export class FeatureExpansionPanelComponent implements OnInit {
         if (group) this.onStepSubmit(group);
         break;
       case ButtonAction.Prev:
-        this.prevStep();
+        this.state.actions$.next({type:PanelActionType.prevStep})
         break;
       case ButtonAction.StepsSubmited:
         if (group) this.onStepsSubmit(group);
         break;
       case ButtonAction.Next:
-        this.nextStep;
+        this.state.actions$.next({type:PanelActionType.nextStep})
         break;
       default:
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.state.subs.unsubscribe();
   }
 }

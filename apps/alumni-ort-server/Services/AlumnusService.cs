@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Context;
+using AlumniOrtServer.Context;
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.DTO;
@@ -28,8 +28,8 @@ namespace AlumniOrtServer.Services
             Role role = await m_db.Role.Where(x => x.Id == RolesId.Alumnus).FirstOrDefaultAsync();
 
             Alumnus AlumnusFromDB = new Alumnus(0, alumnus.Mail, alumnus.FirstName
-               , alumnus.LastName, MD5Service.Encrypt(alumnus.Password), alumnus.Phone, alumnus.City.Id, alumnus.CollegeId
-               , alumnus.StudyProgramId, alumnus.CardId, alumnus.StudyFinishYear,alumnus.Linkedin, alumnus.WorkPlace, RolesId.Alumnus,alumnus.StudyStartYear, alumnus.DateOfBirth);
+               , alumnus.LastName, MD5Service.Encrypt(alumnus.Password), alumnus.Phone, alumnus.City.Id, alumnus.College.Id
+               , alumnus.StudyProgram.Id, alumnus.CardId, alumnus.StudyFinishYear,alumnus.Linkedin, alumnus.WorkPlace, RolesId.Alumnus,alumnus.StudyStartYear, alumnus.DateOfBirth);
 
                 await m_db.Alumni.AddAsync(AlumnusFromDB);
 
@@ -66,8 +66,7 @@ namespace AlumniOrtServer.Services
                 {
                     CardId = a.CardId,
                     City = a.City,
-                    CollegeId = a.CollegeId,
-                    CollegeName = a.College.Name,
+                    College = a.College,
                     DateOfBirth = a.DateOfBirth,
                     FirstName = a.FirstName,
                     Id = a.Id,
@@ -75,8 +74,7 @@ namespace AlumniOrtServer.Services
                     Mail = a.Mail,
                     Password = MD5Service.Decrypt(a.Password),
                     Phone = a.Phone,
-                    StudyProgramId = a.StudyProgramId,
-                    StudyProgramName = a.StudyProgram.Name,
+                    StudyProgram = a.StudyProgram,
                     StudyFinishYear = a.StudyFinishYear,
                     StudyStartYear = a.StudyStartYear,
                     Linkedin = a.Linkedin,
@@ -103,8 +101,7 @@ namespace AlumniOrtServer.Services
                 {
                     CardId = a.CardId,
                     City = a.City,
-                    CollegeId = a.CollegeId,
-                    CollegeName = a.College.Name,
+                    College = a.College,
                     DateOfBirth = a.DateOfBirth,
                     FirstName = a.FirstName,
                     Id = a.Id,
@@ -112,8 +109,7 @@ namespace AlumniOrtServer.Services
                     Mail = a.Mail,
                     Password = a.Password,
                     Phone = a.Phone,
-                    StudyProgramId = a.StudyProgramId,
-                    StudyProgramName = a.StudyProgram.Name,
+                    StudyProgram = a.StudyProgram,
                     StudyFinishYear = a.StudyFinishYear,
                     StudyStartYear = a.StudyStartYear,
                     Linkedin = a.Linkedin,
@@ -160,8 +156,8 @@ namespace AlumniOrtServer.Services
                 AlumnusFromDB.Password = MD5Service.Encrypt(alumnus.Password) ?? A.Password;
                 AlumnusFromDB.Phone = alumnus.Phone ?? A.Phone;
                 AlumnusFromDB.CityId = Convert.ToInt32((alumnus.City.Id).ToString() ?? (A.City.Id).ToString());
-                AlumnusFromDB.CollegeId = Convert.ToInt32(alumnus.CollegeId.ToString() ?? A.CollegeId.ToString());
-                AlumnusFromDB.StudyProgramId = Convert.ToInt32(alumnus.StudyProgramId.ToString() ?? A.StudyProgramId.ToString());
+                AlumnusFromDB.CollegeId = Convert.ToInt32(alumnus.College.Id.ToString() ?? A.College.Id.ToString());
+                AlumnusFromDB.StudyProgramId = Convert.ToInt32(alumnus.StudyProgram.Id.ToString() ?? A.StudyProgram.Id.ToString());
                 AlumnusFromDB.CardId = alumnus.CardId ?? A.CardId;
                 AlumnusFromDB.StudyFinishYear = alumnus.StudyFinishYear ?? A.StudyFinishYear;
                 AlumnusFromDB.Id = Convert.ToInt32(alumnus.Id.ToString() ?? A.Id.ToString());
