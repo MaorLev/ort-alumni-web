@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 {
     [DbContext(typeof(AlumniDBContext))]
-    [Migration("20221109121908_init")]
+    [Migration("20221121134437_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6196,7 +6196,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", b =>
+            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Logo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -6209,21 +6209,21 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FileExtension")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Size")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TeacherId")
-                        .IsUnique();
+                    b.ToTable("Logos");
 
-                    b.ToTable("TeacherLogo");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Logo");
                 });
 
             modelBuilder.Entity("AlumniOrtServer.Data.Entities.Admin", b =>
@@ -6404,6 +6404,20 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                     b.HasDiscriminator().HasValue("Student");
                 });
 
+            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", b =>
+                {
+                    b.HasBaseType("OrtAlumniWeb.AlumniOrtServer.Data.Entities.Logo");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("TeacherId")
+                        .IsUnique()
+                        .HasFilter("[TeacherId] IS NOT NULL");
+
+                    b.HasDiscriminator().HasValue("TeacherLogo");
+                });
+
             modelBuilder.Entity("AlumniOrtServer.Data.Entities.Claim", b =>
                 {
                     b.HasOne("AlumniOrtServer.Models.User", "User")
@@ -6573,17 +6587,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", b =>
-                {
-                    b.HasOne("AlumniOrtServer.Models.Teacher", "Teacher")
-                        .WithOne("Logo")
-                        .HasForeignKey("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", "TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Teacher");
-                });
-
             modelBuilder.Entity("AlumniOrtServer.Models.Alumnus", b =>
                 {
                     b.HasOne("AlumniOrtServer.Models.City", "City")
@@ -6636,6 +6639,17 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                     b.Navigation("College");
 
                     b.Navigation("StudyProgram");
+                });
+
+            modelBuilder.Entity("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", b =>
+                {
+                    b.HasOne("AlumniOrtServer.Models.Teacher", "Teacher")
+                        .WithOne("Logo")
+                        .HasForeignKey("OrtAlumniWeb.AlumniOrtServer.Data.Entities.TeacherLogo", "TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("AlumniOrtServer.Data.Entities.Course_StudyProgram", b =>

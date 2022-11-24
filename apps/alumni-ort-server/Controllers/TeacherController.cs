@@ -24,17 +24,17 @@ namespace AlumniOrtServer.Controllers
         }
         [HttpGet]
         [Route("{id?}")]
-        public async Task<ActionResult> Get(int id = 0)//קבלה
+        public async Task<ActionResult> Get(int alumnusId = 0)//קבלה
         {
             try
             {
-                if (id < 1)
+                if (alumnusId < 1)
                 {
                     List<TeacherDTO> result = await service.GetAll();
                     //service.GetData();
                     return Ok(result);
                 }
-                TeacherDTO resultTeacher = await service.Get(id);
+                TeacherDTO resultTeacher = await service.Get(alumnusId);
                 if (resultTeacher == null) return NotFound("יוזר לא קיים");
                 return Ok(resultTeacher);
             }
@@ -65,15 +65,15 @@ namespace AlumniOrtServer.Controllers
 
         }
 
-        [Route("UploadLogo/{teacherId}")]
+        [Route("UploadLogo/{alumnusId}")]
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> UploadLogo(int teacherId)
+        public async Task<IActionResult> UploadLogo(int alumnusId)
         {
           try
           {
           IFormCollection formLogo = await Request.ReadFormAsync();
 
-          ResponseDTO response = await service.AddLogo(formLogo.Files, teacherId);
+          ResponseDTO response = await service.AddLogo(formLogo.Files, alumnusId);
 
             if(response.Status == StatusCODE.Success)
             {

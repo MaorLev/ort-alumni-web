@@ -1,25 +1,10 @@
-import { Action, ActionHandler } from '@utils/util-tools';
-import { PanelActionType } from './feature-expansion-panel.component';
-export interface PanelStep {
-  index: number;
-  disabled: boolean;
-}
-export interface PanelGroupSteps {
-  steps: PanelStep[];
-  activeIndex: number;
-  lastActive: number ;
-}
-export class panelAction implements Action {
-  type: string;
-  data: PanelActionTypes;
-}
-export interface PanelActionTypes {
-  index: number;
-  length: number;
-}
+import { ActionHandler } from '@utils/util-tools';
+import { PanelActionType } from './panel-action-type.enum';
+import { panelAction } from './panel-action.types';
+import { PanelGroupSteps, PanelStep } from './panel-model';
+
 export class PanelActionHandler implements ActionHandler<PanelGroupSteps> {
   currentState: PanelGroupSteps;
-
 
   handleAction(
     currentState: PanelGroupSteps,
@@ -28,7 +13,7 @@ export class PanelActionHandler implements ActionHandler<PanelGroupSteps> {
     this.currentState = currentState;
     switch (action.type) {
       case PanelActionType.Init:
-        this.initial(action.data.length);
+        this.initial(action.data.length, action.data.index);
         break;
       case PanelActionType.ExcludeStep:
         this.excludeStep();
@@ -48,16 +33,27 @@ export class PanelActionHandler implements ActionHandler<PanelGroupSteps> {
       case PanelActionType.rollBackDisabled:
         this.rollBackDisabled(action.data.index);
         break;
+      case PanelActionType.disabledAll:
+        this.disabledAll();
+        break;
+      case PanelActionType.waitingMode:
+        this.updateWaitingMode();
+        break;
     }
 
     return this.currentState;
   }
 
-  private rollBackDisabled(activeIndex: number) {
-    this.setCurrentStep(activeIndex, this.currentState.activeIndex);
+  private updateWaitingMode() {
+    const isWaiting = this.currentState.isWaiting ? false : true;
+    this.currentState.isWaiting = isWaiting;
+    this.currentState.steps[this.currentState.activeIndex].disabled = isWaiting;
+  }
+  private rollBackDisabled(newActiveIndex: number) {
+    this.setCurrentStep(newActiveIndex, this.currentState.activeIndex);
     const lastIndex = this.currentState.lastActive;
-    if (activeIndex < lastIndex)
-      for(let i = activeIndex+1; i <= lastIndex; i++){
+    if (newActiveIndex < lastIndex)
+      for (let i = newActiveIndex + 1; i <= lastIndex; i++) {
         this.currentState.steps[i].disabled = true;
       }
   }
@@ -81,8 +77,8 @@ export class PanelActionHandler implements ActionHandler<PanelGroupSteps> {
     this.setCurrentStep(index - 1, index);
   }
 
-  private setCurrentStep(index: number, lastIndex:number): number {
-    if (index < this.currentState.steps.length && index >= 0){
+  private setCurrentStep(index: number, lastIndex: number): number {
+    if (index < this.currentState.steps.length && index >= 0) {
       this.currentState = { ...this.currentState, lastActive: lastIndex };
       this.currentState = { ...this.currentState, activeIndex: index };
     }
@@ -91,23 +87,30 @@ export class PanelActionHandler implements ActionHandler<PanelGroupSteps> {
   }
 
   private excludeStep(): void {
-    for(let i = 0; i < this.currentState.steps.length; i++){
-      this.currentState.steps[i].disabled = true;
-    }
-    this.currentState.steps[this.currentState.activeIndex].disabled = false;
+    const activeIndex = this.currentState.activeIndex;
+    this.currentState.steps.forEach(function (value, index) {
+      value.disabled = true;
+      if (index === activeIndex) value.disabled = false;
+    });
+  }
+  private disabledAll(): void {
+    this.currentState.steps.forEach(function (value) {
+      value.disabled = true;
+    });
+    this.currentState = { ...this.currentState, isWaiting: true };
   }
 
   private initial(length: number, index?: number): void {
     const steps: PanelStep[] = [];
-
     for (let i = 0; i < length; i++) {
       let step: PanelStep = {} as PanelStep;
-      if (i === 0) step = { ...step, index: i, disabled: false };
-      else step = { ...step, index: i, disabled: true };
+      if (i === index) {
+        step = { ...step, index: i, disabled: false };
+        this.currentState.activeIndex = index;
+      } else step = { ...step, index: i, disabled: true };
 
       steps.push({ ...step });
     }
-
     this.currentState = { ...this.currentState, steps: [...steps] };
   }
 }

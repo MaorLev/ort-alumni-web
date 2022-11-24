@@ -8,13 +8,15 @@ export class StorageService {
   getSession() {
 
     const session = localStorage.getItem(this.SESSION_KEY);
+
     const seToReturen = session ? this.decrypt(session) : null;
-    // return seToReturen ? JSON.parse(seToReturen) : null;
     return seToReturen ? JSON.parse(seToReturen) : null;
+    // return session ? JSON.parse(session) : null;
   }
 
   saveSession(session: unknown) {
     localStorage.setItem(this.SESSION_KEY, this.encrypt(JSON.stringify(session)));
+    // localStorage.setItem(this.SESSION_KEY, JSON.stringify(session));
   }
 
   clearSession() {

@@ -6,6 +6,5 @@ export function toFormData<T>(formValue: T | any) {
     const value = formValue[key];
     formData.append(key, value);
   }
-
   return formData;
 }

@@ -1,5 +1,13 @@
 <ort-expansion-panel
-[stepsForm]="teacherFormConfig.teacherForm"
+#mainForm
+[stepsForm]="teacherFormConfig.teacherForms[0]"
 (submitted)="onSubmitted($event)"
+>
+</ort-expansion-panel>
+<ort-expansion-panel
+#logoForm
+[stepsForm]="teacherFormConfig.teacherForms[1]"
+(submitted)="onSubmitted($event)"
+[initialDetail]="{isWaiting:true}"
 >
 </ort-expansion-panel>

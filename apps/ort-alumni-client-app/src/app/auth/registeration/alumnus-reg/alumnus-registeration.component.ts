@@ -19,6 +19,7 @@ import { AlumnusDataService } from './state/alumnus.data.service';
       #panel
       [stepsForm]="alumnusFormConfig.alumnusForm"
       (submitted)="onSubmitted($event)"
+
     >
     </ort-expansion-panel>
   `,

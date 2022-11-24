@@ -1,15 +1,19 @@
 <mat-accordion [class]="'example-headers-align'" [id]="'sz-big'">
   <ng-container *ngFor="let step of stepsForm.steps; let stepIndex = index">
-    <ng-container *ngIf="state.state$| async as state;">
-
-
+    <ng-container *ngIf="state.state$ | async as state">
       <mat-expansion-panel
-        [expanded]="state.activeIndex === stepIndex"
-
+        [expanded]="state.isWaiting ? undefined : state.activeIndex === stepIndex"
         [disabled]="onGetDisabledStep(stepIndex) | async"
         hideToggle
       >
-          <mat-expansion-panel-header class="panel-header" (click)="state.steps[stepIndex].disabled ? null : onRollBackDisabled(stepIndex)" >
+        <mat-expansion-panel-header
+          class="panel-header"
+          (click)="
+            state.steps[stepIndex].disabled
+              ? null
+              : onRollBackDisabled(stepIndex)
+          "
+        >
           <mat-panel-title class="header-title">
             {{ step.stepHeader.title }}</mat-panel-title
           >
@@ -53,3 +57,4 @@
     </ng-container>
   </ng-container>
 </mat-accordion>
+

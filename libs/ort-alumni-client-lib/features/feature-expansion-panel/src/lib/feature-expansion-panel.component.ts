@@ -17,29 +17,17 @@ import {
 } from '@features/feature-form';
 import { StepForm, StepsForm } from './stepsForm.interfaces';
 import { ButtonAction } from '@ui-components/ui-button';
-import { Router } from '@angular/router';
-import { StateService } from '@utils/util-tools';
-import { PanelActionHandler, PanelGroupSteps } from './panel-action-handler';
-import { PanelStateService } from './panel-state.service';
+import {
+  PanelActionHandler
+} from './state/panel-action-handler.service';
 import { map, Observable } from 'rxjs';
+import { PanelStateService } from './state/panel-state.service';
+import { PanelActionType } from './state/panel-action-type.enum';
+import { PaneInitialState } from './state/panel-model';
 
-
-
-export const PaneInitialState:PanelGroupSteps = {
-  steps: [{index: 0, disabled:false}],
-  activeIndex: 0,
-  lastActive:0
-}
-
-
-export enum PanelActionType  {
-  Init = 'init',
-  ExcludeStep = 'excludeStep',
-  setCurrentStep = 'setCurrentStep',
-  nextStep = 'nextStep',
-  prevStep = 'prevStep',
-  setDisabledStep = 'setDisabledStep',
-  rollBackDisabled = 'rollBackDisabled'
+export interface InitialMode {
+  indexToStart?: number,
+  isWaiting?:boolean
 }
 
 @Component({
@@ -51,10 +39,7 @@ export enum PanelActionType  {
     {
       provide: PanelStateService,
       useFactory: () =>
-        new PanelStateService(
-          PaneInitialState,
-          new PanelActionHandler()
-        )
+        new PanelStateService(PaneInitialState, new PanelActionHandler())
     }
   ]
 })
@@ -62,26 +47,34 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   @Input() stepsForm: StepsForm;
   @Output() submitted;
-  initialStepsSize: number;
 
+  @Input() initialDetail: InitialMode;
   @ViewChild('myform') formStep: FormComponent;
 
-  get buttonRoles(): typeof ButtonAction {
+  get btnAction(): typeof ButtonAction {
     return ButtonAction;
   }
 
   constructor(
     private _formBuilderService: FormBuilderService,
-    private router: Router,
-    public state:PanelStateService
+    public state: PanelStateService
   ) {
     this.submitted = new EventEmitter<FormGroup>();
   }
 
-
   ngOnInit(): void {
-    this.initialStepsSize = this.stepsForm.steps.length;
-    this.state.actions$.next({type: PanelActionType.Init, data:{length: this.initialStepsSize}});
+    this.initialization(this.initialDetail);
+  }
+  initialization(detail: InitialMode | undefined) {
+
+    const isWaiting = detail ? detail.isWaiting ? true : false : false;
+    this.state.actions$.next({
+      type: PanelActionType.Init,
+      data: { length: this.stepsForm.steps.length, index: detail ? detail.indexToStart : 0}
+    });
+    isWaiting ? this.state.actions$.next({
+      type: PanelActionType.waitingMode
+    }) : null;
     this.formGroup = this.formGroupInitalization();
   }
   formGroupInitalization(): FormGroup {
@@ -96,12 +89,14 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
     return this._formBuilderService.buildStepperGroup(controls);
   }
 
-  onRollBackDisabled(index:number)
-  {
-    this.state.actions$.next({type: PanelActionType.rollBackDisabled, data:{index: index}});
+  onRollBackDisabled(index: number) {
+    this.state.actions$.next({
+      type: PanelActionType.rollBackDisabled,
+      data: { index: index }
+    });
   }
-  onGetDisabledStep(index: number) :Observable<boolean> {
-    return this.state.specificStep(index).pipe(map(step => step.disabled))
+  onGetDisabledStep(index: number): Observable<boolean> {
+    return this.state.specificStep(index).pipe(map((step) => step.disabled));
   }
 
   addDataToMainFormGroup(stepGroup: FormGroup) {
@@ -112,18 +107,14 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
     console.log(this.formStep);
 
     if (stepGroup.valid) {
-      // this.setDisabledStep(this.Step, true);
-      // this.state.actions$.next({type:PanelActionType.setDisabledStep, data:{index: this.state.getActiveStep.index, length: null}});
       this.addDataToMainFormGroup(stepGroup);
-      // this.nextStep();
-      this.state.actions$.next({type:PanelActionType.nextStep})
+      this.state.actions$.next({ type: PanelActionType.nextStep });
     } else {
       stepGroup.markAllAsTouched();
     }
   }
   onStepsSubmit(stepGroup: FormGroup) {
     this.addDataToMainFormGroup(stepGroup);
-
     if (this.formGroup.valid) this.submitted.emit(this.formGroup);
     else {
       stepGroup.markAllAsTouched();
@@ -132,19 +123,17 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
 
   onAction(actionRole: ButtonAction, group?: FormGroup) {
     switch (actionRole) {
-      case ButtonAction.StepSubmited:
+      case this.btnAction.StepSubmited:
         if (group) this.onStepSubmit(group);
         break;
-      case ButtonAction.Prev:
-        this.state.actions$.next({type:PanelActionType.prevStep})
+      case this.btnAction.Prev:
+        this.state.actions$.next({ type: PanelActionType.prevStep });
         break;
-      case ButtonAction.StepsSubmited:
+      case this.btnAction.StepsSubmited:
         if (group) this.onStepsSubmit(group);
         break;
-      case ButtonAction.Next:
-        this.state.actions$.next({type:PanelActionType.nextStep})
-        break;
-      default:
+      case this.btnAction.Next:
+        this.state.actions$.next({ type: PanelActionType.nextStep });
         break;
     }
   }

@@ -320,6 +320,30 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Logos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bytes = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileExtension = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Size = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Logos_Teacher_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teacher",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ModeStudy_Cities",
                 columns: table => new
                 {
@@ -392,29 +416,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TeacherLanguages_Teacher_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teacher",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TeacherLogo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Bytes = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FileExtension = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Size = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TeacherId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeacherLogo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TeacherLogo_Teacher_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teacher",
                         principalColumn: "Id",
@@ -1864,6 +1865,13 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 column: "EmployerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Logos_TeacherId",
+                table: "Logos",
+                column: "TeacherId",
+                unique: true,
+                filter: "[TeacherId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ModeStudy_Cities_CityId",
                 table: "ModeStudy_Cities",
                 column: "CityId");
@@ -1888,12 +1896,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 name: "IX_TeacherLanguages_TeacherId",
                 table: "TeacherLanguages",
                 column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeacherLogo_TeacherId",
-                table: "TeacherLogo",
-                column: "TeacherId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_CityId",
@@ -1931,6 +1933,9 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
                 name: "JobOffer_StudyPrograms");
 
             migrationBuilder.DropTable(
+                name: "Logos");
+
+            migrationBuilder.DropTable(
                 name: "ModeStudy_Cities");
 
             migrationBuilder.DropTable(
@@ -1938,9 +1943,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "TeacherLanguages");
-
-            migrationBuilder.DropTable(
-                name: "TeacherLogo");
 
             migrationBuilder.DropTable(
                 name: "Categories");

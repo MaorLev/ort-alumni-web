@@ -38,7 +38,7 @@ namespace AlumniOrtServer.Services
                 null;
             return c;
         }
-        public async Task<ResponseDTO> AddLogo(IFormFileCollection logoFiles,int teacherId )
+        public async Task<ResponseDTO> AddLogo(IFormFileCollection logoFiles,int alumnusId )
         {
 
  
@@ -50,6 +50,7 @@ namespace AlumniOrtServer.Services
 
                 if (file.Length > 0)
                 {
+                  TeacherDTO teacher = await Get(alumnusId);
                   using (var memoryStream = new MemoryStream())
                   {
                     await file.CopyToAsync(memoryStream);
@@ -62,7 +63,7 @@ namespace AlumniOrtServer.Services
                         Description = file.FileName,
                         FileExtension = Path.GetExtension(file.FileName),
                         Size = file.Length,
-                        TeacherId = teacherId,
+                        TeacherId = teacher.Id,
                       };
                     logo = newLogo;
                     }
@@ -192,8 +193,8 @@ namespace AlumniOrtServer.Services
                             AlumnusId = t.AlumnusId,
                             Description = t.Description,
                             Rate = t.Rate,
-                            //Logo = t.Logo,
-                            MailForStudy = t.MailForStudy,
+                          Logo = t.Logo,
+                          MailForStudy = t.MailForStudy,
                             Id = t.Id
                             //CourseIDs = t.TeacherCourses.Select(cs => cs.Course_StudyProgram.Id).ToArray(),
                             //CoursesNames = t.TeacherCourses.Select(cs => cs.Course_StudyProgram.Name).ToList(),
@@ -320,7 +321,7 @@ namespace AlumniOrtServer.Services
                             AlumnusId = t.AlumnusId,
                             Description = t.Description,
                             Rate = t.Rate,
-                            //Logo = t.Logo,
+                            Logo = t.Logo,
                             MailForStudy = t.MailForStudy,
                             Id = t.Id
                         })

@@ -1,6 +1,7 @@
 using AlumniOrtServer.Data.Entities;
 using AlumniOrtServer.Models;
 using Newtonsoft.Json;
+using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace AlumniOrtServer.Data.DTO
         public string MailForStudy { get; set; }
         [JsonProperty(PropertyName = "logo")]
 
-        public string Logo { get; set; }
+        public TeacherLogo Logo { get; set; }
         [JsonProperty(PropertyName = "rate")]
         public string Rate { get; set; }
         [JsonProperty(PropertyName = "description")]

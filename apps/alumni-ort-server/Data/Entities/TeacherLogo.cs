@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 
 namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
 {
-  public class TeacherLogo
+  public class TeacherLogo : Logo
   {
-    [Key]
-    public int Id { get; set; }
-    public byte[] Bytes { get; set; }
-    public string Description { get; set; }
-    public string FileExtension { get; set; }
-    public decimal Size { get; set; }
+
+    public TeacherLogo()
+    {
+
+    }
+    public TeacherLogo(int teacherId)
+    {
+      TeacherId = teacherId;
+    }
     public int TeacherId { get; set; }
     [ForeignKey("TeacherId")]
     public virtual Teacher Teacher { get; set; }

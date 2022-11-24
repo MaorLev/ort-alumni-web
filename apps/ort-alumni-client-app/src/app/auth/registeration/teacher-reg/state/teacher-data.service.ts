@@ -1,10 +1,12 @@
 import { Observable } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments';
 import { TeacherModel } from './teacher-model';
 import { CityInterface } from '../../student-reg/state/student.model';
+import { toFormData } from '@utils/util-tools';
+import { ResponseMassege } from './response-massege.type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,8 @@ export class TeacherDataService {
   baseUrlImg: string = environment.endPointApi + '/Image';
   constructor(private http: HttpClient) {}
 
-  getTeacher(id: number | null): Observable<TeacherModel> {
-    return this.http.get<TeacherModel>(this.baseUrl + '/' + id);
+  getTeacherByAlumnus(alumnusId: string): Observable<TeacherModel> {
+    return this.http.get<TeacherModel>(`${this.baseUrl}/${alumnusId}`);
   }
   getTeachers(): Observable<Array<TeacherModel>> {
     return this.http.get<Array<TeacherModel>>(this.baseUrl);
@@ -32,19 +34,6 @@ export class TeacherDataService {
     debugger;
     teacher.alumnusid = alumnusId;
     teacher.courseids = this.ArrayToIdsArray(teacher.courseids);
-
-    // const te: TeacherModel = {
-    //   mailforstudy: 'sdcsdcsd',
-
-    //   logo: 'sdcsdc',
-    //   rate: 'sdcdscsd',
-    //   description: 'sdcsdcsddscdsc',
-    //   alumnusid: 7,
-    //   courseids: [],
-    //   cities: [],
-    //   modestudyids: [],
-    //   languages: []
-    // };
     return this.http.post(this.baseUrl, teacher);
   }
 
@@ -58,9 +47,14 @@ export class TeacherDataService {
     return newArr;
   }
 
-  AddLogo(file: FormData): Observable<any> {
-    const name = 'ImgTeacher';
-    return this.http.post(this.baseUrlImg + '/Add/' + name, file);
+  AddLogo(file: FormData, teacherId:string): Observable<HttpEvent<ResponseMassege>> {
+    debugger;
+    const imageFile = {image : file};
+    return this.http.post<ResponseMassege>(`${this.baseUrl}/UploadLogo/${teacherId}`, toFormData(imageFile),
+    {
+      reportProgress: true,
+      observe: 'events',
+    });
   }
 
   //  async AddOnleyImageNew(file:FormData, header:any)

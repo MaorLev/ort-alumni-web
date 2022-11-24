@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -15,6 +14,7 @@ import { catchError } from 'rxjs';
 import { SessionQuery } from '../../session/state/session.query';
 import { TeacherDataService } from './state/teacher-data.service';
 import { TeacherFormConfig } from './teacher-form-config';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-teacher-registeration',
@@ -24,25 +24,24 @@ import { TeacherFormConfig } from './teacher-form-config';
 })
 export class TeacherRegisterationComponent implements OnInit {
   alumnusId: string;
-  @ViewChild('panel') panel: FeatureExpansionPanelComponent;
-  isSubmitted: boolean;
+  @ViewChild('mainForm') form1: FeatureExpansionPanelComponent;
+  @ViewChild('logoForm') form2: FeatureExpansionPanelComponent;
+  isMainFormSubmitted: boolean;
   constructor(
     public teacherFormConfig: TeacherFormConfig,
-    private changeDetectorRef: ChangeDetectorRef,
     private teacherService: TeacherDataService,
     private sessionQuery: SessionQuery,
     private alertService: AlertsService
   ) {}
   ngOnInit(): void {
     this.alumnusId = this.sessionQuery.getUserId();
-    this.isSubmitted = false;
+    this.isMainFormSubmitted = false;
   }
 
   onSubmitted(group: FormGroup): void {
-    debugger;
     console.log(group.value);
 
-    if (this.alumnusId && !this.isSubmitted)
+    if (this.alumnusId && !this.isMainFormSubmitted)
       this.teacherService
         .createTeacher(group.value, parseInt(this.alumnusId))
         .pipe(
@@ -54,20 +53,29 @@ export class TeacherRegisterationComponent implements OnInit {
           })
         )
         .subscribe(() => {
-          this.panel.state.actions$.next({ type: PanelActionType.nextStep });
-          this.panel.state.actions$.next({ type: PanelActionType.ExcludeStep });
-
-          this.switchFormToImageMode(group);
+          this.isMainFormSubmitted = true;
+          this.form1.state.actions$.next({ type: PanelActionType.disabledAll });
+          this.form2.state.actions$.next({ type: PanelActionType.waitingMode });
         });
-    else {
-      debugger;
-      this.teacherService.getTeachers();
+    else if (this.isMainFormSubmitted) {
+      this.teacherService
+        .AddLogo(group.controls['image'].value, this.alumnusId)
+        .pipe(
+          catchError((error, caught) => {
+            this.alertService.dynamicAlert(
+              '.שגיאת מערכת: משתמש לא התווסף, אנא נסה מאוחר יותר'
+            );
+            return caught;
+          })
+        )
+        .subscribe((event) => {
+          if (event.type === HttpEventType.Response) {
+            this.form2.state.actions$.next({ type: PanelActionType.nextStep });
+            this.form2.state.actions$.next({
+              type: PanelActionType.ExcludeStep
+            });
+          }
+        });
     }
-  }
-
-  switchFormToImageMode(group: FormGroup) {
-    this.isSubmitted = true;
-    group.disable();
-    group.controls['image'].enable();
   }
 }

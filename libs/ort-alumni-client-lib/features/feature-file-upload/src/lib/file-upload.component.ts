@@ -118,7 +118,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     const validators: ValidatorFn[] = [];
 
     //attention!! this is custom validation for situation that update and create and both required
-    //if this control name is "image" name doing code bellow...
+    //if this control named "image" doing code bellow...
     if(this.config.name === 'image'){
 
       if (!(this.nameBefore || control.value)) {

@@ -27,7 +27,7 @@ namespace AlumniOrtServer.Context
                 .HasDiscriminator();
 
 
-            modelBuilder.Entity<Student>()
+      modelBuilder.Entity<Student>()
                 .Property(u => u.CardId)
                 .HasColumnName("CardId");
 
@@ -315,7 +315,13 @@ namespace AlumniOrtServer.Context
            Category cat2 = new Category(Constants.CategoryId.General,Constants.CategoryName.General, Constants.CategoryHebName.General);
            modelBuilder.Entity<Category>().HasData(cat1, cat2);
 
+          modelBuilder.Entity<Logo>()
+            .ToTable("Logos")
+            .HasDiscriminator();
 
+          modelBuilder.Entity<Teacher>()
+              .HasOne<TeacherLogo>(l => l.Logo)
+              .WithOne(t => t.Teacher);
     }
 
         public DbSet<Employer> Employers { get; set; }
@@ -344,6 +350,7 @@ namespace AlumniOrtServer.Context
         public virtual DbSet<Claim> Claim { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+
         public virtual DbSet<TeacherLogo> TeacherLogo { get; set; }
 
   }
