@@ -10,31 +10,31 @@ const routes: Routes = [
       {
         path: 'alumnus-edit',
         loadChildren: () =>
-        import('../../profiles/p-alumnus/p-alumnus.module').then((m) => m.PAlumnusModule),
+        import('../../entities/alumnus-area/alumnus/edit-alumnus/edit-alumnus.module').then((m) => m.EditAlumnusModule),
         // canActivate: [AlumniGuard],
       },
       {
         path: 'student-edit',
         loadChildren: () =>
-        import('../../profiles/p-student/p-student.module').then((m) => m.PStudentModule),
+        import('../../entities/student/edit-student/edit-student.module').then((m) => m.EditStudentModule),
         // canActivate: [AlumniGuard],
       },
       {
         path: 'teacher-edit',
         loadChildren: () =>
-        import('../../profiles/p-teacher/p-teacher.module').then((m) => m.PTeacherModule),
+        import('../../entities/alumnus-area/teacher/edit-teacher/edit-teacher.module').then((m) => m.EditTeacherModule),
         // canActivate: [AlumniGuard],
       },
       {
         path: 'employer-edit',
         loadChildren: () =>
-        import('../../profiles/p-employer/p-employer.module').then((m) => m.PEmployerModule),
+        import('../../entities/employer-area/employer/edit-employer/edit-employer.module').then((m) => m.EditEmployerModule),
         // canActivate: [AlumniGuard],
       },
       {
         path: 'joboffer-edit',
         loadChildren: () =>
-        import('../../profiles/p-joboffer/p-joboffer.module').then((m) => m.PJobofferModule),
+        import('../../entities/employer-area/joboffer/edit-joboffer/edit-joboffer.module').then((m) => m.EditJobofferModule),
         // canActivate: [AlumniGuard],
       },
     ],

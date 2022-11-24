@@ -16,29 +16,29 @@ const routes: Routes = [
       {
         path: 'register-student',
         loadChildren: () =>
-          import('../../auth/registeration/student-reg/student-registeration.module').then(
-            (m) => m.StudentRegisterationModule
+          import('../../entities/student/add-student/add-student.module').then(
+            (m) => m.AddStudentModule
           ),
       },
       {
         path: 'register-alumnus',
         loadChildren: () =>
-          import('../../auth/registeration/alumnus-reg/alumnus-registeration.module').then(
-            (m) => m.AlumnusRegisterationModule
+          import('../../entities/alumnus-area/alumnus/add-alumnus/add-alumnus.module').then(
+            (m) => m.AddAlumnusModule
           ),
       },
       {
         path: 'register-teacher',
         loadChildren: () =>
-          import('../../auth/registeration/teacher-reg/teacher-registeration.module').then(
-            (m) => m.TeacherRegisterationModule
+          import('../../entities/alumnus-area/teacher/add-teacher/add-teacher.module').then(
+            (m) => m.AddTeacherModule
           ),
       },
       {
         path: 'register-employer',
         loadChildren: () =>
-          import('../../auth/registeration/employer-reg/employer-registeration.module').then(
-            (m) => m.EmployerRegisterationModule
+          import('../../entities/employer-area/employer/add-employer/add-employer.module').then(
+            (m) => m.AddEmployerModule
           ),
       },
 
