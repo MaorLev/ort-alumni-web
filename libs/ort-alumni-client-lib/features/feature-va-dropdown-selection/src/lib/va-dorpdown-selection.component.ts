@@ -20,6 +20,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { cloneable } from '@utils/util-tools';
 
 @Component({
   selector: 'ort-va-dorpdown-selection',
@@ -40,7 +41,7 @@ import {
   ],
 })
 export class VaDorpdownSelectionComponent
-  implements OnInit, ControlValueAccessor, Validator, OnDestroy, AfterViewInit
+  implements OnInit, ControlValueAccessor,Validator,  OnDestroy
 {
   onDestroy$ = new Subject<void>();
   control = new FormControl();
@@ -62,11 +63,13 @@ export class VaDorpdownSelectionComponent
       .subscribe();
   }
 
-  ngAfterViewInit(): void {
-    this.control.patchValue([]);
-  }
+  // ngAfterViewInit(): void {
+  //   this.control.patchValue([]);
+  // }
   writeValue(obj: any): void {
-    this.control.patchValue({ ...obj });
+    const object = cloneable.deepCopy(obj);
+    this.control.patchValue(object);
+
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -87,10 +90,12 @@ export class VaDorpdownSelectionComponent
     this.onValidatorChange = onValidatorChange;
   }
   validate(control: FormControl): ValidationErrors | null {
+
     this.control.setValidators(control.validator);
     return this.control.validator;
   }
   compareFn(c1: any, c2: any): boolean {
+    debugger;
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   ngOnDestroy(): void {

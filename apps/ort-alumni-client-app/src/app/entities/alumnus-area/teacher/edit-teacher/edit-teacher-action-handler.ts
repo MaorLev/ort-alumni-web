@@ -1,8 +1,7 @@
-import { Action, ActionHandler } from '@utils/util-tools';
-import { ProfileAreaConfigType } from '../../../../layout/profile-layout/profile-area.type';
+import { Action, ActionHandler } from "@utils/util-tools";
+import { ProfileAreaConfigType } from "apps/ort-alumni-client-app/src/app/layout/profile-layout/profile-area.type";
 
-
-export class EditAlumnusActionHandler
+export class EditTeacherActionHandler
   implements ActionHandler<ProfileAreaConfigType>
 {
   handleAction(

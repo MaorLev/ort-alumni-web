@@ -28,8 +28,10 @@ export class ApiErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error) => {
-        this.alertDebounceTime();
 
+
+        if(error.status !== 404)
+        this.alertDebounceTime(typeof(error.error) === 'string' ? error.error : null);
         if (this.messageConfig.configuration.enableLoggers) {
           console.log('Error report ',{
             type: MessageType.Error,
@@ -45,9 +47,9 @@ export class ApiErrorInterceptor implements HttpInterceptor {
       })
     );
   }
-  private alertDebounceTime(){
+  private alertDebounceTime(message:string | null){
     if (this.alertIsReady)
-    this.alertService.dynamicAlert("אופס... משהו השתבש'");
+    this.alertService.dynamicAlert(message ? message : "אופס... משהו השתבש'");
   this.alertIsReady = false;
   setTimeout(
     () => (this.alertIsReady = true),

@@ -1,0 +1,23 @@
+.teacher-profile {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(max-content, 1fr) minmax(min-content, 6fr);
+}
+
+.button-mode {
+  height: 100%;
+  width: 100%;
+  display:block;
+  position: relative;
+  .btn {
+position: absolute;
+top:20%;
+left:50%;
+  }
+  .title{
+    position: relative;
+    top:5%;
+left:0;
+  }
+}

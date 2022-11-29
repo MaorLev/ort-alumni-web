@@ -13,6 +13,8 @@ import { combineLatestWith, Observable, Subject, takeUntil } from 'rxjs';
 
 import { AlumnusModel } from '../state-alumnus/alumnus-model';
 import { AlumnusDataService } from '../state-alumnus/alumnus.data.service';
+import { EditAlumnusActionHandler } from './edit-alumnus-action-handler';
+import { EditAlumnusFormData } from './edit-alumnus-form-data.service';
 
 export interface ForFormDataTemplate {
   form: FormInterface;
@@ -23,7 +25,19 @@ export interface ForFormDataTemplate {
   selector: 'app-edit-alumnus',
   templateUrl: './edit-alumnus.component.html',
   styleUrls: ['./edit-alumnus.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    EditAlumnusFormData,
+    {
+      provide: ProfileGlobalFormState,
+      useFactory: (alumn: EditAlumnusFormData) =>
+        new ProfileGlobalFormState(
+          alumn.alumnusControls(),
+          new EditAlumnusActionHandler()
+        ),
+      deps: [EditAlumnusFormData]
+    }
+  ]
 })
 export class EditAlumnusComponent implements OnInit, OnDestroy {
   id: string;

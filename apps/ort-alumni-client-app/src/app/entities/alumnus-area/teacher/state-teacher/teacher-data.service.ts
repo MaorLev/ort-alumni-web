@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 
 import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -17,13 +17,14 @@ export class TeacherDataService {
   constructor(private http: HttpClient) {}
 
   getTeacherByAlumnus(alumnusId: string): Observable<TeacherModel> {
-    return this.http.get<TeacherModel>(`${this.baseUrl}/${alumnusId}`);
+    console.log(alumnusId);
+    return this.http.get<TeacherModel>(`${this.baseUrl}/${alumnusId}`).pipe();;
   }
   getTeachers(): Observable<Array<TeacherModel>> {
     return this.http.get<Array<TeacherModel>>(this.baseUrl);
   }
 
-  updateTeacher(id: number, teacher: any): Observable<any> {
+  updateTeacher(id: string, teacher: TeacherModel): Observable<any> {
     return this.http.put(this.baseUrl + '/' + id, teacher);
   }
   deleteTeacher(id: number): Observable<any> {

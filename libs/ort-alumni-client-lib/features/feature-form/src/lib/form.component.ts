@@ -12,7 +12,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { FormBuilderService } from './form-builder.service';
-import { cloneDeep } from '@utils/util-tools';
+import { cloneable, cloneDeep } from '@utils/util-tools';
 import { FormInterface } from './interfaces/form.interface';
 import { Observable } from 'rxjs';
 import { ButtonAction } from '@ui-components/ui-button';
@@ -54,7 +54,7 @@ export class FormComponent implements OnInit, OnChanges {
     );
 
     if (this.dataToPatch) {
-      const data = cloneDeep(this.dataToPatch);
+      const data = cloneable.deepCopy(this.dataToPatch);
       this.group.patchValue(data);
     }
 

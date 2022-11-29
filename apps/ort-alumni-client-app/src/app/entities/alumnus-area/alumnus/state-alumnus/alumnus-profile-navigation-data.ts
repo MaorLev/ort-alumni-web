@@ -1,4 +1,4 @@
-import { Link } from "apps/ort-alumni-client-app/src/app/layout/common-layout/nav-bar/link.interface";
+import { Link } from "../../../../layout/common-layout/nav-bar/link.interface";
 
 
 export const AlumnusProfileNavigationData: Link[] = [
