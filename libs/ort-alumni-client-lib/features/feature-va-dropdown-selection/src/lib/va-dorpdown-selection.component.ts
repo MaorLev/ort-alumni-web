@@ -95,7 +95,6 @@ export class VaDorpdownSelectionComponent
     return this.control.validator;
   }
   compareFn(c1: any, c2: any): boolean {
-    debugger;
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   ngOnDestroy(): void {

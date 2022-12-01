@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/main-logo.jpg" alt="Logo">
+    <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/main-logo.png" alt="Logo">
   </a>
   <h1>Ort Alumni Web</h1>
   <p>A website for Ort college alumni</p>

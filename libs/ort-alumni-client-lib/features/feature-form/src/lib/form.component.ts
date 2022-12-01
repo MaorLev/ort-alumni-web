@@ -39,7 +39,6 @@ export class FormComponent implements OnInit, OnChanges {
   constructor(private formBuilderService: FormBuilderService) {}
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['configuration'] && !(changes['configuration'].isFirstChange())){
-      debugger;
       this.initialGroup();
     }
   }
@@ -54,7 +53,7 @@ export class FormComponent implements OnInit, OnChanges {
     );
 
     if (this.dataToPatch) {
-      const data = cloneable.deepCopy(this.dataToPatch);
+      const data = cloneDeep(this.dataToPatch);
       this.group.patchValue(data);
     }
 
