@@ -45,13 +45,13 @@
         בימים א - ה
       </h4>
       <div class="location-logo">
-        <div class="item location">
+        <div
+          class="item location"
+          [ortFeatureModal]="mapConfig"
+          (afterClosedOutput)="onSearch($event)"
+        >
           <ort-icon>place</ort-icon>
-          <a
-            [ortFeatureModal]="mapConfig"
-            (afterClosedOutput)="onSearch($event)"
-            >מפה</a
-          >
+          <a> מפה</a>
         </div>
         <div class="waze item">
           <ort-icon svgName="waze_icon"></ort-icon>

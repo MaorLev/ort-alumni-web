@@ -1,3 +1,4 @@
+@use 'media' as media;
 @import 'mixins';
 
 :host {
@@ -18,6 +19,12 @@
     }
     &.sz-2 {
       font-size: 7rem;
+      @media #{media.$break1} {
+        font-size: 2.5rem;
+      }
+      @media #{media.$break2} {
+        font-size: 3.2rem;
+      }
       // width: fit-content;
       // width: 100%;
       height: 100%;

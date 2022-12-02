@@ -1,3 +1,4 @@
+@use 'media' as media;
 :host {
   .hero-about {
     position: relative;
@@ -13,12 +14,16 @@
   //   width: 1px;
   //   height: 0px;
   // }
-
+  .container {
+    padding-top: 6.5rem;
+  }
   .main-title {
     position: relative;
 
     padding: 4rem 5rem;
-
+    @media #{media.$break3max} {
+      font-size: 3rem;
+    }
     &::after {
       position: absolute;
       bottom: 0px;
@@ -42,13 +47,26 @@
     top: -8rem;
     // top: -80px;
     padding: 2rem 0;
-    margin-top: 7.9rem;
+    @media #{media.$break3max} {
+      margin-top: 4rem;
+    }
     // padding: 20px 0;
     // margin-top: 79px;
     p {
       padding: 0rem 3rem;
       word-spacing: 0.7rem;
       line-height: 5rem;
+      @media #{media.$break3max} {
+        font-size: 1.6rem;
+        word-spacing: 0.4rem;
+        line-height: 3.5rem;
+      }
+      // @media #{media.$break2} {
+      //   // font-size: 50px;
+      //   font-size: 5rem;
+      //   right: 6%;
+      //   bottom: 5%;
+      // }
     }
   }
   .btn {
@@ -81,6 +99,16 @@
       align-items: center;
       justify-content: center;
       padding: 2rem 4rem;
+      .link-title {
+        @media #{media.$break1} {
+          font-size: 1.2rem;
+          margin-top: 0;
+        }
+        @media #{media.$break2} {
+          font-size: 1.8rem;
+          margin-top: 0;
+        }
+      }
       ort-button {
         cursor: pointer;
         margin-bottom: 1rem;
@@ -96,7 +124,6 @@
         &h1 {
           margin-top: 1rem;
           margin-bottom: 0rem;
-
         }
       }
     }

@@ -1,10 +1,10 @@
 <div id="card">
   <div class="wrapper">
-    <h1>{{ heading | truncate: 45 }}</h1>
-    <h3>{{ subheading | truncate: 80 }}</h3>
+    <h1 class="text-card">{{ heading | truncate: 45 }}</h1>
+    <h3 class="text-card" >{{ subheading | truncate: 80 }}</h3>
+    <img class="image" [src]="img" alt="card image" />
   </div>
-    <img class="image" [src]="img" alt="" />
-  <div class="overlay">
-    {{ detail }}
+  <div class="overlay text-card">
+    {{ detail | truncate: 150 }}
   </div>
 </div>

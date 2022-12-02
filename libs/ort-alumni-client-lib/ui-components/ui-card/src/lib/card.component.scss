@@ -19,6 +19,10 @@
     border-color: rgb(148, 148, 148);
     transition: 0.5s ease;
     background-color: var(--accent-100);
+    .text-card {
+      @include mix.dont-break-out;
+      @include mix.trim-wrap;
+    }
     .wrapper {
       height: 100%;
       padding: 1.5rem;
@@ -41,13 +45,17 @@
       // font-size: 20px;
       // padding: 20px;
       text-align: start;
-      @include mix.dont-break-out;
-      @include mix.trim;
     }
     .image {
-      display: block;
-      width: 100%;
+      // display: block;
+      // width: 100%;
       height: auto;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+      // height: ;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
     }
   }
 

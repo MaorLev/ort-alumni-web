@@ -17,21 +17,29 @@ export class ShowIfLoggedInDirective implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.authQuery.isLoggedIn$.subscribe((isLoggedIn) => {
-      this.viewContainer.clear();
-      if (isLoggedIn) {
-        if (this.appShowIfLoggedIn) {
-          this.viewContainer.createEmbeddedView(this.templateRef);
-        } else {
+      if (this.appShowIfLoggedIn !== undefined)
+      {
           this.viewContainer.clear();
+          if (isLoggedIn) {
+            if (this.appShowIfLoggedIn) {
+              this.viewContainer.createEmbeddedView(this.templateRef);
+            } else {
+              this.viewContainer.clear();
+            }
+          } else {
+            if (this.appShowIfLoggedIn) {
+              this.viewContainer.clear();
+            } else {
+              this.viewContainer.createEmbeddedView(this.templateRef);
+            }
+          }
         }
-      } else {
-        if (this.appShowIfLoggedIn) {
-          this.viewContainer.clear();
-        } else {
+        else {
           this.viewContainer.createEmbeddedView(this.templateRef);
         }
-      }
-    });
+
+      });
+
   }
 
   ngOnDestroy() {
@@ -42,6 +50,6 @@ export class ShowIfLoggedInDirective implements OnInit, OnDestroy {
 @NgModule({
   imports: [CommonModule],
   declarations: [ShowIfLoggedInDirective],
-  exports: [ShowIfLoggedInDirective],
+  exports: [ShowIfLoggedInDirective]
 })
 export class ShowIfLoggedInDirectiveModule {}

@@ -4,19 +4,26 @@ export const linkData:Link [] = [
     label: 'בית',
     name: 'home',
     route: 'home',
-    order: 2
+    order: 1
   },
-  {
-    label: 'אודות',
-    name: 'about',
-    route: 'about',
-    order: 3
+    {
+    label: 'פרופיל',
+    name: 'account',
+    route: '/profile',
+    order: 2,
+    showIfLogin: true,
   },
+  // {
+  //   label: 'אודות',
+  //   name: 'about',
+  //   route: 'about',
+  //   order: 3
+  // },
   {
     label: 'מאמרים',
     name: 'articles',
     route: '/main/articles',
-    order: 4
+    order: 3
   },
 ];
 

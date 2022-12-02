@@ -3,19 +3,21 @@
     <div id="boxes">
       <button class="box menu" [ortFeatureModal]="modalMenuTreeData">
         <div class="wrapper">
-          <span></span>
-          <div class="mat-small">תפריט</div>
+          <span class="menu-lines"></span>
+          <div class="mat-small menu-text">תפריט</div>
         </div>
       </button>
       <div class="box links">
         <ng-container *ngFor="let link of links">
-          <a class="clink" routerLinkActive="active" [routerLink]="link.route">
+          <a
+            class="clink"
+            routerLinkActive="active"
+            [routerLink]="link.route"
+            *appShowIfLoggedIn="link.showIfLogin"
+          >
             {{ link.label }}
           </a>
         </ng-container>
-        <a class="clink" routerLinkActive="active" [routerLink]="'/profile'">
-          פרופיל
-        </a>
       </div>
       <div class="box search">
         <ort-button
