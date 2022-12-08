@@ -61,6 +61,8 @@
 
 ✅ JWT Authentication
 
+✅ Entity Framework
+
 ✅ Rxjs
 
 ✅ Akita
