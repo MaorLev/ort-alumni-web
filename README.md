@@ -22,7 +22,7 @@
 ---
 
 ## 📖 Table of Contents
-- [Diagram](#🎦-Diagram)
+- [Diagram](#📊-Diagram)
 - [ScreenShoots](#🎦-ScreenShoots)
 - [Features](#✨-Features)
 - [Prerequisites](#🎯-Prerequisites)
@@ -35,13 +35,13 @@
 
 ## 📊 Diagram
 
-# Use case diagram (Current status)
+### Use case diagram (Current status)
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/diagram.png" alt="opening-screen">
 
 ## 🎦 ScreenShoots
 
-# Opening Screen
+### Opening Screen
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="opening-screen">
 
 - The Functionalities Of
