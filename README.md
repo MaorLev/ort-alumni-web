@@ -16,7 +16,6 @@
     ·
     <a href="https://github.com/MaorLev/ort-alumni-web/issues">Request Feature</a>
   </p>
-  <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/head-sc.jpg" alt="Screenshot">
 </div>
 
 ---
