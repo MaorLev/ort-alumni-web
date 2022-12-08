@@ -1,4 +1,6 @@
 <div align="center">
+<h1>*A Project under construction*</h1>
+</br>
   <a href="https://github.com/github_username/repo_name">
     <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/main-logo.png" alt="Logo">
   </a>
@@ -25,7 +27,6 @@
 - [Features](#✨-Features)
 - [Prerequisites](#🎯-Prerequisites)
 - [Installation](#🛠️-Installation)
-- [Usage](#⚡️-Usage)
 - [Commands](#🕹-Commands)
 - [FAQs](#❓-FAQs)
 - [License](#📜-License)
@@ -33,12 +34,16 @@
 
 ## 🎦 ScreenShoots
 
-- Opening Screen
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="Logo">
+# Opening Screen
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="opening-screen">
+
 - The Functionalities Of
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.gif" alt="Logo">
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.gif" alt="opening-screen">
+
 - Full Responsive
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="Logo">
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
+
+
 ## ✨ Features
 
 ✅ Feature 1
@@ -47,11 +52,16 @@
 
 ✅ Feature 3
 
+### Third party libraries
 ## 🎯 Prerequisites
 - Angular CLI V13
 - Node JS
 - TypeScript
-- RxJs
+- Angular Material V13
+- Akita
+
+
+
 <h4>For compatabilities, please check via this <a href="https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3" >Link
 </a></h4> 
 
@@ -61,10 +71,6 @@
   run "npm install" script.
 - After the above instruction, Run "ng Serve" script.
 - And open your browser on your local URL, probably it will be on 4200 port.
-
-## ⚡️ Usage
-
-## 🔧 API
 
 ## 🕹 Commands
 

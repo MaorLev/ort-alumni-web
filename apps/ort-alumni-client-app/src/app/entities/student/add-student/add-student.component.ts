@@ -28,7 +28,7 @@ export class AddStudentComponent {
   ) {}
 
   onSubmitted(group: FormGroup): void {
-    console.log(group.value);
+    console.log('Student Model',group.value);
     this.studentService
     .createStudent(group.value)
       .pipe(

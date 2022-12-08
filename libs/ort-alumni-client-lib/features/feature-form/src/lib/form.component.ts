@@ -14,7 +14,7 @@ import {
 import { FormBuilderService } from './form-builder.service';
 import { cloneable, cloneDeep } from '@utils/util-tools';
 import { FormInterface } from './interfaces/form.interface';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { ButtonAction } from '@ui-components/ui-button';
 
 @Component({

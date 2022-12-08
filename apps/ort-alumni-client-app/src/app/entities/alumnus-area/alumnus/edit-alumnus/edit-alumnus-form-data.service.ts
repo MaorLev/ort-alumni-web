@@ -18,7 +18,7 @@ import { AbstractInputComponent } from '@features/feature-va-input';
 import { AbstractPhoneComponent } from '@features/feature-va-phone';
 import { AbstractSelectAutoCompleteComponent } from '@features/feature-va-select-auto-complete';
 import { AbstractTextareaComponent } from '@features/feature-va-textarea';
-import { ProfileAreaConfigType } from 'apps/ort-alumni-client-app/src/app/layout/profile-layout/profile-area.type';
+import { ProfileAreaConfigType } from '../../../../layout/profile-layout/profile-area.type';
 
 import { of } from 'rxjs';
 import { AlumnusDataService } from '../state-alumnus/alumnus.data.service';

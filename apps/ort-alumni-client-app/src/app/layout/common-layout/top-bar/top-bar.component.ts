@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { LoginLinksConfigService } from './login-links.config.service';
 
 @Component({
@@ -8,5 +8,9 @@ import { LoginLinksConfigService } from './login-links.config.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopBarComponent {
-  constructor(public loginLinksDataService: LoginLinksConfigService) {}
+
+  @Input() noLinkLogin:boolean;
+  constructor(public loginLinksDataService: LoginLinksConfigService) {
+    this.noLinkLogin = false;
+  }
 }

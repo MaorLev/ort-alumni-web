@@ -155,9 +155,19 @@ namespace AlumniOrtServer.Services
                 AlumnusFromDB.LastName = alumnus.LastName ?? A.LastName;
                 AlumnusFromDB.Password = MD5Service.Encrypt(alumnus.Password) ?? A.Password;
                 AlumnusFromDB.Phone = alumnus.Phone ?? A.Phone;
-                AlumnusFromDB.CityId = Convert.ToInt32((alumnus.City.Id).ToString() ?? (A.City.Id).ToString());
-                AlumnusFromDB.CollegeId = Convert.ToInt32(alumnus.College.Id.ToString() ?? A.College.Id.ToString());
-                AlumnusFromDB.StudyProgramId = Convert.ToInt32(alumnus.StudyProgram.Id.ToString() ?? A.StudyProgram.Id.ToString());
+                if(alumnus.City != null) 
+                AlumnusFromDB.CityId = Convert.ToInt32(alumnus.City.Id.ToString());
+                else AlumnusFromDB.CityId = Convert.ToInt32((A.City.Id).ToString());
+
+                if(alumnus.College != null) 
+                AlumnusFromDB.CollegeId = Convert.ToInt32(alumnus.College.Id.ToString());
+                else AlumnusFromDB.CollegeId = Convert.ToInt32((A.College.Id).ToString());
+
+
+                if(alumnus.StudyProgram != null) 
+                AlumnusFromDB.StudyProgramId = Convert.ToInt32(alumnus.StudyProgram.Id.ToString());
+                else AlumnusFromDB.StudyProgramId = Convert.ToInt32((A.StudyProgram.Id).ToString());
+
                 AlumnusFromDB.CardId = alumnus.CardId ?? A.CardId;
                 AlumnusFromDB.StudyFinishYear = alumnus.StudyFinishYear ?? A.StudyFinishYear;
                 AlumnusFromDB.Id = Convert.ToInt32(alumnus.Id.ToString() ?? A.Id.ToString());

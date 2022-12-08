@@ -35,7 +35,7 @@ export class CreateArticleComponent {
         if (event.type === HttpEventType.Response) {
           console.log(event.body);
           setTimeout(() => {
-            this.router.navigateByUrl(`main/article-detail/${event.body?.id}`);
+            this.router.navigateByUrl(`main/articles/article-detail/${event.body?.id}`);
           }, 500);
         }
       });
