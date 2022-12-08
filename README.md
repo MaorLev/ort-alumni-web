@@ -33,9 +33,10 @@
 - [License](#📜-License)
 
 
-## 🎦 Diagram
+## 📊 Diagram
 - Use case diagram (Current status)
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/diagram.png" alt="opening-screen">
+
 ## 🎦 ScreenShoots
 
 # Opening Screen
