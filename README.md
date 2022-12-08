@@ -25,10 +25,6 @@
 - [Diagram](#📊-Diagram)
 - [ScreenShoots](#🎦-ScreenShoots)
 - [Features](#✨-Features)
-- [Prerequisites](#🎯-Prerequisites)
-- [Installation](#🛠️-Installation)
-- [Commands](#🕹-Commands)
-- [FAQs](#❓-FAQs)
 - [License](#📜-License)
 
 
@@ -53,35 +49,27 @@
 
 ## ✨ Features
 
-✅ Feature 1
+✅ Nx Workspace
 
-✅ Feature 2
+✅ Angular CLI V13
 
-✅ Feature 3
+✅ .NET CORE 3.1
 
-### Third party libraries
-## 🎯 Prerequisites
-- Angular CLI V13
-- Node JS
-- TypeScript
-- Angular Material V13
-- Akita
+✅ TypeScript
 
+✅ C#
 
+✅ JWT Authentication
 
-<h4>For compatabilities, please check via this <a href="https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3" >Link
-</a></h4> 
+✅ Rxjs
 
-## 🛠️ Installation
-- Clone/Download the repo to your local workplace.
-- Then in The path of your local Workspace repo,
-  run "npm install" script.
-- After the above instruction, Run "ng Serve" script.
-- And open your browser on your local URL, probably it will be on 4200 port.
+✅ Akita
 
-## 🕹 Commands
+✅ Angular Material
 
-## ❓ FAQs
+✅ Google Maps
+
+✅ Youtube Player
 
 ## 📜 License
 
