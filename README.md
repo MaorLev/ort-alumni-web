@@ -1,5 +1,4 @@
 <div align="center">
-<h1>*A Project under construction*</h1>
 </br>
   <a href="https://github.com/github_username/repo_name">
     <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/main-logo.png" alt="Logo">
