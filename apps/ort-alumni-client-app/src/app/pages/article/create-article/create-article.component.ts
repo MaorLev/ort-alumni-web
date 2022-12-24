@@ -33,7 +33,6 @@ export class CreateArticleComponent {
 
       this.articleService.createArticle(article).subscribe((event) => {
         if (event.type === HttpEventType.Response) {
-          console.log(event.body);
           setTimeout(() => {
             this.router.navigateByUrl(`main/articles/article-detail/${event.body?.id}`);
           }, 500);

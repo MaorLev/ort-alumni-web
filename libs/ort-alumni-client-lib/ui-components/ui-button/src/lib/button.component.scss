@@ -1,5 +1,4 @@
 @use 'media' as media;
-@import 'mixins';
 
 :host {
   button {
@@ -109,7 +108,7 @@
   }
   .scale {
     &:hover {
-      @include scale(1.1);
+      transform: scale(1.1);
     }
   }
 

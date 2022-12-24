@@ -1,6 +1,6 @@
-import { MenuRoutes, quickLinks } from './menu-routes.configs';
-import { ModalMenuTreeComponent } from './modal-menu-tree.component';
-import { ModalInteface } from '../../modal.interface';
+import { ModalInteface, ModalMenuTreeComponent } from "@features/feature-modal";
+import { MenuRoutes, quickLinks } from "./menu-routes.data";
+
 
 export const MENU_TREE_MODAL: ModalInteface = {
   component: ModalMenuTreeComponent,

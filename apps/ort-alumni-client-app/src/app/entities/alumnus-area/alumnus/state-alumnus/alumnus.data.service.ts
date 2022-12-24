@@ -21,7 +21,6 @@ export class AlumnusDataService {
       .pipe(shareReplay(1));
   }
   createAlumnus(alumnus: AlumnusModel): Observable<any> {
-    console.log(alumnus)
     return this.http.post(this.baseUrl, alumnus);
   }
   updateAlumnus(id: string, alumnus: AlumnusModel): Observable<any> {

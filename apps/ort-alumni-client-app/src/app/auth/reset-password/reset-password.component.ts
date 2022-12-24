@@ -23,7 +23,7 @@ export class ResetPasswordComponent implements OnInit {
       email: undefined,
       thumbnail: null
     });
-    this.form.statusChanges.subscribe(res => console.log(res))
+    this.form.statusChanges.subscribe()
   }
 
   onSubmit() {

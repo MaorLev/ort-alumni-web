@@ -121,6 +121,9 @@
       "@utils/util-tools": [
         "libs/ort-alumni-client-lib/utils/helpers/util-tools/src/index.ts"
       ],
+      "@utils/util-validators": [
+        "libs/ort-alumni-client-lib/utils/helpers/util-validators/src/index.ts"
+      ],
       "@utils/util/core/central-message": [
         "libs/ort-alumni-client-lib/utils/core/central-message/src/index.ts"
       ]

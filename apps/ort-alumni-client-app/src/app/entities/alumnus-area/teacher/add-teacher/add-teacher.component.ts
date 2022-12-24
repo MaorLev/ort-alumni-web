@@ -39,8 +39,6 @@ export class AddTeacherComponent implements OnInit {
   }
 
   onSubmitted(group: FormGroup): void {
-    console.log(group.value);
-
     if (this.alumnusId && !this.isMainFormSubmitted)
       this.teacherService
         .createTeacher(group.value, parseInt(this.alumnusId))

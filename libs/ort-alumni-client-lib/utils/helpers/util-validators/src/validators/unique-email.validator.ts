@@ -1,6 +1,6 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { map, Observable } from "rxjs";
-import { SessionDataService } from "../../auth/session/state/session.data.service";
+import { SessionDataService } from "../../../../../../../apps/ort-alumni-client-app/src/app/auth/session/state/session.data.service";
 
 export function uniqueEmailValidator(_auth: SessionDataService): AsyncValidatorFn {
   return (

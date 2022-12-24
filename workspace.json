@@ -28,7 +28,6 @@
     "ort-alumni-client-lib-features-feature-youtube-player": "libs/ort-alumni-client-lib/features/feature-youtube-player",
     "ort-alumni-client-lib-features-feaure-va-select-auto-complete": "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete",
     "ort-alumni-client-lib-features-va-chips-select": "libs/ort-alumni-client-lib/features/va-chips-select",
-    "ort-alumni-client-lib-ui-components-progress": "libs/ort-alumni-client-lib/ui-components/progress",
     "ort-alumni-client-lib-ui-components-ui-button": "libs/ort-alumni-client-lib/ui-components/ui-button",
     "ort-alumni-client-lib-ui-components-ui-card": "libs/ort-alumni-client-lib/ui-components/ui-card",
     "ort-alumni-client-lib-ui-components-ui-carousel": "libs/ort-alumni-client-lib/ui-components/ui-carousel",
@@ -39,6 +38,7 @@
     "ort-alumni-client-lib-utils-helpers-util-directives": "libs/ort-alumni-client-lib/utils/helpers/util-directives",
     "ort-alumni-client-lib-utils-helpers-util-pipes": "libs/ort-alumni-client-lib/utils/helpers/util-pipes",
     "ort-alumni-client-lib-utils-helpers-util-services": "libs/ort-alumni-client-lib/utils/helpers/util-services",
-    "ort-alumni-client-lib-utils-helpers-util-tools": "libs/ort-alumni-client-lib/utils/helpers/util-tools"
+    "ort-alumni-client-lib-utils-helpers-util-tools": "libs/ort-alumni-client-lib/utils/helpers/util-tools",
+    "ort-alumni-client-lib-utils-helpers-util-validators": "libs/ort-alumni-client-lib/utils/helpers/util-validators"
   }
 }

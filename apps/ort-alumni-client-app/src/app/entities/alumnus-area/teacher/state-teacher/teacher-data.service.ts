@@ -17,7 +17,6 @@ export class TeacherDataService {
   constructor(private http: HttpClient) {}
 
   getTeacherByAlumnus(alumnusId: string): Observable<TeacherModel> {
-    console.log(alumnusId);
     return this.http.get<TeacherModel>(`${this.baseUrl}/${alumnusId}`).pipe();;
   }
   getTeachers(): Observable<Array<TeacherModel>> {
@@ -32,7 +31,6 @@ export class TeacherDataService {
   }
 
   createTeacher(teacher: TeacherModel, alumnusId:number): Observable<any> {
-    debugger;
     teacher.alumnusid = alumnusId;
     teacher.courseids = this.ArrayToIdsArray(teacher.courseids);
     return this.http.post(this.baseUrl, teacher);
@@ -49,7 +47,6 @@ export class TeacherDataService {
   }
 
   AddLogo(file: FormData, teacherId:string): Observable<HttpEvent<ResponseMassege>> {
-    debugger;
     const imageFile = {image : file};
     return this.http.post<ResponseMassege>(`${this.baseUrl}/UploadLogo/${teacherId}`, toFormData(imageFile),
     {

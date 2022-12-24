@@ -1,134 +1,3 @@
-@use 'variables' as va;
-@use 'mixins' as mix;
-@use 'functions' as fa;
-// @use 'theme' as theme;
-// @use 'palette' as pal;
-
-// * {
-//   @each $name, $value in pal.$primary-palette {
-//     &.#{$name} {
-//       background-color: $value;
-//     }
-//   }
-//   &.#{$name}:hover {
-//     background-color: lighten($color: $value, $amount: 5%);
-//   }
-// @each $name, $value in pal.$primary-contrast {
-//   &.#{$name} {
-//     background-color: $value;
-//   }
-// }
-
-// @each $name, $value in pal.$accent-palette {
-//   &.#{$name} {
-//     background-color: $value;
-//   }
-//   &.#{$name}:hover {
-//     background-color: lighten($color: $value, $amount: 5%);
-//   }
-// }
-// @each $name, $value in pal.$accent-contrast {
-//   &.#{$name} {
-//     background-color: $value;
-//   }
-// }
-
-//   @each $name, $value in theme.$mat-light-theme-foreground {
-//     &.#{$name} {
-//       background-color: $value;
-//     }
-//   }
-//   @each $name, $value in theme.$mat-light-theme-background {
-//     &.#{$name} {
-//       background-color: $value;
-//     }
-//   }
-// }
-
-* {
-  @include mix.color-pallete($hover: false);
-
-  @each $size in va.$arr {
-    &.mrg-#{$size} {
-      margin: fa.times5($size);
-    }
-    &.mrg-x-#{$size} {
-      margin-right: fa.times5($size);
-      margin-left: fa.times5($size);
-    }
-    &.mrg-y-#{$size} {
-      margin-bottom: fa.times5($size);
-      margin-top: fa.times5($size);
-    }
-    &.mrg-t-#{$size} {
-      margin-top: times5($size);
-    }
-    &.mrg-b-#{$size} {
-      margin-bottom: fa.times5($size);
-    }
-    &.mrg-l-#{$size} {
-      margin-left: fa.times5($size);
-    }
-    &.mrg-r-#{$size} {
-      margin-right: fa.times5($size);
-    }
-
-    &.pad-#{$size} {
-      margin: fa.times5($size);
-    }
-    &.pad-x-#{$size} {
-      margin-right: fa.times5($size);
-      margin-left: fa.times5($size);
-    }
-    &.pad-y-#{$size} {
-      margin-bottom: fa.times5($size);
-      margin-top: fa.times5($size);
-    }
-    &.pad-t-#{$size} {
-      margin-top: times5($size);
-    }
-    &.pad-b-#{$size} {
-      margin-bottom: fa.times5($size);
-    }
-    &.pad-l-#{$size} {
-      margin-left: fa.times5($size);
-    }
-    &.pad-r-#{$size} {
-      margin-right: fa.times5($size);
-    }
-
-    &.gr-co-#{$size} {
-      display: grid;
-      grid-template-columns: repeat($size, auto);
-    }
-    &.gr-ro-#{$size} {
-      display: grid;
-      grid-template-rows: repeat($size, auto);
-    }
-    &.gr-au-ro#{$size} {
-      grid-auto-rows: fa.times5($size);
-    }
-    &.gr-ga-#{$size} {
-      grid-gap: fa.times5($size);
-    }
-    &.co-ga-#{$size} {
-      column-gap: fa.times5($size);
-    }
-    &.ro-ga-#{$size} {
-      row-gap: fa.times5($size);
-    }
-
-    &.gr-co-fi-#{$size} {
-      grid-template-columns: repeat(auto-fit, minmax(times5($size), 1fr));
-    }
-  }
-}
-
-/* Utility Classes */
-// Handle buttons appropriately, with respect to line-height
-
-// https://developers.google.com/fonts/docs/material_icons
-// https://material.angular.io/components/icon/api
 .mat-raised-button,
 .mat-stroked-button,
 .mat-flat-button,
@@ -144,8 +13,8 @@
   min-height: 2.5rem;
 }
 .material-icons {
-  direction: rtl !important;
-  font-size: 2.4rem !important;
+  direction: rtl;
+  font-size: 2.4rem;
   font-family: 'Material Icons', 'Material Icons';
   .mat-badge-content {
     font-family: 'Open Sans';
@@ -157,7 +26,6 @@ body .mat-dialog-container {
 }
 .container {
   max-width: 120rem;
-  // max-width: 1100px;
   margin: auto;
   padding: 3rem;
   overflow: hidden;
@@ -166,15 +34,8 @@ body .mat-dialog-container {
   display: none !important;
 }
 .mat-expansion-panel-body {
-  padding: 12px 12px 10px !important;
+  padding: 12px 12px 10px ;
 }
 .mat-snack-bar-container {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
 }
-// [dir=rtl] .mat-form-field {
-//   text-align: start !important;
-// }
-// .mat-form-field {
-//   direction: rtl!important;
-//   text-align: start !important;
-// }

@@ -104,8 +104,6 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
   }
 
   onStepSubmit(stepGroup: FormGroup) {
-    // console.log(this.formStep);
-
     if (stepGroup.valid) {
       this.addDataToMainFormGroup(stepGroup);
       this.state.actions$.next({ type: PanelActionType.nextStep });

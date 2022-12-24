@@ -1,3 +1,5 @@
+@use 'media' as media;
+
 :host {
   #categories {
     background-color: var(--primary-50);
@@ -16,16 +18,24 @@
         text-align: center;
       }
     }
+    .mat-radio-button {
+      margin: 0px 8px;
+    }
     .articles {
       text-align: center;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
       .card {
-        &:nth-child(1) {
-          grid-column: 1 / span 2;
-          grid-row: 1;
+        @media #{media.$break3} {
+          &:nth-child(1) {
+            grid-column: 1 / span 2;
+            grid-row: 1;
+          }
         }
+      }
+      @media #{media.$break3max} {
+        grid-template-columns: repeat(1, 1fr);
       }
       // padding: 3rem;
       margin-bottom: 4rem;

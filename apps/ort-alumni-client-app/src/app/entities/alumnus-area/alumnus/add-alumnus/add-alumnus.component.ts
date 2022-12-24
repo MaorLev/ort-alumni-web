@@ -36,7 +36,6 @@ export class AddAlumnusComponent {
 
 
   onSubmitted(group: FormGroup): void {
-    console.log(group.value);
     this.alumnusService
       .createAlumnus(group.value)
       .pipe(

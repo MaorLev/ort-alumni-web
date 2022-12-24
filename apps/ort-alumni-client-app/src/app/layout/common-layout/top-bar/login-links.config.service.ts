@@ -1,13 +1,14 @@
 import { SessionService } from '../../../auth/session/state/session.service';
 import { Injectable } from '@angular/core';
 import { Link } from '../nav-bar/link.interface';
+import { AlertsService } from '@utils/util/core/central-message';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginLinksConfigService {
 
-  constructor(private authService:SessionService) { }
+  constructor(private authService:SessionService, public alertService:AlertsService) { }
 
   readonly loginLinks:Link [] = [
     {
@@ -30,5 +31,6 @@ export class LoginLinksConfigService {
   ]
   logout() {
     this.authService.logout();
+    this.alertService.dynamicAlert(`ביי ביי`);
   }
 }

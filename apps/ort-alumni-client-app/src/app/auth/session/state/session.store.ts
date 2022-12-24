@@ -11,7 +11,7 @@ export class SessionStore extends Store<SessionState> {
   constructor() {
     super(createInitialSessionState());
     this.session = new StorageService('authSession');
-    
+
   }
 
   login(session: SessionState) {
@@ -22,6 +22,7 @@ export class SessionStore extends Store<SessionState> {
   logout() {
     this.session.clearSession();
     this.update(createInitialSessionState());
+    
   }
 
 

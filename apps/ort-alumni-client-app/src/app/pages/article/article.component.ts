@@ -1,31 +1,41 @@
 import { ArticleInterface } from './state/article.interface';
-import { Observable, Subscription, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  OnDestroy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ArticleService } from './state/article.service';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  startWith,
+  switchMap
+} from 'rxjs/operators';
 import { CategoryInterface } from './state/category.interface';
+
+export enum CategoryType {
+  Events = 1,
+  Generally = 2,
+  All = 3
+}
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArticleComponent implements OnInit, OnDestroy {
+export class ArticleComponent implements OnInit {
   articles$: Observable<ArticleInterface[]>;
-  subs = new Subscription();
   searchControl: FormControl;
   radio: FormControl;
   categories: Observable<CategoryInterface[]>;
+  get cType():typeof CategoryType { return CategoryType}
+
+
   constructor(
-    private articleService: ArticleService,
-    private changeDetector: ChangeDetectorRef
+    private articleService: ArticleService
   ) {
     this.searchControl = new FormControl();
     this.radio = new FormControl();
@@ -34,21 +44,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subs = combineLatest([
-      this.searchControl.valueChanges,
-      this.radio.valueChanges,
-    ])
-      .pipe(debounceTime(400), distinctUntilChanged())
-      .subscribe(([query, radio]) => {
-        this.articles$ = this.articleService.filtered(query, 12, radio);
-        this.changeDetector.detectChanges();
-      });
+    this.articles$ = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap((input) => {
+        return this.articleService.filtered(input, 12, this.radio.value);
+      })
+    );
+    this.radio.patchValue(this.cType.All);
+  }
 
-    this.radio.patchValue(2);
-  }
-  ngOnDestroy(): void {
-    if (this.subs) {
-      this.subs.unsubscribe();
-    }
-  }
 }

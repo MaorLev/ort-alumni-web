@@ -1,10 +1,10 @@
 import { FilesTreeNodeInterface } from '@features/feature-expansion-tree';
 
-export interface MenuQuickLink {
+export interface ModalBottomLinks {
   label: string;
   routeTo: string;
 }
 export interface MenuDataModal {
-  quickLinks: MenuQuickLink[];
+  quickLinks: ModalBottomLinks[];
   dataSource: FilesTreeNodeInterface[];
 }

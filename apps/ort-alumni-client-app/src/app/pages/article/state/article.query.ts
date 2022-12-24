@@ -32,11 +32,17 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
   ): Observable<ArticleInterface[]> {
     return this.selectAll({
       filterBy: (entity) =>
-        entity.heading === heading && category
-          ? entity.categoryid === category
-          : entity.heading === heading,
+        category != 3 && heading.length > 0
+          ? entity.categoryid === category && entity.heading.includes(heading)
+          : entity.heading.includes(heading) ,
       limitTo: limitTo,
     });
+  }
+
+
+  findHeading(original: string, input: string)
+  {
+    original.includes(input);
   }
 
   selectAllArticles$ = (limitTo?: number) =>

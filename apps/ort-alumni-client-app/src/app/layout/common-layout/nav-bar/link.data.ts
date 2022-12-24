@@ -6,13 +6,13 @@ export const linkData:Link [] = [
     route: 'home',
     order: 1
   },
-    {
-    label: 'פרופיל',
-    name: 'account',
-    route: '/profile',
-    order: 2,
-    showIfLogin: true,
-  },
+  //   {
+  //   label: 'פרופיל',
+  //   name: 'account',
+  //   route: '/profile',
+  //   order: 2,
+  //   showIfLogin: true,
+  // },
   // {
   //   label: 'אודות',
   //   name: 'about',

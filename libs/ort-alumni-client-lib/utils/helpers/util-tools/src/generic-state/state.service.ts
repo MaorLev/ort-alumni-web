@@ -19,7 +19,6 @@ export class StateService<T> {
         action
       );
       const newObject = cloneable.deepCopy(nextState);
-      console.log(newObject);
       this._state.next(newObject);
     });
     this.state$ = this._state.asObservable();

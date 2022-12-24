@@ -8,6 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": ["crypto-js"],
         "outputPath": "dist/apps/ort-alumni-client-app",
         "index": "apps/ort-alumni-client-app/src/index.html",
         "main": "apps/ort-alumni-client-app/src/main.ts",

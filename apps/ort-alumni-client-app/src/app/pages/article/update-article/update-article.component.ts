@@ -36,7 +36,6 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
     private articleConfigService: ArticleFormConfigService
   ) {
     const id = activatedRouter.snapshot.paramMap.get('id');
-    console.log(id)
     if (id) this.id = parseInt(id);
     this.article = this.articleService.selectEntityById(this.id);
   }

@@ -3,26 +3,3 @@ $break2: '(min-width: 571px) and (max-width: 1002px)';
 $break3: '(min-width: 1003px)';
 $break3max: '(max-width: 1003px)';
 $break4: '(min-width: 571px)';
-// @media #{$break1} {
-//   .pc {
-//     display: none;
-//   }
-//   .mobile {
-//     display: none;
-//   }
-//   html {
-//     font-size: 30%;
-//   }
-// }
-// @media #{$break2} {
-//   .pc {
-//     display: none;
-//   }
-//   .mobile {
-//     display: none;
-//   }
-//   html {
-//     font-size: 50%;
-//   }
-
-// }

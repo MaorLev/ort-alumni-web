@@ -24,16 +24,11 @@ export class ArticleDetailComponent implements OnInit {
     private alertsService: AlertsService
   ) {
     const id = activatedRouter.snapshot.paramMap.get('id');
-    console.log(id)
     if (id) this.id = parseInt(id);
   }
 
   ngOnInit(): void {
     this.article = this.articleService.selectEntityById(this.id);
-    // const articles:ArticleInterface [] = ArticlesData;
-    // this.article = of(
-    //   ...articles.filter((article)=> article.id?.toString() === this.id)
-    // )
   }
 
   onDeleteArticle() {

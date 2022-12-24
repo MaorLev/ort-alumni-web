@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'ort-alumni-client-lib-ui-components-progress',
-  preset: '../../../../jest.preset.js',
+  displayName: 'ort-alumni-client-lib-utils-helpers-util-validators',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   coverageDirectory:
-    '../../../../coverage/libs/ort-alumni-client-lib/ui-components/progress',
+    '../../../../../coverage/libs/ort-alumni-client-lib/utils/helpers/util-validators',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

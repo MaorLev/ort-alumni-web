@@ -43,12 +43,12 @@ export class EditTeacherComponent implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
     this.alumnusId = this.sessionQuery.getUserId();
-    console.log("alumnusId by sessios", this.alumnusId);
+    // console.log("alumnusId by sessios", this.alumnusId);
     this.teacherPatchAndConfigData = this.teacherData
     .getTeacherByAlumnus(this.alumnusId)
     .pipe(combineLatestWith(this.state.activateForm$),
     tap(alum => {
-      console.log("Teacher From Server, Edit Area",alum);
+      // console.log("Teacher From Server, Edit Area",alum);
     }));
 
 

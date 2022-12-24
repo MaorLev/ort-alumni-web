@@ -4,13 +4,12 @@ import {
 } from '@angular/core';
 import { Link } from './link.interface';
 import { linkData } from './link.data';
-import { Observable } from 'rxjs';
 import { SearchService } from '../../../pages/search-feature/state/search.service';
 import {
-  MENU_TREE_MODAL,
   ModalInteface,
   searchConfig,
 } from '@features/feature-modal';
+import { MENU_TREE_MODAL } from './modal-menu.data';
 
 @Component({
   selector: 'app-nav-bar',
