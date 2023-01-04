@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/main-logo.png" alt="Logo">
   <h1>Ort Alumni Web</h1>
+  <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/main-logo.png" alt="Logo">
   <p>A website for Ort college alumni</p>
   <p>
     <img alt="GitHub" src="https://img.shields.io/github/license/avivharuzi/readme-template?style=for-the-badge">
