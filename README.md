@@ -1,9 +1,3 @@
-<style>
-r { color: Red }
-o { color: Orange }
-g { color: Green }
-</style>
-
 <div align="center">
   <h1>Ort Alumni Web</h1>
   <p>A website for Ort college alumni</p>
@@ -47,26 +41,19 @@ Today, every self-respecting college or university has a website that provides s
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/materials/premission-diagram.jpg" alt="High-Level-Permissions-Diagram">
 
 
-# TODOs:
-
-- <r>TODO:</r> Important thing to do
-- <o>TODO:</o> Less important thing to do
-- <g>DONE:</g> Breath deeply and improve karma
-
-
 **Diagram Explenation :** 
 
 The site contains four main users :
 
-<span style="color:red;" >Unregistered user</span>
-
-
-
- (visitor), student, alumnus, employer.
+Unregistered user (visitor), student, alumnus, employer.
 1. An employer, in order to offer relevant and dedicated jobs for the graduates and students registered on the website.
+
 2. A graduate can open a teacher's card, in order to offer private lessons, mentoring and accompaniment in final projects for the students.
+
 3. A student, who can enjoy the multitude of features mentioned.
+
 4. A Visitor, who may register or login. And in addition to watch articles, news and the multitude of free content that the site offers.
+
 
 In addition, there is a forum, where the students and graduates can hold discussions among themselves. currently still in development stages.
 
