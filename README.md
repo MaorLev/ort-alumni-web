@@ -68,15 +68,13 @@ Each registered user has access to the forum and in addition to the profile area
 
 
 <div id="screen-shoots"> </div>
+
 ## 🎥 ScreenShoots & Gifs
+
 ### *Login Screen*
+
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Login/login.jpg" alt="login-screen">
-
-<!-- </br>
-</br>
-***In Action***
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Login/login-jwt.gif" alt="login-screen"> -->
 
 </br>
 </br>
@@ -88,12 +86,6 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 </br>
 
-<!-- ***In Action***
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Registeration/registeration.gif" alt="registeration-screen">
-
-</br>
-</br> -->
-
 ### *Profile Screen*
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Profile/profile.jpg" alt="profile-screen">
@@ -101,16 +93,7 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 </br>
 
-<!-- ***In Action***
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Profile/profile.gif" alt="profile-screen">
-
-</br>
-</br> -->
-
-
-
-
-### *Articles Area*
+### *Articles*
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/articles/articles-events.jpg" alt="opening-screen">
 
@@ -127,17 +110,6 @@ Each registered user has access to the forum and in addition to the profile area
 ### Menu
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.jpg" alt="opening-screen">
-
-</br>
-</br>
-
-***Full Responsive***
-
-
-### *Footer & Maps Feature*
-</br>
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Footer/maps-footer.gif" alt="opening-screen">
-
 
 </br>
 </br>
@@ -160,8 +132,10 @@ Each registered user has access to the forum and in addition to the profile area
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
 
-
 </br>
+</br>
+</br>
+
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.gif" alt="opening-screen">
 
 <div id="implementation"><div>
