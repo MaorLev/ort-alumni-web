@@ -24,13 +24,13 @@
 - [📊 Diagrams And Website Story](#diagrams)
 - [🧠 Implementation](#implementation)
 - [🎥 ScreenShoots](#screenShoots)
-- [✨Features](#features)
+- [✨ Features](#features)
 - [👑 Technologies](#technologies)
 - [📜 License](#license)
 
 <div id="the-idea-behind"><div>
 
-## 🧠 The Idea Behind
+## 🔔 The Idea Behind
 Today, every self-respecting college or university has a website that provides services for their graduates, and Ort colleges lack one.
 
 <div id="diagrams"><div>
@@ -60,7 +60,7 @@ Each registered user has access to the forum and in addition to the profile area
 
 
 
-## 🎦 ScreenShoots
+## 🎥 ScreenShoots
 
 ### Opening Screen
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="opening-screen">
@@ -73,7 +73,7 @@ Each registered user has access to the forum and in addition to the profile area
 
 <div id="implementation"><div>
 
-# 🎞-Implementation
+# 🧠 Implementation
 
 ### Performence
 
@@ -105,6 +105,7 @@ All this in order to allow easy changes, easy access, work order and realization
 - HTML Semantic Elements for accessiblity
 
 <div id="features"><div>
+
 ## ✨ Features
 
 Client Side :
