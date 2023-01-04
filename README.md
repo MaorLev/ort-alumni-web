@@ -71,6 +71,27 @@ Each registered user has access to the forum and in addition to the profile area
 
 ## 🎥 ScreenShoots & Gifs
 
+### *Opening Screen*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="opening-screen">
+
+</br>
+</br>
+
+### *Menu*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.jpg" alt="opening-screen">
+
+</br>
+</br>
+
+### *Articles*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/articles/articles-events.jpg" alt="opening-screen">
+
+</br>
+</br>
+
 ### *Login Screen*
 
 </br>
@@ -93,41 +114,6 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 </br>
 
-### *Articles*
-</br>
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/articles/articles-events.jpg" alt="opening-screen">
-
-<!-- </br>
-</br>
-
-***Update Article***
-
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/articles/crud-article.gif" alt="opening-screen"> -->
-
-</br>
-</br>
-
-### Menu
-</br>
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.jpg" alt="opening-screen">
-
-</br>
-</br>
-
-### *Opening Screen*
-</br>
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="opening-screen">
-
-</br>
-</br>
-
-<!-- ***The Functionalities Of***
-
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.gif" alt="opening-screen">
-
-</br>
-</br> -->
-
 ### *Full Responsive*
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
@@ -137,6 +123,8 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.gif" alt="opening-screen">
+
+---
 
 <div id="implementation"><div>
 
