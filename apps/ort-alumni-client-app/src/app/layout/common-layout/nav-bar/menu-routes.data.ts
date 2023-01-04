@@ -26,7 +26,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles/articles',
+        route: '/main/articles',
         children: [],
         level: 2,
       },
@@ -65,7 +65,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles/articles',
+        route: '/main/articles',
         children: [],
         level: 2,
       },
@@ -104,7 +104,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles/articles',
+        route: '/main/articles',
         children: [],
         level: 2,
       },
@@ -143,7 +143,7 @@ export const MenuRoutes: FilesTreeNodeInterface[] = [
         name: 'מאמרים ראשי',
         description:
           'לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק. לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית סחטיר בלובק.',
-        route: '/main/articles/articles',
+        route: '/main/articles',
         children: [],
         level: 2,
       },
