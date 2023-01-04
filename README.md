@@ -20,26 +20,26 @@
 
 ## 📖 Table of Contents
 
-- [TheIdeaBehind](#📊-The-Idea-Behind)
-- [Implementation](#🎞-Implementation)
-- [Diagrams](#📊-Diagrams)
-- [ScreenShoots](#🎦-ScreenShoots)
-- [Features](#✨-Features)
-- [Technologies](#✨-Technologies)
-- [License](#📜-License)
+- [🔔 The Idea Behind](#the-idea-behind)
+- [📊 Diagrams And Website Story](#diagrams)
+- [🧠 Implementation](#implementation)
+- [🎥 ScreenShoots](#screenShoots)
+- [✨Features](#features)
+- [👑 Technologies](#technologies)
+- [📜 License](#license)
 
-## The Idea Behind
+<div id="the-idea-behind"><div>
+
+## 🧠 The Idea Behind
 Today, every self-respecting college or university has a website that provides services for their graduates, and Ort colleges lack one.
+
+<div id="diagrams"><div>
 
 ## 📊 Diagrams
 
 ### High Level Permissions Diagram
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/materials/premission-diagram.jpg" alt="High-Level-Permissions-Diagram">
 
-
-### Use Case Diagram (➕Current status)
-
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/diagram.png" alt="opening-screen">
 
 Diagram Explenation :
 
@@ -54,6 +54,12 @@ In addition, there is a forum, where the students and graduates can hold discuss
 
 Each registered user has access to the forum and in addition to the profile area, where he can make changes in the details concerning him.
 
+### Use Case Diagram (➕Current status)
+
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/diagram.png" alt="opening-screen">
+
+
+
 ## 🎦 ScreenShoots
 
 ### Opening Screen
@@ -64,6 +70,8 @@ Each registered user has access to the forum and in addition to the profile area
 
 - Full Responsive
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
+
+<div id="implementation"><div>
 
 # 🎞-Implementation
 
@@ -96,6 +104,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 - HTML Semantic Elements for accessiblity
 
+<div id="features"><div>
 ## ✨ Features
 
 Client Side :
@@ -146,6 +155,15 @@ Server Side :
 ✅ First Code Approach
 
 ✅ Full OOP Powerfull
+
+<div id="technologies"><div>
+
+## 👑 Technologies
+
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/materials/technologies-image.jpg" alt="technologies-image">
+
+
+<div id="license"><div>
 
 ## 📜 License
 
