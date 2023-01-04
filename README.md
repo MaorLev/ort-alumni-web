@@ -68,7 +68,7 @@ Each registered user has access to the forum and in addition to the profile area
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/diagram.png" alt="opening-screen">
 
 
-
+---
 
 <div id="implementation"><div>
 
@@ -102,6 +102,8 @@ All this in order to allow easy changes, easy access, work order and realization
 - State Management by Akita. And in addition, some of the states were implemented, without involvement from Akita. in order to practice different patterns, as part of learning.
 
 - HTML Semantic Elements for accessiblity
+
+---
 
 <div id="features"><div>
 
@@ -155,6 +157,8 @@ All this in order to allow easy changes, easy access, work order and realization
 ✅ First Code Approach
 
 ✅ Full OOP Powerfull
+
+---
 
 <div id="technologies"><div>
 
