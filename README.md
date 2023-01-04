@@ -37,11 +37,11 @@ Today, every self-respecting college or university has a website that provides s
 
 ## 📊 Diagrams
 
-### High Level Permissions Diagram
+### *High Level Permissions Diagram*
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/materials/premission-diagram.jpg" alt="High-Level-Permissions-Diagram">
 
 
-Diagram Explenation :
+**Diagram Explenation :** 
 
 The site contains four main users :
 Unregistered user (visitor), student, alumnus, employer.
@@ -54,7 +54,7 @@ In addition, there is a forum, where the students and graduates can hold discuss
 
 Each registered user has access to the forum and in addition to the profile area, where he can make changes in the details concerning him.
 
-### Use Case Diagram (➕Current status)
+### *Use Case Diagram (➕Current status)*
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/diagram.png" alt="opening-screen">
 
@@ -62,27 +62,29 @@ Each registered user has access to the forum and in addition to the profile area
 
 ## 🎥 ScreenShoots
 
-### Opening Screen
+### *Opening Screen*
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.jpg" alt="opening-screen">
 
-- The Functionalities Of
+***The Functionalities Of***
+
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.gif" alt="opening-screen">
 
-- Full Responsive
+***Full Responsive***
+
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
 
 <div id="implementation"><div>
 
 # 🧠 Implementation
 
-### Performence
+### *Performence*
 
 - Loading expected modules at the idle time of the browser
 
 - Using the onPushStrategy in order to reduce the running of the change detection,
 And beyond performance contributes by keep controlling and understanding the logic.
 
-### Scalable And Thin Application
+### *Scalable And Thin Application*
 
 The environment files, styles and assets, have been exported to directories so that they are external to the application
 
@@ -90,7 +92,7 @@ In addition, all the components that are intended to provide a service, are reus
 
 All this in order to allow easy changes, easy access, work order and realization of unitests more easily
 
-### Design
+### *Design*
 
 - Custom Angular Material Theme
 
@@ -98,7 +100,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 - Css StoryTelling
 
-### More...
+### *More...*
 
 - State Management by Akita. And in addition, some of the states were implemented, without involvement from Akita. in order to practice different patterns, as part of learning.
 
@@ -108,7 +110,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 ## ✨ Features
 
-Client Side :
+### *Client Side :*
 
 ✅ Smart Stepper (reusable)
 
@@ -143,7 +145,7 @@ Client Side :
 ✅ And More...
 
 
-Server Side :
+### *Server Side :*
 
 ✅ JWT Authentication
 
