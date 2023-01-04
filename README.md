@@ -164,7 +164,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 - Css StoryTelling
 
-### *More... In THe Link*
+### *More...*
 
 - State Management by Akita. And in addition, some of the states were implemented, without involvement from Akita. in order to practice different patterns, as part of learning.
 
