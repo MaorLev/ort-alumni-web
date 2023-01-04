@@ -78,12 +78,16 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 
 ***The Functionalities Of***
+
+</br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.gif" alt="opening-screen">
 
 </br>
 </br>
 
 ***Full Responsive***
+
+</br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
 
 <div id="implementation"><div>
