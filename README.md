@@ -44,8 +44,9 @@ Today, every self-respecting college or university has a website that provides s
 **Diagram Explenation :** 
 
 The site contains four main users :
+Unregistered user (visitor), student, alumnus and employer.
 
-Unregistered user (visitor), student, alumnus, employer.
+
 1. An employer, in order to offer relevant and dedicated jobs for the graduates and students registered on the website.
 
 2. A graduate can open a teacher's card, in order to offer private lessons, mentoring and accompaniment in final projects for the students.
