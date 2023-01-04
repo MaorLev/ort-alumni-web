@@ -1,3 +1,9 @@
+<style>
+r { color: Red }
+o { color: Orange }
+g { color: Green }
+</style>
+
 <div align="center">
   <h1>Ort Alumni Web</h1>
   <p>A website for Ort college alumni</p>
@@ -41,15 +47,20 @@ Today, every self-respecting college or university has a website that provides s
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/materials/premission-diagram.jpg" alt="High-Level-Permissions-Diagram">
 
 
+# TODOs:
+
+- <r>TODO:</r> Important thing to do
+- <o>TODO:</o> Less important thing to do
+- <g>DONE:</g> Breath deeply and improve karma
+
+
 **Diagram Explenation :** 
 
 The site contains four main users :
 
 <span style="color:red;" >Unregistered user</span>
 
-Some Markdown text with <span style="color:blue">some *blue* text</span>.
 
-<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
 
  (visitor), student, alumnus, employer.
 1. An employer, in order to offer relevant and dedicated jobs for the graduates and students registered on the website.
