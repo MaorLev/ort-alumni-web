@@ -23,7 +23,7 @@
 - [🔔 The Idea Behind](#the-idea-behind)
 - [📊 Diagrams And Website Story](#diagrams)
 - [🧠 Implementation](#implementation)
-- [🎥 ScreenShoots](#screenShoots)
+- [🎥 ScreenShoots & Gifs](#screenShoots)
 - [✨ Features](#features)
 - [👑 Technologies](#technologies)
 - [📜 License](#license)
@@ -68,7 +68,46 @@ Each registered user has access to the forum and in addition to the profile area
 
 
 
-## 🎥 ScreenShoots
+## 🎥 ScreenShoots & Gifs
+### *Login Screen*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Login/login.jpg" alt="login-screen">
+
+</br>
+</br>
+
+***In Action***
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Login/login-jwt.gif" alt="login-screen">
+
+</br>
+</br>
+
+### *Registeration Screen*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Registeration/registeration.jpg" alt="registeration-screen">
+
+</br>
+</br>
+
+***In Action***
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Registeration/registeration.gif" alt="registeration-screen">
+
+</br>
+</br>
+
+### *Profile Screen*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Profile/profile.jpg" alt="profile-screen">
+
+</br>
+</br>
+
+***In Action***
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Profile/profile.gif" alt="profile-screen">
+
+</br>
+</br>
+
 
 ### *Opening Screen*
 </br>
@@ -78,7 +117,6 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 
 ***The Functionalities Of***
-
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-screen.gif" alt="opening-screen">
 
 </br>
@@ -87,6 +125,39 @@ Each registered user has access to the forum and in addition to the profile area
 ***Full Responsive***
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
+
+### *Articles Area*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/articles/articles-events.jpg" alt="opening-screen">
+
+</br>
+</br>
+
+***Update Article***
+
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/articles/crud-article.gif" alt="opening-screen">
+
+</br>
+</br>
+
+### Menu
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.jpg" alt="opening-screen">
+
+</br>
+</br>
+
+***Full Responsive***
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.gif" alt="opening-screen">
+
+</br>
+</br>
+
+### *Footer & Maps Feature*
+</br>
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Footer/maps-footer.gif" alt="opening-screen">
+
 
 <div id="implementation"><div>
 
