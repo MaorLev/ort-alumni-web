@@ -20,8 +20,8 @@
 
 ## 📖 Table of Contents
 
-- [TheIdeaBehind](#📊-The Idea Behind)
-- [Implementation](##🎞-Implementation)
+- [TheIdeaBehind](#📊-The-Idea-Behind)
+- [Implementation](#🎞-Implementation)
 - [Diagrams](#📊-Diagrams)
 - [ScreenShoots](#🎦-ScreenShoots)
 - [Features](#✨-Features)
@@ -65,7 +65,7 @@ Each registered user has access to the forum and in addition to the profile area
 - Full Responsive
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/opening-screen/opening-responsive.gif" alt="opening-screen">
 
-## 🎞-Implementation
+# 🎞-Implementation
 
 ### Performence
 
