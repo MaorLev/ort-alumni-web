@@ -194,7 +194,7 @@ All this in order to allow easy changes, easy access, work order and realization
 </br>
 </br>
 
-### *Login Screen*
+### *Login*
 
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Login/login.jpg" alt="login-screen">
@@ -202,14 +202,14 @@ All this in order to allow easy changes, easy access, work order and realization
 </br>
 </br>
 
-### *Registeration Screen*
+### *Registeration*
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Registeration/registeration.jpg" alt="registeration-screen">
 
 </br>
 </br>
 
-### *Profile Screen*
+### *Profile*
 </br>
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/Auth/Profile/profile.jpg" alt="profile-screen">
 
