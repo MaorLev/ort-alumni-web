@@ -21,7 +21,7 @@
 ## 📖 Table of Contents
 
 - [TheIdeaBehind](#📊-The Idea Behind)
-- [Implementation](#🎞-Implementation)
+- [Implementation](##🎞-Implementation)
 - [Diagrams](#📊-Diagrams)
 - [ScreenShoots](#🎦-ScreenShoots)
 - [Features](#✨-Features)
