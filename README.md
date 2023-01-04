@@ -8,7 +8,8 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/avivharuzi/readme-template?style=for-the-badge">
   </p>
   <p>
-    <a href="https://github.com/MaorLev/ort-alumni-web">View Demo</a>
+    <!-- <a href="https://github.com/MaorLev/ort-alumni-web">View Demo</a> -->
+    <a href="https://youtu.be/kP-5U4KBrUs">Video Presentation</a>
     ·
     <a href="https://github.com/MaorLev/ort-alumni-web/issues">Report Bug</a>
     ·
@@ -126,11 +127,11 @@ Each registered user has access to the forum and in addition to the profile area
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.gif" alt="opening-screen">
 
 
-</div>
 </br>
 </br>
 
-### *And More...*
+### *And More In The <a href="https://youtu.be/kP-5U4KBrUs">Link</a>*
+</div>
 
 
 
@@ -163,7 +164,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 - Css StoryTelling
 
-### *More...*
+### *More... In THe Link*
 
 - State Management by Akita. And in addition, some of the states were implemented, without involvement from Akita. in order to practice different patterns, as part of learning.
 
