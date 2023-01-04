@@ -70,6 +70,7 @@ Each registered user has access to the forum and in addition to the profile area
 <div id="screen-shoots"> </div>
 
 ## 🎥 ScreenShoots & Gifs
+<div align="center">
 
 ### *Opening Screen*
 </br>
@@ -123,6 +124,9 @@ Each registered user has access to the forum and in addition to the profile area
 </br>
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/expend-menu/menu-modal.gif" alt="opening-screen">
+
+
+</div>
 
 ---
 
