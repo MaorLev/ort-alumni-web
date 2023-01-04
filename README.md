@@ -180,7 +180,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 <img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/technologies-image.jpg" alt="technologies-image">
 
----
+----
 
 <div id="license"><div>
 
