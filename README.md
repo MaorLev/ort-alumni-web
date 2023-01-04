@@ -11,9 +11,9 @@
     <!-- <a href="https://github.com/MaorLev/ort-alumni-web">View Demo</a> -->
     <a href="https://youtu.be/kP-5U4KBrUs">Video Presentation</a>
     ·
-    <a href="https://github.com/MaorLev/ort-alumni-web/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/MaorLev/ort-alumni-web/issues">Request Feature</a>
+    <!-- <a href="https://github.com/MaorLev/ort-alumni-web/issues">Report Bug</a>
+    -->
+    <a href="https://github.com/MaorLev/ort-alumni-web/issues">Request Feature</a> 
   </p>
 </div>
 
