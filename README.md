@@ -160,7 +160,7 @@ Server Side :
 
 ## 👑 Technologies
 
-<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshots/technologies-image.jpg" alt="technologies-image">
+<img src="https://github.com/MaorLev/assets/blob/master/.github/ort-alumni-web/screenshoots/technologies-image.jpg" alt="technologies-image">
 
 
 <div id="license"><div>
