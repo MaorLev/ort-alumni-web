@@ -64,7 +64,8 @@ namespace AlumniOrtServer.Services
                 return null;
 
             }
-            catch (Exception ex)
+            // catch (Exception ex)
+            catch
             {
                 return null;
             }

@@ -79,15 +79,18 @@ Each registered user has access to the forum and in addition to the profile area
 - Using the onPushStrategy in order to reduce the running of the change detection,
 And beyond performance contributes by keep controlling and understanding the logic.
 
-### *Scalable And Thin Application*
+### *Scalable, Loosely Coupling, Testable And Maintainable*
 
-The environment files, styles and assets, have been exported to directories so that they are external to the application
+- Thin Application: the environment files, styles and assets, have been exported to directories so that they are external to the application.
+Therefore, they have the ability to be shared with another additional future apps or micro frontends.
 
-In addition, all the components that are intended to provide a service, are reusable and generics that of course also sit in dedicated libraries.
+- Keeping the components, weakly associated with each other.
+
+And all the components that are intended to provide a service, are reusable that of course also sit in dedicated libraries.
 
 All this in order to allow easy changes, easy access, work order and realization of unitests more easily
 
-### *Design*
+### *Custom Design*
 
 - Custom Angular Material Theme
 
@@ -109,35 +112,37 @@ All this in order to allow easy changes, easy access, work order and realization
 
 ### *Client Side :*
 
-✅ Smart Stepper (reusable)
+✅ Smart Stepper 
 
 ✅ Login
 
-✅ Modal (reusable)
+✅ Modal 
 
-✅ Google Maps (reusable)
+✅ Google Maps 
 
-✅ Youtube Player (reusable)
+✅ Youtube Player 
 
-✅ Generic Form (reusable)
+✅ Dynamic Reactive Form
 
-✅ Custom Inputs (By "Control Value Accessor") (reusable)
+✅ Custom Inputs (By "Control Value Accessor") 
 
-✅ Smooth scrolling (reusable)
+✅ Custom Validtors
+
+✅ Smooth Scrolling 
 
 ✅ Central Massage Service 
 
-✅ Table (reusable)
+✅ Table 
 
-✅ Carousel (reusable)
+✅ Carousel 
 
-✅ Card (reusable)
+✅ Card 
 
-✅ Spinner (reusable)
+✅ Spinner 
 
-✅ Smart Button (reusable)
+✅ Smart Button 
 
-✅ SVG Feature (reusable)
+✅ SVG Feature 
 
 ✅ And More...
 
@@ -152,7 +157,7 @@ All this in order to allow easy changes, easy access, work order and realization
 
 ✅ MD5 Service
 
-✅ First Code Approach
+✅ First Code Approach (By Fluent API and Data annotation)
 
 ✅ Full OOP Powerfull
 

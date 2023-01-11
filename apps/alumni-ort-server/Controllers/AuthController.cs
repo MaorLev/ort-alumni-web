@@ -31,7 +31,7 @@ namespace AlumniOrtServer.Controllers
         {
             try
             {
-                
+
                 if (authUserDTO.Mail != null && authUserDTO.Password != null)
                 {
                     JwtResultDTO jwtResultDto = await _authService.Authentication(authUserDTO);
@@ -57,7 +57,7 @@ namespace AlumniOrtServer.Controllers
         [Route("CheckEmail")]
         public async Task<ActionResult<bool>> CheckEmail(string email)
         {
-            
+
             string em = email.Substring(1, email.Length - 2);
             try
             {
@@ -77,15 +77,15 @@ namespace AlumniOrtServer.Controllers
             }
 
         }
-        [HttpPost, Route("resetpassword")]
-        public async Task<ActionResult> ResetPassword(string email)
-        {
-            string em = email.Substring(1, email.Length - 2);
+        // [HttpPost, Route("resetpassword")]
+        // public async Task<ActionResult> ResetPassword(string email)
+        // {
+        //     string em = email.Substring(1, email.Length - 2);
 
 
 
-            return Ok();
-        }
+        //     return Ok();
+        // }
 
         /*        public IActionResult Login([FromBody] Login user)
                 {
