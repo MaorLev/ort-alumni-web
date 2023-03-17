@@ -1,0 +1,12 @@
+.teacher-profile {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(max-content, 1fr) minmax(min-content, 6fr);
+}
+.wrapper {
+  max-width: 105rem;
+  margin: auto;
+  padding: 3rem;
+  overflow: hidden;
+}

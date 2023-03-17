@@ -21,7 +21,15 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { VaInputInterface } from '@features/feature-va-input';
-import { map, Observable, Subject, takeUntil, startWith, tap } from 'rxjs';
+import {
+  map,
+  Observable,
+  Subject,
+  takeUntil,
+  startWith,
+  tap,
+  BehaviorSubject,
+} from 'rxjs';
 import {
   MatChipInputEvent,
   MAT_CHIPS_DEFAULT_OPTIONS,
@@ -60,12 +68,15 @@ export class VaChipsSelectComponent
   chips: SimpleInterface[];
   allchips: SimpleInterface[];
   @ViewChild('chipInput') chipInput: ElementRef<HTMLInputElement>;
-  isDisabled: boolean;
+  IsDisabled: BehaviorSubject<boolean | null> = new BehaviorSubject<
+    boolean | null
+  >(null);
+  isDisabled: Observable<boolean | null> = this.IsDisabled.asObservable();
 
   chipControl = new FormControl();
   @Input() config: VaInputInterface;
   onDestroy$ = new Subject<void>();
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor() {
     this.Chips = [];
     this.allChips = [];
   }
@@ -88,7 +99,6 @@ export class VaChipsSelectComponent
   onTouched = () => {};
 
   ngOnInit(): void {
-    // this.isDisabled = this.config.data.isDisabled || false;
     this.config.data.options$
       .pipe(
         tap((allChips: SimpleInterface[]) => {
@@ -130,14 +140,15 @@ export class VaChipsSelectComponent
   }
   writeValue(obj: SimpleInterface[]): void {
     if (!obj) obj = [];
-
     if (obj.length >= this.Chips.length) {
       this.Chips = obj;
       this.excludeExistChips();
     } else if (obj.length < this.Chips.length) {
       this.includeExistChips();
       this.Chips = obj;
-      this.changeDetector.detectChanges();
+      // מקום מסוכן שבתתי את השורה מתחת ואני לא יודע מתי זה יכול להגיע לכאן
+      //השבתתי אותה כי זהניער את העץ ולמשל השבתתי אותה גם בדיסייבלד כאן אבל שמתי במקום ביאייבר סאבג'קט
+      // this.changeDetector.detectChanges();
       this.chipControl.updateValueAndValidity({
         onlySelf: false,
         emitEvent: true,
@@ -151,8 +162,8 @@ export class VaChipsSelectComponent
     this.onTouched = onTouched;
   }
   setDisabledState(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
-    this.changeDetector.detectChanges();
+    this.IsDisabled.next(isDisabled);
+    // this.changeDetector.detectChanges();
   }
 
   add(event: MatChipInputEvent): void {

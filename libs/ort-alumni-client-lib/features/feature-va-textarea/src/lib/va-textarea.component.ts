@@ -50,9 +50,10 @@ export class VaTextareaComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          if(this.formControl.valid)
+          // if(this.formControl.valid)
           this.onChange(val);
-        })
+        }
+        )
       )
       .subscribe();
   }

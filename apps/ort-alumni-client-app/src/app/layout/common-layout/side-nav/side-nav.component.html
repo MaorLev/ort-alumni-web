@@ -1,19 +1,28 @@
 <nav class="navigation">
   <div [ngClass]="['links', alignment]">
     <ng-template [ngIf]="title">
-      <div  class="mat-h1 title">פרופיל בוגר</div>
+      <div class="mat-h1 title">פרופיל בוגר</div>
     </ng-template>
     <ng-container *ngFor="let link of routes">
       <ort-button
+        *ngIf="getRoutingMethod('routing'); else menualButton"
         class="link"
-        [routerLink]="getRoutingMethod('routing') ? link.route : null"
-        (click)="
-          getRoutingMethod('output') ? this.submitted.emit(link.route) : null
-        "
+        [routerLink]="link.route"
         routerLinkActive="active"
       >
         {{ link.label }}
       </ort-button>
+      <ng-template #menualButton>
+        <ng-container *ngIf="currentActivating | async as current">
+          <ort-button
+            class="link"
+            (click)="whenRouteChanging(link.name);"
+            [class.active]="current === link.name"
+          >
+            {{ link.label }}
+          </ort-button>
+        </ng-container>
+      </ng-template>
     </ng-container>
   </div>
 </nav>

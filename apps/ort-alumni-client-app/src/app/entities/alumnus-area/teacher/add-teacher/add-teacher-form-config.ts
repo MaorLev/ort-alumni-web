@@ -4,7 +4,7 @@ import {
   FormControl,
   FormGroup,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { ButtonAction } from '@ui-components/ui-button';
 import { StepsForm } from '@features/feature-expansion-panel';
@@ -20,11 +20,11 @@ import { AbstractCheckListComponent } from '@features/feature-check-list';
 import { AbstractChipsSelectComponent } from '@features/va-chips-select';
 import {
   AbstractFileUploadComponent,
-  requiredFileType
+  requiredFileType,
 } from '@features/feature-file-upload';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeacherFormConfig {
   constructor() {}
@@ -52,24 +52,24 @@ export class TeacherFormConfig {
                 type: 'text',
                 placeholder: 'pat@example.com',
                 validators: [
-                  Validators.required
+                  Validators.required,
                   // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
                 ],
                 data: {},
                 errors: [
                   {
                     name: '',
-                    message: 'אימייל קיים במערכת'
+                    message: 'אימייל קיים במערכת',
                   },
                   {
                     name: 'required',
-                    message: 'שדה חובה'
+                    message: 'שדה חובה',
                   },
                   {
                     name: 'pattern',
-                    message: 'הזן אימייל תקין'
-                  }
-                ]
+                    message: 'הזן אימייל תקין',
+                  },
+                ],
               },
               modestudyids: {
                 component: AbstractCheckListComponent,
@@ -81,17 +81,17 @@ export class TeacherFormConfig {
                 data: {
                   options$: of([
                     { name: 'אונליין', id: 2 },
-                    { name: 'פרונטלי', id: 1 }
+                    { name: 'פרונטלי', id: 1 },
                   ]),
                   validate: (control: AbstractControl) =>
-                    this.CheckBoxValidation(control)
+                    this.CheckBoxValidation(control),
                 },
                 errors: [
                   {
                     name: 'required',
-                    message: 'שדה חובה'
-                  }
-                ]
+                    message: 'שדה חובה',
+                  },
+                ],
               },
               description: {
                 component: AbstractTextareaComponent,
@@ -104,9 +104,9 @@ export class TeacherFormConfig {
                 errors: [
                   {
                     name: 'maxlength',
-                    message: 'לפחות 15 אותיות'
-                  }
-                ]
+                    message: 'לפחות 15 אותיות',
+                  },
+                ],
               },
               cities: {
                 component: AbstractChipsSelectComponent,
@@ -119,17 +119,17 @@ export class TeacherFormConfig {
                   property: { value: [], disabled: true },
                   options$: of([
                     { name: 'אירועים', hebName: 'אירועים', id: 1 },
-                    { name: 'כללי', hebName: 'כללי', id: 2 }
-                  ])
+                    { name: 'כללי', hebName: 'כללי', id: 2 },
+                  ]),
                 },
                 errors: [
                   {
                     name: 'required',
-                    message: 'שדה חובה'
-                  }
-                ]
-              }
-            }
+                    message: 'שדה חובה',
+                  },
+                ],
+              },
+            },
           },
           stepButtons: [
             {
@@ -137,9 +137,9 @@ export class TeacherFormConfig {
               label: 'אשר והמשך',
               role: ButtonAction.StepSubmited,
               color: 'accent',
-              className: 'mat-raised-button'
-            }
-          ]
+              className: 'mat-raised-button',
+            },
+          ],
         },
 
         {
@@ -158,20 +158,25 @@ export class TeacherFormConfig {
                 name: 'languages',
                 label: 'שפות',
                 placeholder: 'בחר מכללה בה למדת',
-                validators: [Validators.required],
+                validators: [],
                 data: {
                   isMultiple: true,
+                  limitation: 4,
                   options$: of([
                     { name: 'ort_jr', hebName: 'אורט ירושלים', id: 1 },
-                    { name: 'ort_br', hebName: 'אורט בראודה', id: 2 }
-                  ])
+                    { name: 'ort_br', hebName: 'אורט בראודה', id: 2 },
+                  ]),
                 },
                 errors: [
                   {
                     name: 'required',
-                    message: 'בחר לפחות שפה אחת'
-                  }
-                ]
+                    message: 'בחר לפחות שפה אחת',
+                  },
+                  {
+                    name: 'selectionLimitExceeded',
+                    message: 'מקסימום 4 שפות',
+                  },
+                ],
               },
               courseids: {
                 component: AbstractSelectComponent,
@@ -184,15 +189,15 @@ export class TeacherFormConfig {
                   isMultiple: true,
                   options$: of([
                     { name: 'ort_jr', hebName: 'אורט ירושלים', id: 1 },
-                    { name: 'ort_br', hebName: 'אורט בראודה', id: 2 }
-                  ])
+                    { name: 'ort_br', hebName: 'אורט בראודה', id: 2 },
+                  ]),
                 },
                 errors: [
                   {
                     name: 'required',
-                    message: 'בחר לפחות קורס אחד'
-                  }
-                ]
+                    message: 'בחר לפחות קורס אחד',
+                  },
+                ],
               },
               rate: {
                 component: AbstractCurrencyInputComponent,
@@ -206,11 +211,11 @@ export class TeacherFormConfig {
                 errors: [
                   {
                     name: 'maxlength',
-                    message: 'maxLength error'
-                  }
-                ]
-              }
-            }
+                    message: 'maxLength error',
+                  },
+                ],
+              },
+            },
           },
           stepButtons: [
             {
@@ -218,23 +223,23 @@ export class TeacherFormConfig {
               label: 'הקודם',
               role: ButtonAction.Prev,
               color: 'accent',
-              className: 'mat-raised-button'
+              className: 'mat-raised-button',
             },
             {
               name: 'Submit',
               label: 'סיימתי',
               role: ButtonAction.StepsSubmited,
               color: 'accent',
-              className: 'mat-raised-button'
-            }
-          ]
-        }
-      ]
+              className: 'mat-raised-button',
+            },
+          ],
+        },
+      ],
     },
     {
       groupStepsName: 'TeacherLogoForm',
       groupId: 2,
-      content: { header: 'העלאת תמונה וסיום' },
+      content: { header: 'העלאת תמונה וסיום', subheader: 'באפשרותך להעלות תמונה', content: 'העלאת תמונה מגדילה את הפניות מהסטודנטים' },
       steps: [
         {
           stepName: '',
@@ -246,41 +251,41 @@ export class TeacherFormConfig {
             buttons: [],
             styleStructure: 'fullWidth',
             controls: {
-              image: {
+              logo: {
                 component: AbstractFileUploadComponent,
-                name: 'image',
-                label: '',
+                name: 'logo',
+                label: 'גרור ושחרר תמונה',
                 type: '',
                 validators: [
-                  Validators.required,
-                  requiredFileType(['png', 'jpg', 'jpeg'])
+                  // Validators.required,
+                  requiredFileType(['png', 'jpg', 'jpeg']),
                 ],
                 data: {
                   property: { value: null, disabled: false },
-                  nameBefore: null
+                  nameBefore: null,
                 },
                 errors: [
-                  {
-                    name: 'required',
-                    message: 'שדה חובה'
-                  },
+                  // {
+                  //   name: 'required',
+                  //   message: 'שדה חובה',
+                  // },
                   {
                     name: 'requiredFileType',
-                    message: 'נדרשת תמונת בעלת אחת הסיומות: .png, .jpg, .jpeg'
-                  }
-                ]
-              }
-            }
+                    message: 'נדרשת תמונת בעלת אחת הסיומות: .png, .jpg, .jpeg',
+                  },
+                ],
+              },
+            },
           },
           stepButtons: [
             {
               name: 'Submit',
-              label: 'סיימתי',
+              label: 'סיום',
               role: ButtonAction.StepsSubmited,
               color: 'accent',
-              className: 'mat-raised-button'
+              className: 'mat-raised-button',
             }
-          ]
+          ],
         },
         {
           stepName: '',
@@ -288,27 +293,37 @@ export class TeacherFormConfig {
           order: 2,
           stepContent: {
             header: 'נרשמת בהצלחה',
-            subheader: 'כעת ניתן לבצע התחברות',
-            content: ''
+            subheader: '',
+            content: '',
           },
           stepGroupForm: {
             groupName: '',
             buttons: [],
-            controls: {}
+            controls: {},
           },
           stepButtons: [
             {
               name: 'RouteTo',
-              label: 'התחבר למערכת',
-              route: '/auth/login',
+              label: 'עבור לפרופיל',
+              route: '/profile',
+              skipLocationByRouting: true,
               role: ButtonAction.RouteTo,
               color: 'accent',
-              className: 'mat-raised-button'
-            }
-          ]
-        }
-      ]
-    }
+              className: 'mat-raised-button',
+            },
+            {
+              name: 'RouteTo',
+              label: 'חזור לדף הבית',
+              route: '/',
+              skipLocationByRouting: true,
+              role: ButtonAction.RouteTo,
+              color: 'accent',
+              className: 'mat-raised-button',
+            },
+          ],
+        },
+      ],
+    },
   ];
 
   CheckBoxValidation(ctrl: AbstractControl): ValidatorFn | null {

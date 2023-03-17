@@ -3,6 +3,12 @@
 :host {
   button {
     cursor: pointer;
+    &:disabled {
+      opacity: 0.5;
+      &:hover{
+        opacity: 0.5;
+      }
+    }
   }
   .custom {
     display: inherit;
@@ -34,7 +40,7 @@
       height: 100%;
     }
   }
-
+  // mat-raised-button bar-btn-primary
   .accent {
     color: var(--white);
     background-color: var(--accent-color);
@@ -105,11 +111,13 @@
     color: var(--light-background);
     width: 100%;
     letter-spacing: 0.3rem;
+
   }
   .scale {
     &:hover {
       transform: scale(1.1);
     }
+
   }
 
   .fancy_btn {

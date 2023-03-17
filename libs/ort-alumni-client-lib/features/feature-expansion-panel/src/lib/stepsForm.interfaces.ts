@@ -19,7 +19,8 @@ export interface StepButtons {
   route?: string;
   role: ButtonAction;
   className?:string;
-  color: 'warn' | 'accent' | 'primary'
+  skipLocationByRouting?:boolean;
+  color: 'warn' | 'accent' | 'primary';
 }
 export interface StepPreference {
   expanded?: number;

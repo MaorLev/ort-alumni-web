@@ -11,9 +11,10 @@ export interface VaErrorsInterface {
 }
 export interface VaDataInterface {
   nameBefore?:string | null;
-  property?:{value:any, disabled:boolean}
+  property?:{value:any, disabled?:boolean}
   maxLengthValue?:number;
   isMultiple?:boolean;
+  limitation?:number;
   options$?:any;
   options?:any;
   validate?:any;

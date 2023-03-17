@@ -1,16 +1,21 @@
 import { CityInterface } from "../../../student/state-student/student.model";
 
-
+export interface LogoInterface {
+  bytes: any;
+  description?: string;
+  fileExtension: string;
+  size: number;
+}
 
 export interface TeacherModel {
   id?: number;
   mailforstudy: string;
-  logo: string;
+  logo: LogoInterface | null;//ddd
   rate: string;
   description: string;
-  alumnusid: number;
+  alumnusid: number;//ddd
   languages: LanguageInterface [];
-  courseids: number[];
+  courseids: number[];//ddd
   // coursenames:string [];
   cities: CityInterface[];
   modestudyids: number[];
@@ -24,3 +29,5 @@ export interface LanguageInterface {
   id: number;
   name: string;
 }
+
+

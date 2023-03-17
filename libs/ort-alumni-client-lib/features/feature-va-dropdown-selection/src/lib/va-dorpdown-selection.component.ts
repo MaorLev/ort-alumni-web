@@ -20,7 +20,9 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { cloneable } from '@utils/util-tools';
+import { cloneable, cloneDeep } from '@utils/util-tools';
+import { MatSelectionListChange } from '@angular/material/list';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'ort-va-dorpdown-selection',
@@ -41,7 +43,7 @@ import { cloneable } from '@utils/util-tools';
   ],
 })
 export class VaDorpdownSelectionComponent
-  implements OnInit, ControlValueAccessor,Validator,  OnDestroy
+  implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
   onDestroy$ = new Subject<void>();
   control = new FormControl();
@@ -56,8 +58,8 @@ export class VaDorpdownSelectionComponent
     this.control.valueChanges
       .pipe(
         map((val) => {
-          if(this.control.valid)
-          this.onChange(val);
+          if (this.control.valid) this.onChange(val);
+          // this.onChange(val);
         })
       )
       .subscribe();
@@ -67,9 +69,9 @@ export class VaDorpdownSelectionComponent
   //   this.control.patchValue([]);
   // }
   writeValue(obj: any): void {
-    const object = cloneable.deepCopy(obj);
-    this.control.patchValue(object);
 
+    const object = cloneDeep(obj);
+    this.control.patchValue(object);
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -90,12 +92,35 @@ export class VaDorpdownSelectionComponent
     this.onValidatorChange = onValidatorChange;
   }
   validate(control: FormControl): ValidationErrors | null {
-
     this.control.setValidators(control.validator);
+    if (
+      this.config.data &&
+      this.config.data.isMultiple &&
+      this.config.data.limitation &&
+      control.value &&
+      control.value.length > this.config.data.limitation
+    ) {
+      return { selectionLimitExceeded: true };
+    }
     return this.control.validator;
   }
   compareFn(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+  onSelectionChange(event: MatSelectChange) {
+    if (
+      this.config.data &&
+      this.config.data.isMultiple &&
+      this.config.data.limitation &&
+      event.value.length > this.config.data.limitation
+    ) {
+      const selectedOptions = event.source.selected as any[];
+      selectedOptions.splice(
+        selectedOptions.indexOf(event.value[event.value.length - 1]),
+        1
+      );
+    }
+    this.onChange(event.value);
   }
   ngOnDestroy(): void {
     this.onDestroy$.next();

@@ -4,12 +4,12 @@ import {
   FormControl,
   FormGroup,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { AbstractCheckListComponent } from '@features/feature-check-list';
 import {
   AbstractFileUploadComponent,
-  requiredFileType
+  requiredFileType,
 } from '@features/feature-file-upload';
 
 import { AbstractDatePickerComponent } from '@features/feature-va-date-picker';
@@ -21,12 +21,9 @@ import { AbstractTextareaComponent } from '@features/feature-va-textarea';
 import { AbstractChipsSelectComponent } from '@features/va-chips-select';
 import { ProfileAreaConfigType } from '../../../../layout/profile-layout/profile-area.type';
 
-
-
 import { of } from 'rxjs';
 import { TeacherDataService } from '../state-teacher/teacher-data.service';
 import { AbstractCurrencyInputComponent } from '@ort-alumni-web/ort-alumni-client-lib-features-feature-va-currency-input';
-
 
 @Injectable()
 export class EditTeacherFormData {
@@ -37,12 +34,20 @@ export class EditTeacherFormData {
       profileName: 'Teacher',
       NavigationData: {
         routesData: [
-          { label: 'פרטי מורה', name: 'teacher-details', route: 'teacher-details' },
-          { label: 'פרטי שיעור', name: 'lesson-details', route: 'lesson-details' },
+          {
+            label: 'פרטי מורה',
+            name: 'teacher-details',
+            route: 'teacher-details',
+          },
+          {
+            label: 'פרטי שיעור',
+            name: 'lesson-details',
+            route: 'lesson-details',
+          },
           { label: 'שינוי תמונה', name: 'image-edit', route: 'image-edit' },
         ],
         alignment: 'horizontal',
-        routingMethod: 'output'
+        routingMethod: 'output',
       },
       groups: [
         {
@@ -57,24 +62,24 @@ export class EditTeacherFormData {
               type: 'text',
               placeholder: 'pat@example.com',
               validators: [
-                Validators.required
+                Validators.required,
                 // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
               ],
               data: {},
               errors: [
                 {
                   name: '',
-                  message: 'אימייל קיים במערכת'
+                  message: 'אימייל קיים במערכת',
                 },
                 {
                   name: 'required',
-                  message: 'שדה חובה'
+                  message: 'שדה חובה',
                 },
                 {
                   name: 'pattern',
-                  message: 'הזן אימייל תקין'
-                }
-              ]
+                  message: 'הזן אימייל תקין',
+                },
+              ],
             },
             description: {
               component: AbstractTextareaComponent,
@@ -87,31 +92,36 @@ export class EditTeacherFormData {
               errors: [
                 {
                   name: 'maxlength',
-                  message: 'לפחות 15 אותיות'
-                }
-              ]
+                  message: 'לפחות 15 אותיות',
+                },
+              ],
             },
             languages: {
               component: AbstractSelectComponent,
               name: 'languages',
               label: 'שפות',
               placeholder: 'בחר מכללה בה למדת',
-              validators: [Validators.required],
+              validators: [],
               data: {
                 isMultiple: true,
+                limitation: 4,
                 options$: of([
                   { name: 'ort_jr', hebName: 'אורט ירושלים', id: 1 },
-                  { name: 'אנגלית', hebName: 'אורט בראודה', id: 2 }
-                ])
+                  { name: 'אנגלית', hebName: 'אורט בראודה', id: 2 },
+                ]),
               },
               errors: [
                 {
                   name: 'required',
-                  message: 'בחר לפחות שפה אחת'
-                }
-              ]
+                  message: 'בחר לפחות שפה אחת',
+                },
+                {
+                  name: 'selectionLimitExceeded',
+                  message: 'מקסימום 4 שפות',
+                },
+              ],
             },
-          }
+          },
         },
         {
           groupName: 'lesson-details',
@@ -129,15 +139,15 @@ export class EditTeacherFormData {
                 isMultiple: true,
                 options$: of([
                   { name: 'ort_jr', hebName: 'אורט ירושלים', id: 1 },
-                  { name: 'ort_br', hebName: 'אורט בראודה', id: 2 }
-                ])
+                  { name: 'ort_br', hebName: 'אורט בראודה', id: 2 },
+                ]),
               },
               errors: [
                 {
                   name: 'required',
-                  message: 'בחר לפחות קורס אחד'
-                }
-              ]
+                  message: 'בחר לפחות קורס אחד',
+                },
+              ],
             },
             modestudyids: {
               component: AbstractCheckListComponent,
@@ -149,17 +159,17 @@ export class EditTeacherFormData {
               data: {
                 options$: of([
                   { name: 'אונליין', id: 2 },
-                  { name: 'פרונטלי', id: 1 }
+                  { name: 'פרונטלי', id: 1 },
                 ]),
                 validate: (control: AbstractControl) =>
-                  this.CheckBoxValidation(control)
+                  this.CheckBoxValidation(control),
               },
               errors: [
                 {
                   name: 'required',
-                  message: 'שדה חובה'
-                }
-              ]
+                  message: 'שדה חובה',
+                },
+              ],
             },
             cities: {
               component: AbstractChipsSelectComponent,
@@ -169,18 +179,18 @@ export class EditTeacherFormData {
               placeholder: 'בחר עיר/ים',
               validators: [Validators.required],
               data: {
-                property: { value: [], disabled: true },
+                property: { value: [], disabled: false },
                 options$: of([
                   { name: 'אירועים', hebName: 'אירועים', id: 1 },
-                  { name: 'כללי', hebName: 'כללי', id: 2 }
-                ])
+                  { name: 'כללי', hebName: 'כללי', id: 2 },
+                ]),
               },
               errors: [
                 {
                   name: 'required',
-                  message: 'שדה חובה'
-                }
-              ]
+                  message: 'שדה חובה',
+                },
+              ],
             },
             rate: {
               component: AbstractCurrencyInputComponent,
@@ -194,47 +204,45 @@ export class EditTeacherFormData {
               errors: [
                 {
                   name: 'maxlength',
-                  message: 'maxLength error'
-                }
-              ]
-            }
-          }
+                  message: 'maxLength error',
+                },
+              ],
+            },
+          },
         },
         {
           groupName: 'image-edit',
-          buttons: [],
+          buttons: [{ label: 'עדכן', type: 'submit', className: 'btn' }],
           styleStructure: 'fullWidth',
           controls: {
-            image: {
+            logo: {
               component: AbstractFileUploadComponent,
-              name: 'image',
-              label: '',
+              name: 'logo',
+              label: 'גרור ושחרר תמונה עבור כרטיס המורה',
               type: '',
               validators: [
-                Validators.required,
-                requiredFileType(['png', 'jpg', 'jpeg'])
+                // Validators.required,
+                requiredFileType(['png', 'jpg', 'jpeg']),
               ],
               data: {
                 property: { value: null, disabled: false },
-                nameBefore: null
               },
               errors: [
                 {
                   name: 'required',
-                  message: 'שדה חובה'
+                  message: 'שדה חובה',
                 },
                 {
                   name: 'requiredFileType',
-                  message: 'נדרשת תמונת בעלת אחת הסיומות: .png, .jpg, .jpeg'
-                }
-              ]
-            }
-          }
+                  message: 'נדרשת תמונת בעלת אחת הסיומות: .png, .jpg, .jpeg',
+                },
+              ],
+            },
+          },
         },
-      ]
+      ],
     };
   }
-
 
   CheckBoxValidation(ctrl: AbstractControl): ValidatorFn | null {
     const group = ctrl.parent as FormGroup;

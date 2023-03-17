@@ -1,0 +1,72 @@
+<ng-container *ngIf="details">
+  <div class="teacher-profile-readonly wrapper">
+    <ng-container>
+      <div class="image-wrapper">
+        <div class="image">
+          <img
+            [src]="image || '/assets/images/teacher-avatar.png'"
+            [alt]="details.description"
+            class="profile-picture"
+            height="200"
+            width="200"
+          />
+          <img />
+          <h1>{{ name }}</h1>
+        </div>
+        <h2 *ngIf="details.description">
+          <span class="mat-display-1">"</span>
+          {{ details.description }}
+          <span class="mat-display-1">"</span>
+        </h2>
+      </div>
+    </ng-container>
+
+    <div class="subwrapper">
+      <div class="field">
+        <div *ngIf="details.mailforstudy" class="item">
+          <label>מייל</label>
+          <output>{{ details.mailforstudy }}</output>
+        </div>
+        <div *ngIf="details.cities && details.cities.length > 0" class="item">
+          <label>ערים בהם אתה נגיש</label>
+          <output>
+            <ng-container *ngFor="let city of details.cities; let i = index">
+              <ng-container *ngIf="i !== 0"> ,</ng-container>
+              {{ city.name }}
+            </ng-container>
+          </output>
+        </div>
+      </div>
+
+      <div class="field">
+        <div *ngIf="details.languages" class="item">
+          <label>שפות</label>
+          <output>
+            <ng-container *ngFor="let lang of details.languages; let i = index">
+              <ng-container *ngIf="i !== 0"> ,</ng-container>
+              {{ lang.name }}
+            </ng-container>
+          </output>
+        </div>
+
+        <div *ngIf="details.rate" class="item">
+          <label>שכר שעתי</label>
+          <output>{{ details.rate | currency: 'ILS' }}</output>
+        </div>
+      </div>
+      <div class="field">
+        <div *ngIf="details.modestudyids" class="item">
+          <label>מצב/י הוראה</label>
+          <output>
+            <ng-container
+              *ngFor="let mode of details.modestudyids; let i = index"
+            >
+              <ng-container *ngIf="i !== 0"> ,</ng-container>
+              {{ modeStudyMap[mode] }}
+            </ng-container>
+          </output>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

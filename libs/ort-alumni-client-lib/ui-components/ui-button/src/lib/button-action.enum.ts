@@ -5,5 +5,6 @@ export enum ButtonAction {
   Next = 'next',
   RouteTo = 'routeTo',
   StepSubmited = 'stepSubmited',
-  StepsSubmited = 'stepsSubmited'
+  StepsSubmited = 'stepsSubmited',
+  Delete = "delete"
 }

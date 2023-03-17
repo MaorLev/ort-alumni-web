@@ -2,9 +2,10 @@
   [type]="type"
   [value]="value"
   [class]="className + ' ' + buttonColor"
-  [disabled]="disabled"
   [routerLink]="routeTo"
+  [skipLocationChange]="skipLocationByRouting"
   (click)="actionSubmitted.emit(action)"
+  [disabled]="disabled"
 >
   <div class="content">
     <span *ngIf="iconName" class="content-btn_icon">

@@ -84,7 +84,7 @@ And beyond performance contributes by keep controlling and understanding the log
 - Thin Application: the environment files, styles and assets, have been exported to directories so that they are external to the application.
 Therefore, they have the ability to be shared with another additional future apps or micro frontends.
 
-- Keeping the components, weakly associated with each other by using smart DI(dependency Injection) implantation.
+- Keeping the components, weakly associated with each other by using smart DI (dependency Injection) implantation.
 
 And all the components that are intended to provide a service, are reusable that of course also sit in dedicated libraries.
 

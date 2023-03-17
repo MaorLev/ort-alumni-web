@@ -16,6 +16,7 @@ import { HttpEventType } from '@angular/common/http';
 import { ArticleFormConfigService } from '../configuration/article-form-config.service';
 import { FormInterface } from '@features/feature-form';
 
+
 @Component({
   selector: 'app-update-article',
   templateUrl: './update-article.component.html',

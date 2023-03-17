@@ -47,6 +47,7 @@
                 [className]="button.className"
                 [buttonColor]="button.color"
                 (click)="onAction(button.role, myform.group)"
+                [skipLocationByRouting]="button.skipLocationByRouting ? true : false"
                 [routeTo]="button.route || null"
                 >{{ button.label }}</ort-button
               >

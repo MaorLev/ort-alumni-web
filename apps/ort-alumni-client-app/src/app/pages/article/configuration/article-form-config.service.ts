@@ -125,13 +125,14 @@ export class ArticleFormConfigService {
         image: {
           component: AbstractFileUploadComponent,
           name: 'image',
-          label: '',
+          label: 'גרור ושחרר תמונה עבור הפוסט',
           type: '',
-          validators: [Validators.required, requiredFileType(['png', 'jpg', 'jpeg'])],
-          // validators: [isUpdate ? null : Validators.required,requiredFileType(['png', 'jpg', 'jpeg'])],
+          // validators: [Validators.required, requiredFileType(['png', 'jpg', 'jpeg'])],
+          validators: [isUpdate ? Validators.nullValidator : Validators.required,requiredFileType(['png', 'jpg', 'jpeg'])],
           data: {
             // isDisabled: isUpdate ? true : false,
-            property: { value: null, disabled: isUpdate ? true : false },
+            // property: { value: null, disabled: isUpdate ? true : false },
+            property: { value: null, disabled: false },
             nameBefore: imageNameBefore ? imageNameBefore : null,
           },
           errors: [

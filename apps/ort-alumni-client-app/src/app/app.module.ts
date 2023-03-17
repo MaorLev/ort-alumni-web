@@ -47,7 +47,7 @@ import {
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' },
     },
-    { provide: HTTP_INTERCEPTORS, useClass: ApiErrorInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ApiErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

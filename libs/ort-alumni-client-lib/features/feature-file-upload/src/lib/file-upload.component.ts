@@ -21,7 +21,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { VaInputInterface } from '@features/feature-va-input';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, takeUntil, tap } from 'rxjs';
 
 export interface UploadError {
   requiredFileType: string;
@@ -45,48 +45,72 @@ export interface UploadError {
     },
   ],
 })
-export class FileUploadComponent implements ControlValueAccessor, Validator {
-  internalError:Observable<string> | null;
+export class FileUploadComponent
+  implements ControlValueAccessor, Validator
+{
+  internalError: Observable<string> | null;
 
-  @Input() nameBefore: string | undefined;
-  // formControl: FormControl;
   @Input() config: VaInputInterface;
   file: File | null = null;
-  counter:number;
+  counter: number;
   isDisabled: boolean;
+
+
+  description: string | undefined;
+
+  constructor(
+    private host: ElementRef<HTMLInputElement>
+  ) {
+
+  }
   onChange: (obj: any) => {};
+
   onTouched = () => {};
-  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
-    const file = event && event.item(0);
-    this.file = file;
-    this.nameBefore = undefined;
-
-    this.onChange(file);
-    this.onTouched();
-  }
-
-  constructor(private host: ElementRef<HTMLInputElement>) {}
-
-  writeValue(value: any) {
-    this.host.nativeElement.value = '';
-    this.file = null;
-
-  }
-
   registerOnChange(fn: any) {
     this.onChange = fn;
   }
-
   setDisabledState(isDisabled: boolean): void {
-    // this.config = {
-    //   ...this.config,
-    //   data: { ...this.config.data, isDisabled: isDisabled },
-    // };
     this.isDisabled = isDisabled;
   }
   registerOnTouched(onTouched: any): void {
     this.onTouched = onTouched;
   }
+  onValidatorChange = () => {};
+  registerOnValidatorChange(onValidatorChange: () => void) {
+    this.onValidatorChange = onValidatorChange;
+  }
+
+  writeValue(value: any) {
+    this.host.nativeElement.value = '';
+    this.description = this.config.data?.nameBefore
+      ? this.config.data.nameBefore
+      : value?.description
+      // ? value.description
+      // : undefined;
+    // this.Description = this._service.Description;
+    this.file = null;
+  }
+
+  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
+    const file = event && event.item(0);
+    this.file = file;
+    this.description = undefined;
+    this.onChange(file);
+    this.onTouched();
+  }
+
+  deleteFile() {
+    const file = null;
+    this.host.nativeElement.value = '';
+    // this.nameBefore = undefined;
+    this.description = undefined;
+    this.file = file;
+    this.counter = 1;
+    this.setDisabledState(false);
+    this.onChange(file);
+    this.onTouched();
+  }
+
   formatBytes(bytes: number) {
     if (bytes === 0) {
       return '0 Bytes';
@@ -98,44 +122,27 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
-  deleteFile() {
-    const file = null;
-    this.host.nativeElement.value = '';
-    this.nameBefore = undefined;
-    this.file = file;
-    this.counter = 1;
-    this.setDisabledState(false);
-    this.onChange(file);
-    this.onTouched();
-  }
-  onValidatorChange = () => {};
-  registerOnValidatorChange(onValidatorChange: () => void) {
-    this.onValidatorChange = onValidatorChange;
-  }
 
   validate(control: FormControl): ValidationErrors | null {
     // this.formControl = control;
     const validators: ValidatorFn[] = [];
 
+
     //attention!! this is custom validation for situation that update and create and both required
     //if this control named "image" doing code bellow...
-    if(this.config.name === 'image'){
-
-      if (!(this.nameBefore || control.value)) {
+    if (this.config.name === 'image') {
+      if (!(this.description || control.value)) {
         validators.push(Validators.required);
-        if(this.counter){
-          this.internalError = of("נדרש להעלות תמונה");
+        if (this.counter) {
+          this.internalError = of('נדרש להעלות תמונה');
           this.onTouched();
-        }
-        else
-        this.counter = 1;
-      }
-      else {
+        } else this.counter = 1;
+      } else {
         this.internalError = null;
       }
-
     }
 
     return validators;
   }
+
 }

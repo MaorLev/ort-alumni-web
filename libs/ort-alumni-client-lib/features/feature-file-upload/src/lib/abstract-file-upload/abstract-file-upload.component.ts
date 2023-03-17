@@ -18,6 +18,7 @@ export class AbstractFileUploadComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log(this.group)
     // this.formControl = this.group.get(this.config.name) as FormControl | null;
     // this.statusChanged = this.formControl?.statusChanges
   }

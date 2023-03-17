@@ -5,7 +5,7 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { CentralMessageConfigurationService } from './central-message-configuration.service';
@@ -30,8 +30,6 @@ export class ApiErrorInterceptor implements HttpInterceptor {
       catchError((error) => {
 
 
-        if(error.status !== 404)
-        this.alertDebounceTime(typeof(error.error) === 'string' ? error.error : null);
         if (this.messageConfig.configuration.enableLoggers) {
           console.log('Error report ',{
             type: MessageType.Error,
@@ -43,6 +41,10 @@ export class ApiErrorInterceptor implements HttpInterceptor {
             description: 'Something bad happens'
           });
         }
+        if(error.status !== 404)
+        this.alertDebounceTime(typeof(error.error) === 'string' ? error.error : null);
+        else return throwError(()=> error);
+
         return of(error);
       })
     );

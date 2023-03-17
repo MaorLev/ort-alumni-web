@@ -11,23 +11,28 @@
     [disabled]="isDisabled || false"
   />
 
-  <ort-icon svgName="upload_icon" className="icon-sz-2"></ort-icon>
-  <h3>גרור ושחרר תמונה עבור הפוסט</h3>
-  <h3>או</h3>
-  <label for="fileDropRef">חפש כאן</label>
+    <ort-icon svgName="upload_icon" className="icon-sz-2"></ort-icon>
+    <h3>{{ config.label }}</h3>
+    <h3>או</h3>
+
+    <span class="upload" for="fileDropRef">חפש כאן</span>
+
+    <div class="mat-small desc">העלאת תמונה מוגבלת עד לנפח מקסימלי של 2MB</div>
+
+
 </div>
 
-<div class="files-list" *ngIf="file !== null || nameBefore">
+<div class="files-list" *ngIf="file !== null || description">
   <div class="single-file">
     <div class="file-icon" style="width: 5rem">
-    <!-- <div class="file-icon" style="width: 50px"> -->
+      <!-- <div class="file-icon" style="width: 50px"> -->
       <ort-icon svgName="sheet_icon"></ort-icon>
     </div>
     <div class="info">
       <h4 class="name">
-        {{ file?.name ? file?.name : nameBefore }}
+        {{ file?.name ? file?.name : description }}
       </h4>
-      <p class="size" *ngIf="!nameBefore">
+      <p class="size" *ngIf="!description">
         {{ formatBytes(file?.size || 0) }}
       </p>
     </div>
@@ -37,7 +42,3 @@
     </div>
   </div>
 </div>
-
-<!-- <ng-container *ngIf="counter > 0">
-  <mat-error *ngIf="internalError | async as err">{{ err }}</mat-error>
-</ng-container> -->

@@ -2,11 +2,11 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import {
   FeatureExpansionPanelComponent,
-  PanelActionType
+  PanelActionType,
 } from '@features/feature-expansion-panel';
 import { AlertsService } from '@utils/util/core/central-message';
 import { FormGroup } from '@angular/forms';
@@ -15,6 +15,9 @@ import { TeacherFormConfig } from './add-teacher-form-config';
 import { HttpEventType } from '@angular/common/http';
 import { TeacherDataService } from '../state-teacher/teacher-data.service';
 import { SessionQuery } from '../../../../auth/session/state/session.query';
+import { TeacherService } from '../state-teacher/teacher.service';
+import { TeacherQuery } from '../state-teacher/teacher.query';
+import { TeacherModel } from '../state-teacher/teacher-model';
 
 @Component({
   selector: 'app-add-teacher',
@@ -29,9 +32,10 @@ export class AddTeacherComponent implements OnInit {
   isMainFormSubmitted: boolean;
   constructor(
     public teacherFormConfig: TeacherFormConfig,
-    private teacherService: TeacherDataService,
+    private teacherService: TeacherService,
     private sessionQuery: SessionQuery,
-    private alertService: AlertsService
+    private alertService: AlertsService,
+    private teacherQuery: TeacherQuery
   ) {}
   ngOnInit(): void {
     this.alumnusId = this.sessionQuery.getUserId();
@@ -56,23 +60,35 @@ export class AddTeacherComponent implements OnInit {
           this.form2.state.actions$.next({ type: PanelActionType.waitingMode });
         });
     else if (this.isMainFormSubmitted) {
-      this.teacherService
-        .AddLogo(group.controls['image'].value, this.alumnusId)
-        .pipe(
-          catchError((error, caught) => {
-            this.alertService.dynamicAlert(
-              '.שגיאת מערכת: משתמש לא התווסף, אנא נסה מאוחר יותר'
-            );
-            return caught;
-          })
-        )
-        .subscribe((event) => {
-          if (event.type === HttpEventType.Response) {
-            this.form2.state.actions$.next({ type: PanelActionType.nextStep });
-            this.form2.state.actions$.next({
-              type: PanelActionType.ExcludeStep
-            });
-          }
+      const imageControlValue = group.controls['logo'];
+      if (imageControlValue && !!imageControlValue.value)
+        this.teacherService
+          .AddLogo(
+            imageControlValue.value,
+            this.alumnusId,
+            this.teacherQuery.getTeacher() as TeacherModel
+          )
+          .pipe(
+            catchError((error, caught) => {
+              this.alertService.dynamicAlert(
+                '.שגיאת מערכת: משתמש לא התווסף, אנא נסה מאוחר יותר'
+              );
+              return caught;
+            })
+          )
+          .subscribe((event) => {
+            if (event.type === HttpEventType.Response) {
+              this.form2.state.actions$.next({
+                type: PanelActionType.nextStep,
+              });
+              this.form2.state.actions$.next({
+                type: PanelActionType.ExcludeStep,
+              });
+            }
+          });
+      else
+        this.form2.state.actions$.next({
+          type: PanelActionType.nextStep,
         });
     }
   }

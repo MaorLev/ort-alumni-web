@@ -18,7 +18,13 @@ import { BidiModule } from '@angular/cdk/bidi';
 import { ArticleRoutingModule } from './article-routing.module';
 
 @NgModule({
-  declarations: [ArticleComponent, UpdateArticleComponent, CreateArticleComponent, ArticlesByCategoryComponent, ArticleDetailComponent],
+  declarations: [
+    ArticleComponent,
+    UpdateArticleComponent,
+    CreateArticleComponent,
+    ArticlesByCategoryComponent,
+    ArticleDetailComponent,
+  ],
   imports: [
     CommonModule,
     UiCardModule,
@@ -35,6 +41,13 @@ import { ArticleRoutingModule } from './article-routing.module';
     ReadableDatePipeModule,
     BidiModule,
   ],
-  exports: [ArticleComponent, QuicklinkModule, UpdateArticleComponent, CreateArticleComponent, ArticlesByCategoryComponent, ArticleDetailComponent]
+  exports: [
+    ArticleComponent,
+    QuicklinkModule,
+    UpdateArticleComponent,
+    CreateArticleComponent,
+    ArticlesByCategoryComponent,
+    ArticleDetailComponent,
+  ]
 })
 export class ArticleModule {}

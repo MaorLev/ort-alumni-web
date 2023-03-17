@@ -20,6 +20,7 @@ export class CentralMessageConfigurationService {
     this.config$ = this.httpClient
       .get<CentralMessageConfig>(this.CONFIG_URL)
       .pipe(shareReplay(1));
+      
     this.config$.subscribe((res) => {
       this.configuration = res;
     });

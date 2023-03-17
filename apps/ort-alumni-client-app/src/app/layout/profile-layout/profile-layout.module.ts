@@ -19,8 +19,8 @@ import { TopBarModule } from '../common-layout/top-bar/top-bar.module';
     NavBarModule,
     SideNavModule,
     ProfileLayoutRoutingModule,
-    TopBarModule
+    TopBarModule,
   ],
-  exports:[QuicklinkModule]
+  exports: [QuicklinkModule],
 })
 export class ProfileLayoutModule {}

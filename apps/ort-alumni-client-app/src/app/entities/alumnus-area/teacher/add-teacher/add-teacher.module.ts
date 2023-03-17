@@ -4,6 +4,7 @@ import { AddTeacherComponent } from './add-teacher.component';
 import { RouterModule } from '@angular/router';
 import { FeatureExpansionPanelModule } from '@features/feature-expansion-panel';
 import { FeatureFormModule } from '@features/feature-form';
+import { TeacherService } from '../state-teacher/teacher.service';
 
 @NgModule({
   declarations: [AddTeacherComponent],
@@ -15,6 +16,7 @@ import { FeatureFormModule } from '@features/feature-form';
     FeatureExpansionPanelModule,
     FeatureFormModule
   ],
-  exports: [AddTeacherComponent]
+  exports: [AddTeacherComponent],
+  providers: [TeacherService]
 })
 export class AddTeacherModule {}

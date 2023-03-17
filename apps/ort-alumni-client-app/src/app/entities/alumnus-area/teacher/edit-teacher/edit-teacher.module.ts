@@ -5,6 +5,23 @@ import { RouterModule } from '@angular/router';
 import { SideNavModule } from '../../../../layout/common-layout/side-nav/side-nav.module';
 import { FeatureFormModule } from '@features/feature-form';
 import { UiButtonModule } from '@ui-components/ui-button';
+import { TeacherDetailModule } from '../teacher-detail/teacher-detail.module';
+import { ProfileGlobalFormState } from '../../../global-state/profile-global-form-state';
+import { EditTeacherFormData } from './edit-teacher-form-data.service';
+import { EditTeacherActionHandler } from './edit-teacher-action-handler';
+import { TeacherService } from '../state-teacher/teacher.service';
+import { UiSpinnerModule } from '@ui-components/ui-spinner';
+
+
+const profileTeacherFormState = {
+  provide: ProfileGlobalFormState,
+  useFactory: (teacher: EditTeacherFormData) =>
+    new ProfileGlobalFormState(
+      teacher.teacherControls(),
+      new EditTeacherActionHandler()
+    ),
+  deps: [EditTeacherFormData],
+};
 
 @NgModule({
   declarations: [EditTeacherComponent],
@@ -13,9 +30,15 @@ import { UiButtonModule } from '@ui-components/ui-button';
     RouterModule.forChild([{ path: '', component: EditTeacherComponent }]),
     FeatureFormModule,
     SideNavModule,
-    UiButtonModule
+    UiButtonModule,
+    TeacherDetailModule,
+    UiSpinnerModule
   ],
-  exports: [EditTeacherComponent]
-
+  exports: [EditTeacherComponent],
+  providers: [
+    TeacherService,
+    EditTeacherFormData,
+    profileTeacherFormState,
+  ],
 })
 export class EditTeacherModule {}

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FeatureExpansionPanelModule } from '@features/feature-expansion-panel';
 import { FeatureFormModule } from '@features/feature-form';
 import { AddAlumnusComponent } from './add-alumnus.component';
+import { AlumnusService } from '../state-alumnus/alumnus.service';
 
 @NgModule({
   declarations: [AddAlumnusComponent],
@@ -15,6 +16,7 @@ import { AddAlumnusComponent } from './add-alumnus.component';
     FeatureExpansionPanelModule,
     FeatureFormModule
   ],
-  exports: [AddAlumnusComponent]
+  exports: [AddAlumnusComponent],
+  providers: [AlumnusService]
 })
 export class AddAlumnusModule {}

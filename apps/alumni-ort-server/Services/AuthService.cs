@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Context;
+using AlumniOrtServer.Context;
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Extensions;
 using AlumniOrtServer.Jwt.JwtManagers;

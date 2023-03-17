@@ -11,7 +11,7 @@ namespace AlumniOrtServer.Services
     public interface ITeacherService
     {
         public Task<ResponseDTO> Add(TeacherDTO teacher);
-        public Task<ResponseDTO> AddLogo(IFormFileCollection logoFiles, int teacherId);
+
         public Task<List<TeacherDTO>> GetAll();
         public Task<List<TeacherDTO>> GetAllCourses();
         public Task<List<TeacherDTO>> GetAllLanguages();
@@ -22,6 +22,8 @@ namespace AlumniOrtServer.Services
         public Task<ResponseDTO> Update(int id, TeacherDTO teacher);
 
         public Task<ResponseDTO> Delete(int id);
+        public Task<ResponseDTO> AddLogo(IFormFileCollection logoFiles, int teacherId);
+        public Task<ResponseDTO> DeleteLogo(int alumnusId);
         public Task<bool> existAccount(int id);
 
 

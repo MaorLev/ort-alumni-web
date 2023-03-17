@@ -27,7 +27,7 @@ export class AlumnusDataService {
     alumnus.id = id;
     return this.http.put(this.baseUrl + '/' + id, alumnus);
   }
-  deleteAlumnus(id: number): Observable<any> {
+  deleteAlumnus(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 }

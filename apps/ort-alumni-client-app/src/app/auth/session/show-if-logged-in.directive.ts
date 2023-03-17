@@ -17,7 +17,6 @@ export class ShowIfLoggedInDirective implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.authQuery.isLoggedIn$.subscribe((isLoggedIn) => {
-      debugger;
       if (this.appShowIfLoggedIn !== undefined)
       {
           this.viewContainer.clear();
