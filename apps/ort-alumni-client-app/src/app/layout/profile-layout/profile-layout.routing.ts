@@ -8,9 +8,9 @@ const routes: Routes = [
     component: ProfileLayoutComponent,
     children: [
       {
-        path: 'alumnus-edit',
+        path: 'profile-alumnus',
         loadChildren: () =>
-        import('../../entities/alumnus-area/alumnus/edit-alumnus/edit-alumnus.module').then((m) => m.EditAlumnusModule),
+        import('../../pages/profiles/profile-alumnus-area/profile-alumnus/profile-alumnus.module').then((m) => m.ProfileAlumnusModule),
         // canActivate: [AlumniGuard],
       },
       {

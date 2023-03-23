@@ -57,7 +57,7 @@ export class VaDatePickerComponent
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          if(this.formControl.valid)
+          // if(this.formControl.valid)
             this.onChange(val);
         })
       )

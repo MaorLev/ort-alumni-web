@@ -6,7 +6,7 @@ import { AlumnusDataService } from './alumnus.data.service';
 import { AlumnusStore } from './alumnus.store';
 
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class AlumnusService {
 
   constructor(
@@ -18,11 +18,14 @@ export class AlumnusService {
   loadAlumnus(alumnusId: string) {
     return this.alumnusDataService.getAlumnus(alumnusId).pipe(
       map((alumnus:AlumnusModel) => {
-        this.store.update({ alumnus: alumnus, isAlumnusLoaded: true });
+        // this.store.update({ alumnus: alumnus, isAlumnusLoaded: true });
+        this.store.add(alumnus, { loading: true });
+        this.store.setActive(alumnus.id);
+        // this.store.setLoading(true);
         return alumnus;
       }),
       catchError(()=>{
-        this.store.update({ isAlumnusLoaded: false });
+        this.store.setLoading(false);
         return EMPTY;
       }),
     );
@@ -30,14 +33,17 @@ export class AlumnusService {
   createAlumnus(alumnus: AlumnusModel): Observable<any> {
     return this.alumnusDataService.createAlumnus(alumnus).pipe(
       tap(() => {
-        this.store.update({ alumnus: alumnus, isAlumnusLoaded: true });
+        // this.store.update({ alumnus: alumnus, isAlumnusLoaded: true });
+        this.store.add(alumnus, { loading: true });
+        this.store.setActive(alumnus.id);
       })
     );
   }
   updateAlumnus(alumnusId: string, alumnus: AlumnusModel): Observable<any> {
     return this.alumnusDataService.updateAlumnus(alumnusId, alumnus).pipe(
       tap(() => {
-        this.store.update({ alumnus: { ...alumnus }, isAlumnusLoaded: true });
+        // this.store.update({ alumnus: { ...alumnus }, isAlumnusLoaded: true });
+        this.store.updateActive({...alumnus});
         this.alerts.dynamicAlert('עודכן בהצלחה');
       })
     );
@@ -46,7 +52,8 @@ export class AlumnusService {
   deleteAlumnus(alumnusId: string): Observable<any> {
     return this.alumnusDataService.deleteAlumnus(alumnusId).pipe(
       tap(() => {
-        this.store.update({ alumnus: null, isAlumnusLoaded: false });
+        this.store.remove(alumnusId);
+        this.store.setLoading(false);
       })
     );
   }

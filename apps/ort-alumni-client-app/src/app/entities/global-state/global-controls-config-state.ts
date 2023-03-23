@@ -1,15 +1,15 @@
 import { FormInterface } from '@features/feature-form';
 import { ActionHandler, StateService } from '@utils/util-tools';
 import { BehaviorSubject,  combineLatestWith, map, Observable } from 'rxjs';
-import { ProfileAreaConfigType } from '../../layout/profile-layout/profile-area.type';
+import { ConfigControlsStateType } from '../../layout/profile-layout/config-controls-state.type';
 
 
 
 export interface ProfileConfigState {
   activeForm:FormInterface,
-  configuration:ProfileAreaConfigType
+  configuration:ConfigControlsStateType
 }
-export class ProfileGlobalFormState extends StateService<ProfileAreaConfigType> {
+export class GlobalControlsConfigState extends StateService<ConfigControlsStateType> {
   private _activateForm: BehaviorSubject<FormInterface>;
 
   activateForm$: Observable<FormInterface>;
@@ -17,8 +17,8 @@ export class ProfileGlobalFormState extends StateService<ProfileAreaConfigType> 
   theState$:Observable<ProfileConfigState>;
 
   constructor(
-    initialState: ProfileAreaConfigType,
-    actionHandler: ActionHandler<ProfileAreaConfigType>
+    initialState: ConfigControlsStateType,
+    actionHandler: ActionHandler<ConfigControlsStateType>
   ) {
     super(initialState, actionHandler);
 

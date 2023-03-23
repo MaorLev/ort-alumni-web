@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Store, StoreConfig } from '@datorama/akita';
+import { ActiveState, EntityState, EntityStore, Store, StoreConfig } from '@datorama/akita';
 import produce from 'immer';
 import { AlumnusModel } from './alumnus-model';
 
-
-export type AlumnusState = {
-  isAlumnusLoaded:boolean | undefined;
-  alumnus:AlumnusModel | null
-};
+export interface AlumnusState extends EntityState<AlumnusModel, string>, ActiveState {}
+// export type AlumnusState = {
+//   isAlumnusLoaded:boolean | undefined;
+//   alumnus:AlumnusModel | null
+// };
 
 export function createInitialAlumnusState(): AlumnusState {
   return {
-    isAlumnusLoaded : undefined,
-    alumnus: null
+    loading:false,
+    active:null
   };
 }
 
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'alumnus' , producerFn: produce })
-export class AlumnusStore extends Store<AlumnusState> {
+@StoreConfig({ name: 'alumnus'})
+export class AlumnusStore extends EntityStore<AlumnusState> {
   constructor() {
     super(createInitialAlumnusState());
   }

@@ -3,7 +3,6 @@
 import { FormControlStatus, FormGroup } from '@angular/forms';
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   Output,
@@ -15,20 +14,13 @@ import { FormBuilderService } from './form-builder.service';
 import { cloneable, cloneDeep } from '@utils/util-tools';
 import { FormInterface } from './interfaces/form.interface';
 import {
-  BehaviorSubject,
   combineLatestWith,
   debounceTime,
   distinctUntilChanged,
   map,
-  mapTo,
   Observable,
-  of,
-  ReplaySubject,
   startWith,
-  switchMap,
-  tap,
 } from 'rxjs';
-import { ButtonAction } from '@ui-components/ui-button';
 
 @Component({
   selector: 'ort-form',
@@ -36,57 +28,58 @@ import { ButtonAction } from '@ui-components/ui-button';
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormComponent implements OnInit, OnChanges {
+export class FormComponent implements OnChanges {
   @Input() configuration: FormInterface;
   @Input() dataToPatch: any | undefined;
-  // @Input() action: ButtonAction;
   @Output() submitted = new EventEmitter<any>();
 
   isSubmitted: boolean;
   group: FormGroup;
   statusChanged: Observable<FormControlStatus> | undefined;
 
-  firstData: any;
-  // dataChanged:BehaviorSubject<boolean | undefined> = new BehaviorSubject<boolean | undefined>(false);
+  initialData: any;
   dataIsChanged: Observable<boolean | null>;
-  @Input() set ReaquestIsDone(isDone: boolean | null | undefined) {
-    if (isDone && this.dataToPatch) {
-      this.validateSubmit();
-    }
-  }
+
   get groupControls() {
     return this.group.controls;
   }
   constructor(private formBuilderService: FormBuilderService) {}
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['configuration'] && !changes['configuration'].isFirstChange()) {
+
+    if (changes['configuration']) {
       this.initialGroup();
+    }
+    // for the following scnarios:
+    // configuration changes happens:
+    // we have a few forms and we move between each other
+    // when initial data apply
+    // dataToPatch changes happens :
+    // initial data apply
+    // when the request returns
+    if (
+      this.dataToPatch &&
+      (changes['configuration'] || changes['dataToPatch'])
+    ) {
+      this.group.patchValue(this.dataToPatch);
+      this.cloneInitialData();
+      this.statusAndGroupChanged();
     }
   }
 
-  ngOnInit(): void {
-    this.initialGroup();
-  }
 
-  initialGroup() {
+  private initialGroup() {
     this.group = this.formBuilderService.buildStepperGroup(
       this.configuration.controls
     );
-
-    if (this.dataToPatch) {
-      this.group.patchValue(this.dataToPatch);
-      this.validateSubmit();
-    }
   }
-
-  validateSubmit() {
+  private cloneInitialData() {
     try {
-      this.firstData = cloneable.deepCopy(this.group.value);
+      this.initialData = cloneable.deepCopy(this.group.value);
     } catch {
-      this.firstData = cloneDeep(this.group.value);
+      this.initialData = cloneDeep(this.group.value);
     }
-    this.statusAndGroupChanged();
   }
+
   private statusAndGroupChanged() {
     this.dataIsChanged = this.group.valueChanges.pipe(
       combineLatestWith([this.group.statusChanges]),
@@ -109,41 +102,40 @@ export class FormComponent implements OnInit, OnChanges {
 
   private areSameValsValidation(currentVal: any): boolean {
     try {
+      const initial = this.initialData;
+      const current = currentVal;
       for (const prop in this.configuration.controls) {
-        if (Array.isArray(currentVal[prop])) {
-          if (currentVal[prop].length !== this.firstData[prop].length)
-            return false;
-          else if (
-            currentVal[prop].length === 0 &&
-            this.firstData[prop].length === 0
-          )
+        // if (!(!!current[prop] && !!initial[prop])) continue;
+        if (Array.isArray(current[prop])) {
+          if (current[prop].length !== initial[prop].length) return false;
+          else if (current[prop].length === 0 && initial[prop].length === 0)
             continue;
           else {
             if (
-              typeof currentVal[prop][0] === 'object' &&
-              currentVal[prop][0] !== null
+              typeof current[prop][0] === 'object' &&
+              current[prop][0] !== null
             ) {
-              const first = this.firstData[prop].sort(
+              initial[prop].sort(
                 (a: { id: number }, b: { id: number }) => a.id - b.id
               );
-              const current = currentVal[prop].sort(
+              current[prop].sort(
                 (a: { id: number }, b: { id: number }) => a.id - b.id
               );
-              const arrIsSame = !this.firstData[prop].some(
+              const arrIsSame = !initial[prop].some(
                 (first: any, index: number) =>
-                  first.id != currentVal[prop][index].id
+                  first.id != current[prop][index].id
               );
               if (arrIsSame === false) return arrIsSame;
             }
           }
         } else if (
-          typeof currentVal[prop] === 'object' &&
-          currentVal[prop] !== null
+          typeof current[prop] === 'object' &&
+          current[prop] !== null
         ) {
-          if (currentVal[prop]?.id !== this.firstData[prop]?.id) return false;
+          if (current[prop]?.id !== initial[prop]?.id) return false;
           else continue;
         } else {
-          if (currentVal[prop] !== this.firstData[prop]) return false;
+          if (current[prop] !== initial[prop]) return false;
         }
       }
       return true;

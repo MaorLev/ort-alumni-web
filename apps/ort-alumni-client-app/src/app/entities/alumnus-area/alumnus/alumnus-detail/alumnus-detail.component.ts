@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { Observable } from 'rxjs';
+import { AlumnusModel } from '../state-alumnus/alumnus-model';
+import { AlumnusQuery } from '../state-alumnus/alumnus.query';
 
 @Component({
   selector: 'app-alumnus-detail',
@@ -8,10 +14,15 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlumnusDetailComponent implements OnInit {
+  alumnusModel$: Observable<AlumnusModel | undefined>;
+  constructor(
+    public alumnusQuery: AlumnusQuery
+  ) {
 
-  @Input() details: any;
+  }
 
-  constructor() {}
+  ngOnInit(): void {
 
-  ngOnInit(): void {}
+    this.alumnusModel$ = this.alumnusQuery.selectActiveAlumnus$;
+  }
 }

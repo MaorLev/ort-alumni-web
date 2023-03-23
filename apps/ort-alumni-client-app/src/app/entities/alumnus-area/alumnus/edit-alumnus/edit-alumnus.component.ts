@@ -2,21 +2,24 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormInterface } from '@features/feature-form';
+import { FormComponent, FormInterface } from '@features/feature-form';
+import { cloneDeep } from '@utils/util-tools';
 import { AlertsService } from '@utils/util/core/central-message';
-import { SessionQuery } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.query';
-import { ProfileGlobalFormState } from 'apps/ort-alumni-client-app/src/app/entities/global-state/profile-global-form-state';
-import { BehaviorSubject, combineLatestWith, Observable, Subject, takeUntil } from 'rxjs';
+import { GlobalControlsConfigState } from 'apps/ort-alumni-client-app/src/app/entities/global-state/global-controls-config-state';
+import {
+  Observable,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
 
 import { AlumnusModel } from '../state-alumnus/alumnus-model';
-import { AlumnusDataService } from '../state-alumnus/alumnus.data.service';
 import { AlumnusQuery } from '../state-alumnus/alumnus.query';
 import { AlumnusService } from '../state-alumnus/alumnus.service';
-import { EditAlumnusActionHandler } from './edit-alumnus-action-handler';
-import { EditAlumnusFormData } from './edit-alumnus-form-data.service';
 
 export interface ForFormDataTemplate {
   form: FormInterface;
@@ -31,30 +34,16 @@ export interface ForFormDataTemplate {
 })
 export class EditAlumnusComponent implements OnInit, OnDestroy {
   alumnusId: string;
-  // alumnusPatchAndConfigData: Observable<[AlumnusModel, FormInterface]>;
   onDestroy$: Subject<void>;
 
-  alumnusModel$: Observable<AlumnusModel | null>;
+  alumnusModel$: Observable<AlumnusModel | undefined>;
   activeForm$: Observable<FormInterface>;
 
-  currentDataAlumnus: AlumnusModel | null;
+  currentDataAlumnus: AlumnusModel | undefined;
+  @ViewChild('form') formC: FormComponent;
 
-  isEditMode: boolean;
-  RequestIsDone: BehaviorSubject<boolean>;
-  requestIsDone: Observable<boolean>;
-
-  set IsEditMode(isEditMode: boolean) {
-    this.isEditMode = isEditMode;
-    if (!isEditMode) {
-      this.state.backToDefaultActive();
-    }
-  }
-  get IsEditMode() {
-    return this.isEditMode;
-  }
   constructor(
-    public state: ProfileGlobalFormState,
-    private sessionQuery: SessionQuery,
+    public state: GlobalControlsConfigState,
     private alerts: AlertsService,
     public alumnusQuery: AlumnusQuery,
     private service: AlumnusService
@@ -63,21 +52,12 @@ export class EditAlumnusComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.id = this.sessionQuery.getUserId();
-    // this.alumnusPatchAndConfigData = this.alumnusData
-    //   .getAlumnus(this.id)
-    //   .pipe(combineLatestWith(this.state.activateForm$));
-    this.alumnusId = this.sessionQuery.getUserId();
-    if (!this.alumnusQuery.isAlumnusLoaded())
-      this.service
-        .loadAlumnus(this.alumnusId)
-        .pipe(takeUntil(this.onDestroy$))
-        .subscribe();
-
-    this.alumnusModel$ = this.alumnusQuery.selectAlumnus$;
+    this.alumnusModel$ = this.alumnusQuery.selectActiveAlumnus$.pipe(
+      tap((alum) => {
+        if (alum && !this.alumnusId) this.alumnusId = alum.id;
+      })
+    );
     this.activeForm$ = this.state.activateForm$;
-    this.RequestIsDone = new BehaviorSubject<boolean>(false);
-    this.requestIsDone = this.RequestIsDone.asObservable();
   }
 
   onActiveChange(groupName: string) {
@@ -85,19 +65,8 @@ export class EditAlumnusComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(group: FormGroup) {
-    // if (group.valid)
-    //   this.alumnusData
-    //     .updateAlumnus(this.id, group.value)
-    //     .pipe(takeUntil(this.onDestroy$))
-    //     .subscribe(() => {
-    //       this.alerts.dynamicAlert('עודכן בהצלחה');
-    //     });
-    this.currentDataAlumnus = this.alumnusQuery.getAlumnus();
-
-    if (this.currentDataAlumnus && group.valid)
-        this.onUpdateAlumnus(group);
-
-
+    this.currentDataAlumnus = this.alumnusQuery.getActiveAlumnus();
+    if (this.currentDataAlumnus && group.valid) this.onUpdateAlumnus(group);
   }
   onUpdateAlumnus(group: FormGroup) {
     this.currentDataAlumnus = {
@@ -107,10 +76,7 @@ export class EditAlumnusComponent implements OnInit, OnDestroy {
     this.service
       .updateAlumnus(this.alumnusId, this.currentDataAlumnus as AlumnusModel)
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe(() => {
-        this.RequestIsDone.next(true);
-        this.RequestIsDone.next(false);
-      });
+      .subscribe();
   }
 
   onDeleteAlumnus() {
@@ -118,7 +84,7 @@ export class EditAlumnusComponent implements OnInit, OnDestroy {
       .deleteAlumnus(this.alumnusId)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe(() => {
-        this.alerts.dynamicAlert('כרטיס מורה הוסר בהצלחה');
+        this.alerts.dynamicAlert('פרופיל בוגר הוסר בהצלחה');
       });
   }
   ngOnDestroy(): void {

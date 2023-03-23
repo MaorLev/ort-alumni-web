@@ -1,34 +1,7 @@
-<!-- <ng-container *ngIf="state.state$ | async as st">
-  <div class="alumnus-profile container">
-    <div class="tab-navigation">
-      <app-side-nav
-        [alignment]="st.NavigationData.alignment"
-        [routes]="st.NavigationData.routesData"
-        [routingMethod]="st.NavigationData.routingMethod"
-        (submitted)="onActiveChange($event)"
-      ></app-side-nav>
-    </div>
-    <div class="content">
-      <ng-container *ngIf="alumnusPatchAndConfigData | async as active">
-        <ort-form
-          [configuration]="active[1]"
-          (submitted)="onSubmit($event)"
-          [dataToPatch]="active[0]"
-        ></ort-form>
-      </ng-container>
-    </div>
-  </div>
-</ng-container> -->
 
-
-<ng-container *ngIf="alumnusModel$ | async as alumnus; else spinner">
+<ng-container *ngIf="alumnusModel$ | async as alumnus;">
   <div class="wrapper">
     <ng-container *ngIf="state.theState$ | async as Tstate">
-      <ng-container *ngIf="!IsEditMode">
-        <app-alumnus-detail [details]="alumnus"></app-alumnus-detail>
-      </ng-container>
-      <ng-container *ngIf="IsEditMode">
-        <!-- <div class="alumnus-profile-edit"> -->
         <div class="tab-navigation">
           <app-side-nav
             [alignment]="Tstate.configuration.NavigationData.alignment"
@@ -43,8 +16,8 @@
             [configuration]="Tstate.activeForm"
             (submitted)="onSubmit($event)"
             [dataToPatch]="alumnus"
-            [ReaquestIsDone]="requestIsDone | async"
-          ></ort-form>
+            ></ort-form>
+            <!-- [ReaquestIsDone]="requestIsDone | async" -->
           <ort-button
             class="btn"
             className="mat-raised-button bar-btn-primary"
@@ -52,21 +25,6 @@
             >מחק פרופיל מורה</ort-button
           >
         </div>
-        <!-- </div> -->
-      </ng-container>
-      <div class="btn-edit">
-        <ort-button
-          class="btn spacial"
-          className="mat-raised-button bar-btn-primary"
-          (click)="IsEditMode = !IsEditMode"
-        >
-          {{ IsEditMode ? 'הצג פרטי פרופיל' : 'ערוך פרטים' }}
-        </ort-button>
-      </div>
     </ng-container>
   </div>
 </ng-container>
-  <ng-template #spinner>
-    <ort-spinner>
-    </ort-spinner>
-  </ng-template>

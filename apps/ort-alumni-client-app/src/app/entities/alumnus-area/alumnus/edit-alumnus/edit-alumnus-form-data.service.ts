@@ -18,7 +18,7 @@ import { AbstractInputComponent } from '@features/feature-va-input';
 import { AbstractPhoneComponent } from '@features/feature-va-phone';
 import { AbstractSelectAutoCompleteComponent } from '@features/feature-va-select-auto-complete';
 import { AbstractTextareaComponent } from '@features/feature-va-textarea';
-import { ProfileAreaConfigType } from '../../../../layout/profile-layout/profile-area.type';
+import { ConfigControlsStateType } from '../../../../layout/profile-layout/config-controls-state.type';
 
 import { of } from 'rxjs';
 import { AlumnusDataService } from '../state-alumnus/alumnus.data.service';
@@ -29,7 +29,7 @@ import { AlumnusDataService } from '../state-alumnus/alumnus.data.service';
 export class EditAlumnusFormData {
   constructor(private alumnusDataService: AlumnusDataService) {}
 
-  alumnusControls(): ProfileAreaConfigType {
+  alumnusControls(): ConfigControlsStateType {
     return {
       profileName: 'Alumnus',
       NavigationData: {

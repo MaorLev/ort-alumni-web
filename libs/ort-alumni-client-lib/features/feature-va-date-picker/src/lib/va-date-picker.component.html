@@ -1,18 +1,14 @@
-
-  <mat-form-field appearance="fill" class="control">
-    <mat-label>{{config.label}}</mat-label>
-    <input matInput [formControl]="formControl" [matDatepicker]="dp" [disabled]="true">
-    <mat-datepicker-toggle matSuffix [for]="dp" (focusout)="onTouched()"></mat-datepicker-toggle>
-    <mat-datepicker #dp disabled="false"></mat-datepicker>
-    <!-- <ng-container *ngIf="config.errors">
-      <ng-container *ngFor="let error of config.errors">
-        <mat-error
-          *ngIf="
-            formControl.hasError(error.name) &&
-            formControl.touched
-          "
-          >{{ error.message }}</mat-error
-        >
-      </ng-container>
-    </ng-container>
-  </mat-form-field> -->
+<mat-form-field appearance="fill" class="control">
+  <mat-label>{{ config.label }}</mat-label>
+  <input
+    matInput
+    [formControl]="formControl"
+    [matDatepicker]="dp"
+    [disabled]="true" />
+  <mat-datepicker-toggle
+    matSuffix
+    [for]="dp"
+    (focusout)="onTouched()"
+  ></mat-datepicker-toggle>
+  <mat-datepicker #dp disabled="false"></mat-datepicker
+></mat-form-field>

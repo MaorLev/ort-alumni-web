@@ -19,7 +19,7 @@ import { AbstractPhoneComponent } from '@features/feature-va-phone';
 import { AbstractSelectAutoCompleteComponent } from '@features/feature-va-select-auto-complete';
 import { AbstractTextareaComponent } from '@features/feature-va-textarea';
 import { AbstractChipsSelectComponent } from '@features/va-chips-select';
-import { ProfileAreaConfigType } from '../../../../layout/profile-layout/profile-area.type';
+import { ConfigControlsStateType } from '../../../../layout/profile-layout/config-controls-state.type';
 
 import { of } from 'rxjs';
 import { TeacherDataService } from '../state-teacher/teacher-data.service';
@@ -29,7 +29,7 @@ import { AbstractCurrencyInputComponent } from '@ort-alumni-web/ort-alumni-clien
 export class EditTeacherFormData {
   constructor(private teacherDataService: TeacherDataService) {}
 
-  teacherControls(): ProfileAreaConfigType {
+  teacherControls(): ConfigControlsStateType {
     return {
       profileName: 'Teacher',
       NavigationData: {

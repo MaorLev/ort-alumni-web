@@ -1,13 +1,13 @@
 import { Action, ActionHandler } from "@utils/util-tools";
-import { ProfileAreaConfigType } from "apps/ort-alumni-client-app/src/app/layout/profile-layout/profile-area.type";
+import { ConfigControlsStateType } from "apps/ort-alumni-client-app/src/app/layout/profile-layout/config-controls-state.type";
 
 export class EditTeacherActionHandler
-  implements ActionHandler<ProfileAreaConfigType>
+  implements ActionHandler<ConfigControlsStateType>
 {
   handleAction(
-    currentState: ProfileAreaConfigType,
+    currentState: ConfigControlsStateType,
     action: Action
-  ): ProfileAreaConfigType {
+  ): ConfigControlsStateType {
     //Example usage
     // if (action.type === 'add') {
     //   alert('add');

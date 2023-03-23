@@ -9,6 +9,7 @@ import {
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormComponent, FormInterface } from '@features/feature-form';
 import { ButtonAction } from '@ui-components/ui-button';
+import { cloneDeep } from '@utils/util-tools';
 import { AlertsService } from '@utils/util/core/central-message';
 import { SessionQuery } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.query';
 import {
@@ -20,7 +21,7 @@ import {
   takeUntil,
   tap,
 } from 'rxjs';
-import { ProfileGlobalFormState } from '../../../global-state/profile-global-form-state';
+import { GlobalControlsConfigState } from '../../../global-state/global-controls-config-state';
 import { TeacherModel } from '../state-teacher/teacher-model';
 import { TeacherQuery } from '../state-teacher/teacher.query';
 import { TeacherService } from '../state-teacher/teacher.service';
@@ -40,8 +41,6 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
   currentDataTeacher: TeacherModel | null;
 
   isEditMode: boolean;
-  RequestIsDone: BehaviorSubject<boolean>;
-  requestIsDone: Observable<boolean>;
   set IsEditMode(isEditMode: boolean) {
     this.isEditMode = isEditMode;
     if (!isEditMode) {
@@ -52,7 +51,7 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
     return this.isEditMode;
   }
   constructor(
-    public state: ProfileGlobalFormState,
+    public state: GlobalControlsConfigState,
     private sessionQuery: SessionQuery,
     public teacherQuery: TeacherQuery,
     private alerts: AlertsService,
@@ -72,8 +71,6 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
 
     this.teacherModel$ = this.teacherQuery.selectTeacher$;
     this.activeForm$ = this.state.activateForm$;
-    this.RequestIsDone = new BehaviorSubject<boolean>(false);
-    this.requestIsDone = this.RequestIsDone.asObservable();
   }
 
   onActiveChange(groupName: string) {
@@ -100,10 +97,7 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
     this.service
       .updateTeacher(this.alumnusId, this.currentDataTeacher as TeacherModel)
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe(() => {
-        this.RequestIsDone.next(true);
-        this.RequestIsDone.next(false);
-      });
+      .subscribe();
   }
   onDeleteTeacher() {
     this.service
@@ -139,12 +133,7 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
         this.currentDataTeacher as TeacherModel
       )
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((event) => {
-        if (event.type === HttpEventType.Response) {
-          this.RequestIsDone.next(true);
-          this.RequestIsDone.next(false);
-        }
-      });
+      .subscribe();
   }
   onAddImage(logoToUpload: FormData): void {
     this.service
@@ -154,12 +143,12 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
         this.currentDataTeacher as TeacherModel
       )
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((event) => {
-        if (event.type === HttpEventType.Response) {
-          this.RequestIsDone.next(true);
-          this.RequestIsDone.next(false);
-        }
-      });
+      .subscribe(
+      //   (event) => {
+      //   if (event.type === HttpEventType.Response) {
+      //   }
+      // }
+      );
   }
   onDeleteImage(): void {
     this.service
@@ -168,12 +157,7 @@ export class EditTeacherComponent implements OnInit, OnDestroy {
         this.teacherQuery.getTeacher() as TeacherModel
       )
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((event) => {
-        if (event.type === HttpEventType.Response) {
-          this.RequestIsDone.next(true);
-          this.RequestIsDone.next(false);
-        }
-      });
+      .subscribe();
   }
 
   ngOnDestroy(): void {

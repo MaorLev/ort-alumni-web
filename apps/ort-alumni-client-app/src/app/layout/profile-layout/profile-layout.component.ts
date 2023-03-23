@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SessionQuery } from '../../auth/session/state/session.query';
-import { AlumnusProfileNavigationData } from '../../entities/alumnus-area/alumnus/state-alumnus/alumnus-profile-navigation-data';
+import { AlumnusProfileNavigationData } from '../../pages/profiles/profile-alumnus-area/alumnus-profile-navigation-data';
 
 import { EmployerProfileNavigationData } from '../../entities/employer-area/employer/state-employer/employer-profile-navigation-data';
 import { StudentProfileNavigationData } from '../../entities/student/state-student/student-profile-navigation-data';

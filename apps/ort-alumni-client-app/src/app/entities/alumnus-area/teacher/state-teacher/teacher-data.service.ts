@@ -17,7 +17,6 @@ export class TeacherDataService {
   constructor(private http: HttpClient) {}
 
   getTeacherByAlumnus(alumnusId: string): Observable<TeacherModel> {
-    debugger;
     return this.http.get<TeacherModel>(`${this.baseUrl}/${alumnusId}`);
   }
   getTeachers(): Observable<Array<TeacherModel>> {

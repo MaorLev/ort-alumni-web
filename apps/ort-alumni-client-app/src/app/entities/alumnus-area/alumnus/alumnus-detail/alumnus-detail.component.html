@@ -1,11 +1,10 @@
-<ng-container *ngIf="details">
-  <div class="teacher-profile-readonly wrapper">
+<ng-container *ngIf="this.alumnusModel$ | async as details;">
+  <div class="wrapper">
     <ng-container>
       <div class="image-wrapper">
         <div class="image">
           <img
             [src]="'/assets/images/teacher-avatar.png'"
-            [alt]="details.description"
             class="profile-picture"
             height="200"
             width="200"
@@ -16,10 +15,6 @@
         </div>
       </div>
     </ng-container>
-
-    <!-- <ng-container *ngFor="let d in details">
-      {{details[d]}}
-    </ng-container> -->
     <div class="subwrapper">
       <div class="field">
         <div *ngIf="details.email" class="item">
@@ -59,7 +54,7 @@
         </div>
         <div *ngIf="details.dateofbirth" class="item">
           <label>תאריך לידה</label>
-          <output>{{ details.dateofbirth | readableDate }}</output>
+          <output>{{ details.dateofbirth | date : "dd/MM/y" }}</output>
         </div>
       </div>
       <div class="field">

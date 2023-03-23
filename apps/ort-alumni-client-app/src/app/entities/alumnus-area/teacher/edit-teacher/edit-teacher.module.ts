@@ -6,7 +6,7 @@ import { SideNavModule } from '../../../../layout/common-layout/side-nav/side-na
 import { FeatureFormModule } from '@features/feature-form';
 import { UiButtonModule } from '@ui-components/ui-button';
 import { TeacherDetailModule } from '../teacher-detail/teacher-detail.module';
-import { ProfileGlobalFormState } from '../../../global-state/profile-global-form-state';
+import { GlobalControlsConfigState } from '../../../global-state/global-controls-config-state';
 import { EditTeacherFormData } from './edit-teacher-form-data.service';
 import { EditTeacherActionHandler } from './edit-teacher-action-handler';
 import { TeacherService } from '../state-teacher/teacher.service';
@@ -14,9 +14,9 @@ import { UiSpinnerModule } from '@ui-components/ui-spinner';
 
 
 const profileTeacherFormState = {
-  provide: ProfileGlobalFormState,
+  provide: GlobalControlsConfigState,
   useFactory: (teacher: EditTeacherFormData) =>
-    new ProfileGlobalFormState(
+    new GlobalControlsConfigState(
       teacher.teacherControls(),
       new EditTeacherActionHandler()
     ),

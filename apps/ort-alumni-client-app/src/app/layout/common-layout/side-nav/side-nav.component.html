@@ -7,7 +7,7 @@
       <ort-button
         *ngIf="getRoutingMethod('routing'); else menualButton"
         class="link"
-        [routerLink]="link.route"
+        [routerLink]="[link.route]"
         routerLinkActive="active"
       >
         {{ link.label }}
