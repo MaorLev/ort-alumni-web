@@ -62,8 +62,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         CategoryDTO category = await m_db.Categories.Select(cat => new CategoryDTO()
         {
           Id = cat.Id,
-          Name = cat.Name,
-          HebName = cat.HebName
+          Name = cat.Name
 
         }).FirstOrDefaultAsync(c => c.Id == articleFromDB.CategoryId); 
         //for (int i = 0; i < articleFromDB.CategoryId; i++)
@@ -156,7 +155,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       var article = await m_db.Articles.Select(s => new ArticleDTO()
       {
         Id = s.Id,
-        Category = new CategoryDTO() { Id = s.Category.Id, HebName = s.Category.HebName,
+        Category = new CategoryDTO() { Id = s.Category.Id,
           Name = s.Category.Name  },
         Date = s.Date,
         Detail = s.Detail,
@@ -179,7 +178,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         Category = new CategoryDTO()
         {
           Id = s.Category.Id,
-          HebName = s.Category.HebName,
           Name = s.Category.Name
         },
         Date = s.Date,

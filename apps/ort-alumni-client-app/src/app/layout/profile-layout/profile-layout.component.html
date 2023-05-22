@@ -1,15 +1,20 @@
 <div class="profile">
-
-  <app-header class="header" >
+  <app-header class="header">
     <nav>
       <app-top-bar></app-top-bar>
     </nav>
   </app-header>
 
   <main class="content">
-    <router-outlet></router-outlet>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
   </main>
   <nav>
-    <app-side-nav class="side-nav" [title]="'ניווט ראשי'" [routes]="routes"></app-side-nav>
+    <ort-feature-navigation
+      class="side-nav"
+      [title]="routeTitle"
+      [routes]="routes"
+    ></ort-feature-navigation>
   </nav>
 </div>

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleComponent } from './article.component';
-import { QuicklinkModule } from 'ngx-quicklink';
+// import { QuicklinkModule } from 'ngx-quicklink';
 import { UiCardModule } from '@ui-components/ui-card';
 import { AddEnvVarPipeModule, ReadableDatePipeModule } from '@utils/util-pipes';
 import { UiButtonModule } from '@ui-components/ui-button';
@@ -16,6 +16,8 @@ import { ArticlesByCategoryComponent } from './articles-by-category/articles-by-
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { BidiModule } from '@angular/cdk/bidi';
 import { ArticleRoutingModule } from './article-routing.module';
+import { ArticlesCardsModule } from './articles-cards/articles-cards.module';
+import { HeroModule } from '../../layout/common-layout/hero/hero.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { ArticleRoutingModule } from './article-routing.module';
     CommonModule,
     UiCardModule,
     ArticleRoutingModule,
-    QuicklinkModule,
+    // QuicklinkModule,
     AddEnvVarPipeModule,
     UiButtonModule,
     ReactiveFormsModule,
@@ -40,10 +42,12 @@ import { ArticleRoutingModule } from './article-routing.module';
     UiCardModule,
     ReadableDatePipeModule,
     BidiModule,
+    ArticlesCardsModule,
+    HeroModule
   ],
   exports: [
     ArticleComponent,
-    QuicklinkModule,
+    // QuicklinkModule,
     UpdateArticleComponent,
     CreateArticleComponent,
     ArticlesByCategoryComponent,

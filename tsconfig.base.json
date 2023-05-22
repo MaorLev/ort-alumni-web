@@ -25,6 +25,9 @@
       "@features/dynamic-form": [
         "libs/ort-alumni-client-lib/features/dynamic-form/src/index.ts"
       ],
+      "@features/expand-header-panel": [
+        "libs/ort-alumni-client-lib/features/feature-expand-header-panel/src/index.ts"
+      ],
       "@features/feature-check-list": [
         "libs/ort-alumni-client-lib/features/feature-check-list/src/index.ts"
       ],
@@ -48,6 +51,12 @@
       ],
       "@features/feature-modal": [
         "libs/ort-alumni-client-lib/features/feature-modal/src/index.ts"
+      ],
+      "@features/feature-navigation": [
+        "libs/ort-alumni-client-lib/features/feature-navigation/src/index.ts"
+      ],
+      "@features/feature-profile": [
+        "libs/ort-alumni-client-lib/features/feature-profile/src/index.ts"
       ],
       "@features/feature-switcher-tab": [
         "libs/ort-alumni-client-lib/features/feature-switcher-tab/src/index.ts"
@@ -79,6 +88,9 @@
       "@features/feature-youtube-player": [
         "libs/ort-alumni-client-lib/features/feature-youtube-player/src/index.ts"
       ],
+      "@features/paginator": [
+        "libs/ort-alumni-client-lib/features/feature-paginator/src/index.ts"
+      ],
       "@features/va-chips-select": [
         "libs/ort-alumni-client-lib/features/va-chips-select/src/index.ts"
       ],
@@ -90,6 +102,9 @@
       ],
       "@ui-components/progress": [
         "libs/ort-alumni-client-lib/ui-components/progress/src/index.ts"
+      ],
+      "@ui-components/ui-bar": [
+        "libs/ort-alumni-client-lib/ui-components/ui-bar/src/index.ts"
       ],
       "@ui-components/ui-button": [
         "libs/ort-alumni-client-lib/ui-components/ui-button/src/index.ts"
@@ -106,8 +121,17 @@
       "@ui-components/ui-icon": [
         "libs/ort-alumni-client-lib/ui-components/ui-icon/src/index.ts"
       ],
+      "@ui-components/ui-material-card": [
+        "libs/ort-alumni-client-lib/ui-components/ui-material-card/src/index.ts"
+      ],
+      "@ui-components/ui-material-chips": [
+        "libs/ort-alumni-client-lib/ui-components/ui-material-chips/src/index.ts"
+      ],
       "@ui-components/ui-spinner": [
         "libs/ort-alumni-client-lib/ui-components/ui-spinner/src/index.ts"
+      ],
+      "@utils/core/global-interfaces": [
+        "libs/ort-alumni-client-lib/utils/core/global-interfaces/src/index.ts"
       ],
       "@utils/directives": [
         "libs/ort-alumni-client-lib/utils/helpers/util-directives/src/index.ts"

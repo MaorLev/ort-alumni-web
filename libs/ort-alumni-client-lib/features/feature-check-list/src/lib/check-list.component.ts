@@ -19,7 +19,7 @@ import {
   ValidationErrors,
   Validator
 } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import { map, Subject, takeUntil } from 'rxjs';
 
 
@@ -43,8 +43,7 @@ import { map, Subject, takeUntil } from 'rxjs';
 })
 export class CheckListComponent implements OnInit, ControlValueAccessor, Validator, OnDestroy {
   formControl = new FormControl();
-  @Input() config: VaInputInterface;
-  @Output() changes = new EventEmitter<any>();
+  @Input() config: VaFormInputInterface;
   onDestroy$ = new Subject<void>();
 
 

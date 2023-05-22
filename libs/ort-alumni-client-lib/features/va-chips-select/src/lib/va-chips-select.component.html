@@ -1,4 +1,4 @@
-<mat-form-field class="control" appearance="fill">
+<!-- <mat-form-field class="control" appearance="fill">
   <mat-label>{{config.label}}</mat-label>
   <mat-chip-list #chipList aria-label="any selection" [disabled]="isDisabled | async">
     <mat-chip
@@ -30,4 +30,30 @@
     chipControl.hasError('required');
   "
   >אנא בחר שם מן הרשימה</mat-error
->
+> -->
+
+<mat-form-field class="chips-autocomplete" appearance="fill">
+  <mat-label>{{config.label}}</mat-label>
+  <mat-chip-list [disabled]="isDisabled" #chipList>
+    <mat-chip *ngFor="let option of selectedOptions" [removable]="true" (removed)="removeOption(option)">
+      {{ option.name }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+  <input
+  #input
+    type="text"
+    matInput
+    [placeholder]="isDisabled ? '' : config.placeholder || config.label"
+    [formControl]="autocompleteControl"
+    [matAutocomplete]="auto"
+    [matChipInputFor]="chipList"
+    [matChipInputAddOnBlur]="false"
+    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+  />
+  <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="onOptionSelected($event.option.value);" [displayWith]="displayFn">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{ option.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

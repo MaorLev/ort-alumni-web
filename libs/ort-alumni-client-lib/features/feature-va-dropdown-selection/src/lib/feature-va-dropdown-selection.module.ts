@@ -5,6 +5,7 @@ import { VaDorpdownSelectionComponent } from './va-dorpdown-selection.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { AbstractSelectComponent } from './abstract-select/abstract-select.component';
+import { ObservableOrArrayPipe } from './observable-or-array.pipe';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { AbstractSelectComponent } from './abstract-select/abstract-select.compo
     MatFormFieldModule,
     MatSelectModule,
   ],
-  declarations: [VaDorpdownSelectionComponent, AbstractSelectComponent],
+  declarations: [VaDorpdownSelectionComponent, AbstractSelectComponent, ObservableOrArrayPipe],
   exports: [VaDorpdownSelectionComponent, AbstractSelectComponent],
 })
 export class FeatureVaDropdownSelectionModule {}

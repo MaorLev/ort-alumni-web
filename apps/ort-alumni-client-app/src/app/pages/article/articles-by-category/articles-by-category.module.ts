@@ -6,6 +6,7 @@ import { QuicklinkModule } from 'ngx-quicklink';
 import { RouterModule } from '@angular/router';
 import { UiButtonModule } from '@ui-components/ui-button';
 import { UiCardModule } from '@ui-components/ui-card';
+import { ArticlesCardsModule } from '../articles-cards/articles-cards.module';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,7 @@ import { UiCardModule } from '@ui-components/ui-card';
     UiCardModule,
     AddEnvVarPipeModule,
     UiButtonModule,
+    ArticlesCardsModule
   ],
-  exports: [QuicklinkModule],
 })
 export class ArticlesByCategoryModule {}

@@ -1,0 +1,57 @@
+<ng-template [ngIf]="isLoading$ | async">
+  <div id="teaching-portal-wrapper" >
+    <ng-container *ngIf="this.viewModel$ | async as vm">
+
+      <section id="invitation-bar" *appShowIfLoggedIn="false">
+        <div class="invite-button"  >
+          <ort-button className="custom pd-minimal" [routeTo]="'/auth/login'"  >התחבר</ort-button>
+        </div>
+        <div class="invite-button">
+          <ort-button className="custom pd-minimal" [routeTo]="'/auth/register-student'" >צור פרופיל סטודנט</ort-button>
+        </div>
+        <div class="invite-button">
+          <ort-button className="custom pd-minimal" [routeTo]="'/auth/register-alumnus'">צור פרופיל בוגר</ort-button>
+        </div>
+      </section>
+      <section id="intro-praragraph">
+        <h1>אורט - מורים פרטיים : מורים פרטיים לכל מקצועות ההנדסאים!</h1>
+        <p>המורים הפרטיים אצלנו, הם הבוגרים שלנו.</p>
+        <p>בין אם אתה סטודנט מתחיל או בוגר העובד על פרוייקט הגמר שלו,
+        תוכל למצוע באמצעות חיפוש פשוט ואינטואיטיבי מורה שהוא כמובן בוגר המכללה.
+        אשר, יוכל לסייע בכל מקצוע.</p>
+        <p>
+          כמובן שאם הינך בוגר מדופלם של המכללה תוכל להציע שירותים עבור אותם סטודנטים של רשת המכללות שלנו.
+        </p>
+    </section>
+
+
+      <section id="carousel" *ngIf="vm.alumnusTeachers as teachers">
+        <h1 class="bg-after-primary main-title">
+          מורים פרטיים חדשים
+          </h1>
+          <div class="category">
+            <div class="pre-articles">
+              <ort-carousel [startAt]="teachers.length">
+                <ng-container *ngFor="let teacher of teachers">
+                  <app-intro-card-teacher [teacher]="teacher">
+                  </app-intro-card-teacher>
+                </ng-container>
+              </ort-carousel>
+            </div>
+          </div>
+      </section>
+
+      <section id="article-education">
+        <h1 class="bg-after-primary main-title">
+          מאמרים וטיפים
+          </h1>
+          <ng-container *ngIf="vm.educationArticles as arts">
+            <app-articles-cards
+              [style]="'grid'"
+              [articles]="arts.articles"
+            ></app-articles-cards>
+          </ng-container>
+      </section>
+    </ng-container>
+  </div>
+</ng-template>

@@ -17,6 +17,8 @@ export class HeroComponent {
   @Input() withDownScroll: boolean;
   @Input() title: string;
   @Input() anchorName: string;
+  @Input() srcImage: string;
+  @Input() classVideo: 'videoInHero';
   YT_HERO_DATA:YTInterface = YTHero;
 
   constructor() {

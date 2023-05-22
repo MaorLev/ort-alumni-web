@@ -1,46 +1,46 @@
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { NgModule } from '@angular/core';
-import { QuicklinkModule } from 'ngx-quicklink';
-import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
-// import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
+// Core Angular Modules
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Third-party Modules
+import { QuicklinkModule } from 'ngx-quicklink';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+// App Specific Modules
+import { CentralMessageModule } from '@utils/util/core/central-message';
 // import { FeatureModalModule } from '@features/feature-modal';
 
-import {
-  HttpClientJsonpModule,
-  HttpClientModule,
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+// Environment
 import { environment } from '@environments';
-import {
-  ApiErrorInterceptor,
-  CentralMessageModule,
-} from '@utils/util/core/central-message';
-
+import { AlumnusModule } from './entities/alumnus-area/alumnus/alumnus.module';
+import { TeacherModule } from './entities/alumnus-area/teacher/teacher.module';
+import { StudentModule } from './entities/student/student.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuicklinkModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot(),
-    AkitaNgRouterStoreModule,
     HttpClientModule,
     HttpClientJsonpModule,
     BrowserAnimationsModule,
+    QuicklinkModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    AkitaNgRouterStoreModule,
     MatSnackBarModule,
     CentralMessageModule,
+    // FeatureModalModule,
+    AlumnusModule,
+    TeacherModule,
+    StudentModule,
   ],
   providers: [
     {

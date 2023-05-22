@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="StaticFiles\ImgJoboffer\" />
     <Folder Include="StaticFiles\ImgArticles\" />
   </ItemGroup>
 
@@ -35,5 +34,7 @@
     <Exec Command="node ../../node_modules/@nx-dotnet/core/src/tasks/check-module-boundaries.js -p alumni-ort-server" />
 
   </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties staticfiles_4jsondata_4cities_1data_1json__JsonSchema="https://datahubproject.io/schemas/datahub_ingestion_schema.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

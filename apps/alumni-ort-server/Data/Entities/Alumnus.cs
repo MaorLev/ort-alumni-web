@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.Entities;
+using AlumniOrtServer.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -44,25 +44,16 @@ namespace AlumniOrtServer.Models
         public string StudyFinishYear { get; set; }
 
         public virtual Teacher teacher { get; set; }
-
-        //public string Alumnus_CardId { get; set; }
-
-        //public DateTime? Alumnus_DateOfBirth { get; set; }
         [Required]
         [StringLength(150)]
-        //[Column("Alumnus_CardId")]
         public string CardId { get; set; }
         [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
-
-        //[Column("Alumnus_CityId")]
         public virtual City City { get; set; }
         public int CityId { get; set; }
-        //[Column("Alumnus_CollegeId")]
         public int CollegeId { get; set; }
 
         public virtual College College { get; set; }
-        //[Column("Alumnus_StudyProgramId")]
         public int StudyProgramId { get; set; }
         public virtual StudyProgram StudyProgram { get; set; }
     }

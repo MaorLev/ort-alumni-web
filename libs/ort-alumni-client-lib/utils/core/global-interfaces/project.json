@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/utils/core/global-interfaces",
+  "sourceRoot": "libs/ort-alumni-client-lib/utils/core/global-interfaces/src",
+  "prefix": "ort-alumni-web",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/utils/core/global-interfaces"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/utils/core/global-interfaces/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/utils/core/global-interfaces/src/**/*.ts",
+          "libs/ort-alumni-client-lib/utils/core/global-interfaces/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:util"]
+}

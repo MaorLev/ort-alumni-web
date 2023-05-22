@@ -1,0 +1,25 @@
+
+<ort-ui-material-card
+  [title]="teacher.alumnus.firstname + ' ' + teacher.alumnus.lastname"
+  [logo]="teacher.logo"
+  [imageSize]="'md'"
+  [longText]="teacher.description"
+  [chipsList1]="teacher.courses"
+  [chipsList2]="teacher.cities"
+  [chipsList3]="teacher.languages"
+  [chipsListStringArr]="modeStudies"
+  [currency]="teacher.rate"
+  >
+  <ort-button *appShowIfLoggedIn="true"
+  className="mat-raised-button bar-btn-primary"
+  [ortFeatureModal]="contactConfig"
+  [dynamic_data]="{ mailforstudy: teacher.mailforstudy, phone: teacher.alumnus.phone }"
+  >צור קשר
+  </ort-button>
+  <ort-button *appShowIfLoggedIn="false"
+  className="mat-raised-button bar-btn-primary"
+  [routeTo]="'/auth/login'"
+  >התחבר/הירשם על מנת ליצור קשר
+  </ort-button>
+  <!-- (afterClosedOutput)="onSearch($event)" -->
+</ort-ui-material-card>

@@ -13,8 +13,7 @@ import {} from '@angular/material/expansion';
 import {
   FormBuilderService,
   FormComponent,
-  VaInputInterface
-} from '@features/feature-form';
+  } from '@features/feature-form';
 import { StepForm, StepsForm } from './stepsForm.interfaces';
 import { ButtonAction } from '@ui-components/ui-button';
 import {
@@ -24,6 +23,7 @@ import { map, Observable } from 'rxjs';
 import { PanelStateService } from './state/panel-state.service';
 import { PanelActionType } from './state/panel-action-type.enum';
 import { PaneInitialState } from './state/panel-model';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 
 export interface InitialMode {
   indexToStart?: number,
@@ -46,10 +46,9 @@ export interface InitialMode {
 export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   @Input() stepsForm: StepsForm;
+  @Input() initialDetail: InitialMode;
   @Output() submitted;
 
-  @Input() initialDetail: InitialMode;
-  @ViewChild('myform') formStep: FormComponent;
 
   get btnAction(): typeof ButtonAction {
     return ButtonAction;
@@ -78,7 +77,7 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
     this.formGroup = this.formGroupInitalization();
   }
   formGroupInitalization(): FormGroup {
-    const controls: Record<string, VaInputInterface> = {};
+    const controls: Record<string, VaFormInputInterface> = {};
     this.stepsForm.steps.forEach((step: StepForm) => {
       const ctrls = step.stepGroupForm.controls;
       for (const control in ctrls) {

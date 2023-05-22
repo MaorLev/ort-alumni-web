@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +21,7 @@ namespace AlumniOrtServer.Models.AlumnusModel
         public Task<ResponseDTO> Delete(int id);
 
         public Task<bool> Validation(string emai);
+        public Task<List<AlumnusDTO>> GetLastTeachers(int pageIndex, int pageSize);
 
     }
 }

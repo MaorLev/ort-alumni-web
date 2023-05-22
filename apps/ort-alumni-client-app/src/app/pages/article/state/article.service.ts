@@ -8,6 +8,7 @@ import { CategoryInterface } from './category.interface';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { ArticleQuery } from './article.query';
 import { NumberFormatStyle } from '@angular/common';
+import { StaticEntitiesDataQuery } from '../../../entities/static-entities-backend-data/static-entities-data.query';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class ArticleService {
   constructor(
     private articleDataService: ArticleDataService,
     private articleStore: ArticleStore,
-    private articleQuery: ArticleQuery
+    private articleQuery: ArticleQuery,
+    private staticEntitiesDataQuery:StaticEntitiesDataQuery
   ) {
     this.loadArticlesAndCategories().pipe(shareReplay(1)).subscribe();
     // this.loadArticlesAndCategories().pipe(take(1)).subscribe();
@@ -26,7 +28,8 @@ export class ArticleService {
     return this.articleDataService.getAllArticles();
   }
   getAllCategories(): Observable<CategoryInterface[]> {
-    return this.articleDataService.getAllCategories();
+    //Exclude the constant Education category
+    return this.staticEntitiesDataQuery.categories$;
   }
 
   createArticle(
@@ -98,6 +101,10 @@ export class ArticleService {
   selectAllCategories(): Observable<Array<CategoryInterface>> {
 
     return this.articleQuery.selectAllCategories$();
+  }
+  getSimpleAllCategories(): Array<CategoryInterface> {
+
+    return this.staticEntitiesDataQuery.getCategories();
   }
   selectAllCategoriesAndArticles(): Observable<
     [Array<ArticleInterface>, Array<CategoryInterface>]

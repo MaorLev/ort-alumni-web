@@ -1,13 +1,16 @@
+// Angular Modules
 import { RouterModule, Routes } from '@angular/router';
-import { MainLayoutComponent } from './../main-layout/main-layout.component';
 import { NgModule } from '@angular/core';
+
+// Components
+import { MainLayoutComponent } from './../main-layout/main-layout.component';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
     children: [
-
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
@@ -24,8 +27,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../pages/article/article.module').then((m) => m.ArticleModule)
       },
-
-
     ],
   }
 ];

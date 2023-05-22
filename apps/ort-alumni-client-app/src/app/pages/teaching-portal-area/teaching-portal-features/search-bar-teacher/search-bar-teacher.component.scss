@@ -1,0 +1,91 @@
+// form {
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   justify-content: center;
+
+//   .controls {
+//     display:block;
+//     // display: none;
+//     // margin-top: 20px;
+//     // width: 100%;
+//     // justify-content: center;
+
+//   }
+// }
+
+$search-bar-bg: #f8f8f8;
+$search-bar-border: #e6e6e6;
+$button-bg: #1e88e5;
+$button-hover-bg: #1565c0;
+$button-text-color: #ffffff;
+$font-stack: 'Roboto', sans-serif;
+
+@mixin transition($properties, $duration: 0.3s, $easing: ease-in-out) {
+  transition: $properties $duration $easing;
+}
+
+#search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  font-family: $font-stack;
+  padding: 20px;
+  .inputs {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .input {
+    margin: 5px;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    .btn {
+      @include transition(background-color, 0.3s, ease-in-out);
+      background-color: $button-bg;
+      color: $button-text-color;
+      margin: 5px;
+      padding: 6px 12px;
+      font-weight: 500;
+      &:hover {
+        background-color: $button-hover-bg;
+      }
+    }
+    .btn-advanced{
+      // justify-self: flex-end;
+    }
+  }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    background-color: $search-bar-bg;
+    border: 1px solid $search-bar-border;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+}
+
+.show-advanced {
+  .advanced {
+    display: flex;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.show-animation {
+  animation: fadeIn 0.3s;
+}
+

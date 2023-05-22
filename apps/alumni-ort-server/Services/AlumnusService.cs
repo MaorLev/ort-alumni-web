@@ -6,6 +6,7 @@ using AlumniOrtServer.Extensions;
 using AlumniOrtServer.Models;
 using AlumniOrtServer.Models.AlumnusModel;
 using Microsoft.EntityFrameworkCore;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,83 @@ namespace AlumniOrtServer.Services
             m_db = db;
             this.claim = claim;
         }
-        public async Task<ResponseDTO> Add(AlumnusDTO alumnus)
+
+    public async Task<List<AlumnusDTO>> GetLastTeachers(int pageIndex, int pageSize)
+    {
+      try
+      {
+        var teachers = await m_db.Alumni
+            .Where(a => a.teacher != null)
+            .OrderByDescending(a => a.teacher.Id)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .Select(a => new AlumnusDTO()
+            {
+              //Id = a.Id,
+              //Mail = a.Mail,
+              FirstName = a.FirstName,
+              LastName = a.LastName,
+              //Password = MD5Service.Decrypt(a.Password),
+              Phone = a.Phone,
+              //CardId = a.CardId,
+              //DateOfBirth = a.DateOfBirth,
+              //StudyFinishYear = a.StudyFinishYear,
+              //StudyStartYear = a.StudyStartYear,
+              College = new CollegeDTO
+              {
+                Id = a.College.Id,
+                Name = a.College.Name
+              },
+              StudyProgram = new StudyProgramDTO
+              {
+                Id = a.StudyProgram.Id,
+                Name = a.StudyProgram.Name
+              },
+              City = new CityDTO
+              {
+                Id = a.City.Id,
+                Name = a.City.Name
+              },
+              //Linkedin = a.Linkedin,
+              //WorkPlace = a.WorkPlace,
+              //TeacherId = a.teacher.Id,
+
+              Teacher = new TeacherDTO
+              {
+                Id = a.teacher.Id,
+                MailForStudy = a.teacher.MailForStudy,
+                Logo = a.teacher.Logo,
+                Rate = a.teacher.Rate,
+                Description = a.teacher.Description,
+                AlumnusId = a.teacher.AlumnusId,
+                Languages = a.teacher.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+                Cities = a.teacher.ModeStudy_Cities.Select(msc => new CityDTO
+                {
+                  Id = msc.City.Id,
+                  Name = msc.City.Name
+                }).ToArray(),
+                Courses = a.teacher.TeacherCourses
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray(),
+                ModeStudyIDs = a.teacher.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray()
+              }
+            }).ToListAsync();
+
+        return teachers;
+      }
+      catch
+      {
+        throw;
+      }
+    }
+
+
+    public async Task<ResponseDTO> Add(AlumnusDTO alumnus)
         {
             Role role = await m_db.Role.Where(x => x.Id == RolesId.Alumnus).FirstOrDefaultAsync();
 
@@ -65,16 +142,28 @@ namespace AlumniOrtServer.Services
                 AlumnusDTO alumnus = await m_db.Alumni.Select(a => new AlumnusDTO()
                 {
                     CardId = a.CardId,
-                    City = a.City,
-                    College = a.College,
-                    DateOfBirth = a.DateOfBirth,
+                  College = new CollegeDTO
+                  {
+                    Id = a.College.Id,
+                    Name = a.College.Name
+                  },
+                  StudyProgram = new StudyProgramDTO
+                  {
+                    Id = a.StudyProgram.Id,
+                    Name = a.StudyProgram.Name
+                  },
+                  City = new CityDTO
+                  {
+                    Id = a.City.Id,
+                    Name = a.City.Name
+                  },
+                  DateOfBirth = a.DateOfBirth,
                     FirstName = a.FirstName,
                     Id = a.Id,
                     LastName = a.LastName,
                     Mail = a.Mail,
                     Password = MD5Service.Decrypt(a.Password),
                     Phone = a.Phone,
-                    StudyProgram = a.StudyProgram,
                     StudyFinishYear = a.StudyFinishYear,
                     StudyStartYear = a.StudyStartYear,
                     Linkedin = a.Linkedin,
@@ -100,16 +189,28 @@ namespace AlumniOrtServer.Services
                 var alumnui = await m_db.Alumni.Select(a => new AlumnusDTO()
                 {
                     CardId = a.CardId,
-                    City = a.City,
-                    College = a.College,
-                    DateOfBirth = a.DateOfBirth,
+                  College = new CollegeDTO
+                  {
+                    Id = a.College.Id,
+                    Name = a.College.Name
+                  },
+                  StudyProgram = new StudyProgramDTO
+                  {
+                    Id = a.StudyProgram.Id,
+                    Name = a.StudyProgram.Name
+                  },
+                  City = new CityDTO
+                  {
+                    Id = a.City.Id,
+                    Name = a.City.Name
+                  },
+                  DateOfBirth = a.DateOfBirth,
                     FirstName = a.FirstName,
                     Id = a.Id,
                     LastName = a.LastName,
                     Mail = a.Mail,
                     Password = a.Password,
                     Phone = a.Phone,
-                    StudyProgram = a.StudyProgram,
                     StudyFinishYear = a.StudyFinishYear,
                     StudyStartYear = a.StudyStartYear,
                     Linkedin = a.Linkedin,

@@ -1,0 +1,62 @@
+<!-- <ort-form #form [configuration]="config" (submitted)="onSubmit($event)">
+</ort-form> -->
+<!-- <ort-button
+  className="mat-button bar-btn-negative-primary"
+  routeTo="../reset-password"
+  >שכחת סיסמא?</ort-button
+> -->
+<div id="search-bar-wrapper" class="show-advanced">
+  <form [formGroup]="group">
+    <div class="default inputs">
+      <ng-container
+        *ngFor="
+          let config of configuration.controls | keyvalue: asIsOrder;
+          let i = index
+        "
+      >
+        <ng-container *ngIf="i <= 1">
+          <div class="input">
+            <ng-container
+              *ngComponentOutlet="
+                config.value.component!;
+                ndcDynamicInputs: {
+                  config: config.value,
+                  group: group
+                }
+              "
+            ></ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="advanced inputs show-animation" *ngIf="showAdvanced">
+      <ng-container
+        *ngFor="
+          let config of configuration.controls | keyvalue: asIsOrder;
+          let i = index
+        "
+      >
+        <ng-container *ngIf="i > 1">
+          <div class="input">
+            <ng-container
+              *ngComponentOutlet="
+                config.value.component!;
+                ndcDynamicInputs: {
+                  config: config.value,
+                  group: group
+                }
+              "
+            ></ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="buttons">
+      <button class="btn" mat-button (click)="onSubmit()">חיפוש</button>
+      <button mat-button class="btn" (click)="onReset()">נקה</button>
+      <button class="btn btn-advanced" mat-button (click)="toggleAdvanced()">
+        חיפוש מתקדם
+      </button>
+    </div>
+  </form>
+</div>

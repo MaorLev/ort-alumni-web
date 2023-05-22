@@ -1,7 +1,7 @@
-import { QuicklinkModule } from 'ngx-quicklink';
-import { MapsModalComponent } from './modals/google-maps-modal/maps-modal.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { QuicklinkModule } from 'ngx-quicklink';
+import { MapsModalComponent } from './modals/google-maps-modal/maps-modal.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,6 +17,7 @@ import { ModalMenuTreeComponent } from './modals/modal-menu-tree/modal-menu-tree
 import { RouterModule } from '@angular/router';
 import { FeatureExpansionTreeModule } from '@features/feature-expansion-tree';
 import { UiIconModule } from '@ui-components/ui-icon';
+import { TeacherContactModalComponent } from './modals/teacher-contact-modal/teacher-contact-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { UiIconModule } from '@ui-components/ui-icon';
     MapsModalComponent,
     FeatureModalDirective,
     ModalMenuTreeComponent,
+    TeacherContactModalComponent,
   ],
   imports: [
     CommonModule,
@@ -38,10 +40,10 @@ import { UiIconModule } from '@ui-components/ui-icon';
     UiIconModule,
   ],
   exports: [
-    QuicklinkModule,
     SearchModalComponent,
     FeatureModalDirective,
     ModalMenuTreeComponent,
+    TeacherContactModalComponent,
   ],
   providers: [NgDialogAnimationService],
 })

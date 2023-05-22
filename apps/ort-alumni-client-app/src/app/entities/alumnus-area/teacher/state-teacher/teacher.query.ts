@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Query } from '@datorama/akita';
-import { map, Observable } from 'rxjs';
-import { TeacherModel } from './teacher-model';
+import { QueryEntity } from '@datorama/akita';
+import { Observable } from 'rxjs';
+import { TeacherModel } from '../configs-teacher/teacher-model';
 
 import { TeacherState, TeacherStore } from './teacher.store';
-@Injectable({
-  providedIn: 'root',
-})
-export class TeacherQuery extends Query<TeacherState> {
+@Injectable()
+export class TeacherQuery extends QueryEntity<TeacherState> {
   constructor(protected override store: TeacherStore) {
     super(store);
   }
-
+  selectAll$: Observable<TeacherModel [] | null> = this.selectAll();
   selectState$: Observable<TeacherState | null> = this.select((state) => state);
 
-  selectTeacher$: Observable<TeacherModel | null> = this.selectState$.pipe(
-    map((state) => (state ? state.teacher : null))
-  );
 
-  isTeacherLoaded$: Observable<boolean | undefined> = this.selectState$.pipe(
-    map((state) => (state?.isTeacherLoaded))
-  );
+  selectActiveTeacher$: Observable<TeacherModel | undefined> = this.selectActive();
 
-  getTeacher() { return this.getValue().teacher}
+  isTeacherLoaded$: Observable<boolean | undefined> = this.selectLoading();
 
-  isTeacherLoaded() { return this.getValue().isTeacherLoaded}
+  getActiveTeacher() { return this.getActive();}
+
+
+  isTeacherLoaded() { return this.getValue().loading}
+
 }

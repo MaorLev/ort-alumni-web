@@ -1,22 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   OnInit,
 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { SessionQuery } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.query';
-import { TeacherModel } from '../state-teacher/teacher-model';
+import { SessionQuery } from '../../../../auth/session/state/session.query';
+import { Observable } from 'rxjs';
+import { TeacherModel } from '../configs-teacher/teacher-model';
+import { TeacherQuery } from '../state-teacher/teacher.query';
+import { ModeStudyMap } from '../../../static-entities-backend-data/static-entities-interfaces/mode-study.interface';
 
-export enum ModeStudyEnum {
-  frontally = '1',
-  online = '2',
-}
-
-export const ModeStudyMap: Record<number, string> = {
-  [ModeStudyEnum.frontally]: 'פרונטלי',
-  [ModeStudyEnum.online]: 'אונליין',
-};
 
 @Component({
   selector: 'app-teacher-detail',
@@ -25,21 +18,31 @@ export const ModeStudyMap: Record<number, string> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeacherDetailComponent implements OnInit {
-  @Input() details: any;
+  teacherModel: any;
+  teacherModel$: Observable<TeacherModel | undefined>;
   modeStudyMap = ModeStudyMap;
   image: SafeUrl;
-  name:string;
+  name: string;
 
-  constructor(private sanitizer: DomSanitizer, private sessionQuary:SessionQuery) {}
+  constructor(
+    public teacherQuery: TeacherQuery,
+    private sanitizer: DomSanitizer,
+    private sessionQuary: SessionQuery
+  ) {}
   ngOnInit(): void {
+    this.teacherModel$ = this.teacherQuery.selectActiveTeacher$;
+    this.teacherModel = this.teacherQuery.getActiveTeacher();
     this.onGetImageSrc();
     this.name = this.sessionQuary.getName();
   }
 
   onGetImageSrc(): void {
-    if(!!this.details && !!this.details.logo && !!this.details.logo.bytes)
-    {
-      const logoDetail = this.details.logo;
+    if (
+      !!this.teacherModel &&
+      !!this.teacherModel.logo &&
+      !!this.teacherModel.logo.bytes
+    ) {
+      const logoDetail = this.teacherModel.logo;
       this.image = this.sanitizer.bypassSecurityTrustResourceUrl(
         `data:image/${logoDetail.fileExtension};base64,${logoDetail.bytes}`
       );

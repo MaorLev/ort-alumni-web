@@ -1,4 +1,6 @@
 import { UiCarouselModule } from '@ui-components/ui-carousel';
+import { ArticlesCardsModule } from '../article/articles-cards/articles-cards.module';
+
 import { QuicklinkModule } from 'ngx-quicklink';
 import { UiCardModule } from '@ui-components/ui-card';
 
@@ -16,7 +18,6 @@ import { UiSpinnerModule } from '@ui-components/ui-spinner';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
-    RouterModule,
     RouterModule.forChild([{ path: '', component: HomeComponent }]),
     QuicklinkModule,
     HeroModule,
@@ -26,11 +27,13 @@ import { UiSpinnerModule } from '@ui-components/ui-spinner';
     UiCarouselModule,
     AddEnvVarPipeModule,
     UiSpinnerModule,
+    ArticlesCardsModule
 
   ],
   providers: [
 
   ],
-  exports: [QuicklinkModule, HomeComponent],
+  exports: [
+     HomeComponent],
 })
 export class HomeModule {}

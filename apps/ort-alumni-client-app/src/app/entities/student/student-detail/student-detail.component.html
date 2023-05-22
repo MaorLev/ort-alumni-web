@@ -1,0 +1,68 @@
+<ng-container *ngIf="this.studentModel$ | async as details;">
+  <div class="wrapper">
+    <ng-container>
+      <div class="image-wrapper">
+        <div class="image">
+          <img
+            [src]="'/assets/images/teacher-avatar.png'"
+            class="profile-picture"
+            height="200"
+            width="200"
+          />
+          <img />
+          <h1>{{ details.firstname }} {{ details.lastname }}</h1>
+          <h1></h1>
+        </div>
+      </div>
+    </ng-container>
+    <div class="subwrapper">
+      <div class="field">
+        <div *ngIf="details.email" class="item">
+          <label>מייל</label>
+          <output>{{ details.email }}</output>
+        </div>
+        <div *ngIf="details.phone" class="item">
+          <label>טלפון</label>
+          <output>{{ details.phone }}</output>
+        </div>
+        <div *ngIf="details.city" class="item">
+          <label>עיר</label>
+          <output>
+            {{ details.city.name }}
+          </output>
+        </div>
+      </div>
+
+      <div class="field">
+        <div *ngIf="details.studyprogram" class="item">
+          <label>מגמה</label>
+          <output>
+            {{ details.studyprogram.name }}
+          </output>
+        </div>
+        <div *ngIf="details.college" class="item">
+          <label>מכללה</label>
+          <output>
+            {{ details.college.name }}
+          </output>
+        </div>
+      </div>
+      <div class="field">
+        <div *ngIf="details.cardid" class="item">
+          <label>תעודת זהות</label>
+          <output>{{ details.cardid }}</output>
+        </div>
+        <div *ngIf="details.dateofbirth" class="item">
+          <label>תאריך לידה</label>
+          <output>{{ details.dateofbirth | date : "dd/MM/y" }}</output>
+        </div>
+      </div>
+      <div class="field">
+        <div *ngIf="details.studystartyear" class="item">
+          <label>שנת תחילת לימודים</label>
+          <output>{{ details.studystartyear }}</output>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

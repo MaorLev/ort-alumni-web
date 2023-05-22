@@ -1,6 +1,6 @@
 <div id="home-page" appScrollManager>
   <div class="hero-about">
-    <app-hero [anchorName]="'short-about'" [withDownScroll]="true"></app-hero>
+    <app-hero [anchorName]="'short-about'" [withDownScroll]="true" [classVideo]="'videoInHero'" [srcImage]="'/assets/images/bg-footer.jpg'" ></app-hero>
     <section id="short-about" appScrollSection="short-about">
       <!-- <div class="downanchor">&nbsp;</div> -->
       <div class="container">
@@ -37,21 +37,12 @@
           <ng-container *ngIf="articles.articles!.length > 0" >
 
             <h1 class="mat-display-2 bg-after-primary main-title">
-              {{ articles.hebName }}
+              {{ articles.name }}
             </h1>
             <div class="pre-articles">
               <ort-carousel
               [startAt]="articles.articles?.length">
-                <ng-container *ngFor="let article of articles.articles">
-                  <a [routerLink]="['../articles/article-detail', article.id]">
-                    <ort-card
-                      [heading]="article.heading"
-                      [subheading]="article.subheading"
-                      [img]=" article.img | addEnvVar"
-                      [detail]="article.detail"
-                    ></ort-card>
-                  </a>
-                </ng-container>
+                <app-articles-cards [style]="'articles'" [articles]="articles.articles"></app-articles-cards>
               </ort-carousel>
               <div class="more">
                 <a

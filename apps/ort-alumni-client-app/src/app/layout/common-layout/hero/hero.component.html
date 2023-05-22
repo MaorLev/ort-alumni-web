@@ -1,7 +1,7 @@
 <div class="main-hero">
-  <section id="hero">
+  <section [class]="'hero ' + classVideo">
     <div class="hero-videoo">
-      <img src="/assets/images/bg-footer.jpg" class="hero-image" />
+      <img [src]="srcImage" class="hero-image" />
       <!-- <youtube-player  videoId="JaCoOMPNgJE"  [width]="videoWidth" [height]="videoHeight"  ></youtube-player> -->
       <ort-feature-youtube-player
         class="hero-video"

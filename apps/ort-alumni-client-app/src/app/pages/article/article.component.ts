@@ -14,12 +14,10 @@ import {
   switchMap
 } from 'rxjs/operators';
 import { CategoryInterface } from './state/category.interface';
+import { ArticlesCategoryViewType } from './state/category-hashmap';
 
-export enum CategoryType {
-  Events = 1,
-  Generally = 2,
-  All = 3
-}
+
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -31,7 +29,7 @@ export class ArticleComponent implements OnInit {
   searchControl: FormControl;
   radio: FormControl;
   categories: Observable<CategoryInterface[]>;
-  get cType():typeof CategoryType { return CategoryType}
+  get cType():typeof ArticlesCategoryViewType { return ArticlesCategoryViewType}
 
 
   constructor(
@@ -46,8 +44,8 @@ export class ArticleComponent implements OnInit {
   ngOnInit(): void {
     this.articles$ = this.searchControl.valueChanges.pipe(
       startWith(''),
-      debounceTime(400),
       distinctUntilChanged(),
+      debounceTime(400),
       switchMap((input) => {
         return this.articleService.filtered(input, 12, this.radio.value);
       })

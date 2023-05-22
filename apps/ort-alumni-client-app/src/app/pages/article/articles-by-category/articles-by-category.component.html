@@ -10,24 +10,9 @@
     <ng-container *ngIf="articlesByCategory$ | async as cats;">
       <ng-container *ngFor="let category of cats">
         <h1 class="mat-display-2 bg-after-primary main-title">
-          {{ category.hebName }}
+          {{ category.name }}
         </h1>
-        <div class="articles">
-
-            <ng-container *ngFor="let article of category.articles">
-
-              <article class="card">
-              <a  [routerLink]="['/main/articles/article-detail', article.id]">
-                  <ort-card
-                    [heading]="article.heading"
-                    [subheading]="article.subheading"
-                    [img]="article.img | addEnvVar"
-                    [detail]="article.detail"
-                  ></ort-card>
-                </a>
-              </article>
-            </ng-container>
-        </div>
+          <app-articles-cards [style]="'grid'" [articles]="category.articles"></app-articles-cards>
       </ng-container>
     </ng-container>
   </div>

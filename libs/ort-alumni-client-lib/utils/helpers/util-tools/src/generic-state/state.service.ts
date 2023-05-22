@@ -1,5 +1,5 @@
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { cloneable } from '../util-deep-copy/clone-deep';
+import { cloneDeep, cloneable } from '../util-deep-copy/clone-deep';
 import { Action, ActionHandler } from './action.types';
 
 export class StateService<T> {
@@ -18,7 +18,8 @@ export class StateService<T> {
         this._state.getValue(),
         action
       );
-      const newObject = cloneable.deepCopy(nextState);
+      // const newObject = {...nextState};
+      const newObject = cloneDeep(nextState);
       this._state.next(newObject);
     });
     this.state$ = this._state.asObservable();

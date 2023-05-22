@@ -11,19 +11,18 @@ import {
 import { AlertsService } from '@utils/util/core/central-message';
 import { FormGroup } from '@angular/forms';
 import { catchError } from 'rxjs';
-import { TeacherFormConfig } from './add-teacher-form-config';
+import { TeacherPanelDataConfig } from '../configs-teacher/teacher-panel-data.config';
 import { HttpEventType } from '@angular/common/http';
-import { TeacherDataService } from '../state-teacher/teacher-data.service';
 import { SessionQuery } from '../../../../auth/session/state/session.query';
 import { TeacherService } from '../state-teacher/teacher.service';
 import { TeacherQuery } from '../state-teacher/teacher.query';
-import { TeacherModel } from '../state-teacher/teacher-model';
+import { TeacherModel } from '../configs-teacher/teacher-model';
 
 @Component({
   selector: 'app-add-teacher',
   templateUrl: './add-teacher.component.html',
   styleUrls: ['./add-teacher.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTeacherComponent implements OnInit {
   alumnusId: string;
@@ -31,7 +30,7 @@ export class AddTeacherComponent implements OnInit {
   @ViewChild('logoForm') form2: FeatureExpansionPanelComponent;
   isMainFormSubmitted: boolean;
   constructor(
-    public teacherFormConfig: TeacherFormConfig,
+    public teacherFormConfig: TeacherPanelDataConfig,
     private teacherService: TeacherService,
     private sessionQuery: SessionQuery,
     private alertService: AlertsService,
@@ -45,7 +44,7 @@ export class AddTeacherComponent implements OnInit {
   onSubmitted(group: FormGroup): void {
     if (this.alumnusId && !this.isMainFormSubmitted)
       this.teacherService
-        .createTeacher(group.value, parseInt(this.alumnusId))
+        .createTeacher(group.value, this.alumnusId)
         .pipe(
           catchError((error) => {
             this.alertService.dynamicAlert(
@@ -66,7 +65,7 @@ export class AddTeacherComponent implements OnInit {
           .AddLogo(
             imageControlValue.value,
             this.alumnusId,
-            this.teacherQuery.getTeacher() as TeacherModel
+            this.teacherQuery.getActiveTeacher() as TeacherModel
           )
           .pipe(
             catchError((error, caught) => {

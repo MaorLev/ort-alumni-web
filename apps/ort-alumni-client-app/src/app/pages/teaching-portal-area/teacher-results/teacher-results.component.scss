@@ -1,0 +1,48 @@
+
+
+.paginator-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .pgn-btn{
+    padding: 1rem 2rem;
+    color: var(--black);
+  }
+}
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.min-ht {
+  min-height: 50vh;
+}
+
+.card{
+  width: 90%;
+  display: block;
+  justify-content: center;
+}
+.results{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .cards-title{
+    width: 90%;
+    display: block;
+    margin-top: 20px;
+  }
+}

@@ -14,5 +14,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services.Interfaces
     public Task<List<CategoryDTO>> GetAll();
     public Task<CategoryDTO> Get(int id);
     public Task<ResponseDTO> Delete(int id);
+    public Task<ResponseDTO> DeleteAll();
   }
 }

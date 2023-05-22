@@ -1,11 +1,11 @@
-<ng-container *ngIf="details">
-  <div class="teacher-profile-readonly wrapper">
+<ng-container *ngIf="teacherModel$ | async as details">
+  <div class="wrapper">
     <ng-container>
       <div class="image-wrapper">
         <div class="image">
           <img
             [src]="image || '/assets/images/teacher-avatar.png'"
-            [alt]="details.description"
+            alt="teacher-image"
             class="profile-picture"
             height="200"
             width="200"
@@ -63,6 +63,15 @@
             >
               <ng-container *ngIf="i !== 0"> ,</ng-container>
               {{ modeStudyMap[mode] }}
+            </ng-container>
+          </output>
+        </div>
+        <div *ngIf="details.courses && details.courses.length > 0" class="item">
+          <label>קורסים אותם אתה מלמד</label>
+          <output>
+            <ng-container *ngFor="let course of details.courses; let i = index">
+              <ng-container *ngIf="i !== 0"> ,</ng-container>
+              {{ course.name }}
             </ng-container>
           </output>
         </div>

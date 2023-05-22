@@ -21,22 +21,19 @@ namespace AlumniOrtServer.Extensions
         }
         public static class CategoryId
         {
-            public const int Events = 1;
-            public const int General = 2;
+            public const int Events = 3;
+            public const int News = 4;
+            public const int Education = 5;
         }
 
         public static class CategoryName
         {
-            public const string Events = "Events";
-            public const string General = "General";
-        }
-        public static class CategoryHebName
-        {
-            public const string Events = "אירועים";
-            public const string General = "כללי";
+          public const string Events = "אירועים";
+          public const string News = "חדשות";
+          public const string Education = "חינוך";
         }
 
-        public static class ModeStudiesId
+    public static class ModeStudiesId
         {
             public const int Online = 2;
             public const int Frontally = 1;

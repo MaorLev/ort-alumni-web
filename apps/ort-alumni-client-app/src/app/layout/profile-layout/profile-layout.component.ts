@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SessionQuery } from '../../auth/session/state/session.query';
-import { AlumnusProfileNavigationData } from '../../pages/profiles/profile-alumnus-area/alumnus-profile-navigation-data';
+
 
 import { EmployerProfileNavigationData } from '../../entities/employer-area/employer/state-employer/employer-profile-navigation-data';
-import { StudentProfileNavigationData } from '../../entities/student/state-student/student-profile-navigation-data';
 
-
-import { Link } from '../common-layout/nav-bar/link.interface';
+import { AlumnusProfileNavigationData } from '../../pages/profiles/profile-alumnus-area/alumnus-profile-navigation-data';
+import { StudentProfileNavigationData } from '../../pages/profiles/profile-student/state/student-profile-navigation-data';
+import { RouteNavigationType } from '@features/feature-navigation';
 
 @Component({
   selector: 'app-profile-layout',
@@ -17,9 +17,11 @@ import { Link } from '../common-layout/nav-bar/link.interface';
 export class ProfileLayoutComponent implements OnInit {
   roleName: string;
 
-  routes: Link[];
+  routeTitle:string;
+  routes: RouteNavigationType[];
   constructor(private sessionQuery: SessionQuery) {
     this.roleName = this.sessionQuery.getRole();
+    this.routeTitle = '';
   }
   ngOnInit(): void {
     this.setEntity();
@@ -28,12 +30,15 @@ export class ProfileLayoutComponent implements OnInit {
   setEntity() {
     switch (this.roleName) {
       case 'Alumnus':
+        this.routeTitle = 'בוגר';
         this.routes = AlumnusProfileNavigationData;
         break;
-      case 'Student':
+        case 'Student':
+        this.routeTitle = 'סטודנט';
         this.routes = StudentProfileNavigationData;
         break;
-      case 'Employer':
+        case 'Employer':
+        this.routeTitle = 'מעסיק';
         this.routes = EmployerProfileNavigationData;
         break;
       default:

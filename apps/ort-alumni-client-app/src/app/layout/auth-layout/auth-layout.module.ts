@@ -1,13 +1,17 @@
-import { TopBarModule } from './../common-layout/top-bar/top-bar.module';
+// Angular Modules
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+// Application Specific Modules
 import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthLayoutRoutingModule } from './auth-layout.routing';
-import { CommonModule } from '@angular/common';
 
-import { NgModule } from '@angular/core';
-import { QuicklinkModule } from 'ngx-quicklink';
+// Layout Modules
 import { HeaderModule } from '../common-layout/header/header.module';
+import { TopBarModule } from '../common-layout/top-bar/top-bar.module';
 
+// Third-party Modules
+// import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [AuthLayoutComponent],
@@ -15,9 +19,8 @@ import { HeaderModule } from '../common-layout/header/header.module';
     CommonModule,
     HeaderModule,
     AuthLayoutRoutingModule,
-    QuicklinkModule,
-    TopBarModule
-  ],
-  exports:[QuicklinkModule]
+    // QuicklinkModule,
+    TopBarModule,
+  ]
 })
 export class AuthLayoutModule {}

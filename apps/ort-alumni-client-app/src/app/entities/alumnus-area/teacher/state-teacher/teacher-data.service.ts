@@ -1,16 +1,21 @@
 import { catchError, EMPTY, Observable, of, shareReplay } from 'rxjs';
 
-import { HttpClient, HttpEvent, HttpEventType, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpEventType,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments';
-import { TeacherModel } from './teacher-model';
+import { TeacherModel } from '../configs-teacher/teacher-model';
 
 import { toFormData } from '@utils/util-tools';
-import { ResponseMassege } from './response-massege.type';
+import { ResponseMassege } from '../configs-teacher/response-massege.type';
+import { SearchBarTeacherModel } from '../../../../pages/teaching-portal-area/teaching-portal-features/search-bar-teacher/state/search-bar-teacher.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+
+@Injectable()
 export class TeacherDataService {
   baseUrl: string = environment.endPointApi + '/teacher';
   baseUrlImg: string = environment.endPointApi + '/Image';
@@ -30,19 +35,19 @@ export class TeacherDataService {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 
-  createTeacher(teacher: TeacherModel, alumnusId: number): Observable<any> {
+  createTeacher(teacher: TeacherModel, alumnusId: string): Observable<any> {
     teacher.alumnusid = alumnusId;
-    teacher.courseids = this.ArrayToIdsArray(teacher.courseids);
+    // teacher.courses = this.ArrayToIdsArray(teacher.courses);
     return this.http.post(this.baseUrl, teacher);
   }
 
-  ArrayToIdsArray(arr: any[]): number[] {
-    const newArr: number[] = [];
-    arr.forEach((item) => {
-      if (!!item && item.id) newArr.push(item.id);
-    });
-    return newArr;
-  }
+  // ArrayToIdsArray(arr: any[]): number[] {
+  //   const newArr: number[] = [];
+  //   arr.forEach((item) => {
+  //     if (!!item && item.id) newArr.push(item.id);
+  //   });
+  //   return newArr;
+  // }
 
   AddLogo(
     file: FormData,
@@ -72,7 +77,19 @@ export class TeacherDataService {
   //      headers: new HttpHeaders().set('Authorization', header)
   //       }).toPromise<any>();
   //  };
+  searchTeachers(pageIndex: number, pageSize: number, searchDetails: SearchBarTeacherModel): Observable<Array<TeacherModel>> {
+    const body = {
+      pageIndex,
+      pageSize,
+      ...searchDetails
+    };
+    return this.http.post<Array<TeacherModel>>(`${this.baseUrl}/search-teachers`, body);
+  }
+  GetAlumniTeachersByPagination( pageIndex: number, pageSize: number): Observable<TeacherModel []> {
+    return this.http.get<TeacherModel []>(this.baseUrl + `/last-teachers?pageIndex=${pageIndex}&pageSize=${pageSize}`);
+  }
 }
+
 
 export interface IdAndName {
   id: string;

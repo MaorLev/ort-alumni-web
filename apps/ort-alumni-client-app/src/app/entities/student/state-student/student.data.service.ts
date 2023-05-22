@@ -2,29 +2,29 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments';
 import { Observable, shareReplay } from 'rxjs';
-import { StudentInterface } from './student.model';
+import { StudentModel } from '../configs-student/student-model';
 
 
-@Injectable({providedIn:'any'})
+@Injectable()
 export class StudentDataService  {
 
   private baseUrl: string = environment.endPointApi + '/student';
 
   constructor(private http: HttpClient) {}
 
-  getStudent(id: number | null): Observable<StudentInterface> {
-    return this.http.get<StudentInterface>(this.baseUrl + '/' + id).pipe(shareReplay(1));
+  getStudent(id: string): Observable<StudentModel> {
+    return this.http.get<StudentModel>(this.baseUrl + '/' + id).pipe(shareReplay(1));
   }
-  getStudents(): Observable<Array<StudentInterface>> {
-    return this.http.get<Array<StudentInterface>>(this.baseUrl).pipe(shareReplay(1));
+  getStudents(): Observable<Array<StudentModel>> {
+    return this.http.get<Array<StudentModel>>(this.baseUrl).pipe(shareReplay(1));
   }
-  createStudent(student: StudentInterface): Observable<any> {
+  createStudent(student: StudentModel): Observable<any> {
     return this.http.post(this.baseUrl, student);
   }
-  updateStudent(id: number, student: any): Observable<any> {
+  updateStudent(id: string, student: StudentModel): Observable<any> {
     return this.http.put(this.baseUrl + '/' + id, student);
   }
-  deleteStudent(id: number): Observable<any> {
+  deleteStudent(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 

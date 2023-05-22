@@ -118,7 +118,22 @@ namespace AlumniOrtServer.Controllers
             {
               return StatusCode(500, e);
             }
-          }
+        }
 
+    [HttpGet]
+    [Route("last-teachers")]
+    public async Task<ActionResult> GetLastTeachers([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+    {
+      try
+      {
+        List<AlumnusDTO> result = await service.GetLastTeachers(pageIndex, pageSize);
+        return Ok(result);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
     }
+
+  }
 }

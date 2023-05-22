@@ -1,6 +1,7 @@
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.DTO;
 using Microsoft.AspNetCore.Http;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace AlumniOrtServer.Services
         public Task<ResponseDTO> DeleteLogo(int alumnusId);
         public Task<bool> existAccount(int id);
 
+        public Task<List<TeacherDTO>> GetTeachersByCourse(int Course_StudyProgramId, int pageIndex, int pageSize);
+        public Task<List<TeacherDTO>> GetTeachersByStudyprogram(int studyProgramId, int pageIndex, int pageSize);
 
-    }
+        public Task<List<TeacherDTO>> SearchTeachers(SearchRequestDTO searchRequest);
+        public Task<List<TeacherDTO>> GetLastTeachers(PaginationFilterDTO paginationRequest);
+
+
+
+  }
 }

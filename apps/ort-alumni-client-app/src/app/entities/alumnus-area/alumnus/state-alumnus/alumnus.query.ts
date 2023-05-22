@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Query, QueryEntity } from '@datorama/akita';
-import { map, Observable } from 'rxjs';
-import { AlumnusModel } from './alumnus-model';
+import { QueryEntity } from '@datorama/akita';
+import { Observable } from 'rxjs';
+import { AlumnusModel } from '../configs-alumnus/alumnus-model';
 import { AlumnusState, AlumnusStore } from './alumnus.store';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AlumnusQuery extends QueryEntity<AlumnusState> {
   constructor(protected override store: AlumnusStore) {
     super(store);

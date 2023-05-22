@@ -1,7 +1,17 @@
+// :host {
+//   display: block;
+//   .control {
+//     width: 100%;
+//     text-align: start;
+//   }
+// }
 :host {
   display: block;
-  .control {
+  .chips-autocomplete {
     width: 100%;
-    text-align: start;
+  }
+
+  mat-chip {
+    margin: 4px;
   }
 }

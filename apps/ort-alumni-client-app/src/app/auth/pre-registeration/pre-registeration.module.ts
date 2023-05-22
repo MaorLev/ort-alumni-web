@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PreRegisterationComponent } from './pre-registeration.component';
 import { UiButtonModule } from '@ui-components/ui-button';
-import { QuicklinkModule } from 'ngx-quicklink';
+// import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [PreRegisterationComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: PreRegisterationComponent }]),
-    QuicklinkModule,
+    // QuicklinkModule,
     UiButtonModule,
   ],
-  exports: [QuicklinkModule, PreRegisterationComponent],
+  exports: [PreRegisterationComponent],
+  // exports: [QuicklinkModule, PreRegisterationComponent],
 })
 export class PreRegisterationModule {}

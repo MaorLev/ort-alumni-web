@@ -1,0 +1,82 @@
+<mat-card class="example-card">
+  <mat-card-title-group>
+    <mat-card-title *ngIf="title">{{ title }}</mat-card-title>
+    <img
+      [class]="'logo ' + imageclass[imageSize]"
+      [src]="safeImage || '/assets/images/teacher-avatar.png'"
+    />
+    <mat-card-subtitle>
+      <ng-container
+        *ngIf="chipsListStringArr && chipsListStringArr.length !== 0"
+      >
+        <div class="chips-list">
+          <div class="items top-chips">
+            <span class="pre-content">אופן הלימוד </span>
+            <ng-container *ngFor="let chip of chipsListStringArr">
+              <ort-ui-material-chips [text]="chip" color="accent">
+              </ort-ui-material-chips>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngIf="currency">לשעה  {{ currency | currency: 'ILS' }}</div>
+    </mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-card-content *ngIf="longText">
+    <div class="text-content">
+      <p>
+        <span class="qoute"> " </span>
+        {{ longText }}
+        <span class="qoute"> " </span>
+      </p>
+    </div>
+    <mat-divider inset></mat-divider>
+    <div class="lists">
+
+      <ng-container *ngIf="chipsList1 && chipsList1.length !== 0">
+        <div class="chips-list">
+          <div class="items">
+            <span class="pre-content"> תחומי לימוד  </span>
+            <ng-container *ngFor="let chip of chipsList1">
+              <ort-ui-material-chips [text]="chip.name" color="accent">
+              </ort-ui-material-chips>
+            </ng-container>
+          </div>
+        </div>
+        <mat-divider [vertical]="true" inset></mat-divider>
+      </ng-container>
+
+      <div class="chips-list">
+        <div class="items">
+          <ng-container *ngIf="chipsList2 && chipsList2.length !== 0">
+            <span class="pre-content"> ערים </span>
+            <ng-container *ngFor="let chip of chipsList2">
+              <ort-ui-material-chips [text]="chip.name" color="primary">
+              </ort-ui-material-chips>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <mat-divider [vertical]="true" inset></mat-divider>
+      <div class="chips-list">
+        <div class="items">
+          <ng-container *ngIf="chipsList3 && chipsList3.length !== 0">
+            <span class="pre-content"> שפות </span>
+            <ng-container *ngFor="let chip of chipsList3">
+              <ort-ui-material-chips [text]="chip.name" color="primary">
+              </ort-ui-material-chips>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <ng-container ortCheckActiveContent>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <ng-content></ng-content>
+    </mat-card-actions>
+  </ng-container>
+</mat-card>

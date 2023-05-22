@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
 import { AlertsService } from '@utils/util/core/central-message';
 import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
-import { AlumnusModel } from './alumnus-model';
+import { AlumnusModel } from '../configs-alumnus/alumnus-model';
 import { AlumnusDataService } from './alumnus.data.service';
 import { AlumnusStore } from './alumnus.store';
+import { Router } from '@angular/router';
+import { SessionStore } from '../../../../auth/session/state/session.store';
 
 
-@Injectable({providedIn:'root'})
+
+@Injectable()
 export class AlumnusService {
 
   constructor(
     private alumnusDataService: AlumnusDataService,
     private store: AlumnusStore,
-    private alerts: AlertsService
+    private alerts: AlertsService,
+    private router:Router,
+    private sessionStore: SessionStore,
   ) {}
 
   loadAlumnus(alumnusId: string) {
     return this.alumnusDataService.getAlumnus(alumnusId).pipe(
       map((alumnus:AlumnusModel) => {
-        // this.store.update({ alumnus: alumnus, isAlumnusLoaded: true });
         this.store.add(alumnus, { loading: true });
         this.store.setActive(alumnus.id);
-        // this.store.setLoading(true);
         return alumnus;
       }),
       catchError(()=>{
@@ -54,6 +57,9 @@ export class AlumnusService {
       tap(() => {
         this.store.remove(alumnusId);
         this.store.setLoading(false);
+        this.store.setActive(null);
+        this.sessionStore.logout();
+        this.router.navigate(['/']);
       })
     );
   }

@@ -9,7 +9,7 @@ import { FeatureExpansionPanelComponent, PanelActionType } from '@features/featu
 import { AlertsService } from '@utils/util/core/central-message';
 import { catchError } from 'rxjs';
 import { StudentDataService } from '../state-student/student.data.service';
-import { AddStudentFormConfig } from './add-student-form.config';
+import { StudentPanelDataConfig } from '../configs-student/student-panel-data.config';
 
 @Component({
   selector: 'app-add-student',
@@ -21,7 +21,7 @@ export class AddStudentComponent {
 
   @ViewChild('panel') panel:FeatureExpansionPanelComponent;
   constructor(
-    public studentFormConfig: AddStudentFormConfig,
+    public studentFormConfig: StudentPanelDataConfig,
     private studentService: StudentDataService,
     private alertService:AlertsService
 

@@ -22,7 +22,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import { map, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -47,7 +47,7 @@ export class VaSlideToggleComponent
   implements OnInit, ControlValueAccessor, Validator, OnDestroy
 {
   formControl = new FormControl();
-  @Input() config: VaInputInterface;
+  @Input() config: VaFormInputInterface;
   @Output() changes = new EventEmitter<any>();
   onDestroy$ = new Subject<void>();
 

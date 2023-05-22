@@ -1,15 +1,17 @@
-import { Link } from "../../../layout/common-layout/nav-bar/link.interface";
+import { RouteNavigationType } from "@features/feature-navigation";
 
 
-export const AlumnusProfileNavigationData: Link[] = [
+
+
+export const AlumnusProfileNavigationData: RouteNavigationType[] = [
   {
-    label: 'עריכת פרטים אישיים',
+    label: 'פרטי בוגר',
     name: '',
     route: '/profile/profile-alumnus'
   },
   {
-    label: 'עריכת פרטי מורה',
+    label: 'פרטי מורה',
     name: '',
-    route: '/profile/teacher-edit'
+    route: '/profile/profile-teacher'
   }
 ];

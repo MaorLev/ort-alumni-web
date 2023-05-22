@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-navigation",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-navigation/src",
+  "prefix": "ort-feature-navigation",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-navigation"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-navigation/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-navigation/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-navigation/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

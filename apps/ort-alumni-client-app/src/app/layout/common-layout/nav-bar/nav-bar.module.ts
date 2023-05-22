@@ -1,11 +1,13 @@
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavBarComponent } from './nav-bar.component';
 import { NgModule } from '@angular/core';
-import { QuicklinkModule } from 'ngx-quicklink';
-import { UiButtonModule } from '@ui-components/ui-button';
+import { RouterModule } from '@angular/router';
+
+import { NavBarComponent } from './nav-bar.component';
+
 import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-logged-in.directive';
 import { FeatureModalModule } from '@features/feature-modal';
+import { UiButtonModule } from '@ui-components/ui-button';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { FeatureModalModule } from '@features/feature-modal';
     FeatureModalModule
 
   ],
-  exports: [QuicklinkModule, NavBarComponent ],
+  exports: [
+     NavBarComponent ],
 })
 export class NavBarModule {}

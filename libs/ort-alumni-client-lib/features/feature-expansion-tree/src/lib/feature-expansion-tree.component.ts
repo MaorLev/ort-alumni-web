@@ -61,7 +61,7 @@ export class FeatureExpansionTreeComponent implements OnInit {
   }
   routeTo(route: string | undefined) {
     if (route) {
-      this.router.navigateByUrl(route);
+      this.router.navigateByUrl(route,{skipLocationChange:false});
       this.routeClicked.emit();
     }
   }

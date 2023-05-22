@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/ort-alumni-client-lib/features/feature-paginator",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-paginator/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ort-alumni-client-lib/features/feature-paginator"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-paginator/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-paginator/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-paginator/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:features"]
+}

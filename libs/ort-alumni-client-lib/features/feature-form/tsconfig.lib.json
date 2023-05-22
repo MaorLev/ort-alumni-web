@@ -8,5 +8,5 @@
     "types": []
   },
   "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts", "../feature-va-input/src/lib/va-input.interface.ts"]
+  "include": ["**/*.ts", "src/lib/interfaces/va-input.interface.ts", "src/lib/interfaces/controls-factory.ts"]
 }

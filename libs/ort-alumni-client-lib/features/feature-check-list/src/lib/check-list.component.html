@@ -1,5 +1,6 @@
-<mat-selection-list class="control" [formControl]="formControl" (focusout)="onTouched()">
-  <mat-list-option *ngFor="let item of config.data.options$ | async"  [value]="item.id" >
+<!-- Todo : added style to mat-selection-list Check it in other situations -->
+<mat-selection-list class="control {{config.data?.style}}" [formControl]="formControl" (focusout)="onTouched()">
+  <mat-list-option *ngFor="let item of config.data.options"  [value]="item.id" >
     {{ item.name }}
   </mat-list-option>
 </mat-selection-list>

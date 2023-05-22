@@ -1,0 +1,15 @@
+
+<div [class]="'articles ' + style">
+  <ng-container *ngFor="let article of articles">
+    <article class="card">
+      <a [routerLink]="['/main/articles/article-detail', article.id]">
+        <ort-card
+          [heading]="article.heading"
+          [subheading]="article.subheading"
+          [img]="article.img | addEnvVar"
+          [detail]="article.detail"
+        ></ort-card>
+      </a>
+    </article>
+  </ng-container>
+</div>

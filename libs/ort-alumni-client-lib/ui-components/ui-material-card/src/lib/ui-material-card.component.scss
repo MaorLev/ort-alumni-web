@@ -1,0 +1,63 @@
+.example-card {
+  max-width: 1200px;
+  margin-bottom: 8px;
+}
+.logo {
+  border-radius: 50%;
+}
+.lists {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  .chips-list {
+    justify-content: center;
+    align-self: start;
+    align-items: center;
+  }
+  mat-divider {
+    margin: 1rem;
+    padding: 0;
+  }
+}
+.chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 1rem 0rem 1rem 1rem;
+  margin: 0;
+  .top-chips {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+}
+
+.pre-content {
+  line-height: 3rem;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.text-content {
+  padding: 1rem;
+  white-space: pre-line;
+  width: 100%;
+  height: 70px;
+  .qoute {
+    color: var(--primary-color);
+    font-size: 2rem;
+    line-height: 2rem;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    padding: 0 1px;
+    font-weight: 800;
+    font-style: italic;
+  }
+}
+.mat-card-actions,
+.mat-card-subtitle,
+.mat-card-content {
+  display: block;
+  margin-bottom: 0px;
+}

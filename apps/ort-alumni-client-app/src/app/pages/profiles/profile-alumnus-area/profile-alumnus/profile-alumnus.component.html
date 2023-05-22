@@ -1,19 +1,32 @@
 
-<ng-container  *ngIf="this.isLoading$ | async;else spinner" >
+<ng-container  *ngIf="alumnus$ | async as alumnus;else spinner" >
 
   <div class="wrapper">
 
     <div class="content">
-      <router-outlet></router-outlet>
+      <ng-template [ngIf]="isEditMode">
+        <ort-feature-profile [viewModel]="alumnus" (submitted)="onSubmit($event)" >
+          <ort-button
+          class="btn"
+          className="mat-raised-button bar-btn-primary"
+          (click)="onDeleteAlumnus()"
+          >מחק פרופיל בוגר</ort-button
+        >
+        </ort-feature-profile>
+      </ng-template>
+      <ng-template [ngIf]="!isEditMode">
+        <app-alumnus-detail></app-alumnus-detail>
+      </ng-template>
+
     </div>
 
     <div class="btn-edit">
       <ort-button
         class="btn spacial"
         className="mat-raised-button bar-btn-primary"
-        (click)="screenToShow()"
+        (click)="isEditMode = !isEditMode"
       >
-        {{ IsEditMode ? 'הצג פרטי פרופיל' : 'ערוך פרטים' }}
+        {{ isEditMode ? 'הצג פרטי פרופיל' : 'ערוך פרטים' }}
       </ort-button>
     </div>
   </div>

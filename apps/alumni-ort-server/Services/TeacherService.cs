@@ -14,6 +14,8 @@ using static AlumniOrtServer.Extensions.Constants;
 using Microsoft.AspNetCore.Http;
 using OrtAlumniWeb.AlumniOrtServer.Data.Entities;
 using System.IO;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.Extensions;
 
 namespace AlumniOrtServer.Services
 {
@@ -21,7 +23,6 @@ namespace AlumniOrtServer.Services
   {
     private readonly AlumniDBContext m_db;
 
-    //private readonly ImgService _Img;
     public TeacherService(AlumniDBContext db)
     {
       m_db = db;
@@ -184,7 +185,7 @@ namespace AlumniOrtServer.Services
 
       objectsCreated =
           await Add_ManyToMany_TeacherCourses(teacher, TeacherFromDB.Id);
-      if (!objectsCreated && teacher.CourseIDs.Length > 0)
+      if (!objectsCreated && teacher.Courses.Length > 0)
       {
         //await Delete(TeacherFromDB.Id);
         response.Status = StatusCODE.Warning;
@@ -197,9 +198,6 @@ namespace AlumniOrtServer.Services
       return response;
     }
 
-    //public async Task<bool> AddImageToFolder()
-    //{
-    //}
     public async Task<ResponseDTO> Delete(int id)
     {
       try
@@ -239,6 +237,341 @@ namespace AlumniOrtServer.Services
       }
     }
 
+    public async Task<List<TeacherDTO>> GetTeachersByCourse(int Course_StudyProgramId, int pageIndex, int pageSize)
+    {
+      try
+      {
+        var teachers = await m_db.Teachers
+            .Where(t => t.TeacherCourses.Any(tc => tc.Course_StudyProgramId == Course_StudyProgramId))
+            .OrderByDescending(t => t.Id)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .Select(t => new TeacherDTO()
+            {
+              Id = t.Id,
+              MailForStudy = t.MailForStudy,
+              Logo = t.Logo,
+              Rate = t.Rate,
+              Description = t.Description,
+              AlumnusId = t.AlumnusId,
+              Languages = t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+              Cities = t.ModeStudy_Cities.Select(msc => new CityDTO
+              {
+                Id = msc.City.Id,
+                Name = msc.City.Name
+              }).ToArray(),
+              Courses = t.TeacherCourses
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray(),
+              ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray(),
+
+              Alumanus = new AlumnusDTO
+              {
+                //Id = t.Alumanus.Id,
+                //Mail = t.Alumanus.Mail,
+                FirstName = t.Alumanus.FirstName,
+                LastName = t.Alumanus.LastName,
+                //Password = MD5Service.Decrypt(t.Alumanus.Password),
+                Phone = t.Alumanus.Phone,
+                //CardId = t.Alumanus.CardId,
+                //DateOfBirth = t.Alumanus.DateOfBirth,
+                //StudyFinishYear = t.Alumanus.StudyFinishYear,
+                //StudyStartYear = t.Alumanus.StudyStartYear,
+                College = new CollegeDTO
+                {
+                  Id = t.Alumanus.College.Id,
+                  Name = t.Alumanus.College.Name
+                },
+                StudyProgram = new StudyProgramDTO
+                {
+                  Id = t.Alumanus.StudyProgram.Id,
+                  Name = t.Alumanus.StudyProgram.Name
+                },
+                City = new CityDTO
+                {
+                  Id = t.Alumanus.City.Id,
+                  Name = t.Alumanus.City.Name
+                },
+                //Linkedin = t.Alumanus.Linkedin,
+                //WorkPlace = t.Alumanus.WorkPlace,
+                //TeacherId = t.Alumanus.Id,
+
+
+              }
+            }).ToListAsync();
+
+        return teachers;
+      }
+      catch
+      {
+        throw;
+      }
+    }
+    public async Task<List<TeacherDTO>> GetTeachersByStudyprogram(int studyProgramId, int pageIndex, int pageSize)
+    {
+      try
+      {
+        var teachers = await m_db.Teachers
+            .Where(t => t.TeacherCourses.Any(tc => tc.Course_StudyProgram.StudyProgramId == studyProgramId))
+            .OrderByDescending(t => t.Id)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .Select(t => new TeacherDTO()
+            {
+              Id = t.Id,
+              MailForStudy = t.MailForStudy,
+              Logo = t.Logo,
+              Rate = t.Rate,
+              Description = t.Description,
+              AlumnusId = t.AlumnusId,
+              Languages = t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+              Cities = t.ModeStudy_Cities.Select(msc => new CityDTO
+              {
+                Id = msc.City.Id,
+                Name = msc.City.Name
+              }).ToArray(),
+              Courses = t.TeacherCourses
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray(),
+              ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray(),
+
+              Alumanus = new AlumnusDTO
+              {
+                //Id = t.Alumanus.Id,
+                //Mail = t.Alumanus.Mail,
+                FirstName = t.Alumanus.FirstName,
+                LastName = t.Alumanus.LastName,
+                //Password = MD5Service.Decrypt(t.Alumanus.Password),
+                Phone = t.Alumanus.Phone,
+                //CardId = t.Alumanus.CardId,
+                //DateOfBirth = t.Alumanus.DateOfBirth,
+                //StudyFinishYear = t.Alumanus.StudyFinishYear,
+                //StudyStartYear = t.Alumanus.StudyStartYear,
+                College = new CollegeDTO
+                {
+                  Id = t.Alumanus.College.Id,
+                  Name = t.Alumanus.College.Name
+                },
+                StudyProgram = new StudyProgramDTO
+                {
+                  Id = t.Alumanus.StudyProgram.Id,
+                  Name = t.Alumanus.StudyProgram.Name
+                },
+                City = new CityDTO
+                {
+                  Id = t.Alumanus.City.Id,
+                  Name = t.Alumanus.City.Name
+                },
+                //Linkedin = t.Alumanus.Linkedin,
+                //WorkPlace = t.Alumanus.WorkPlace,
+                //TeacherId = t.Alumanus.Id,
+
+
+              }
+            }).ToListAsync();
+
+        return teachers;
+      }
+      catch
+      {
+        throw;
+      }
+    }
+
+    public async Task<List<TeacherDTO>> SearchTeachers(SearchRequestDTO searchRequest)
+    {
+      try
+      {
+        var query = m_db.Teachers.AsQueryable();
+
+        if (searchRequest.StudyProgram != null)
+        {
+          query = query.Where(t => t.Alumanus.StudyProgramId == searchRequest.StudyProgram.Id);
+        }
+
+        if (searchRequest.Courses != null && searchRequest.Courses.Length > 0)
+        {
+          query = query.Where(t => t.TeacherCourses.Any(tc => searchRequest.Courses.Select(c => c.Id).Contains(tc.Course_StudyProgramId)));
+        }
+
+
+        // Considering the logic of Modestudyids and Cities
+        if (searchRequest.ModeStudyIds != null && searchRequest.ModeStudyIds.Length > 0)
+        {
+          // If "Frontally" is received, we should also check cities
+          if (searchRequest.ModeStudyIds.Contains(ModeStudiesId.Frontally))
+          {
+            query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.ModeStudyIds.Contains(mc.ModeStudyId)));
+            if(searchRequest.Cities != null && searchRequest.Cities.Length > 0)
+            query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.Cities.Select(c => c.Id).Contains(mc.CityId)));
+          }
+          // If only "Online" is received, then cities are not checked
+          else if (searchRequest.ModeStudyIds.Contains(ModeStudiesId.Online))
+          {
+            query = query.Where(t => t.ModeStudy_Cities.Any(mc => mc.ModeStudyId == ModeStudiesId.Online));
+          }
+        }
+
+
+        // Apply pagination
+        var teachers = await query
+             .Where(t => t != null)
+            .OrderByDescending(t => t.Id)
+            .Skip((searchRequest.PageIndex - 1) * searchRequest.PageSize)
+            .Take(searchRequest.PageSize)
+            .Select(t => new TeacherDTO()
+            {
+              Id = t.Id,
+              MailForStudy = t.MailForStudy,
+              Logo = t.Logo,
+              Rate = t.Rate,
+              Description = t.Description,
+              AlumnusId = t.AlumnusId,
+              Languages = t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+              Cities = t.ModeStudy_Cities.Select(msc => new CityDTO
+              {
+                Id = msc.City.Id,
+                Name = msc.City.Name
+              }).ToArray(),
+              Courses = t.TeacherCourses
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray(),
+              ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray(),
+
+              Alumanus = new AlumnusDTO
+              {
+                FirstName = t.Alumanus.FirstName,
+                LastName = t.Alumanus.LastName,
+                Phone = t.Alumanus.Phone,
+                College = new CollegeDTO
+                {
+                  Id = t.Alumanus.College.Id,
+                  Name = t.Alumanus.College.Name
+                },
+                StudyProgram = new StudyProgramDTO
+                {
+                  Id = t.Alumanus.StudyProgram.Id,
+                  Name = t.Alumanus.StudyProgram.Name
+                },
+                City = new CityDTO
+                {
+                  Id = t.Alumanus.City.Id,
+                  Name = t.Alumanus.City.Name
+                },
+              }
+            })
+            .ToListAsync();
+
+        if(teachers != null && teachers.Count() > 0)
+        {
+          foreach (var teacher in teachers)
+          {
+            if(teacher.ModeStudyIDs != null && teacher.ModeStudyIDs.Length > 1)
+            {
+              teacher.ModeStudyIDs = teacher.ModeStudyIDs.Distinct().ToArray();
+            }
+          }
+        }
+
+        return teachers;
+      }
+      catch
+      {
+        throw;
+      }
+    }
+    public async Task<List<TeacherDTO>> GetLastTeachers(PaginationFilterDTO paginationRequest)
+    {
+      try
+      {
+        // Apply pagination
+        var teachers = await m_db.Teachers
+             .Where(t => t != null)
+            .OrderByDescending(t => t.Id)
+            .Skip((paginationRequest.PageIndex - 1) * paginationRequest.PageSize)
+            .Take(paginationRequest.PageSize)
+            .Select(t => new TeacherDTO()
+            {
+              Id = t.Id,
+              MailForStudy = t.MailForStudy,
+              Logo = t.Logo,
+              Rate = t.Rate,
+              Description = t.Description,
+              AlumnusId = t.AlumnusId,
+              Languages = t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+              Cities = t.ModeStudy_Cities.Select(msc => new CityDTO
+              {
+                Id = msc.City.Id,
+                Name = msc.City.Name
+              }).ToArray(),
+              Courses = t.TeacherCourses
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray(),
+              ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray(),
+
+              Alumanus = new AlumnusDTO
+              {
+                FirstName = t.Alumanus.FirstName,
+                LastName = t.Alumanus.LastName,
+                Phone = t.Alumanus.Phone,
+                College = new CollegeDTO
+                {
+                  Id = t.Alumanus.College.Id,
+                  Name = t.Alumanus.College.Name
+                },
+                StudyProgram = new StudyProgramDTO
+                {
+                  Id = t.Alumanus.StudyProgram.Id,
+                  Name = t.Alumanus.StudyProgram.Name
+                },
+                City = new CityDTO
+                {
+                  Id = t.Alumanus.City.Id,
+                  Name = t.Alumanus.City.Name
+                },
+              }
+            })
+            .ToListAsync();
+
+        if (teachers != null && teachers.Count() > 0)
+        {
+          foreach (var teacher in teachers)
+          {
+            if (teacher.ModeStudyIDs != null && teacher.ModeStudyIDs.Length > 1)
+            {
+              teacher.ModeStudyIDs = teacher.ModeStudyIDs.Distinct().ToArray();
+            }
+          }
+        }
+
+        return teachers;
+      }
+      catch
+      {
+        throw;
+      }
+    }
+
     public async Task<TeacherDTO> Get(int id)
     {
       TeacherDTO teacher =
@@ -253,14 +586,6 @@ namespace AlumniOrtServer.Services
                     Logo = t.Logo,
                     MailForStudy = t.MailForStudy,
                     Id = t.Id
-                    //CourseIDs = t.TeacherCourses.Select(cs => cs.Course_StudyProgram.Id).ToArray(),
-                    //CoursesNames = t.TeacherCourses.Select(cs => cs.Course_StudyProgram.Name).ToList(),
-
-                    //ModeStudyIDs = t.ModeStudy_Cities.Select(ms => ms.ModeStudyId).ToArray(),
-                    //Frontally_Names = t.ModeStudy_Cities.Where(ms => ms.ModeStudy.ModeStudyId == 1).Select(id => id.City.Name).ToList(),
-                    //CityIDs = t.ModeStudy_Cities.Select(c => c.City.Id).ToArray(),
-                    //Is_Online = t.ModeStudy_Cities.Where(ms => ms.ModeStudy.ModeStudyId == 2).Select(id => id.City).FirstOrDefault() != null,
-                    //Is_Frontally = t.ModeStudy_Cities.Where(ms => ms.ModeStudy.ModeStudyId == 1).Select(id => id.City).FirstOrDefault() != null,
                   })
               .FirstOrDefaultAsync(i => i.AlumnusId == id);
       if (teacher != null)
@@ -280,21 +605,19 @@ namespace AlumniOrtServer.Services
                     new TeacherDTO()
                     {
                       AlumnusId = t.AlumnusId,
-                      CourseIDs =
+                      Courses =
                             t
                                 .TeacherCourses
-                                .Select(cs => cs.Course_StudyProgram.Id)
-                                .ToArray(),
-                      CoursesNames =
-                            t
-                                .TeacherCourses
-                                .Select(cs =>
-                                    cs.Course_StudyProgram.Name)
-                                .ToList()
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray()
                     })
                 .FirstOrDefaultAsync(i => i.AlumnusId == id);
-        result.CourseIDs = teacher1.CourseIDs;
-        result.CoursesNames = teacher1.CoursesNames;
+        result.Courses = teacher1.Courses;
 
         TeacherDTO teacher2 =
             await m_db
@@ -305,63 +628,33 @@ namespace AlumniOrtServer.Services
                       AlumnusId = t.AlumnusId,
                       Languages =
                             t
-                                .TeacherLanguages
-                                .Select(TLang => TLang.Language)
-                                .ToArray()
+                                .TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray()
                     })
                 .FirstOrDefaultAsync(i => i.AlumnusId == id);
 
         result.Languages = teacher2.Languages;
 
-        TeacherDTO teacher3 =
-            await m_db
-                .Teachers
-                .Select(t =>
-                    new TeacherDTO()
-                    {
-                      AlumnusId = t.AlumnusId,
-                      ModeStudyIDs =
-                            t
-                                .ModeStudy_Cities
-                                .Select(ms => ms.ModeStudyId)
-                                .ToArray(),
-                      Frontally_Names =
-                            t
-                                .ModeStudy_Cities
-                                .Where(ms =>
-                                    ms.ModeStudy.ModeStudyId == 1)
-                                .Select(id => id.City.Name)
-                                .ToList(),
-                      Cities =
-                            t
-                                .ModeStudy_Cities
-                                .Where(ms => ms.ModeStudyId == 1)
-                                .Select(c => c.City)
-                                .ToArray(),
-                      Is_Online =
-                            t
-                                .ModeStudy_Cities
-                                .Where(ms =>
-                                    ms.ModeStudy.ModeStudyId == 2)
-                                .Select(id => id.City)
-                                .FirstOrDefault() !=
-                            null,
-                      Is_Frontally =
-                            t
-                                .ModeStudy_Cities
-                                .Where(ms =>
-                                    ms.ModeStudy.ModeStudyId == 1)
-                                .Select(id => id.City)
-                                .FirstOrDefault() !=
-                            null
-                    })
-                .FirstOrDefaultAsync(i => i.AlumnusId == id);
-        result.ModeStudyIDs = teacher3.ModeStudyIDs;
-        result.Frontally_Names = teacher3.Frontally_Names;
-        result.Cities = teacher3.Cities;
-        result.Is_Online = teacher3.Is_Online;
-        result.Is_Frontally = teacher3.Is_Frontally;
+
+        //for mode Study field
+        TeacherDTO teacherEntity = await m_db.Teachers
+            .Where(t => t.AlumnusId == id)
+            .Select(t => new TeacherDTO
+            {
+              AlumnusId = t.AlumnusId,
+              ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray(),
+              Cities = t.ModeStudy_Cities.Where(ms => ms.ModeStudyId == 1).Select(msc => new CityDTO
+              {
+                Id = msc.City.Id,
+                Name = msc.City.Name
+              }).ToArray(),
+            })
+            .FirstOrDefaultAsync();
+        result.ModeStudyIDs = teacherEntity.ModeStudyIDs.Distinct().ToArray();
+        result.Cities = teacherEntity.Cities;
+
+
         return result;
+
       }
 
       return teacher;
@@ -386,14 +679,10 @@ namespace AlumniOrtServer.Services
 
       List<TeacherDTO> Cteacher = await GetAllCourses();
 
-      //teacher.AddRange(Cteacher);
       List<TeacherDTO> Lteacher = await GetAllLanguages();
 
-      //var result1 = Cteacher.Union(Lteacher, new StudentComparer());
       List<TeacherDTO> Mteacher = await GetAllModesWithCity();
 
-      //var result2 = Mteacher.Union(result1, new StudentComparer());
-      //var FinalResult = teacher.Union(result2, new StudentComparer());
       for (int i = 0; i < teacher.Count; i++)
       {
         if (
@@ -402,13 +691,9 @@ namespace AlumniOrtServer.Services
             teacher[i].Id == Mteacher[i].Id
         )
         {
-          teacher[i].CourseIDs = Cteacher[i].CourseIDs;
-          teacher[i].CoursesNames = Cteacher[i].CoursesNames;
+          teacher[i].Courses = Cteacher[i].Courses;
           teacher[i].Languages = Lteacher[i].Languages;
           teacher[i].ModeStudyIDs = Mteacher[i].ModeStudyIDs;
-          teacher[i].Frontally_Names = Mteacher[i].Frontally_Names;
-          teacher[i].Is_Frontally = Mteacher[i].Is_Frontally;
-          teacher[i].Is_Online = Mteacher[i].Is_Online;
           teacher[i].Cities = Mteacher[i].Cities;
         }
       }
@@ -417,7 +702,7 @@ namespace AlumniOrtServer.Services
 
     public async Task<List<TeacherDTO>> GetAllCourses()
     {
-      var teacher =
+      List<TeacherDTO> teacher =
           await m_db
               .Teachers
               .Select(t =>
@@ -425,16 +710,14 @@ namespace AlumniOrtServer.Services
                   {
                     AlumnusId = t.AlumnusId,
                     Id = t.Id,
-                    CourseIDs =
-                          t
-                              .TeacherCourses
-                              .Select(cs => cs.Course_StudyProgramId)
-                              .ToArray(),
-                    CoursesNames =
-                          t
-                              .TeacherCourses
-                              .Select(cs => cs.Course_StudyProgram.Name)
-                              .ToList()
+                    Courses = 
+                            t
+                                .TeacherCourses
+                                .Select(cs => new Course_StudyProgramDTO { Id = cs.Course_StudyProgram.Id,
+                                StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                  Name = cs.Course_StudyProgram.Name
+                                })
+                                .ToArray()
                   })
               .ToListAsync();
 
@@ -452,10 +735,7 @@ namespace AlumniOrtServer.Services
                     AlumnusId = t.AlumnusId,
                     Id = t.Id,
                     Languages =
-                          t
-                              .TeacherLanguages
-                              .Select(lang => lang.Language)
-                              .ToArray()
+                          t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray()
                   })
               .ToListAsync();
 
@@ -464,51 +744,28 @@ namespace AlumniOrtServer.Services
 
     public async Task<List<TeacherDTO>> GetAllModesWithCity()
     {
-      var teacher =
-          await m_db
-              .Teachers
-              .Select(t =>
-                  new TeacherDTO()
-                  {
-                    AlumnusId = t.AlumnusId,
-                    Id = t.Id,
-                    //these are importent raws that have problam with -Time- Get All
-                    Frontally_Names =
-                          t
-                              .ModeStudy_Cities
-                              .Where(ms => ms.ModeStudyId == 1)
-                              .Select(id => id.City.Name)
-                              .ToList(),
-                    Cities =
-                          t
-                              .ModeStudy_Cities
-                              .Where(ms => ms.ModeStudyId == 1)
-                              .Select(c => c.City)
-                              .ToArray(),
-                    ModeStudyIDs =
-                          t
-                              .ModeStudy_Cities
-                              .Select(ms => ms.ModeStudyId)
-                              .ToArray(),
-                    Is_Online =
-                          t
-                              .ModeStudy_Cities
-                              .Where(ms => ms.ModeStudyId == 2)
-                              .Select(id => id.City)
-                              .FirstOrDefault() !=
-                          null,
-                    Is_Frontally =
-                          t
-                              .ModeStudy_Cities
-                              .Where(ms => ms.ModeStudyId == 1)
-                              .Select(id => id.City)
-                              .FirstOrDefault() !=
-                          null
-                  })
-              .ToListAsync();
+      var teacherEntities = await m_db.Teachers
+          .Include(t => t.ModeStudy_Cities)
+          .ThenInclude(ms => ms.City)
+          .ToListAsync();
 
-      return teacher;
+      var teachers = teacherEntities.Select(t => new TeacherDTO
+      {
+        AlumnusId = t.AlumnusId,
+        Id = t.Id,
+        Cities = t.ModeStudy_Cities.Where(ms => ms.ModeStudyId == 1).Select(msc => new CityDTO
+        {
+          Id = msc.City.Id,
+          Name = msc.City.Name
+        }).ToArray(),
+        ModeStudyIDs = t.ModeStudy_Cities.Select(ms => ms.ModeStudyId).Distinct().ToArray(),
+      }).ToList();
+
+        return teachers;
     }
+
+
+
 
     public async Task<ResponseDTO> Update(int id, TeacherDTO teacher)
     {
@@ -525,7 +782,6 @@ namespace AlumniOrtServer.Services
         };
       }
       TeacherFromDB.Id = Convert.ToInt32(existsT.Id.ToString());
-      //TeacherFromDB.Logo = teacher.Logo ?? existsT.Logo;
       TeacherFromDB.MailForStudy =
           teacher.MailForStudy ?? existsT.MailForStudy;
       TeacherFromDB.Rate = teacher.Rate ?? existsT.Rate;
@@ -568,32 +824,32 @@ namespace AlumniOrtServer.Services
     private async Task
     Update_ManyToMany_ModeStudy(TeacherDTO teacher, TeacherDTO existsT)
     {
-      //DbContextOptionsBuilder.EnableSensitiveDataLogging
-      if (existsT.Is_Online)
-      {
-        var modeOnlineToRemove =
-            new ModeStudy_City(1, ModeStudiesId.Online, existsT.Id);
-        m_db.ModeStudy_Cities.Remove(modeOnlineToRemove);
-      }
-      bool enter = true; //enter to avoid duplicate removes cities for mode frontally
       foreach (var modeFront in existsT.ModeStudyIDs)
       {
-        if (
+        if (modeFront == ModeStudiesId.Online)
+        {
+          var modeOnlineToRemove = m_db.ModeStudy_Cities.SingleOrDefault(m => m.ModeStudyId == ModeStudiesId.Online && m.CityId == 1 && m.TeacherId == existsT.Id);
+
+          if (modeOnlineToRemove != null)
+          {
+            m_db.ModeStudy_Cities.Remove(modeOnlineToRemove);
+          }
+        }
+        else if (
             modeFront == ModeStudiesId.Frontally &&
-            existsT.Cities.Length > 0 &&
-            enter
+            existsT.Cities.Length > 0
         )
         {
-          enter = false;
           foreach (var cityId in existsT.Cities)
           {
             if (cityId.Id != 1)
             {
-              var cityToRemove =
-                  new ModeStudy_City(cityId.Id,
-                      modeFront,
-                      existsT.Id);
-              m_db.ModeStudy_Cities.Remove(cityToRemove);
+              var cityToRemove = m_db.ModeStudy_Cities.SingleOrDefault(m => m.ModeStudyId == modeFront && m.CityId == cityId.Id && m.TeacherId == existsT.Id);
+
+              if (cityToRemove != null)
+              {
+                m_db.ModeStudy_Cities.Remove(cityToRemove);
+              }
             }
           }
         }
@@ -618,9 +874,9 @@ namespace AlumniOrtServer.Services
     private async Task
     Update_ManyToMany_TeacherCourses(TeacherDTO teacher, TeacherDTO existsT)
     {
-      foreach (var courseId in existsT.CourseIDs)
+      foreach (var course in existsT.Courses)
       {
-        var CourseToRemove = new TeacherCourse(existsT.Id, courseId);
+        var CourseToRemove = new TeacherCourse(existsT.Id, course.Id);
         m_db.TeacherCourses.Remove(CourseToRemove);
       }
       await m_db.SaveChangesAsync();
@@ -630,9 +886,9 @@ namespace AlumniOrtServer.Services
     private async Task<bool>
     Add_ManyToMany_TeacherCourses(TeacherDTO teacher, int id)
     {
-      foreach (var courseId in teacher.CourseIDs)
+      foreach (var course in teacher.Courses)
       {
-        var teacherCourses = new TeacherCourse(id, courseId);
+        var teacherCourses = new TeacherCourse(id, course.Id);
         await m_db.TeacherCourses.AddAsync(teacherCourses);
       }
       int changes = await m_db.SaveChangesAsync();
@@ -644,7 +900,6 @@ namespace AlumniOrtServer.Services
     {
       int[] modeStudyIDs = teacher.ModeStudyIDs;
       int changes = 0;
-      bool enter = true; //enter to avoid duplicate add for mode frontally
       for (int i = 0; i < modeStudyIDs.Length; i++)
       {
         if (modeStudyIDs[i] == ModeStudiesId.Online)
@@ -653,17 +908,12 @@ namespace AlumniOrtServer.Services
               new ModeStudy_City(1, ModeStudiesId.Online, id);
           await m_db.ModeStudy_Cities.AddAsync(modeStudy_City);
         }
-        if (
+        else if (
             (modeStudyIDs[i] == ModeStudiesId.Frontally) && teacher.Cities != null &&
-            teacher.Cities.Length > 0 &&
-            enter
+            teacher.Cities.Length > 0
         )
         {
-          enter = false;
-
-          //if (teacher.CityIDs != null)
-          //{
-          foreach (City cityId in teacher.Cities)
+          foreach (CityDTO cityId in teacher.Cities)
           {
             if (cityId.Id != 1)
             {
@@ -676,7 +926,6 @@ namespace AlumniOrtServer.Services
                   .AddAsync(modeStudy_City);
             }
           }
-          //}
         }
       }
       changes = await m_db.SaveChangesAsync();
@@ -696,19 +945,3 @@ namespace AlumniOrtServer.Services
     }
   }
 }
-
-/*public class StudentComparer : IEqualityComparer<TeacherDTO>
-{
-    public bool Equals([AllowNull] TeacherDTO x, [AllowNull] TeacherDTO y)
-    {
-        if (x.Id == y.Id || x.AlumnusId == y.AlumnusId)
-            return true;
-
-        return false;
-    }
-
-    public int GetHashCode([DisallowNull] TeacherDTO obj)
-    {
-        return obj.AlumnusId.GetHashCode();
-    }
-}*/

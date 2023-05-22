@@ -3,7 +3,7 @@ export const linkData:Link [] = [
   {
     label: 'בית',
     name: 'home',
-    route: 'home',
+    route: '/',
     order: 1
   },
   //   {
@@ -24,6 +24,12 @@ export const linkData:Link [] = [
     name: 'articles',
     route: '/main/articles',
     order: 3
+  },
+  {
+    label: 'פורטל מורים פרטים',
+    name: 'teaching-portal',
+    route: '/layout-teaching-portal',
+    order: 4
   },
 ];
 

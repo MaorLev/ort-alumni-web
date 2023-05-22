@@ -142,7 +142,7 @@ namespace AlumniOrtServer.Context
       List<College> colleges = collegeToList.GetData(pathCollege);
       modelBuilder.Entity<College>().HasData(colleges);
 
-           Alumnus alumnus = new Alumnus(1,"maor0749@gmail", "Maor", "Levy", MD5Service.Encrypt("Ml123456"), "0507985556", 525
+           Alumnus alumnus = new Alumnus(1,"maor0749@gmail", "Maor", "Levy", MD5Service.Encrypt("Ml123456"), "0507985556", 3
                 , 3,14, "203053764", "2020", "https://www.linkedin.com/in/maor-levy-565237173/", "מרכז חרידי להכשרה מקצועית", 3, "2018",new DateTime(1993,01,29));
             modelBuilder.Entity<Alumnus>().HasData(alumnus);
 
@@ -286,8 +286,8 @@ namespace AlumniOrtServer.Context
                 .HasForeignKey(tl => tl.StudyProgramId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            JobOffer_StudyProgram JOP1 = new JobOffer_StudyProgram(1, 1);
-            JobOffer_StudyProgram JOP2 = new JobOffer_StudyProgram(1, 2);
+            JobOffer_StudyProgram JOP1 = new JobOffer_StudyProgram(1, 2);
+            JobOffer_StudyProgram JOP2 = new JobOffer_StudyProgram(1, 3);
             modelBuilder.Entity<JobOffer_StudyProgram>().HasData(JOP1,JOP2);
 
 
@@ -311,36 +311,48 @@ namespace AlumniOrtServer.Context
             claim1emp, claim2emp, claim3emp, claim1adm, claim2adm, claim3adm);
 
 
-      Category cat1 = new Category(Constants.CategoryId.Events,Constants.CategoryName.Events, Constants.CategoryHebName.Events);
-           Category cat2 = new Category(Constants.CategoryId.General,Constants.CategoryName.General, Constants.CategoryHebName.General);
-           modelBuilder.Entity<Category>().HasData(cat1, cat2);
+      Category cat1 = new Category(Constants.CategoryId.Events,Constants.CategoryName.Events);
+           Category cat2 = new Category(Constants.CategoryId.News, Constants.CategoryName.News);
+           Category cat3 = new Category(Constants.CategoryId.Education, Constants.CategoryName.Education);
+           modelBuilder.Entity<Category>().HasData(cat1, cat2, cat3);
 
-          modelBuilder.Entity<Logo>()
+      modelBuilder.Entity<Logo>()
             .ToTable("Logos")
             .HasDiscriminator();
 
+      modelBuilder.Entity<Logo>(entity =>
+      {
+        entity.Property(e => e.Size)
+            .HasColumnType("decimal(18,2)")
+            .HasPrecision(18, 2);
+      });
           modelBuilder.Entity<Teacher>()
               .HasOne<TeacherLogo>(l => l.Logo)
               .WithOne(t => t.Teacher);
     }
 
-        public DbSet<Employer> Employers { get; set; }
+    public virtual DbSet<City> Cities { get; set; }
+    public virtual DbSet<College> Colleges { get; set; }
+
+    public virtual DbSet<StudyProgram> StudyPrograms { get; set; }
+    public virtual DbSet<Course_StudyProgram> Course_StudyPrograms { get; set; }
+        public DbSet<Language> Languages { get; set; }
+    //public virtual DbSet<Course> Courses { get; set; }
+    public DbSet<Employer> Employers { get; set; }
         public DbSet<Student> Students { get; set; }//virtual attention
         public DbSet<Alumnus> Alumni { get; set; }
         public DbSet<Admin> Admins { get; set; }
 
         public DbSet<Teacher> Teachers { get; set; }
-        //public DbSet<City> Cities { get; set; }
 
-        public DbSet<JobOffer> JobOffers { get; set; }
+    public DbSet<JobOffer> JobOffers { get; set; }
 
         public DbSet<TeacherLanguage> TeacherLanguages { get; set; }
-        public DbSet<Language> Languages { get; set; }
 
         public DbSet<TeacherCourse> TeacherCourses { get; set; }
-        //public DbSet<Course_StudyProgram> Course_StudyPrograms { get; set; }
-        //public DbSet<Course> Courses { get; set; }
-        public DbSet<ModeStudy_City> ModeStudy_Cities { get; set; }
+    //public DbSet<Course_StudyProgram> Course_StudyPrograms { get; set; }
+    //public DbSet<Course> Courses { get; set; }
+    public DbSet<ModeStudy_City> ModeStudy_Cities { get; set; }
         public DbSet<ModeStudy> ModeStudies { get; set; }
         public DbSet<JobOffer_City> JobOffer_Cities { get; set; }
         public DbSet<JobOffer_StudyProgram> JobOffer_StudyPrograms { get; set; }

@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments';
 import { Observable, shareReplay } from 'rxjs';
-import { AlumnusModel } from './alumnus-model';
+import { AlumnusModel } from '../configs-alumnus/alumnus-model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AlumnusDataService {
   private baseUrl: string = environment.endPointApi + '/alumnus';
 
@@ -29,5 +29,8 @@ export class AlumnusDataService {
   }
   deleteAlumnus(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
+  }
+  GetAlumniTeachersByPagination( pageIndex: number, pageSize: number): Observable<AlumnusModel []> {
+    return this.http.get<AlumnusModel []>(this.baseUrl + `/last-teachers?pageIndex=${pageIndex}&pageSize=${pageSize}`);
   }
 }

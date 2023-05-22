@@ -1,4 +1,4 @@
-<mat-form-field class="control"  appearance="fill">
+<!-- <mat-form-field class="control"  appearance="fill">
   <mat-label>{{ config.label }}</mat-label>
   <input matInput
          aria-label="State"
@@ -12,15 +12,21 @@
       <span>{{option.name}}</span>
     </mat-option>
   </mat-autocomplete>
-  <!-- <ng-container *ngIf="config.errors">
-    <ng-container *ngFor="let error of config.errors">
-      <mat-error
-        *ngIf="
-          control.hasError(error.name) &&
-          control.touched && control.dirty
-        "
-        >{{ error.message }}</mat-error
-      >
-    </ng-container>
-  </ng-container> -->
+
+</mat-form-field> -->
+
+<mat-form-field class="control" appearance="fill">
+  <mat-label>{{ config.label }}</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="autocompleteControl"
+    [matAutocomplete]="auto"
+    (blur)="onBlur()"
+  />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)" [displayWith]="displayFn">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{ option.name }}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>

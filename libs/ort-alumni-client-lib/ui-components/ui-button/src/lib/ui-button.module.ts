@@ -1,8 +1,8 @@
-import { QuicklinkModule } from 'ngx-quicklink';
-import { RouterModule } from '@angular/router';
-import { ButtonComponent } from './button.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { QuicklinkModule } from 'ngx-quicklink';
+import { ButtonComponent } from './button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { UiIconModule } from '@ui-components/ui-icon';
 
@@ -15,6 +15,7 @@ import { UiIconModule } from '@ui-components/ui-icon';
     MatButtonModule,
     UiIconModule,
   ],
-  exports: [QuicklinkModule, ButtonComponent],
+  exports: [ButtonComponent],
+  // exports: [QuicklinkModule, ButtonComponent],
 })
 export class UiButtonModule {}

@@ -1,16 +1,13 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { map, Subject } from 'rxjs';
-import { VaInputInterface } from '@features/feature-va-input';
+
+import { map, Observable, of, Subject } from 'rxjs';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
   forwardRef,
   Input,
-  OnDestroy,
-  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -20,8 +17,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { cloneable, cloneDeep } from '@utils/util-tools';
-import { MatSelectionListChange } from '@angular/material/list';
+import { cloneDeep } from '@utils/util-tools';
 import { MatSelectChange } from '@angular/material/select';
 
 @Component({
@@ -47,29 +43,32 @@ export class VaDorpdownSelectionComponent
 {
   onDestroy$ = new Subject<void>();
   control = new FormControl();
-  @Input() config: VaInputInterface;
+  @Input() config: VaFormInputInterface;
 
-  constructor() {}
+  options$: Observable<any[]>;
+  constructor() {
+  }
 
   onChange = (obj: any) => {};
   onTouched = () => {};
   onValidatorChange = () => {};
   ngOnInit() {
+
+    if (this.isObservable(this.config.data.options)) {
+      this.options$ = this.config.data.options;
+    } else {
+      this.options$ = of(this.config.data.options);
+    }
     this.control.valueChanges
-      .pipe(
-        map((val) => {
-          if (this.control.valid) this.onChange(val);
-          // this.onChange(val);
-        })
+    .pipe(
+      map((val) => {
+        if (this.control.valid) this.onChange(val);
+      })
       )
       .subscribe();
   }
 
-  // ngAfterViewInit(): void {
-  //   this.control.patchValue([]);
-  // }
   writeValue(obj: any): void {
-
     const object = cloneDeep(obj);
     this.control.patchValue(object);
   }
@@ -124,5 +123,9 @@ export class VaDorpdownSelectionComponent
   }
   ngOnDestroy(): void {
     this.onDestroy$.next();
+  }
+
+  isObservable(input: any): boolean {
+    return input instanceof Observable;
   }
 }

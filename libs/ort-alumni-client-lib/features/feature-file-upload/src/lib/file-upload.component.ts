@@ -20,7 +20,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import { Observable, of, Subject, takeUntil, tap } from 'rxjs';
 
 export interface UploadError {
@@ -50,7 +50,7 @@ export class FileUploadComponent
 {
   internalError: Observable<string> | null;
 
-  @Input() config: VaInputInterface;
+  @Input() config: VaFormInputInterface;
   file: File | null = null;
   counter: number;
   isDisabled: boolean;

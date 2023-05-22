@@ -1,4 +1,7 @@
 <section id="categories">
+  <app-hero
+  [withDownScroll]="false"
+  [srcImage]="'/assets/images/articles-area.jpeg'"></app-hero>
   <ort-button
     type="button"
     routeTo="/main/articles/create-article"
@@ -18,7 +21,7 @@
         <mat-radio-button [value]="cType.All" > הכל</mat-radio-button>
           <ng-container *ngFor="let cat of cats">
             <mat-radio-button [value]="cat.id">
-              {{ cat.hebName }}</mat-radio-button
+              {{ cat.name }}</mat-radio-button
             >
           </ng-container>
 
@@ -29,20 +32,7 @@
     <!-- </mat-form-field> -->
 
     <ng-container *ngIf="articles$ | async as arts">
-      <div class="articles">
-        <ng-container *ngFor="let article of arts">
-          <article class="card">
-            <a [routerLink]="['../articles/article-detail', article.id]">
-              <ort-card
-                [heading]="article.heading"
-                [subheading]="article.subheading"
-                [img]="article.img | addEnvVar"
-                [detail]="article.detail"
-              ></ort-card>
-            </a>
-          </article>
-        </ng-container>
-      </div>
+      <app-articles-cards [style]="'grid'" [articles]="arts"></app-articles-cards>
     </ng-container>
   </div>
 </section>

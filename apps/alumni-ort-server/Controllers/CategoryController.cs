@@ -62,7 +62,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
       }
 
     }
-    [HttpDelete]
+
     [Route("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
@@ -74,6 +74,25 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
           return Ok(response);
         }
         return NotFound("לא קיימת ישות למחיקה");
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+
+    }
+    [HttpDelete, Route("deleteAll")]
+    public async Task<ActionResult> DeleteAll()
+    {
+      try
+      {
+        ResponseDTO response = await categoryService.DeleteAll();
+        if (response.Status == StatusCODE.Success)
+        {
+          return Ok(response);
+        }
+
+        return NotFound("לא קיימות ישויות למחיקה");
       }
       catch (Exception e)
       {

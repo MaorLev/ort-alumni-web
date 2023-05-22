@@ -19,6 +19,5 @@ import { BidiModule } from '@angular/cdk/bidi';
     ReadableDatePipeModule,
     BidiModule,
   ],
-  exports: [QuicklinkModule],
 })
 export class ArticleDetailModule {}

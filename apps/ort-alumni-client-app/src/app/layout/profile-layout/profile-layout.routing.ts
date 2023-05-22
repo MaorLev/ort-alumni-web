@@ -1,5 +1,8 @@
+// Angular Modules
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+
+// Components
 import { ProfileLayoutComponent } from './profile-layout.component';
 
 const routes: Routes = [
@@ -14,15 +17,15 @@ const routes: Routes = [
         // canActivate: [AlumniGuard],
       },
       {
-        path: 'student-edit',
+        path: 'profile-teacher',
         loadChildren: () =>
-        import('../../entities/student/edit-student/edit-student.module').then((m) => m.EditStudentModule),
+        import('../../pages/profiles/profile-alumnus-area/profile-teacher/profile-teacher.module').then((m) => m.ProfileTeacherModule),
         // canActivate: [AlumniGuard],
       },
       {
-        path: 'teacher-edit',
+        path: 'profile-student',
         loadChildren: () =>
-        import('../../entities/alumnus-area/teacher/edit-teacher/edit-teacher.module').then((m) => m.EditTeacherModule),
+        import('../../pages/profiles/profile-student/profile-student.module').then((m) => m.ProfileStudentModule),
         // canActivate: [AlumniGuard],
       },
       {
@@ -39,6 +42,7 @@ const routes: Routes = [
       },
     ],
   },
+
 ];
 
 @NgModule({

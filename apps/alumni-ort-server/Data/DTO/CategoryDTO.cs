@@ -13,8 +13,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.DTO
     public int Id { get; set; }
     [JsonProperty(PropertyName = "name")]
     public string Name { get; set; }
-    [JsonProperty(PropertyName = "hebName")]
-    public string HebName { get; set; }
     //[JsonProperty(PropertyName = "articles")]
     //public ICollection<Article> Articles { get; set; }
     

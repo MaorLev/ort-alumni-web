@@ -221,97 +221,97 @@
   },
   {
     "id": 45,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "בסיסי נתונים SQL"
   },
   {
     "id": 46,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "תקשורת נתונים ואבטחת מידע"
   },
   {
     "id": 47,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "MongoDB No SQL"
   },
   {
     "id": 48,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "React"
   },
   {
     "id": 49,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "Angular "
   },
   {
     "id": 50,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "תכנות מונחה עצמים Java"
   },
   {
     "id": 51,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "תכנות מונחה עצמים C Sharp"
   },
   {
     "id": 52,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "מבנה נתונים Java"
   },
   {
     "id": 53,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "מבנה נתונים C Sharp"
   },
   {
     "id": 54,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": ""
   },
   {
     "id": 55,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "Node JS"
   },
   {
     "id": 56,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "PHP"
   },
   {
     "id": 57,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "Asp.Net"
   },
   {
     "id": 58,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "הנחיית פרויקט"
   },
   {
     "id": 59,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "אלגוריתמיקה ותכנות"
   },
   {
     "id": 60,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "מערכות הפעלה ולינוקס"
   },
   {
     "id": 61,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "פייתון"
   },
   {
     "id": 62,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "ניתוח מערכות"
   },
   {
     "id": 63,
-    "StudyProgramId": "14",
+    "StudyProgramId":  14,
     "Name": "בדיקות תוכנה - QA"
   }
 ]

@@ -1,0 +1,61 @@
+<ng-container *ngIf="isTeacherLoaded$ | async; else spinner">
+  <div class="wrapper">
+    <div class="results min-ht">
+      <ng-container *ngIf="bothModeTeachers && bothModeTeachers.length > 0">
+        <div class="cards-title">
+          <h2>מורים המלמדים אונליין וגם בבית התלמיד</h2>
+        </div>
+        <ng-container *ngFor="let both of bothModeTeachers">
+          <div class="card">
+            <app-intro-card-teacher [teacher]="both"> </app-intro-card-teacher>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="onlineTeachers && onlineTeachers.length > 0">
+        <div class="cards-title">
+          <h2>מורים המלמדים אונליין</h2>
+        </div>
+        <ng-container *ngFor="let online of onlineTeachers">
+          <div class="card">
+            <app-intro-card-teacher [teacher]="online">
+            </app-intro-card-teacher>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="frontallyTeachers && frontallyTeachers.length > 0">
+        <div class="cards-title">
+          <h2>מורים המלמדים בבית התלמיד</h2>
+        </div>
+        <ng-container *ngFor="let frontally of frontallyTeachers">
+          <div class="card">
+            <app-intro-card-teacher [teacher]="frontally">
+            </app-intro-card-teacher>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="teacherslength === 0">
+        <div class="not-found min-ht">
+          <h1>לא נמצאו מורים...</h1>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="paginator-buttons">
+    <ort-button
+      class="pgn-btn"
+      className="custom sz-1"
+      (click)="previousPage()"
+    >
+      << עמוד קודם</ort-button
+    >
+    <ort-button class="pgn-btn" className="custom sz-1" (click)="nextPage()">
+      עמוד הבא >></ort-button
+    >
+  </div>
+</ng-container>
+
+<ng-template #spinner>
+  <div class="spinner min-ht">
+    <ort-spinner> </ort-spinner>
+  </div>
+</ng-template>

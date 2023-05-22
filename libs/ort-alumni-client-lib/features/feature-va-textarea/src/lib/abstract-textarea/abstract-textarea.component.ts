@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 
 @Component({
   selector: 'ort-abstract-textarea',
@@ -10,7 +10,7 @@ import { VaInputInterface } from '@features/feature-va-input';
 })
 export class AbstractTextareaComponent implements OnInit {
   @Input() group:FormGroup;
-  @Input() config:VaInputInterface;
+  @Input() config:VaFormInputInterface;
   constructor() {}
 
   ngOnInit(): void {}

@@ -6,8 +6,9 @@ import { ArticlesState, ArticleStore } from './article.store';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, combineLatest } from 'rxjs';
 import {
+  ArticlesCategoryViewType,
   CategoryIdEnum,
-  HashCategoryIdToViewName,
+  // HashCategoryIdToViewName,
   HashCategoryIdToName,
 } from './category-hashmap';
 
@@ -32,7 +33,7 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
   ): Observable<ArticleInterface[]> {
     return this.selectAll({
       filterBy: (entity) =>
-        category != 3 && heading.length > 0
+        category != ArticlesCategoryViewType.All && heading.length > 0
           ? entity.categoryid === category && entity.heading.includes(heading)
           : entity.heading.includes(heading) ,
       limitTo: limitTo,
@@ -61,7 +62,7 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
         limitTo ? limitTo : undefined
       ),
       this.selectArticlesViaCategoryByLimit(
-        CategoryIdEnum.General,
+        CategoryIdEnum.News,
         limitTo ? limitTo : undefined
       ),
     ]).pipe(
@@ -84,9 +85,9 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
         const articlesViaCategory: CategoryInterface = {
           id: categoryid,
           articles: arts,
-          hebName: HashCategoryIdToViewName[categoryid],
           name: HashCategoryIdToName[categoryid],
         };
+        // hebName: HashCategoryIdToViewName[categoryid],
 
         return articlesViaCategory;
       })

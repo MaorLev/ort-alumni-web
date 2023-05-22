@@ -26,8 +26,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       var categories = await m_db.Categories.Select(c => new CategoryDTO()
       {
         Id = c.Id,
-        Name = c.Name,
-        HebName = c.HebName
+        Name = c.Name
       }).ToListAsync();
       return categories;
     }
@@ -36,8 +35,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       var category = await m_db.Categories.Select(c => new CategoryDTO()
       {
         Id = c.Id,
-        Name = c.Name,
-        HebName = c.HebName
+        Name = c.Name
       }).FirstOrDefaultAsync(res => res.Id == id);
       return category;
     }
@@ -45,7 +43,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
     {
       ResponseDTO responeImg = new ResponseDTO();
       responeImg.Status = StatusCODE.Faild;
-      Category original = new Category(category.Id, category.Name, category.HebName);
+      Category original = new Category(category.Id, category.Name);
 
       await m_db.Categories.AddAsync(original);
       int c = await m_db.SaveChangesAsync();
@@ -86,11 +84,26 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       }
       else
       {
-        response.Status = StatusCODE.Error;
+        response.Status = StatusCODE.Faild;
       }
       return response;
     }
 
+    public async Task<ResponseDTO> DeleteAll()
+    {
+      ResponseDTO response = new ResponseDTO() {Status= StatusCODE.Success};
+      List<CategoryDTO> categories = await GetAll();
+      if(categories != null && categories.Count() > 0)
+      foreach(var ctg in categories)
+      {
+          response = await Delete(ctg.Id);
+          if (response.Status != StatusCODE.Success)
+            return response;
+      }
 
+      return response;
+
+
+    }
   }
 }

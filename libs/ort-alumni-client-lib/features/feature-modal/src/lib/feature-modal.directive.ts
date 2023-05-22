@@ -4,18 +4,19 @@ import {
   HostListener,
   Input,
   Output,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { Observable, Subscription } from 'rxjs';
 import { ModalInteface } from './modal.interface';
 
 @Directive({
-  selector: '[ortFeatureModal]'
+  selector: '[ortFeatureModal]',
 })
 export class FeatureModalDirective implements OnDestroy {
   subs = new Subscription();
   @Input('ortFeatureModal') modal_type: ModalInteface;
+  @Input() dynamic_data: { mailforstudy: string, phone: string };
   @Output() afterClosedOutput = new EventEmitter<any>();
   private _value$ = new Observable<string>();
   constructor(public dialog: NgDialogAnimationService) {}
@@ -30,10 +31,15 @@ export class FeatureModalDirective implements OnDestroy {
       backdropClass: this.modal_type?.backdropClass,
       panelClass:
         'bgmp ' + this.modal_type?.panelClass ? this.modal_type.panelClass : '',
-      data: this.modal_type.data,
+      data: this.dynamic_data
+        ? {
+            constant_data: this.modal_type.data,
+            dynamic_data: this.dynamic_data,
+          }
+        : this.modal_type.data,
       animation: this.modal_type.animation || undefined,
       // animation: this.modal_type.animation || { to: "aside" },
-      position: this.modal_type.position || undefined
+      position: this.modal_type.position || undefined,
       // position: this.modal_type.position || {rowStart:'50rem' }
     });
 

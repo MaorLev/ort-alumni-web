@@ -12,9 +12,10 @@ import { SwitcherTabComponent } from './switcher-tab.component';
     CommonModule,
     RouterModule,
     QuicklinkModule,
+    RouterModule,
     MatTabsModule,
     MatIconModule,
   ],
-  exports: [QuicklinkModule, SwitcherTabComponent],
+  exports: [ SwitcherTabComponent],
 })
 export class FeatureSwitcherTabModule {}

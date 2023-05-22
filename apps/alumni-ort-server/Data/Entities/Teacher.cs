@@ -29,7 +29,6 @@ namespace AlumniOrtServer.Models
         [StringLength(50)]
         public string MailForStudy { get; set; }
 
-        //public string Logo { get; set; }// according microsoft is byte[] (type for photo)
         [StringLength(30)]
         public string Rate { get; set; }
         [Required]

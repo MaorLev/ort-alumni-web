@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <ng-container *ngIf="configState.activateGroup$ | async as config">
+    <div class="tab-navigation">
+      <ort-feature-navigation
+        [alignment]="configState.NAGN_DATA.alignment"
+        [routes]="configState.NAGN_DATA.routesData"
+        [routingMethod]="configState.NAGN_DATA.routingMethod"
+        (submitted)="onActiveChange($event)"
+      ></ort-feature-navigation>
+    </div>
+    <div class="content">
+      <ort-form
+        #form
+        [configuration]="config"
+        (submitted)="onSubmit($event)"
+        [dataToPatch]="viewModel"
+      >
+      </ort-form>
+      <ng-content select="ort-button"></ng-content>
+    </div>
+  </ng-container>
+</div>

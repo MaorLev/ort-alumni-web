@@ -17,8 +17,10 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import { map, Subject, takeUntil, tap } from 'rxjs';
-import { VaInputInterface } from './va-input.interface';
+
 
 @Component({
   selector: 'ort-va-input',
@@ -46,7 +48,7 @@ export class VAInputComponent
   type: string | undefined;
 
 
-  @Input() config: VaInputInterface;
+  @Input() config: VaFormInputInterface;
   onDestroy$ = new Subject<void>();
 
   constructor() {

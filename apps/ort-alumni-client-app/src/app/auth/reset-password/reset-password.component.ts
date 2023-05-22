@@ -1,7 +1,7 @@
 import { SessionDataService } from './../session/state/session.data.service';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import { LoginFormConfig } from '../login/login-form-config';
 
 @Component({
@@ -12,7 +12,7 @@ import { LoginFormConfig } from '../login/login-form-config';
 })
 export class ResetPasswordComponent implements OnInit {
   form: FormGroup;
-  emailControl:VaInputInterface = LoginFormConfig.controls["email"];
+  emailControl:VaFormInputInterface = LoginFormConfig.controls["email"];
   constructor(
     private fb: FormBuilder,
     private authService: SessionDataService

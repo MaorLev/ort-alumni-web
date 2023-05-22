@@ -9,7 +9,7 @@ using AlumniOrtServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 
 namespace AlumniOrtServer.Controllers
 {
@@ -167,5 +167,71 @@ namespace AlumniOrtServer.Controllers
       }
 
     }
+
+    [HttpPost]
+    [Route("search-teachers")]
+    public async Task<ActionResult> SearchTeachers([FromBody] SearchRequestDTO searchRequest)
+    {
+      try
+      {
+        List<TeacherDTO> result = await service.SearchTeachers(searchRequest);
+        return Ok(result);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }
+
+    [HttpGet]
+    [Route("last-teachers")]
+    public async Task<ActionResult> GetLastTeachers([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+    {
+      try
+      {
+        List<TeacherDTO> result = await service.GetLastTeachers(new PaginationFilterDTO() { PageIndex = pageIndex, PageSize = pageSize });
+        return Ok(result);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }
   }
 }
+/*    [HttpGet]
+    [Route("teachers-by-course-id")]
+    public async Task<ActionResult> GetTeachersByCourseId([FromQuery] int courseStudyprogramId = 1, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+    {
+      try
+      {
+        if (courseStudyprogramId != 0)
+        {
+          List<TeacherDTO> result = await service.GetTeachersByCourse(courseStudyprogramId, pageIndex, pageSize);
+          return Ok(result);
+        }
+        return BadRequest("need courseStudyprogramId parameter");
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }
+    [HttpGet]
+    [Route("teachers-by-studyprogram-id")]
+    public async Task<ActionResult> GetTeachersByStudyProgramId([FromQuery] int studyprogramId = 0, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+    {
+      try
+      {
+        if(studyprogramId != 0)
+        {
+        List<TeacherDTO> result = await service.GetTeachersByCourse(studyprogramId, pageIndex, pageSize);
+        return Ok(result);
+        }
+        return BadRequest("need studyprogramId parameter");
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }*/

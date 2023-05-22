@@ -4,7 +4,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AlumnusModel } from '../state-alumnus/alumnus-model';
+import { AlumnusModel } from '../configs-alumnus/alumnus-model';
 import { AlumnusQuery } from '../state-alumnus/alumnus.query';
 
 @Component({

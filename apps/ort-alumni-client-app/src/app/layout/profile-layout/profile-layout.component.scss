@@ -18,6 +18,15 @@
   .content {
     height: 100%;
     grid-area: content;
+      .wrapper {
+    max-width: 98%;
+    height: 98%;
+    margin: auto;
+    padding: 1.5rem;
+    // overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
   }
   .side-nav {
     grid-area: side-nav;

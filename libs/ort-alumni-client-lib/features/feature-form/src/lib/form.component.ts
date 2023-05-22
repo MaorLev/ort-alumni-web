@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { FormControlStatus, FormGroup } from '@angular/forms';
 import {
   Component,
@@ -11,7 +10,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilderService } from './form-builder.service';
-import { cloneable, cloneDeep } from '@utils/util-tools';
+import { cloneDeep } from '@utils/util-tools';
 import { FormInterface } from './interfaces/form.interface';
 import {
   combineLatestWith,
@@ -45,27 +44,26 @@ export class FormComponent implements OnChanges {
   }
   constructor(private formBuilderService: FormBuilderService) {}
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes['configuration']) {
       this.initialGroup();
     }
     // for the following scnarios:
     // configuration changes happens:
     // we have a few forms and we move between each other
-    // when initial data apply
-    // dataToPatch changes happens :
     // initial data apply
-    // when the request returns
+    // when dataToPatch changes happens :
+    // initial data apply
+    // the request returns
     if (
       this.dataToPatch &&
       (changes['configuration'] || changes['dataToPatch'])
     ) {
+      // console.log(this.dataToPatch)
       this.group.patchValue(this.dataToPatch);
       this.cloneInitialData();
       this.statusAndGroupChanged();
     }
   }
-
 
   private initialGroup() {
     this.group = this.formBuilderService.buildStepperGroup(
@@ -73,11 +71,7 @@ export class FormComponent implements OnChanges {
     );
   }
   private cloneInitialData() {
-    try {
-      this.initialData = cloneable.deepCopy(this.group.value);
-    } catch {
       this.initialData = cloneDeep(this.group.value);
-    }
   }
 
   private statusAndGroupChanged() {
@@ -87,6 +81,7 @@ export class FormComponent implements OnChanges {
       debounceTime(400),
       startWith([null, 'INVALID']),
       map(([val, status]) => {
+
         if (status != 'VALID') return true;
         return this.areSameValsValidation(val);
       })
@@ -105,7 +100,7 @@ export class FormComponent implements OnChanges {
       const initial = this.initialData;
       const current = currentVal;
       for (const prop in this.configuration.controls) {
-        // if (!(!!current[prop] && !!initial[prop])) continue;
+        if (!!current[prop] && !initial[prop] || !current[prop] && !!initial[prop]) return false;
         if (Array.isArray(current[prop])) {
           if (current[prop].length !== initial[prop].length) return false;
           else if (current[prop].length === 0 && initial[prop].length === 0)
@@ -115,15 +110,19 @@ export class FormComponent implements OnChanges {
               typeof current[prop][0] === 'object' &&
               current[prop][0] !== null
             ) {
-              initial[prop].sort(
+              // Create shallow copies of the arrays before sorting
+              const initialCopy = [...initial[prop]];
+              const currentCopy = [...current[prop]];
+
+              initialCopy.sort(
                 (a: { id: number }, b: { id: number }) => a.id - b.id
               );
-              current[prop].sort(
+              currentCopy.sort(
                 (a: { id: number }, b: { id: number }) => a.id - b.id
               );
-              const arrIsSame = !initial[prop].some(
+              const arrIsSame = !initialCopy.some(
                 (first: any, index: number) =>
-                  first.id != current[prop][index].id
+                  first.id != currentCopy[index].id
               );
               if (arrIsSame === false) return arrIsSame;
             }
@@ -132,16 +131,19 @@ export class FormComponent implements OnChanges {
           typeof current[prop] === 'object' &&
           current[prop] !== null
         ) {
-          if (current[prop]?.id !== initial[prop]?.id) return false;
+          if (!initial[prop] || current[prop]?.id !== initial[prop]?.id)
+            return false;
           else continue;
         } else {
           if (current[prop] !== initial[prop]) return false;
         }
       }
       return true;
-    } catch {
+    } catch (e: any) {
+      // console.log(e)
       alert('Validation problem');
       return true;
     }
   }
+
 }

@@ -10,7 +10,7 @@
       <div class="item" [style]="config.value.styles?.width || ''">
         <ng-container
           *ngComponentOutlet="
-            config.value.component;
+            config.value.component!;
             ndcDynamicInputs: {
               config: config.value,
               group: group
@@ -44,7 +44,7 @@
           >
         </div>
       </ng-container>
-      <mat-error *ngIf="isSubmitted && group.invalid && group.touched"
+      <mat-error *ngIf="isSubmitted && group.invalid"
         >מלא את השדות הנדרשות</mat-error
       >
     </ng-container>

@@ -2,42 +2,74 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertsService } from '@utils/util/core/central-message';
 import { catchError, EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
-import { ResponseMassege } from './response-massege.type';
+import { ResponseMassege } from '../configs-teacher/response-massege.type';
 import { TeacherDataService } from './teacher-data.service';
-import { LogoInterface, TeacherModel } from './teacher-model';
+import { LogoInterface, TeacherModel } from '../configs-teacher/teacher-model';
 import { TeacherStore } from './teacher.store';
-
+import { SearchBarTeacherModel } from '../../../../pages/teaching-portal-area/teaching-portal-features/search-bar-teacher/state/search-bar-teacher.model';
+import { Router } from '@angular/router';
+import { SessionStore } from '../../../../auth/session/state/session.store';
 @Injectable()
 export class TeacherService {
   constructor(
     private teacherDataService: TeacherDataService,
     private store: TeacherStore,
-    private alerts: AlertsService
+    private alerts: AlertsService,
+    private router: Router,
+    private sessionStore: SessionStore
   ) {}
 
+  clearState() {
+    this.store.remove();
+    this.store.setLoading(false);
+  }
+
+  searchAndLoadTeachers(
+    pageIndex: number,
+    pageSize: number,
+    searchDetails: SearchBarTeacherModel
+  ) {
+    return this.teacherDataService
+      .searchTeachers(pageIndex, pageSize, searchDetails)
+      .pipe(
+        map((teachers: TeacherModel[]) => {
+          this.store.set(teachers);
+          this.store.setLoading(true);
+
+          return teachers;
+        }),
+        catchError((error) => {
+          this.store.setLoading(false);
+          return EMPTY;
+        })
+      );
+  }
   loadTeacher(alumnusId: string) {
     return this.teacherDataService.getTeacherByAlumnus(alumnusId).pipe(
-      map((teacher:TeacherModel) => {
-        this.store.update({ teacher: teacher, isTeacherLoaded: true });
+      map((teacher: TeacherModel) => {
+        this.store.set([teacher]);
+        this.store.setLoading(true);
+        this.store.setActive(teacher.id);
         return teacher;
       }),
-      catchError(()=>{
-        this.store.update({ isTeacherLoaded: false });
+      catchError((error) => {
+        this.store.setLoading(false);
         return EMPTY;
-      }),
+      })
     );
   }
-  createTeacher(teacher: TeacherModel, alumnusId: number): Observable<any> {
+
+  createTeacher(teacher: TeacherModel, alumnusId: string): Observable<any> {
     return this.teacherDataService.createTeacher(teacher, alumnusId).pipe(
-      tap(() => {
-        this.store.update({ teacher: teacher, isTeacherLoaded: true });
+      switchMap(() => {
+        return this.loadTeacher(alumnusId);
       })
     );
   }
   updateTeacher(alumnusId: string, teacher: TeacherModel): Observable<any> {
     return this.teacherDataService.updateTeacher(alumnusId, teacher).pipe(
       tap(() => {
-        this.store.update({ teacher: { ...teacher }, isTeacherLoaded: true });
+        this.store.updateActive({ ...teacher });
         this.alerts.dynamicAlert('עודכן בהצלחה');
       })
     );
@@ -46,7 +78,12 @@ export class TeacherService {
   deleteTeacher(alumnusId: string): Observable<any> {
     return this.teacherDataService.deleteTeacher(alumnusId).pipe(
       tap(() => {
-        this.store.update({ teacher: null, isTeacherLoaded: false });
+        // this.store.update({ teacher: null, isTeacherLoaded: false });
+        this.store.remove(alumnusId);
+        this.store.setLoading(false);
+        this.store.setActive(null);
+        this.sessionStore.logout();
+        this.router.navigate(['/']);
       })
     );
   }
@@ -60,7 +97,8 @@ export class TeacherService {
       tap((event) => {
         if (event.type === HttpEventType.Response) {
           teacher = { ...teacher, logo: event.body?.body as LogoInterface };
-          this.store.update({ teacher: teacher });
+          // this.store.update({ teacher: teacher });
+          this.store.updateActive({ ...teacher });
           this.alerts.dynamicAlert('עודכן בהצלחה');
         }
       })
@@ -72,8 +110,6 @@ export class TeacherService {
   ): Observable<HttpEvent<any>> {
     return this.teacherDataService.deleteTeacherLogo(alumnusId).pipe(
       catchError((error, caught) => {
-        console.log(error);
-        console.log(caught);
         this.alerts.dynamicAlert(
           '.שגיאת מערכת: מחיקת תמונה לא התבצעה, אנא נסה מאוחר יותר'
         );
@@ -82,7 +118,8 @@ export class TeacherService {
       tap((event) => {
         if (event.type === HttpEventType.Response) {
           teacher = { ...teacher, logo: null };
-          this.store.update({ teacher: teacher });
+          // this.store.update({ teacher: teacher });
+          this.store.updateActive({ ...teacher });
           this.alerts.dynamicAlert('התמונה הוסרה בהצלחה');
         }
       })

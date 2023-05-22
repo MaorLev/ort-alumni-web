@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 
 @Component({
   selector: 'ort-abstract-currency-input',
@@ -11,6 +11,6 @@ import { VaInputInterface } from '@features/feature-va-input';
 export class AbstractCurrencyInputComponent {
 
   @Input() group:FormGroup;
-  @Input() config:VaInputInterface;
+  @Input() config:VaFormInputInterface;
 
 }

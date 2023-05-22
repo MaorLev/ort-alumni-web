@@ -1,6 +1,6 @@
-export function cloneDeep(obj: unknown) {
-  return JSON.parse(JSON.stringify(obj));
-}
+// export function cloneDeep(obj: unknown) {
+//   return JSON.parse(JSON.stringify(obj));
+// }
 
 
 export class cloneable {
@@ -18,4 +18,22 @@ export class cloneable {
           }, Object.create(Object.getPrototypeOf(source)))
     : source as T;
   }
+}
+interface MyObj {
+  [key: string]: any;
+}
+export function cloneDeep(obj:any) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  const clone: MyObj = Array.isArray(obj) ? [] : {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      clone[key] = cloneDeep(obj[key]);
+    }
+  }
+
+  return clone;
 }

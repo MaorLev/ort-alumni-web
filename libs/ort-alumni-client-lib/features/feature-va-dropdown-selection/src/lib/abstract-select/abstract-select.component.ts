@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { VaInputInterface } from '@features/feature-va-input';
+import { VaFormInputInterface } from '@utils/core/global-interfaces';
 
 @Component({
   selector: 'ort-abstract-select',
@@ -8,10 +8,8 @@ import { VaInputInterface } from '@features/feature-va-input';
   styleUrls: ['./abstract-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AbstractSelectComponent implements OnInit {
+export class AbstractSelectComponent {
   @Input() group:FormGroup;
-  @Input() config:VaInputInterface;
+  @Input() config:VaFormInputInterface;
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AlumnusModule } from '../alumnus.module';
 import { FeatureExpansionPanelModule } from '@features/feature-expansion-panel';
 import { FeatureFormModule } from '@features/feature-form';
 import { AddAlumnusComponent } from './add-alumnus.component';
-import { AlumnusService } from '../state-alumnus/alumnus.service';
 
 @NgModule({
   declarations: [AddAlumnusComponent],
@@ -14,9 +14,9 @@ import { AlumnusService } from '../state-alumnus/alumnus.service';
       { path: '', component: AddAlumnusComponent }
     ]),
     FeatureExpansionPanelModule,
-    FeatureFormModule
+    FeatureFormModule,
+    // AlumnusModule
   ],
-  exports: [AddAlumnusComponent],
-  providers: [AlumnusService]
+  exports: [AddAlumnusComponent]
 })
 export class AddAlumnusModule {}
