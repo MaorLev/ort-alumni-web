@@ -147,7 +147,6 @@ export class EntitiesCommonControls extends ControlsFactory {
       label: 'תאריך לידה',
       validators: [],
       data: {},
-      // data: {property: { value: undefined, disabled: true },},
       errors: [],
     });
   };

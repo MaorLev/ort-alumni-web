@@ -19,18 +19,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../pages/teaching-portal-area/teacher-results/teacher-results.module').then((m) => m.TeacherResultsModule),
       },
-      // {
-      //   path: 'about',
-      //   loadChildren: () =>
-      //     import('../../pages/about/about.module').then((m) => m.AboutModule),
-      // },
-      // {
-      //   path: 'articles',
-      //   loadChildren: () =>
-      //     import('../../pages/article/article.module').then((m) => m.ArticleModule)
-      // },
-
-
     ],
   }
 ];

@@ -8,8 +8,6 @@ import {
   forwardRef,
   Input,
   OnDestroy,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import {
   ControlValueAccessor,

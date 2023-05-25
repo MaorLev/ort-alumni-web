@@ -20,14 +20,11 @@ import { IntroCardTeacherModule } from '../../pages/teaching-portal-area/teachin
 import { SearchBarTeacherModule } from '../../pages/teaching-portal-area/teaching-portal-features/search-bar-teacher/search-bar-teacher.module';
 import { NavBarModule } from '../common-layout/nav-bar/nav-bar.module';
 
-// Third-party Modules
-// import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [LayoutTeachingPortalComponent],
   imports: [
     CommonModule,
-    // QuicklinkModule,
     RouterModule,
     LayoutTeachingPortalRoutingModule,
     TopBarModule,

@@ -34,7 +34,6 @@ export interface StepForm {
   preference?: StepPreference;
   stepHeader: StepHeader;
   stepGroupForm: FormInterface;
-  // controls: Record<string, VaFormInputInterface>;
   stepContent: StepContent;
   stepButtons: StepButtons[];
 }

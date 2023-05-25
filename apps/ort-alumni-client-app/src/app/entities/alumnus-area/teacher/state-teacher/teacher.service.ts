@@ -78,7 +78,6 @@ export class TeacherService {
   deleteTeacher(alumnusId: string): Observable<any> {
     return this.teacherDataService.deleteTeacher(alumnusId).pipe(
       tap(() => {
-        // this.store.update({ teacher: null, isTeacherLoaded: false });
         this.store.remove(alumnusId);
         this.store.setLoading(false);
         this.store.setActive(null);
@@ -97,7 +96,6 @@ export class TeacherService {
       tap((event) => {
         if (event.type === HttpEventType.Response) {
           teacher = { ...teacher, logo: event.body?.body as LogoInterface };
-          // this.store.update({ teacher: teacher });
           this.store.updateActive({ ...teacher });
           this.alerts.dynamicAlert('עודכן בהצלחה');
         }
@@ -118,7 +116,6 @@ export class TeacherService {
       tap((event) => {
         if (event.type === HttpEventType.Response) {
           teacher = { ...teacher, logo: null };
-          // this.store.update({ teacher: teacher });
           this.store.updateActive({ ...teacher });
           this.alerts.dynamicAlert('התמונה הוסרה בהצלחה');
         }

@@ -139,14 +139,6 @@ export class AdminFormConfig {
           controls: {},
         },
         stepButtons: [
-          // {
-          //   name: 'routeTo',
-          //   label: 'התחבר למערכת',
-          //   routeTo: '/auth/login',
-          //   role: ButtonAction.RouteTo,
-          //   color: 'accent',
-          //   className: 'mat-raised-button'
-          // },
         ],
       },
     ],

@@ -34,7 +34,6 @@ export class StudentService {
   createStudent(student: StudentModel): Observable<any> {
     return this.studentDataService.createStudent(student).pipe(
       tap(() => {
-        // this.store.update({ student: student, isStudentLoaded: true });
         this.store.add(student, { loading: true });
         this.store.setActive(student.id);
       })
@@ -43,7 +42,6 @@ export class StudentService {
   updateStudent(studentId: string, student: StudentModel): Observable<any> {
     return this.studentDataService.updateStudent(studentId, student).pipe(
       tap(() => {
-        // this.store.update({ student: { ...student }, isStudentLoaded: true });
         this.store.updateActive({...student});
         this.alerts.dynamicAlert('עודכן בהצלחה');
       })

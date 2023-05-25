@@ -13,10 +13,6 @@ export enum ArticlesCategoryViewType {
   News = CategoryIdEnum.News,
   All = 50
 }
-// export const HashCategoryIdToViewName:Record<number, string> = {
-//   [CategoryIdEnum.Events] : "אירועים",
-//   [CategoryIdEnum.General] : "כללי"
-// }
 export const HashCategoryNameToId:Record<string, number> = {
   [CategoryNameEnum.Events] : 3,
   [CategoryNameEnum.News] : 4,

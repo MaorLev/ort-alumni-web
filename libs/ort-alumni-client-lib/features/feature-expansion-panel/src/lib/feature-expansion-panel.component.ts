@@ -102,7 +102,6 @@ export class FeatureExpansionPanelComponent implements OnInit, OnDestroy {
     for(const control in stepGroup.controls) {
       this.formGroup.setControl(control, stepGroup.controls[control]);
     }
-    // this.formGroup.patchValue(stepGroup.value);
   }
 
   onStepSubmit(stepGroup: FormGroup) {

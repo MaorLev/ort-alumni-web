@@ -8,7 +8,6 @@ import { map, combineLatest } from 'rxjs';
 import {
   ArticlesCategoryViewType,
   CategoryIdEnum,
-  // HashCategoryIdToViewName,
   HashCategoryIdToName,
 } from './category-hashmap';
 
@@ -22,7 +21,7 @@ export interface categoryLimit {
 })
 @Injectable({ providedIn: 'root' })
 export class ArticleQuery extends QueryEntity<ArticlesState> {
-  
+
   constructor(protected override store: ArticleStore) {
     super(store);
   }
@@ -91,8 +90,6 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
           articles: arts,
           name: HashCategoryIdToName[categoryid],
         };
-        // hebName: HashCategoryIdToViewName[categoryid],
-
         return articlesViaCategory;
       })
     );

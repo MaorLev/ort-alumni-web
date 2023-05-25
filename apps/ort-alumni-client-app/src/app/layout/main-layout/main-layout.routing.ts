@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 // Components
 import { MainLayoutComponent } from './../main-layout/main-layout.component';
-import { QuicklinkModule } from 'ngx-quicklink';
 
 const routes: Routes = [
   {

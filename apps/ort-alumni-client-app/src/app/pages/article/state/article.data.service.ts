@@ -22,9 +22,7 @@ export class ArticleDataService {
     );
   }
 
-  // createArticle(article: ArticleInterface): Observable<ArticleInterface> {
-  //   return this.httpClient.post<ArticleInterface>('/article/create', article)
-  // }
+
   createArticle(
     article: ArticleInterface
   ): Observable<HttpEvent<ArticleInterface>> {

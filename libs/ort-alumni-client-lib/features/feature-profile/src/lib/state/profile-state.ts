@@ -14,7 +14,7 @@ export class ProfileState {
   constructor(initialConfig: ProfileStateType) {
     this.NAGN_DATA = initialConfig.NavigationData;
     this.GROUPS = initialConfig.groups;
-    //להוריד את התנאי לאחר מימוש מלא של כלל הישויות והורדת הסימן שאלה מהאקטיב
+    //להוריד את התנאי לאחר מימוש מלא של כלל הישויות והורדת הסימן שאלה מהאקטיב TODO :
     if (initialConfig.activeGroup) {
       const initial = this.findGroupByName(initialConfig.activeGroup);
 
@@ -30,7 +30,6 @@ export class ProfileState {
   }
 
   backToDefaultActive() {
-    // this._activateGroup.next({...this.INITIAL_ACTIVE});
     this._activateGroup.next(cloneDeep(this.INITIAL_ACTIVE));
   }
 

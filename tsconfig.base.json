@@ -25,9 +25,6 @@
       "@features/dynamic-form": [
         "libs/ort-alumni-client-lib/features/dynamic-form/src/index.ts"
       ],
-      "@features/expand-header-panel": [
-        "libs/ort-alumni-client-lib/features/feature-expand-header-panel/src/index.ts"
-      ],
       "@features/feature-check-list": [
         "libs/ort-alumni-client-lib/features/feature-check-list/src/index.ts"
       ],
@@ -76,9 +73,6 @@
       "@features/feature-va-phone": [
         "libs/ort-alumni-client-lib/features/feature-va-phone/src/index.ts"
       ],
-      "@features/feature-va-radio": [
-        "libs/ort-alumni-client-lib/features/feature-va-radio/src/index.ts"
-      ],
       "@features/feature-va-select-auto-complete": [
         "libs/ort-alumni-client-lib/features/feaure-va-select-auto-complete/src/index.ts"
       ],
@@ -88,23 +82,14 @@
       "@features/feature-youtube-player": [
         "libs/ort-alumni-client-lib/features/feature-youtube-player/src/index.ts"
       ],
-      "@features/paginator": [
-        "libs/ort-alumni-client-lib/features/feature-paginator/src/index.ts"
-      ],
       "@features/va-chips-select": [
         "libs/ort-alumni-client-lib/features/va-chips-select/src/index.ts"
-      ],
-      "@features/va-slide-toggle": [
-        "libs/ort-alumni-client-lib/features/feature-va-slide-toggle/src/index.ts"
       ],
       "@ort-alumni-web/ort-alumni-client-lib-features-feature-va-currency-input": [
         "libs/ort-alumni-client-lib/features/feature-va-currency-input/src/index.ts"
       ],
       "@ui-components/progress": [
         "libs/ort-alumni-client-lib/ui-components/progress/src/index.ts"
-      ],
-      "@ui-components/ui-bar": [
-        "libs/ort-alumni-client-lib/ui-components/ui-bar/src/index.ts"
       ],
       "@ui-components/ui-button": [
         "libs/ort-alumni-client-lib/ui-components/ui-button/src/index.ts"

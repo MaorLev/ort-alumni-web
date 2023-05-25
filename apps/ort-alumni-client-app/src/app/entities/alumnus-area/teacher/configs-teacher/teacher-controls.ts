@@ -157,7 +157,6 @@ export class TeacherControls extends EntitiesCommonControls {
       subtype: 'currency',
       placeholder: '0',
       validators: [],
-      // validators: [Validators.required, Validators.maxLength(3)],
       data: {},
       errors: [
         {

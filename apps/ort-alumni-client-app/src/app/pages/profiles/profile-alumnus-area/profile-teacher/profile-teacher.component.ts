@@ -8,7 +8,6 @@ import { TeacherQuery } from '../../../../entities/alumnus-area/teacher/state-te
 import { TeacherService } from '../../../../entities/alumnus-area/teacher/state-teacher/teacher.service';
 import { SessionQuery } from '../../../../auth/session/state/session.query';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { ID } from '@datorama/akita';
 import { AlertsService } from '@utils/util/core/central-message';
 import { TeacherModel } from '../../../../entities/alumnus-area/teacher/configs-teacher/teacher-model';
 import { AbstractEditTeacherService } from '../../../../entities/alumnus-area/teacher/edit-teacher/abstract-edit-teacher.service';
@@ -40,7 +39,6 @@ export class ProfileTeacherComponent extends AbstractEditTeacherService implemen
     this.alumnusId = this.sessionQuery.getUserId();
 
     this.teacher$ = this.teacherQuery.selectActiveTeacher$;
-    // if (!this.teacherQuery.isTeacherLoaded())
       this.service
         .loadTeacher(this.alumnusId)
         .pipe(takeUntil(this.onDestroy$))

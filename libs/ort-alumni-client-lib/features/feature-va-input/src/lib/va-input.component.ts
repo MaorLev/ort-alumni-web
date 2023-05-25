@@ -68,10 +68,7 @@ export class VAInputComponent
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          // if (this.formControl.valid) {
             this.onChange(val);
-          // }
-
         })
       )
       .subscribe();

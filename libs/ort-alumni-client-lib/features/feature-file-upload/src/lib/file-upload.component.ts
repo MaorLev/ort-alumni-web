@@ -85,9 +85,6 @@ export class FileUploadComponent
     this.description = this.config.data?.nameBefore
       ? this.config.data.nameBefore
       : value?.description
-      // ? value.description
-      // : undefined;
-    // this.Description = this._service.Description;
     this.file = null;
   }
 
@@ -102,7 +99,6 @@ export class FileUploadComponent
   deleteFile() {
     const file = null;
     this.host.nativeElement.value = '';
-    // this.nameBefore = undefined;
     this.description = undefined;
     this.file = file;
     this.counter = 1;
@@ -124,7 +120,6 @@ export class FileUploadComponent
   }
 
   validate(control: FormControl): ValidationErrors | null {
-    // this.formControl = control;
     const validators: ValidatorFn[] = [];
 
 

@@ -118,7 +118,6 @@ implements ControlValueAccessor, MatFormFieldControl<string>, OnDestroy
       const {
         value: { area, exchange, subscriber },
       } = this.parts;
-      // return new PhoneInterface(area, exchange, subscriber);
       return area + exchange + subscriber;
 
     }

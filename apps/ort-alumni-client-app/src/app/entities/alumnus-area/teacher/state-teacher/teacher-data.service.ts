@@ -37,17 +37,10 @@ export class TeacherDataService {
 
   createTeacher(teacher: TeacherModel, alumnusId: string): Observable<any> {
     teacher.alumnusid = alumnusId;
-    // teacher.courses = this.ArrayToIdsArray(teacher.courses);
+
     return this.http.post(this.baseUrl, teacher);
   }
 
-  // ArrayToIdsArray(arr: any[]): number[] {
-  //   const newArr: number[] = [];
-  //   arr.forEach((item) => {
-  //     if (!!item && item.id) newArr.push(item.id);
-  //   });
-  //   return newArr;
-  // }
 
   AddLogo(
     file: FormData,
@@ -71,12 +64,6 @@ export class TeacherDataService {
     });
   }
 
-  //  async AddOnleyImageNew(file:FormData, header:any)
-  //  {
-  //    return this.http.post(this.baseUrl+"/Add",file,{
-  //      headers: new HttpHeaders().set('Authorization', header)
-  //       }).toPromise<any>();
-  //  };
   searchTeachers(pageIndex: number, pageSize: number, searchDetails: SearchBarTeacherModel): Observable<Array<TeacherModel>> {
     const body = {
       pageIndex,

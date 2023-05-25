@@ -36,7 +36,6 @@ export class AlumnusService {
   createAlumnus(alumnus: AlumnusModel): Observable<any> {
     return this.alumnusDataService.createAlumnus(alumnus).pipe(
       tap(() => {
-        // this.store.update({ alumnus: alumnus, isAlumnusLoaded: true });
         this.store.add(alumnus, { loading: true });
         this.store.setActive(alumnus.id);
       })
@@ -45,7 +44,6 @@ export class AlumnusService {
   updateAlumnus(alumnusId: string, alumnus: AlumnusModel): Observable<any> {
     return this.alumnusDataService.updateAlumnus(alumnusId, alumnus).pipe(
       tap(() => {
-        // this.store.update({ alumnus: { ...alumnus }, isAlumnusLoaded: true });
         this.store.updateActive({...alumnus});
         this.alerts.dynamicAlert('עודכן בהצלחה');
       })

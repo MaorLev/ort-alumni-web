@@ -21,7 +21,6 @@ export class ArticleService {
     private staticEntitiesDataQuery:StaticEntitiesDataQuery
   ) {
     this.loadArticlesAndCategories().pipe(shareReplay(1)).subscribe();
-    // this.loadArticlesAndCategories().pipe(take(1)).subscribe();
   }
   //SERVER API
   getAllArticles(): Observable<ArticleInterface[]> {

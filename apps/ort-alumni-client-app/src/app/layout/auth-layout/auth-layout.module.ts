@@ -10,8 +10,6 @@ import { AuthLayoutRoutingModule } from './auth-layout.routing';
 import { HeaderModule } from '../common-layout/header/header.module';
 import { TopBarModule } from '../common-layout/top-bar/top-bar.module';
 
-// Third-party Modules
-// import { QuicklinkModule } from 'ngx-quicklink';
 
 @NgModule({
   declarations: [AuthLayoutComponent],
@@ -19,7 +17,6 @@ import { TopBarModule } from '../common-layout/top-bar/top-bar.module';
     CommonModule,
     HeaderModule,
     AuthLayoutRoutingModule,
-    // QuicklinkModule,
     TopBarModule,
   ]
 })

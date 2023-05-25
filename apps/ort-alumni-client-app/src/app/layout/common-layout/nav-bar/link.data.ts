@@ -32,12 +32,3 @@ export const linkData:Link [] = [
     order: 4
   },
 ];
-
-
-    // {
-    //   label: 'החשבון שלי',
-    //   name: 'account',
-    //   route: '/profile',
-    //   order: 1,
-    //   showIfLogin: true,
-    // },

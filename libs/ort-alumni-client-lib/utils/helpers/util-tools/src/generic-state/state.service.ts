@@ -18,7 +18,6 @@ export class StateService<T> {
         this._state.getValue(),
         action
       );
-      // const newObject = {...nextState};
       const newObject = cloneDeep(nextState);
       this._state.next(newObject);
     });

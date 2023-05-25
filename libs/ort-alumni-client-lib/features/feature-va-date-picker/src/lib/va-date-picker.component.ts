@@ -29,7 +29,6 @@ import { Subject } from 'rxjs';
   styleUrls: ['./va-date-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    // MAT_DATEPICKER_SCROLL_STRATEGY_FACTORY_PROVIDER,
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting:  forwardRef(() => VaDatePickerComponent),
@@ -57,7 +56,6 @@ export class VaDatePickerComponent
       .pipe(
         takeUntil(this.onDestroy$),
         map((val) => {
-          // if(this.formControl.valid)
             this.onChange(val);
         })
       )

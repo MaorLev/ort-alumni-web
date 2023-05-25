@@ -1,6 +1,5 @@
-import { take } from 'rxjs';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ModalService, ModalInteface, MAP_MODAL } from '@features/feature-modal';
+import { ModalInteface, MAP_MODAL } from '@features/feature-modal';
 
 
 @Component({
@@ -11,8 +10,4 @@ import { ModalService, ModalInteface, MAP_MODAL } from '@features/feature-modal'
 })
 export class FooterComponent {
   mapConfig: ModalInteface = MAP_MODAL;
-  constructor(
-
-    ) {}
-
 }

@@ -16,6 +16,5 @@ import { UiIconModule } from '@ui-components/ui-icon';
     UiIconModule,
   ],
   exports: [ButtonComponent],
-  // exports: [QuicklinkModule, ButtonComponent],
 })
 export class UiButtonModule {}
