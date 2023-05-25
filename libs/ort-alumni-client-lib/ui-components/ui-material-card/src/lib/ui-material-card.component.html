@@ -20,7 +20,7 @@
         </div>
       </ng-container>
 
-      <div *ngIf="currency">לשעה  {{ currency | currency: 'ILS' }}</div>
+      <div *ngIf="currency">לשעה {{ currency | currency: 'ILS' }}</div>
     </mat-card-subtitle>
   </mat-card-title-group>
   <mat-card-content *ngIf="longText">
@@ -33,11 +33,10 @@
     </div>
     <mat-divider inset></mat-divider>
     <div class="lists">
-
       <ng-container *ngIf="chipsList1 && chipsList1.length !== 0">
         <div class="chips-list">
           <div class="items">
-            <span class="pre-content"> תחומי לימוד  </span>
+            <span class="pre-content"> תחומי לימוד </span>
             <ng-container *ngFor="let chip of chipsList1">
               <ort-ui-material-chips [text]="chip.name" color="accent">
               </ort-ui-material-chips>

@@ -22,6 +22,10 @@ export interface categoryLimit {
 })
 @Injectable({ providedIn: 'root' })
 export class ArticleQuery extends QueryEntity<ArticlesState> {
+  
+  constructor(protected override store: ArticleStore) {
+    super(store);
+  }
   selectAreArticlesLoaded$ = this.select((state) => {
     return state.areArticlesLoaded;
   });
@@ -98,7 +102,5 @@ export class ArticleQuery extends QueryEntity<ArticlesState> {
   isLoading():Observable<boolean>{
     return this.selectLoading();
   }
-  constructor(protected override store: ArticleStore) {
-    super(store);
-  }
+
 }

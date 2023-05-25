@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Third-party Modules
-import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 import { JwtModule } from '@auth0/angular-jwt';
 
 // App Specific Service

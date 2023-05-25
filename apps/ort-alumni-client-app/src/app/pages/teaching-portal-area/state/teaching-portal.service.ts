@@ -16,18 +16,7 @@ export class TeachingPortalService {
     private articleService: ArticleService
   ) {}
 
-  // this.articlesByCategory$ = this.articleService
-  //       .selectArticlesViaCategoryByLimit(
-  //         HashCategoryNameToId[this.categoryName as string],
-  //         10
-  //       )
-  //       .pipe(
-  //         map((res) => {
-  //           const arr: CategoryInterface[] = [];
-  //           arr.push(res);
-  //           return arr;
-  //         })
-  //       );
+
   InitializeTeachingPortal(): void {
     combineLatest([
       this.Get8NewestEducationArticles(),
@@ -38,8 +27,8 @@ export class TeachingPortalService {
         TeacherModel[]
       ]) => {
         // Handle the response from both API calls
-        console.log('Newest education articles:', newestEducationArticles);
-        console.log('Newest alumni teachers:', newestAlumniTeachers);
+        // console.log('Newest education articles:', newestEducationArticles);
+        // console.log('Newest alumni teachers:', newestAlumniTeachers);
         const state: TeachingPortalState = {
           VMTeachingPortal: {
             invitatationLinks: [],

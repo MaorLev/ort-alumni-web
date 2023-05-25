@@ -9,7 +9,7 @@ import { TeacherModel } from '../../../entities/alumnus-area/teacher/configs-tea
 
 @Injectable()
 export class TeacherPortalQuery extends Query<TeachingPortalState> {
-  isLoggedIn$ = this.select((state) => state.loading);
+  isLoading$ = this.select((state) => state.loading);
 
   constructor(
     protected override store: TeachingPortalStore

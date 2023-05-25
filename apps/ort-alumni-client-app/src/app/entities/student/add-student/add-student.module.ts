@@ -4,6 +4,7 @@ import { AddStudentComponent } from './add-student.component';
 import { RouterModule } from '@angular/router';
 import { FeatureFormModule } from '@features/feature-form';
 import { FeatureExpansionPanelModule } from '@features/feature-expansion-panel';
+import { HeroModule } from '../../../layout/common-layout/hero/hero.module';
 // import { StudentModule } from '../student.module';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FeatureExpansionPanelModule } from '@features/feature-expansion-panel';
     ]),
     FeatureExpansionPanelModule,
     FeatureFormModule,
+    HeroModule
     // StudentModule
   ],
   exports: [AddStudentComponent],

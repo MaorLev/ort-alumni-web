@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FeatureExpansionPanelModule } from '@features/feature-expansion-panel';
 import { FeatureFormModule } from '@features/feature-form';
 import { TeacherPanelDataConfig } from '../configs-teacher/teacher-panel-data.config';
+import { HeroModule } from '../../../../layout/common-layout/hero/hero.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TeacherPanelDataConfig } from '../configs-teacher/teacher-panel-data.co
       { path: '', component: AddTeacherComponent }
     ]),
     FeatureExpansionPanelModule,
-    FeatureFormModule
+    FeatureFormModule,
+    HeroModule
   ],
   providers: [TeacherPanelDataConfig],
 })
