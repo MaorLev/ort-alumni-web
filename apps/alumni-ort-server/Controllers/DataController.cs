@@ -58,7 +58,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
     public IActionResult GetCourses()
     {
       var courses = _dataService.GetCourses();
-      if (courses  == null || !courses.Any())
+      if (courses == null || !courses.Any())
       {
         return NotFound();
       }
@@ -77,7 +77,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
 
       return Ok(languages);
     }
-  [HttpGet("categories")]
+    [HttpGet("categories")]
     public IActionResult GetCategories()
     {
       var categories = _dataService.GetCategories();
@@ -90,4 +90,3 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
     }
   }
 }
-

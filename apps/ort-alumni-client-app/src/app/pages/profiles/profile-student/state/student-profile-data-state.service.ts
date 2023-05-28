@@ -8,7 +8,6 @@ import { StaticEntitiesDataQuery } from '../../../../entities/static-entities-ba
 import { CityInterface } from '../../../../entities/static-entities-backend-data/static-entities-interfaces/city.Interface';
 import { StudyProgramInterface } from '../../../../entities/static-entities-backend-data/static-entities-interfaces/study-program.interface';
 import { CollegeInterface } from '../../../../entities/static-entities-backend-data/static-entities-interfaces/college.interface';
-import { Observable } from 'rxjs';
 
 
 @Injectable()

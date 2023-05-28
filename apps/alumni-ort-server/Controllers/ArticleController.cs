@@ -16,7 +16,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
   public class ArticleController : ControllerBase
   {
     private readonly IArticleService articleService;
- 
+
     public ArticleController(IArticleService articleService)
     {
       this.articleService = articleService;
@@ -54,7 +54,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
         ResponseDTO respone = await articleService.Add(formCollection);
         if (respone.Status == StatusCODE.Success)
         {
-        return Created("", respone.body);
+          return Created("", respone.body);
         }
         return StatusCode(500, "A part from the request faild or not completed");
 

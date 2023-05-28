@@ -1,7 +1,6 @@
 import { Validators } from '@angular/forms';
 import { VaFormInputInterface } from '@utils/core/global-interfaces';
 import { CategoryInterface } from '../state/category.interface';
-import { Observable } from 'rxjs';
 import { requiredFileType } from '@features/feature-file-upload';
 import { ControlsFactory } from '../../../app-helpers/controls-factory';
 

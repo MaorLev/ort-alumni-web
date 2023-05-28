@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Services
 {
-    public interface IStudentService
-    {
-        public Task<ResponseDTO> Add(StudentDTO student);
+  public interface IStudentService
+  {
+    public Task<ResponseDTO> Add(StudentDTO student);
 
-        public Task<List<StudentDTO>> GetAll();
+    public Task<List<StudentDTO>> GetAll();
 
-        public Task<StudentDTO> GetStudent(int id);
+    public Task<StudentDTO> GetStudent(int id);
 
-        public Task<ResponseDTO> Update(int id, StudentDTO student);
+    public Task<ResponseDTO> Update(int id, StudentDTO student);
 
-        public Task<ResponseDTO> DeleteStudent(int id);
-        public Task<bool> Validation(string emai);
-    }
+    public Task<ResponseDTO> DeleteStudent(int id);
+    public Task<bool> Validation(string emai);
+  }
 }

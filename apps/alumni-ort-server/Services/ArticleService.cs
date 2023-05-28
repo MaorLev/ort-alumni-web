@@ -64,7 +64,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
           Id = cat.Id,
           Name = cat.Name
 
-        }).FirstOrDefaultAsync(c => c.Id == articleFromDB.CategoryId); 
+        }).FirstOrDefaultAsync(c => c.Id == articleFromDB.CategoryId);
         //for (int i = 0; i < articleFromDB.CategoryId; i++)
         //{
         //  if (articleFromDB.CategoryId == 1)
@@ -124,7 +124,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         return ImgPath;
       }
       return "-1";
-     }
+    }
 
     public async Task<ResponseDTO> DeleteArticle(int id)
     {
@@ -155,8 +155,11 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       var article = await m_db.Articles.Select(s => new ArticleDTO()
       {
         Id = s.Id,
-        Category = new CategoryDTO() { Id = s.Category.Id,
-          Name = s.Category.Name  },
+        Category = new CategoryDTO()
+        {
+          Id = s.Category.Id,
+          Name = s.Category.Name
+        },
         Date = s.Date,
         Detail = s.Detail,
         Heading = s.Heading,
@@ -211,13 +214,13 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       string newpath = null;
       DateTime currentDate = DateTime.Now;
 
-      if(file.Count != 0)
+      if (file.Count != 0)
       {
-      newpath = file.First().FileName;
-      string imgPath = FixPathImg(newpath, currentDate);
+        newpath = file.First().FileName;
+        string imgPath = FixPathImg(newpath, currentDate);
 
-      if(imgPath != "-1" && "ImgArticle/StaticFiles/" + imgPath != OriginalArticle.Img)
-        responeImg = imgService.Update(file, "ImgArticles", OriginalArticle.Img, imgPath);
+        if (imgPath != "-1" && "ImgArticle/StaticFiles/" + imgPath != OriginalArticle.Img)
+          responeImg = imgService.Update(file, "ImgArticles", OriginalArticle.Img, imgPath);
 
         newpath = newpath.Trim('"').Replace(" ", "");
       }
@@ -231,7 +234,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       ArticleFromDB.Detail = form["detail"].ToString() ?? OriginalArticle.Detail;
       ArticleFromDB.Author = form["author"].ToString() ?? OriginalArticle.Author;
       ArticleFromDB.Date = currentDate;
-      ArticleFromDB.CategoryId= Convert.ToInt32(form["categoryid"].ToString() ?? OriginalArticle.CategoryId.ToString());
+      ArticleFromDB.CategoryId = Convert.ToInt32(form["categoryid"].ToString() ?? OriginalArticle.CategoryId.ToString());
 
       m_db.Entry(ArticleFromDB).State = EntityState.Modified;
 

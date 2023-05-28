@@ -16,7 +16,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
   styleUrls: ['./spinner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent {
   @Input() color: ThemePalette;
   @Input() mode: ProgressSpinnerMode;
   @Input() value:number;
@@ -25,6 +25,4 @@ export class SpinnerComponent implements OnInit {
     this.mode = 'indeterminate';
     this.value = 50;
   }
-
-  ngOnInit(): void {}
 }

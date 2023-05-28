@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AdminFormConfig } from './add-admin-form.config';
 
 @Component({
@@ -10,8 +10,6 @@ import { AdminFormConfig } from './add-admin-form.config';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddAdminComponent implements OnInit {
+export class AddAdminComponent {
   constructor(public adminFormConfig: AdminFormConfig) {}
-
-  ngOnInit(): void {}
 }

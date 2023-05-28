@@ -2,10 +2,10 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { ScrollManagerDirective } from './scroll-manager.directive';
 
 @Directive({
-  selector: '[appScrollAnchor]',
+  selector: '[ortScrollAnchor]',
 })
 export class ScrollAnchorDirective {
-  @Input('appScrollAnchor') id: string | number;
+  @Input('ortScrollAnchor') id: string | number;
 
   constructor(private manager: ScrollManagerDirective) {}
 

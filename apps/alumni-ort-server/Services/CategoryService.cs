@@ -91,15 +91,15 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
 
     public async Task<ResponseDTO> DeleteAll()
     {
-      ResponseDTO response = new ResponseDTO() {Status= StatusCODE.Success};
+      ResponseDTO response = new ResponseDTO() { Status = StatusCODE.Success };
       List<CategoryDTO> categories = await GetAll();
-      if(categories != null && categories.Count() > 0)
-      foreach(var ctg in categories)
-      {
+      if (categories != null && categories.Count() > 0)
+        foreach (var ctg in categories)
+        {
           response = await Delete(ctg.Id);
           if (response.Status != StatusCODE.Success)
             return response;
-      }
+        }
 
       return response;
 

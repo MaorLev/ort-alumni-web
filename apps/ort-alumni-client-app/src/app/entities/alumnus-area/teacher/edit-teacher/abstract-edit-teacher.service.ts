@@ -6,7 +6,6 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { TeacherModel } from '../configs-teacher/teacher-model';
 import { TeacherQuery } from '../state-teacher/teacher.query';
 import { TeacherService } from '../state-teacher/teacher.service';
-import { CityInterface } from '../../../static-entities-backend-data/static-entities-interfaces/city.Interface';
 
 @Injectable()
 export abstract class AbstractEditTeacherService {

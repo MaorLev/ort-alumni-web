@@ -13,13 +13,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace AlumniOrtServer.Services
 {
-    public class ImgService : IImgService
+  public class ImgService : IImgService
+  {
+    private readonly AlumniDBContext m_db;
+    public ImgService(AlumniDBContext mdb)
     {
-        private readonly AlumniDBContext m_db;
-        public ImgService(AlumniDBContext mdb )
-        {
-            m_db = mdb;
-        }
+      m_db = mdb;
+    }
 
     public ResponseDTO Upload(IFormFileCollection files, string img, string currentDate)
     {
@@ -65,7 +65,7 @@ namespace AlumniOrtServer.Services
       {
         if (response.shortBody != originalPath)
         {
-         isDeleteed =  Delete(originalPath);
+          isDeleteed = Delete(originalPath);
 
         }
       }

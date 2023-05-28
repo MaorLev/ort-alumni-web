@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Models;
+using AlumniOrtServer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Data.Entities
 {
-    public class Role
+  public class Role
+  {
+
+    public Role()
     {
 
-        public Role()
-        {
-
-        }
-
-        public Role(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-        [Key]
-        [Column("Id")]
-        public int Id { get; set; }
-        [Column("Name")]
-        public string Name { get; set; }
-        public virtual ICollection<User> Users { get; set; }
     }
+
+    public Role(int id, string name)
+    {
+      Id = id;
+      Name = name;
+    }
+    [Key]
+    [Column("Id")]
+    public int Id { get; set; }
+    [Column("Name")]
+    public string Name { get; set; }
+    public virtual ICollection<User> Users { get; set; }
+  }
 }

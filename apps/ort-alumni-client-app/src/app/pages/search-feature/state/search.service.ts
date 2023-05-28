@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  // ModalService,
   ModalInteface,
   searchConfig,
 
 } from '@features/feature-modal';
-import { switchMap, take } from 'rxjs';
-// import { searchDataService } from './search.data.service';
 
 
 @Injectable({

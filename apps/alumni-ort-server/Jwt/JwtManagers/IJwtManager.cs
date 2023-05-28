@@ -1,4 +1,4 @@
-﻿using AlumniOrtServer.Data.DTO;
+using AlumniOrtServer.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Jwt.JwtManagers
 {
-    public interface IJwtManager
-    {
+  public interface IJwtManager
+  {
 
-        JwtResultDTO GenerateToken(Claim[] claims);
+    JwtResultDTO GenerateToken(Claim[] claims);
 
-    }
+  }
 }

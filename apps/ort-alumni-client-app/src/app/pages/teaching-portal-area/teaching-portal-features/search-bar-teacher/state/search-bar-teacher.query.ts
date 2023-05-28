@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Query, QueryEntity } from '@datorama/akita';
-import { Observable, of } from 'rxjs';
+import { Query } from '@datorama/akita';
+import { Observable } from 'rxjs';
 import {
   SearchBarTeacherState,
   SearchBarTeacherStore,
 } from './search-bar-teacher.store';
 import { CityInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/city.Interface';
 import { ModeStudyInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/mode-study.interface';
-import { CollegeInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/college.interface';
 import { CourseByStudyProgramInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/course-by-studyprogram.interface';
 import { StudyProgramInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/study-program.interface';
 import { SearchBarTeacherModel } from './search-bar-teacher.model';

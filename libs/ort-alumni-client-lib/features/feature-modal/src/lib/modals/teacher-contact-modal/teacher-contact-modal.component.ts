@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Inject,
 } from '@angular/core';
@@ -54,7 +53,7 @@ import { ModalInteface } from '../../modal.interface';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeacherContactModalComponent implements OnInit {
+export class TeacherContactModalComponent {
   constructor(
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA)
@@ -63,8 +62,6 @@ export class TeacherContactModalComponent implements OnInit {
       dynamic_data: any;
     }
   ) {}
-
-  ngOnInit(): void {}
 
   makeCall() {
     if (this.data.dynamic_data && this.data.dynamic_data.phone) {

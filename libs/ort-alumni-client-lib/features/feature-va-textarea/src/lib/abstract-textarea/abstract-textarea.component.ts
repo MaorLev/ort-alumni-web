@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { VaFormInputInterface } from '@utils/core/global-interfaces';
 
@@ -8,10 +8,7 @@ import { VaFormInputInterface } from '@utils/core/global-interfaces';
   styleUrls: ['./abstract-textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AbstractTextareaComponent implements OnInit {
+export class AbstractTextareaComponent {
   @Input() group:FormGroup;
   @Input() config:VaFormInputInterface;
-  constructor() {}
-
-  ngOnInit(): void {}
 }

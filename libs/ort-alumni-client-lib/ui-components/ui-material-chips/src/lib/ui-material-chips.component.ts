@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'ort-ui-material-chips',
@@ -6,12 +6,8 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   styleUrls: ['./ui-material-chips.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UiMaterialChipsComponent implements OnInit {
+export class UiMaterialChipsComponent {
 
   @Input() text: string;
   @Input() color: 'primary' | 'accent' | 'warn';
-  
-  constructor() {}
-
-  ngOnInit(): void {}
 }

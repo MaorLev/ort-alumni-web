@@ -26,15 +26,15 @@
               },
               {
                 "sourceTag": "type:data-accesses",
-                "onlyDependOnLibsWithTags": ["type:data-accesses", "type:util","type:shared-evironments"]
+                "onlyDependOnLibsWithTags": ["type:data-accesses", "type:util","type:shared-environments"]
               },
               {
                 "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": ["type:util","type:shared-evironments"]
+                "onlyDependOnLibsWithTags": ["type:util","type:shared-environments"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": ["type:feature","type:ui", "type:util", "type:data-accesses", "type:shared-assets"]
+                "onlyDependOnLibsWithTags": ["type:feature","type:ui", "type:util", "type:data-accesses", "type:shared-assets","type:shared-environments"]
               }
             ]
           }
@@ -44,9 +44,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {
-        "no-unused-vars": "warn"
-      }
+      "rules": {}
     },
     {
       "files": ["*.js", "*.jsx"],

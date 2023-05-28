@@ -1,9 +1,8 @@
 import { Observable } from "rxjs";
 import { CourseByStudyProgramInterface } from "../../../../../entities/static-entities-backend-data/static-entities-interfaces/course-by-studyprogram.interface";
 import { VaFormInputInterface } from "@utils/core/global-interfaces";
-import { Validators } from "@angular/forms";
 import { TeacherControls } from "../../../../../entities/alumnus-area/teacher/configs-teacher/teacher-controls";
-import { StudyProgramInterface } from "apps/ort-alumni-client-app/src/app/entities/static-entities-backend-data/static-entities-interfaces/study-program.interface";
+import { StudyProgramInterface } from "../../../../../entities/static-entities-backend-data/static-entities-interfaces/study-program.interface";
 
 export class SearchBarTeacherControls extends TeacherControls {
   constructor() {

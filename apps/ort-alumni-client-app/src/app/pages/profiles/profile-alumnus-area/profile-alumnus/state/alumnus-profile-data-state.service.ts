@@ -8,9 +8,7 @@ import { StaticEntitiesDataQuery } from '../../../../../entities/static-entities
 import { CityInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/city.Interface';
 import { StudyProgramInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/study-program.interface';
 import { CollegeInterface } from '../../../../../entities/static-entities-backend-data/static-entities-interfaces/college.interface';
-import { Observable, of } from 'rxjs';
-import { cloneDeep } from '@utils/util-tools';
-// export interface
+
 @Injectable()
 export class AlumnusProfileDataState extends ProfileAbstractDataState {
   readonly stateName: string;

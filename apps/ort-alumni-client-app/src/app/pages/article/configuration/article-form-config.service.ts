@@ -4,7 +4,6 @@ import { FormInterface } from '@features/feature-form';
 
 import { ArticleService } from '../state/article.service';
 import { ArticleControls } from './article-controls';
-import { CategoryInterface } from '../state/category.interface';
 
 @Injectable()
 export class ArticleFormConfigService {

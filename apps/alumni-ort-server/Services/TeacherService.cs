@@ -412,8 +412,8 @@ namespace AlumniOrtServer.Services
           if (searchRequest.ModeStudyIds.Contains(ModeStudiesId.Frontally))
           {
             query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.ModeStudyIds.Contains(mc.ModeStudyId)));
-            if(searchRequest.Cities != null && searchRequest.Cities.Length > 0)
-            query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.Cities.Select(c => c.Id).Contains(mc.CityId)));
+            if (searchRequest.Cities != null && searchRequest.Cities.Length > 0)
+              query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.Cities.Select(c => c.Id).Contains(mc.CityId)));
           }
           // If only "Online" is received, then cities are not checked
           else if (searchRequest.ModeStudyIds.Contains(ModeStudiesId.Online))
@@ -477,11 +477,11 @@ namespace AlumniOrtServer.Services
             })
             .ToListAsync();
 
-        if(teachers != null && teachers.Count() > 0)
+        if (teachers != null && teachers.Count() > 0)
         {
           foreach (var teacher in teachers)
           {
-            if(teacher.ModeStudyIDs != null && teacher.ModeStudyIDs.Length > 1)
+            if (teacher.ModeStudyIDs != null && teacher.ModeStudyIDs.Length > 1)
             {
               teacher.ModeStudyIDs = teacher.ModeStudyIDs.Distinct().ToArray();
             }
@@ -710,11 +710,13 @@ namespace AlumniOrtServer.Services
                   {
                     AlumnusId = t.AlumnusId,
                     Id = t.Id,
-                    Courses = 
+                    Courses =
                             t
                                 .TeacherCourses
-                                .Select(cs => new Course_StudyProgramDTO { Id = cs.Course_StudyProgram.Id,
-                                StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+                                .Select(cs => new Course_StudyProgramDTO
+                                {
+                                  Id = cs.Course_StudyProgram.Id,
+                                  StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
                                   Name = cs.Course_StudyProgram.Name
                                 })
                                 .ToArray()
@@ -761,7 +763,7 @@ namespace AlumniOrtServer.Services
         ModeStudyIDs = t.ModeStudy_Cities.Select(ms => ms.ModeStudyId).Distinct().ToArray(),
       }).ToList();
 
-        return teachers;
+      return teachers;
     }
 
 

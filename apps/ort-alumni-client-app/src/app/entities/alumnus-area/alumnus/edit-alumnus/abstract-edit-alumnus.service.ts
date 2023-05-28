@@ -41,7 +41,6 @@ export abstract class AbstractEditAlumnusService {
   }
 
   onDeleteAlumnus() {
-    debugger;
     this.service
       .deleteAlumnus(this.alumnusId )
       .pipe(takeUntil(this.onDestroy$))

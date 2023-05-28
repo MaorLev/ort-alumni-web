@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Services
 {
-    public interface IJobOfferService
-    {
-        public Task<ResponseDTO> Add(JobOfferDTO jobOffer);
+  public interface IJobOfferService
+  {
+    public Task<ResponseDTO> Add(JobOfferDTO jobOffer);
 
-        public Task<List<JobOfferDTO>> GetAll();
+    public Task<List<JobOfferDTO>> GetAll();
 
-        public Task<List<JobOfferDTO>> GetJobsByEmployer(int id);
-        public Task<JobOfferDTO> GetSingleJob(int id);
+    public Task<List<JobOfferDTO>> GetJobsByEmployer(int id);
+    public Task<JobOfferDTO> GetSingleJob(int id);
 
-        public Task<ResponseDTO> Update(int id, JobOfferDTO jobOffer);
+    public Task<ResponseDTO> Update(int id, JobOfferDTO jobOffer);
 
-        public Task<ResponseDTO> Delete(int id);
-    }
+    public Task<ResponseDTO> Delete(int id);
+  }
 }

@@ -1,7 +1,6 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';

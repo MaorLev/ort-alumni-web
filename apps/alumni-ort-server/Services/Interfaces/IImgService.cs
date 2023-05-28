@@ -11,7 +11,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services.Interfaces
   {
 
     public ResponseDTO Upload(IFormFileCollection file, string Img, string currentDate);
-    public ResponseDTO Update(IFormFileCollection file, string Img,string originalPath, string currentDate);
+    public ResponseDTO Update(IFormFileCollection file, string Img, string originalPath, string currentDate);
     public bool Delete(string path);
   }
 }

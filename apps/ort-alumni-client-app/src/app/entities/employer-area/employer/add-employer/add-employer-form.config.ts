@@ -8,8 +8,6 @@ import { ButtonAction } from '@ui-components/ui-button'
 })
 export class AddEmployerFormConfig {
 
-  constructor() { }
-
   readonly employerForm: StepsForm = {
     groupStepsName: 'EmployerForm',
     groupId: 1,

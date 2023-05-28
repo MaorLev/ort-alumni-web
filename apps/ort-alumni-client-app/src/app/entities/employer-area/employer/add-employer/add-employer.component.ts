@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AddEmployerFormConfig } from './add-employer-form.config';
 
 @Component({
@@ -7,8 +7,6 @@ import { AddEmployerFormConfig } from './add-employer-form.config';
   styleUrls: ['./add-employer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEmployerComponent implements OnInit {
+export class AddEmployerComponent {
   constructor(public employerFormConfig:AddEmployerFormConfig) {}
-
-  ngOnInit(): void {}
 }

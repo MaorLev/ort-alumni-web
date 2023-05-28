@@ -12,7 +12,6 @@ import { CityInterface } from '../../../static-entities-backend-data/static-enti
 import { LanguageInterface } from '../../../static-entities-backend-data/static-entities-interfaces/language.interface';
 import { CourseByStudyProgramInterface } from '../../../static-entities-backend-data/static-entities-interfaces/course-by-studyprogram.interface';
 import { ModeStudyInterface } from '../../../static-entities-backend-data/static-entities-interfaces/mode-study.interface';
-import { SimpleInterface } from '@features/va-chips-select';
 
 export class TeacherControls extends EntitiesCommonControls {
   constructor() {

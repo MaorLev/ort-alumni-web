@@ -8,7 +8,6 @@ import { ButtonAction } from '@ui-components/ui-button'
 })
 export class AdminFormConfig {
 
-  constructor() { }
   readonly adminForm: StepsForm = {
     groupStepsName: 'AdminForm',
     groupId: 1,

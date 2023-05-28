@@ -11,5 +11,4 @@ import { VaFormInputInterface } from '@utils/core/global-interfaces';
 export class AbstractSelectComponent {
   @Input() group:FormGroup;
   @Input() config:VaFormInputInterface;
-  constructor() {}
 }

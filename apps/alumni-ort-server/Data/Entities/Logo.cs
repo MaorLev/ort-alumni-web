@@ -13,7 +13,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
     {
 
     }
-    public Logo(int id, byte [] bytes, string description, string fileExtension, decimal size )
+    public Logo(int id, byte[] bytes, string description, string fileExtension, decimal size)
     {
       Id = id;
       Bytes = bytes;

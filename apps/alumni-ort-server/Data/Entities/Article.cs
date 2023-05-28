@@ -13,7 +13,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Data.Entities
     {
 
     }
-    public Article(int id, string heading,string subheading,DateTime date,string img, string originalImgName, string detail, int categoryId, string author )
+    public Article(int id, string heading, string subheading, DateTime date, string img, string originalImgName, string detail, int categoryId, string author)
     {
       Id = id;
       Heading = heading;

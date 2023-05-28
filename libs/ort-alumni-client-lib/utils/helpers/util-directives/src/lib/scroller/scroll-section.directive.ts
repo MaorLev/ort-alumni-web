@@ -2,10 +2,10 @@ import { Directive, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 import { ScrollManagerDirective } from './scroll-manager.directive';
 
 @Directive({
-  selector: '[appScrollSection]'
+  selector: '[ortScrollSection]'
 })
 export class ScrollSectionDirective implements OnInit, OnDestroy {
-  @Input('appScrollSection') id: string | number;
+  @Input('ortScrollSection') id: string | number;
 
   constructor(
      private host: ElementRef<HTMLElement>,

@@ -46,8 +46,6 @@ export class VaDorpdownSelectionComponent
   @Input() config: VaFormInputInterface;
 
   options$: Observable<any[]>;
-  constructor() {
-  }
 
   onChange = (obj: any) => {};
   onTouched = () => {};

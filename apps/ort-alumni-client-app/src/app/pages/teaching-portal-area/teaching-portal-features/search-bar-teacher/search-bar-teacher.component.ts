@@ -3,13 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { SearchBarTeacherDataFormService } from './state/search-bar-teacher-data-form.service';
 import { FormGroup } from '@angular/forms';
 import {
   FormBuilderService,
-  FormComponent,
   FormInterface,
 } from '@features/feature-form';
 import { SearchBarTeacherStore } from './state/search-bar-teacher.store';
