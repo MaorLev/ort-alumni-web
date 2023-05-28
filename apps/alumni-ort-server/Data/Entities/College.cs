@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AlumniOrtServer.Models
@@ -18,6 +17,5 @@ namespace AlumniOrtServer.Models
     [Required]
     [StringLength(50)]
     public string Name { get; set; }
-    //public virtual ICollection<User> users { get; set; }
   }
 }

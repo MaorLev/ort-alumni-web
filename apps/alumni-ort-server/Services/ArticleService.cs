@@ -49,35 +49,14 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
         await m_db.Articles.AddAsync(articleFromDB);
 
         int c = await m_db.SaveChangesAsync();
-        //string categoryName = "";
-        //string categoryHebName = "";
-        //List<CategoryDTO> categories = await m_db.Categories.Select(cat => new CategoryDTO()
-        //{
-        //  Id = cat.Id,
-        //  Name = cat.Name,
-        //  HebName = cat.HebName,
-        //  Articles = cat.Articles
 
-        //}).ToListAsync();
         CategoryDTO category = await m_db.Categories.Select(cat => new CategoryDTO()
         {
           Id = cat.Id,
           Name = cat.Name
 
         }).FirstOrDefaultAsync(c => c.Id == articleFromDB.CategoryId);
-        //for (int i = 0; i < articleFromDB.CategoryId; i++)
-        //{
-        //  if (articleFromDB.CategoryId == 1)
-        //  {
-        //    categoryName = Constants.CategoryName.Events;
-        //    categoryHebName = Constants.CategoryHebName.Events;
-        //  }
-        //  else if (articleFromDB.CategoryId == 2)
-        //  {
-        //    categoryName = Constants.CategoryName.General;
-        //    categoryHebName = Constants.CategoryHebName.General;
-        //  }
-        //}
+
         ArticleDTO articleToTransfer = new ArticleDTO()
         {
           Id = articleFromDB.Id,

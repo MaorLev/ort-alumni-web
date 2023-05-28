@@ -24,14 +24,13 @@ namespace AlumniOrtServer.Controllers
     }
     [HttpGet]
     [Route("{alumnusId?}")]
-    public async Task<ActionResult> Get(int alumnusId = 0)//קבלה
+    public async Task<ActionResult> Get(int alumnusId = 0)
     {
       try
       {
         if (alumnusId < 1)
         {
           List<TeacherDTO> result = await service.GetAll();
-          //service.GetData();
           return Ok(result);
         }
         TeacherDTO resultTeacher = await service.Get(alumnusId);
@@ -199,39 +198,3 @@ namespace AlumniOrtServer.Controllers
     }
   }
 }
-/*    [HttpGet]
-    [Route("teachers-by-course-id")]
-    public async Task<ActionResult> GetTeachersByCourseId([FromQuery] int courseStudyprogramId = 1, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
-    {
-      try
-      {
-        if (courseStudyprogramId != 0)
-        {
-          List<TeacherDTO> result = await service.GetTeachersByCourse(courseStudyprogramId, pageIndex, pageSize);
-          return Ok(result);
-        }
-        return BadRequest("need courseStudyprogramId parameter");
-      }
-      catch (Exception e)
-      {
-        return StatusCode(500, e);
-      }
-    }
-    [HttpGet]
-    [Route("teachers-by-studyprogram-id")]
-    public async Task<ActionResult> GetTeachersByStudyProgramId([FromQuery] int studyprogramId = 0, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
-    {
-      try
-      {
-        if(studyprogramId != 0)
-        {
-        List<TeacherDTO> result = await service.GetTeachersByCourse(studyprogramId, pageIndex, pageSize);
-        return Ok(result);
-        }
-        return BadRequest("need studyprogramId parameter");
-      }
-      catch (Exception e)
-      {
-        return StatusCode(500, e);
-      }
-    }*/

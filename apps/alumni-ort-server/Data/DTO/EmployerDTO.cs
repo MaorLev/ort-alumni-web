@@ -27,7 +27,6 @@ namespace AlumniOrtServer.Data.DTO
 
     [JsonProperty(PropertyName = "password")]
     public string Password { get; set; }
-    //public string Logo { get; set; }
 
     [JsonProperty(PropertyName = "contactrole")]
     public string ContactRole { get; set; }
@@ -44,10 +43,7 @@ namespace AlumniOrtServer.Data.DTO
     [JsonProperty(PropertyName = "jobofferids")]
     public List<int> JobOffersIDs { get; set; }
 
-    //[JsonProperty(PropertyName = "joboffers")]
     public List<JobOfferDTO> JobOffers { get; set; }
 
-    //[JsonProperty(PropertyName = "roleid")]
-    //public int RoleId { get; set; }
   }
 }

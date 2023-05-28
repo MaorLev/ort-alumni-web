@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ButtonAction } from '@ui-components/ui-button';
 import { StepsForm } from '@features/feature-expansion-panel';
 import { AlumnusControls } from './alumnus-controls';
-import { Observable } from 'rxjs';
 import { CityInterface } from '../../../static-entities-backend-data/static-entities-interfaces/city.Interface';
 import { StudyProgramInterface } from '../../../static-entities-backend-data/static-entities-interfaces/study-program.interface';
 import { CollegeInterface } from '../../../static-entities-backend-data/static-entities-interfaces/college.interface';

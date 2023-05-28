@@ -69,19 +69,19 @@ namespace AlumniOrtServer
             x.SaveToken = true;
             x.TokenValidationParameters =
                       new TokenValidationParameters
-                  {
-                    ValidateIssuer = true,
-                    ValidIssuer = jwtConfig.Issuer, //all the parameters for validate
-                          ValidateIssuerSigningKey = true,
-                    IssuerSigningKey =
+                      {
+                        ValidateIssuer = true,
+                        ValidIssuer = jwtConfig.Issuer, //all the parameters for validate
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey =
                               new SymmetricSecurityKey(Encoding
                                       .ASCII
                                       .GetBytes(jwtConfig.Secret)),
-                    ValidAudience = jwtConfig.Audience,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.FromMinutes(1)
-                  };
+                        ValidAudience = jwtConfig.Audience,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.FromMinutes(1)
+                      };
           });
 
       services.AddScoped<IJwtManager, JwtManager>();
@@ -92,11 +92,11 @@ namespace AlumniOrtServer
                       .AddPolicy("EnableCORS",
                       builder =>
                       {
-                    builder
-                              .AllowAnyOrigin()
-                              .AllowAnyHeader()
-                              .AllowAnyMethod();
-                  });
+                        builder
+                                  .AllowAnyOrigin()
+                                  .AllowAnyHeader()
+                                  .AllowAnyMethod();
+                      });
           });
       services
           .Configure<FormOptions>(o =>
@@ -156,10 +156,10 @@ namespace AlumniOrtServer
           .UseEndpoints(endpoints =>
           {
             endpoints.MapControllers();
-                  /*                endpoints.MapGet("/", async context =>
-              {
-                  await context.Response.WriteAsync("Hello World!");
-              });*/
+            /*                endpoints.MapGet("/", async context =>
+        {
+            await context.Response.WriteAsync("Hello World!");
+        });*/
           });
     }
   }

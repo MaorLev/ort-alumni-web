@@ -11,8 +11,6 @@ namespace AlumniOrtServer.DTO
 {
   public class StudentDTO
   {
-    ///*        public int Id = 0;//check it*/
-    ///
     [JsonProperty(PropertyName = "id")]
     public int Id { get; set; }
     [JsonProperty(PropertyName = "email")]
@@ -39,15 +37,5 @@ namespace AlumniOrtServer.DTO
     public StudyProgram StudyProgram { get; set; }
     [JsonProperty(PropertyName = "city")]
     public City City { get; set; }
-    //[JsonProperty(PropertyName = "collegename")]
-    //public string CollegeName { get; set; }
-    //[JsonProperty(PropertyName = "collegeid")]
-    //public int CollegeId { get; set; }
-    //[JsonProperty(PropertyName = "studyprogramname")]
-    //public string StudyProgramName { get; set; }
-    //[JsonProperty(PropertyName = "studyprogramid")]
-    //public int StudyProgramId { get; set; }
-    //[JsonProperty(PropertyName = "roleid")]
-    //public int RoleId { get; set; }
   }
 }

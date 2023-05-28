@@ -158,10 +158,7 @@ namespace AlumniOrtServer.Context
           .WithMany(l => l.TeacherLanguages)
           .HasForeignKey(tl => tl.LanguageId)
           .OnDelete(DeleteBehavior.Restrict);
-      /*
-                  Language language1 = new Language(1, "אנגלית");
-                  Language language2 = new Language(2, "צרפתית");*/
-      /*Language.data*/
+
       JsonToList<Language> languageToList = new JsonToList<Language>();
       string pathLanguage = "Language.data.json";
       List<Language> languages = languageToList.GetData(pathLanguage);
@@ -206,12 +203,6 @@ namespace AlumniOrtServer.Context
       .WithMany(l => l.Course_StudyProgram)
       .HasForeignKey(tl => tl.StudyProgramId)
       .OnDelete(DeleteBehavior.Restrict);
-
-
-      /*
-                  Course_StudyProgram course1 = new Course_StudyProgram(1,1 ,"C Sharp");
-                  Course_StudyProgram course3 = new Course_StudyProgram(2,1 ,"SQL");
-                  Course_StudyProgram course2 = new Course_StudyProgram(3,2 ,"Autocad");*/
 
       JsonToList<Course_StudyProgram> CoursestoList = new JsonToList<Course_StudyProgram>();
       string coursesPath = "Courses.data.json";
@@ -337,9 +328,8 @@ namespace AlumniOrtServer.Context
     public virtual DbSet<StudyProgram> StudyPrograms { get; set; }
     public virtual DbSet<Course_StudyProgram> Course_StudyPrograms { get; set; }
     public DbSet<Language> Languages { get; set; }
-    //public virtual DbSet<Course> Courses { get; set; }
     public DbSet<Employer> Employers { get; set; }
-    public DbSet<Student> Students { get; set; }//virtual attention
+    public DbSet<Student> Students { get; set; }
     public DbSet<Alumnus> Alumni { get; set; }
     public DbSet<Admin> Admins { get; set; }
 
@@ -350,8 +340,6 @@ namespace AlumniOrtServer.Context
     public DbSet<TeacherLanguage> TeacherLanguages { get; set; }
 
     public DbSet<TeacherCourse> TeacherCourses { get; set; }
-    //public DbSet<Course_StudyProgram> Course_StudyPrograms { get; set; }
-    //public DbSet<Course> Courses { get; set; }
     public DbSet<ModeStudy_City> ModeStudy_Cities { get; set; }
     public DbSet<ModeStudy> ModeStudies { get; set; }
     public DbSet<JobOffer_City> JobOffer_Cities { get; set; }

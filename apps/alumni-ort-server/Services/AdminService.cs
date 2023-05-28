@@ -32,7 +32,7 @@ namespace AlumniOrtServer.Services
       await m_db.Admins.AddAsync(AdminFromDB);
 
       int c = await m_db.SaveChangesAsync();
-      //var admin1 = m_db.Users.Include("Role").Where(x => x.Id == AdminFromDB.Id).FirstOrDefault();
+
       ResponseDTO response = new ResponseDTO();
 
       if (c > 0)
@@ -50,30 +50,6 @@ namespace AlumniOrtServer.Services
       response.Status = StatusCODE.Faild;
       return response;
     }
-
-    /*        private bool PersistClaimsForAdmin(Admin persistAdmin)
-            {
-                Claim name = new Claim//מייל נראה הגיוני יותר  אבל למה שם דווקא ?
-                {
-                    Type = "Name",
-                    Value = persistAdmin.FirstName,
-                    UserId = persistAdmin.Id
-                };
-
-                Claim role = new Claim
-                {
-                    Type = "Role",
-                    //Value = persistAdmin.RoleId.ToString(),
-                    Value = persistAdmin.Role.Name,//probably better true
-                    UserId = persistAdmin.Id
-                };
-
-                m_db.Claim.Add(name);//למה להשתמש בשניים ?
-                m_db.Claim.Add(role);
-
-                int c = m_db.SaveChanges();
-                return c > 1;//checkk
-            }*/
 
     public async Task<ResponseDTO> DeleteAdmin(int id)
     {
@@ -138,15 +114,7 @@ namespace AlumniOrtServer.Services
           Status = StatusCODE.Error,
           StatusText = $"Item with id {id} not found in DB"
         };
-      }//checkkk it !!
-      /*            else if (AdminFromDB.Password != MD5Service.Encrypt(admin.Password))
-                  {
-                      return new ResponseDTO()
-                      {
-                          Status = StatusCode.Error,
-                          StatusText = $"Item {admin.FirstName} with SN {admin.Password} Not match to DB"
-                      };
-                  }*/
+      }
 
       AdminFromDB.Mail = OriginalAdmin.Mail;
       AdminFromDB.FirstName = admin.FirstName ?? OriginalAdmin.FirstName;

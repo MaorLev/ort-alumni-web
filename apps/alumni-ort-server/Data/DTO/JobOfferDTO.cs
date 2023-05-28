@@ -21,9 +21,6 @@ namespace AlumniOrtServer.Data.DTO
     public string Phone { get; set; }
     [JsonProperty(PropertyName = "publish")]
     public bool Publish { get; set; }
-
-
-    //public virtual Employer Employer { get; set; }
     [JsonProperty(PropertyName = "employerid")]
     public int EmployerId { get; set; }
     [JsonProperty(PropertyName = "logo")]

@@ -32,7 +32,6 @@ namespace AlumniOrtServer.Controllers
         if (emplyerid < 1)
         {
           List<JobOfferDTO> result = await service.GetAll();
-          //service.GetData();
           return Ok(result);
         }
         List<JobOfferDTO> resultJobOffer = await service.GetJobsByEmployer(emplyerid);
@@ -48,7 +47,7 @@ namespace AlumniOrtServer.Controllers
 
     [HttpGet]
     [Route("GetSingle/{id}")]
-    public async Task<ActionResult> GetSingle(int id)//קבלה
+    public async Task<ActionResult> GetSingle(int id)
     {
       try
       {

@@ -23,7 +23,7 @@ namespace AlumniOrtServer.Controllers
     }
     [HttpGet]
     [Route("{id?}")]
-    public async Task<ActionResult> Get(int id = 0)//קבלה
+    public async Task<ActionResult> Get(int id = 0)
     {
       try
       {

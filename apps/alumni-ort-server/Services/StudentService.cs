@@ -52,30 +52,6 @@ namespace AlumniOrtServer.Services
 
     }
 
-    /*        private bool PersistClaimsForStudent(Student persistStudent)
-            {
-                Claim name = new Claim//מייל נראה הגיוני יותר  אבל למה שם דווקא ?
-                {
-                    Type = "Name",
-                    Value = persistStudent.FirstName,
-                    UserId = persistStudent.Id
-                };
-
-                Claim role = new Claim
-                {
-                    Type = "Role",
-                    //Value = persistAdmin.RoleId.ToString(),
-                    Value = persistStudent.Role.Name,//probably better true
-                    UserId = persistStudent.Id
-                };
-
-                m_db.Claim.Add(name);//למה להשתמש בשניים ?
-                m_db.Claim.Add(role);
-
-                int c = m_db.SaveChanges();
-                return c > 1;
-            }*/
-
     public async Task<List<StudentDTO>> GetAll()
     {
 
@@ -115,18 +91,6 @@ namespace AlumniOrtServer.Services
 
     public async Task<StudentDTO> GetStudent(int id)
     {
-
-      /*            Student res = from s1 in m_db.Student
-                            join u2 in m_db.User
-                                on s1.UserId equals u2.Id
-                            select new
-                            {
-                                Emp_IdCard = u2.Id,
-                                Emp_Salary = u2.Mail
-                            };*/
-
-
-      //return m_db.Students.Where(i => i.Id == id).FirstOrDefault();
       try
       {
         StudentDTO student = await m_db.Students.Select(s => new StudentDTO()

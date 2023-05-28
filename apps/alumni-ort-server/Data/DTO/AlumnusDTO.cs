@@ -45,7 +45,5 @@ namespace AlumniOrtServer.Data.DTO
     public int TeacherId { get; set; }
     [JsonProperty(PropertyName = "teacher")]
     public TeacherDTO Teacher { get; set; }
-    //[JsonProperty(PropertyName = "roleId")]
-    //public int RoleId { get; set; }
   }
 }

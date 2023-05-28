@@ -252,15 +252,7 @@ namespace AlumniOrtServer.Services
             Status = StatusCODE.Error,
             StatusText = $"Item with id {id} not found in DB"
           };
-        }//checkkk it !!
-        /*                else if (OriginalEmployer.Password != MD5Service.Encrypt(employer.Password))
-                        {
-                            return new ResponseDTO()
-                            {
-                                Status = StatusCode.Error,
-                                StatusText = $"Item {employer.FirstName} with SN {employer.Password} Not match to DB"
-                            };
-                        }*/
+        }
 
         EmployerToDB.Mail = OriginalEmployer.Mail;
         EmployerToDB.FirstName = employer.FirstName ?? OriginalEmployer.FirstName;
@@ -270,7 +262,6 @@ namespace AlumniOrtServer.Services
         EmployerToDB.CompanyAddress = employer.CompanyAddress ?? OriginalEmployer.CompanyAddress;
         EmployerToDB.ContactRole = employer.ContactRole ?? OriginalEmployer.ContactRole;
         EmployerToDB.Id = Convert.ToInt32(employer.Id.ToString() ?? OriginalEmployer.Id.ToString());
-        //EmployerToDB.Logo = employer.Logo ?? OriginalEmployer.Logo;
         EmployerToDB.RoleId = RolesId.Employer;
         EmployerToDB.TypeOfBusiness = employer.TypeOfBusiness ?? OriginalEmployer.TypeOfBusiness;
 

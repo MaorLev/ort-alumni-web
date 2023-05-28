@@ -18,14 +18,13 @@ namespace AlumniOrtServer.Controllers
     }
     [HttpGet]
     [Route("{id?}")]
-    public async Task<ActionResult> Get(int id = 0)//קבלה
+    public async Task<ActionResult> Get(int id = 0)
     {
       try
       {
         if (id < 1)
         {
           List<AdminDTO> result = await service.GetAll();
-          //service.GetData();
           return Ok(result);
         }
         AdminDTO resultAdmin = await service.GetAdmin(id);

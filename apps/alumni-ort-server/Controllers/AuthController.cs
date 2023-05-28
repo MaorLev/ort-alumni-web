@@ -86,34 +86,5 @@ namespace AlumniOrtServer.Controllers
 
     //     return Ok();
     // }
-
-    /*        public IActionResult Login([FromBody] Login user)
-            {
-                if (user == null)
-                {
-                    return BadRequest("Invalid client request");
-                }
-
-                if (user.UserName == "maor" && user.Password == "123")
-                {
-                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-                    var tokeOptions = new JwtSecurityToken(
-                        issuer: "http://localhost:5000",
-                        audience: "http://localhost:5000",
-                        claims: new List<Claim>(),
-                        expires: DateTime.Now.AddMinutes(5),
-                        signingCredentials: signinCredentials
-                    );
-
-                    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                    return Ok(new { Token = tokenString });
-                }
-                else
-                {
-                    return Unauthorized();
-                }
-            }*/
   }
 }

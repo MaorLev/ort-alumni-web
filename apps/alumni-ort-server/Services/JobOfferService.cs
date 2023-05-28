@@ -125,8 +125,7 @@ namespace AlumniOrtServer.Services
 
     public async Task<List<JobOfferDTO>> GetJobsByEmployer(int employerId)
     {
-      //try
-      //{
+
       var jobOffer = await m_db.JobOffers.Where(i => i.EmployerId == employerId).Select(j => new JobOfferDTO()
       {
         Id = j.Id,
@@ -144,18 +143,12 @@ namespace AlumniOrtServer.Services
         StudyProgramNames = j.JobOffer_StudyPrograms.Select(sp => sp.StudyProgram.Name).ToList()
       }).ToListAsync();
       return jobOffer;
-      //}
-      //catch
-      //{
 
-      //    throw;
-      //}
     }
 
     public async Task<List<JobOfferDTO>> GetAll()
     {
-      //try
-      //{
+
       var jobOffer = await m_db.JobOffers.Select(j => new JobOfferDTO()
       {
         Id = j.Id,
@@ -173,12 +166,7 @@ namespace AlumniOrtServer.Services
         StudyProgramNames = j.JobOffer_StudyPrograms.Select(sp => sp.StudyProgram.Name).ToList()
       }).ToListAsync();
       return jobOffer;
-      //}
-      //catch
-      //{
 
-      //    throw;
-      //}
     }
 
     public async Task<ResponseDTO> Update(int id, JobOfferDTO jobOffer)

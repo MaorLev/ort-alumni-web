@@ -36,16 +36,9 @@ namespace AlumniOrtServer.Services
             .Take(pageSize)
             .Select(a => new AlumnusDTO()
             {
-              //Id = a.Id,
-              //Mail = a.Mail,
               FirstName = a.FirstName,
               LastName = a.LastName,
-              //Password = MD5Service.Decrypt(a.Password),
               Phone = a.Phone,
-              //CardId = a.CardId,
-              //DateOfBirth = a.DateOfBirth,
-              //StudyFinishYear = a.StudyFinishYear,
-              //StudyStartYear = a.StudyStartYear,
               College = new CollegeDTO
               {
                 Id = a.College.Id,
@@ -61,9 +54,6 @@ namespace AlumniOrtServer.Services
                 Id = a.City.Id,
                 Name = a.City.Name
               },
-              //Linkedin = a.Linkedin,
-              //WorkPlace = a.WorkPlace,
-              //TeacherId = a.teacher.Id,
 
               Teacher = new TeacherDTO
               {
@@ -179,8 +169,6 @@ namespace AlumniOrtServer.Services
         throw;
       }
     }
-    //for create alumnus
-
 
     public async Task<List<AlumnusDTO>> GetAll()
     {
@@ -241,15 +229,7 @@ namespace AlumniOrtServer.Services
             Status = StatusCODE.Error,
             StatusText = $"Item with id {id} not found in DB"
           };
-        }//checkkk it !!
-        /*                else if (A.Password != MD5Service.Encrypt(alumnus.Password))
-                        {
-                            return new ResponseDTO()
-                            {
-                                Status = StatusCode.Error,
-                                StatusText = $"Item {alumnus.FirstName} with SN {alumnus.Password} Not match to DB"
-                            };
-                        }*/
+        }
 
         AlumnusFromDB.Mail = A.Mail;
         AlumnusFromDB.FirstName = alumnus.FirstName ?? A.FirstName;

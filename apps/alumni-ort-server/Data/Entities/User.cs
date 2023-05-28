@@ -1,10 +1,6 @@
 using AlumniOrtServer.Data.Entities;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Models
 {
@@ -52,7 +48,6 @@ namespace AlumniOrtServer.Models
     public string Mail { get; set; }
 
     [Required]
-    //public string FullName { get { return FirstName + " " + LastName; } set { FirstName = value; LastName = value; } }
     public string Password { get; set; }
     [StringLength(50)]
     public string Phone { get; set; }

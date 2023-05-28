@@ -20,13 +20,7 @@ namespace AlumniOrtServer.Data.Entities
       TeacherId = teacherId;
 
     }
-    /*        [NotMapped]
-            public ModeStudyEnum MsId_PK_Fk
-            {
-                get { return (ModeStudyEnum)ModeStudyId; }
-                set { ModeStudyId = (int)value; }
-            }*/
-    //[Column("MsId_PK_Fk")]
+
     public int ModeStudyId { get; set; }
     public virtual ModeStudy ModeStudy { get; set; }
     public int CityId { get; set; }

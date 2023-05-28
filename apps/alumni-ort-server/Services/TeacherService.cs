@@ -26,7 +26,6 @@ namespace AlumniOrtServer.Services
     public TeacherService(AlumniDBContext db)
     {
       m_db = db;
-      //_Img = img;
     }
 
     public async Task<bool> existAccount(int alumnusId)
@@ -53,7 +52,6 @@ namespace AlumniOrtServer.Services
           };
         }
 
-        //var existingLogo = await m_db.TeacherLogo.FindAsync(teacher.Logo.Id);
         var existingLogo = teacher.Logo;
         if (existingLogo != null)
         {
@@ -138,7 +136,6 @@ namespace AlumniOrtServer.Services
       Teacher TeacherFromDB =
           new Teacher(0,
               teacher.MailForStudy,
-              //teacher.Logo,
               teacher.Rate,
               teacher.Description,
               teacher.AlumnusId);
@@ -771,8 +768,6 @@ namespace AlumniOrtServer.Services
 
     public async Task<ResponseDTO> Update(int id, TeacherDTO teacher)
     {
-      //try
-      //{
       TeacherDTO existsT = await Get(id);
       Teacher TeacherFromDB = new Teacher();
       if (existsT == null)
@@ -811,16 +806,7 @@ namespace AlumniOrtServer.Services
         response.StatusText = "faild no Teachers affacted";
       }
       return response;
-      //}
-      /*            catch
-      {
 
-          return new ResponseDTO()
-          {
-              Status = StatusCode.Error,
-              StatusText = $"Erorrs in service: One or More details not Updated"
-          };
-      }*/
     }
 
     private async Task

@@ -73,7 +73,6 @@ namespace OrtAlumniWeb.AlumniOrtServer.Services
       {
         await articleService.DeleteArticle(article.Id);
       }
-      //m_db.Articles.RemoveRange(new Article { CategoryId = id });
       m_db.Categories.Remove(new Category { Id = category.Id });
       int c = await m_db.SaveChangesAsync();
       ResponseDTO response = new ResponseDTO();

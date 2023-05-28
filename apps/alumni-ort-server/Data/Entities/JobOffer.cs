@@ -1,9 +1,7 @@
 using AlumniOrtServer.Data.Entities;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace AlumniOrtServer.Models
 {
@@ -30,9 +28,6 @@ namespace AlumniOrtServer.Models
     public virtual List<JobOffer_City> JobOffer_Cities { get; set; }
     public virtual List<JobOffer_StudyProgram> JobOffer_StudyPrograms { get; set; }
 
-
-    //public ICollection<StudyProgram> StudyPrograms { get; set; }
-    //public ICollection<City> Cities { get; set; }
     public JobOffer()
     {
 
