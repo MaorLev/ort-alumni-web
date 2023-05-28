@@ -1,12 +1,15 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-form",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-form",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-form/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ort-alumni-client-lib/features/feature-form"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-form"
+      ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-form/jest.config.js",
         "passWithNoTests": true

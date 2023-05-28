@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-ui-components-ui-spinner",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/ui-components/ui-spinner",
   "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-spinner/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/ui-components/ui-spinner"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/ui-components/ui-spinner"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-spinner/jest.config.js",

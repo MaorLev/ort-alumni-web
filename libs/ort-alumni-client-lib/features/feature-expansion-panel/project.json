@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-expansion-panel",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-expansion-panel",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-expansion-panel/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-expansion-panel"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-expansion-panel"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-expansion-panel/jest.config.js",

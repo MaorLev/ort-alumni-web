@@ -1,13 +1,12 @@
 {
-  "root": "apps/alumni-ort-server-test",
+  "name": "alumni-ort-server-test",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/alumni-ort-server-test",
   "targets": {
     "build": {
       "executor": "@nx-dotnet/core:build",
-      "outputs": [
-        "dist/apps/alumni-ort-server-test"
-      ],
+      "outputs": ["{workspaceRoot}/dist/apps/alumni-ort-server-test"],
       "options": {
         "configuration": "Debug",
         "noDependencies": true

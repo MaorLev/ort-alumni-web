@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-va-dropdown-selection",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-va-dropdown-selection",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-va-dropdown-selection/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-va-dropdown-selection"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-va-dropdown-selection"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-va-dropdown-selection/jest.config.js",

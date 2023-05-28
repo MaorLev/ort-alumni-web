@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-utils-core-global-interfaces",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/utils/core/global-interfaces",
   "sourceRoot": "libs/ort-alumni-client-lib/utils/core/global-interfaces/src",
   "prefix": "ort-alumni-web",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/utils/core/global-interfaces"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/utils/core/global-interfaces"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/utils/core/global-interfaces/jest.config.js",

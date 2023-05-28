@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-navigation",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-navigation",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-navigation/src",
   "prefix": "ort-feature-navigation",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-navigation"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-navigation"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-navigation/jest.config.js",

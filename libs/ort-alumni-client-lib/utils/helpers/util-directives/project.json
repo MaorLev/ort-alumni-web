@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-utils-helpers-util-directives",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/utils/helpers/util-directives",
   "sourceRoot": "libs/ort-alumni-client-lib/utils/helpers/util-directives/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/utils/helpers/util-directives"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/utils/helpers/util-directives"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/utils/helpers/util-directives/jest.config.js",

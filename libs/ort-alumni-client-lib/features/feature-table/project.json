@@ -1,12 +1,15 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-table",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-table",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-table/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ort-alumni-client-lib/features/feature-table"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-table"
+      ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-table/jest.config.js",
         "passWithNoTests": true

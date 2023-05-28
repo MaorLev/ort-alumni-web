@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-ui-components-ui-material-chips",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/ui-components/ui-material-chips",
   "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-material-chips/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/ui-components/ui-material-chips"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/ui-components/ui-material-chips"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-material-chips/jest.config.js",

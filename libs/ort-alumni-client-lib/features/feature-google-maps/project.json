@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-google-maps",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-google-maps",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-google-maps/src",
   "prefix": "ort-alumni-web",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-google-maps"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-google-maps"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-google-maps/jest.config.js",

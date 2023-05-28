@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-va-chips-select",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/va-chips-select",
   "sourceRoot": "libs/ort-alumni-client-lib/features/va-chips-select/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/va-chips-select"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/va-chips-select"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/va-chips-select/jest.config.js",

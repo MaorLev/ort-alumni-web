@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-ui-components-ui-deck-card",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/ui-components/ui-deck-card",
   "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-deck-card/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/ui-components/ui-deck-card"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/ui-components/ui-deck-card"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-deck-card/jest.config.js",

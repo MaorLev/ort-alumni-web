@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-va-phone",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-va-phone",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-va-phone/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-va-phone"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-va-phone"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-va-phone/jest.config.js",

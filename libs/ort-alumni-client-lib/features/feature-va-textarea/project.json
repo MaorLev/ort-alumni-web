@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-va-textarea",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-va-textarea",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-va-textarea/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-va-textarea"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-va-textarea"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-va-textarea/jest.config.js",

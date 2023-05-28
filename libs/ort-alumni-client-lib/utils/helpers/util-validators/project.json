@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-utils-helpers-util-validators",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/utils/helpers/util-validators",
   "sourceRoot": "libs/ort-alumni-client-lib/utils/helpers/util-validators/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/utils/helpers/util-validators"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/utils/helpers/util-validators"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/utils/helpers/util-validators/jest.config.js",

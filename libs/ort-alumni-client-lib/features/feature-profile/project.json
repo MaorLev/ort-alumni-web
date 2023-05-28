@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-profile",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-profile",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-profile/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-profile"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-profile"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-profile/jest.config.js",

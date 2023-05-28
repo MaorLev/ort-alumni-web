@@ -1,12 +1,15 @@
 {
+  "name": "ort-alumni-client-lib-ui-components-ui-icon",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/ui-components/ui-icon",
   "sourceRoot": "libs/ort-alumni-client-lib/ui-components/ui-icon/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ort-alumni-client-lib/ui-components/ui-icon"],
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/ui-components/ui-icon"
+      ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/ui-components/ui-icon/jest.config.js",
         "passWithNoTests": true

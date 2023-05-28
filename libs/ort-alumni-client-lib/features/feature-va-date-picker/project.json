@@ -1,13 +1,14 @@
 {
+  "name": "ort-alumni-client-lib-features-feature-va-date-picker",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "root": "libs/ort-alumni-client-lib/features/feature-va-date-picker",
   "sourceRoot": "libs/ort-alumni-client-lib/features/feature-va-date-picker/src",
   "prefix": "ort",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [
-        "coverage/libs/ort-alumni-client-lib/features/feature-va-date-picker"
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-va-date-picker"
       ],
       "options": {
         "jestConfig": "libs/ort-alumni-client-lib/features/feature-va-date-picker/jest.config.js",
