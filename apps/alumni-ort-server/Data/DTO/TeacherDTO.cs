@@ -35,6 +35,6 @@ namespace AlumniOrtServer.Data.DTO
     public int[] ModeStudyIDs { get; set; } = { };
 
     [JsonProperty(PropertyName = "alumnus")]
-    public AlumnusDTO? Alumanus { get; set; }
+    public AlumnusDTO Alumanus { get; set; }
   }
 }

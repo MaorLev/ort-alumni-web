@@ -60,6 +60,7 @@
     "@nrwl/linter": "13.10.1",
     "@nrwl/workspace": "13.10.1",
     "@nx-dotnet/core": "^1.9.10",
+    "@nx-dotnet/nxdoc": "^1.22.0",
     "@types/crypto-js": "^4.1.1",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "~5.18.0",
