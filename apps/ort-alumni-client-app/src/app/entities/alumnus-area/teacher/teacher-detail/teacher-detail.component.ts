@@ -22,18 +22,18 @@ export class TeacherDetailComponent implements OnInit {
   teacherModel$: Observable<TeacherModel | undefined>;
   modeStudyMap = ModeStudyMap;
   image: SafeUrl;
-  name: string;
+
 
   constructor(
     public teacherQuery: TeacherQuery,
     private sanitizer: DomSanitizer,
-    private sessionQuary: SessionQuery
+
   ) {}
   ngOnInit(): void {
     this.teacherModel$ = this.teacherQuery.selectActiveTeacher$;
     this.teacherModel = this.teacherQuery.getActiveTeacher();
     this.onGetImageSrc();
-    this.name = this.sessionQuary.getName();
+
   }
 
   onGetImageSrc(): void {

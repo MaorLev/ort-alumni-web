@@ -74,10 +74,11 @@ export class TeacherProfileDataState extends ProfileAbstractDataState{
   }
 
   private getCourses():CourseByStudyProgramInterface[]{
-    const alumnusId = this.alumnusQuery.getActive()?.studyprogram.id;
 
-    if(alumnusId) {
-      const courses =  this.staticEntitiesDataQuery.getCoursesBySPId(alumnusId as number);
+    const alumnus = this.alumnusQuery.getActive();
+
+    if(alumnus) {
+      const courses =  this.staticEntitiesDataQuery.getCoursesBySPId(alumnus?.studyprogram?.id);
 
       return courses;
     }

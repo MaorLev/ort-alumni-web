@@ -17,6 +17,7 @@ import { SessionQuery } from '../../../../auth/session/state/session.query';
 import { TeacherService } from '../state-teacher/teacher.service';
 import { TeacherQuery } from '../state-teacher/teacher.query';
 import { TeacherModel } from '../configs-teacher/teacher-model';
+import { AlumnusQuery } from '../../alumnus/state-alumnus/alumnus.query';
 
 @Component({
   selector: 'app-add-teacher',
@@ -25,7 +26,7 @@ import { TeacherModel } from '../configs-teacher/teacher-model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTeacherComponent implements OnInit {
-  alumnusId: string;
+  alumnusId: string | undefined;
   @ViewChild('mainForm') form1: FeatureExpansionPanelComponent;
   @ViewChild('logoForm') form2: FeatureExpansionPanelComponent;
   isMainFormSubmitted: boolean;
@@ -34,10 +35,11 @@ export class AddTeacherComponent implements OnInit {
     private teacherService: TeacherService,
     private sessionQuery: SessionQuery,
     private alertService: AlertsService,
-    private teacherQuery: TeacherQuery
+    private teacherQuery: TeacherQuery,
+    private alumnusQuery: AlumnusQuery,
   ) {}
   ngOnInit(): void {
-    this.alumnusId = this.sessionQuery.getUserId();
+    this.alumnusId = this.teacherQuery.getAlumnusIdByActiveTeacher() || this.alumnusQuery?.getActiveAlumnusId() as string || this.sessionQuery.getUserId();
     this.isMainFormSubmitted = false;
   }
 
@@ -64,7 +66,7 @@ export class AddTeacherComponent implements OnInit {
         this.teacherService
           .AddLogo(
             imageControlValue.value,
-            this.alumnusId,
+            this.alumnusId as string,
             this.teacherQuery.getActiveTeacher() as TeacherModel
           )
           .pipe(

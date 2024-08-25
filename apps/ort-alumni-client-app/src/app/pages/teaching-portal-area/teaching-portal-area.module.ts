@@ -17,7 +17,7 @@ import { ShowIfLoggedInDirectiveModule } from '../../auth/session/show-if-logged
   declarations: [TeachingPortalComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: TeachingPortalComponent }]),
+    RouterModule.forChild([{ path: '', component: TeachingPortalComponent }], ),
     IntroCardTeacherModule,
     UiButtonModule,//TODO: check it becuse the layou import that module
     UiCarouselModule,

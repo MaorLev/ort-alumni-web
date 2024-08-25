@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using OrtAlumniWeb.AlumniOrtServer.Services.Interfaces;
+using static AlumniOrtServer.Extensions.Constants;
 
 namespace OrtAlumniWeb.AlumniOrtServer.Controllers
 {
+  [Authorize(Roles = RolesName.Admin)]
   [Route("[controller]")]
   [ApiController]
   public class CategoryController : ControllerBase
@@ -19,6 +22,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
     {
       this.categoryService = categoryService;
     }
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult> GetAll()
     {

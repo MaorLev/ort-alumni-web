@@ -77,14 +77,51 @@ namespace AlumniOrtServer.Controllers
       }
 
     }
-    // [HttpPost, Route("resetpassword")]
-    // public async Task<ActionResult> ResetPassword(string email)
-    // {
-    //     string em = email.Substring(1, email.Length - 2);
 
 
+    [HttpPost("SendResetLink")]
+    public async Task<IActionResult> SendResetLink([FromBody] AuthUserDTO data)
+    {
+      try
+      {
 
-    //     return Ok();
-    // }
+      string email = data.Mail;
+      if (await _authService.Validation(email))
+      {
+        JwtResultDTO resetToken = await _authService.GenerateResetToken(email);
+        //string resetLink = Url.Action("ResetPassword", "Auth", new { token = resetToken.AccessToken, email = email }, Request.Scheme);
+        string resetLink = "http://localhost:4200/auth/reset-password/" + resetToken.AccessToken;
+        _authService.SendResetLink(email, resetLink);
+        return Ok();
+      }
+      return BadRequest("Email does not exist");
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }
+
+    [HttpPost("ResetPassword")]
+    public async Task<IActionResult> ResetPassword([FromBody] dynamic data)
+    {
+      try
+      {
+        string email = data.email;
+        string newPassword = data.newPassword;
+        ResponseDTO response = new ResponseDTO();
+        response = await _authService.ResetPassword(email, newPassword);
+        if (response.Status == Data.DTO.StatusCODE.Success)
+        {
+          return Ok();
+        }
+        return BadRequest("Invalid reset token.");
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+
+    }
   }
 }

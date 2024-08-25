@@ -27,6 +27,7 @@ export class ApiErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
+
       catchError((error) => {
 
 

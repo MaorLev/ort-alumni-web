@@ -36,15 +36,15 @@
     }
 
     .item-level-1 {
-      max-height: 8rem;
+      max-height: 7rem;
       max-width: 23rem;
+      margin: 1rem;
       button {
         #active {
           color: var(--white);
         }
         .text-item {
-          margin: 0px;
-          @include font.display-3;
+          @include font.display-1;
           color: var(--accent-a-stronger-color);
           transition: color ease-in-out 250ms;
         }
@@ -53,18 +53,19 @@
     .item-level-2 {
       button {
         .text-item {
-          @include font.h-1;
+          @include font.h-2;
           font-weight: 600;
           color: var(--white);
           transition: color ease-in-out 250ms;
+
         }
       }
     }
     .item-level-3 {
       button {
         .text-item {
-          @include font.h-2;
-          font-weight: 500;
+          @include font.h-3;
+          font-weight: 600;
           color: var(--white);
           transition: color ease-in-out 250ms;
         }
@@ -120,8 +121,8 @@
 
   .desc {
     color: var(--white);
-    margin: 2rem 0 5rem;
-    @include font.h-3;
+    margin: 1rem 0 6.5rem;
+    @include font.h-4;
     font-weight: 500;
   }
 }

@@ -20,5 +20,8 @@ export class AlumnusStore extends EntityStore<AlumnusState> {
   }
 
 
+  setEntityActive(id: string) {
+    this.setActive(id);
+  }
 
 }

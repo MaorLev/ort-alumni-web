@@ -23,7 +23,6 @@ namespace AlumniOrtServer.Controllers
     }
 
     //הוספת תמונה ישירות לתיקיה
-    //[AllowAnonymous]
     [Route("Add/{img}")]
     [HttpPost, DisableRequestSizeLimit]
     public async Task<IActionResult> Upload(string img)

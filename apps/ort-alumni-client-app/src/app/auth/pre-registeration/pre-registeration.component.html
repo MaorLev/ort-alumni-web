@@ -1,4 +1,4 @@
-<div [@fadeInOut] class="container">
+<div [@fadeInOut] class="wrapper">
   <ng-container *ngFor="let user of navigationUsers" >
 
     <ort-button class=""  [className]="user.styleClass"  [routeTo]="user.routeTo"  >{{user.label}}</ort-button>

@@ -15,6 +15,7 @@ namespace AlumniOrtServer.Services
     public Task<ResponseDTO> Update(int id, AdminDTO admin);
 
     public Task<ResponseDTO> DeleteAdmin(int id);
+
     public Task<bool> Validation(string emai);
   }
 }

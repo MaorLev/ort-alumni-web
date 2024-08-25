@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  Input,
   OnInit,
 } from '@angular/core';
 import { SearchBarTeacherDataFormService } from './state/search-bar-teacher-data-form.service';
@@ -17,6 +18,11 @@ import { Router } from '@angular/router';
 import { SearchBarTeacherModel } from './state/search-bar-teacher.model';
 import { startWith } from 'rxjs';
 
+export interface SearchBarRoutingDetails{
+  hasRouting:boolean;
+  route:string;
+
+}
 @Component({
   selector: 'app-search-bar-teacher',
   templateUrl: './search-bar-teacher.component.html',
@@ -29,6 +35,7 @@ export class SearchBarTeacherComponent implements OnInit, AfterViewInit {
 
   showAdvanced = false;
 
+  @Input() routingDetails:SearchBarRoutingDetails|undefined;
   constructor(
     private searchBarTeacherDataFormService: SearchBarTeacherDataFormService,
     private searchBarTeacherStore: SearchBarTeacherStore,
@@ -85,7 +92,10 @@ export class SearchBarTeacherComponent implements OnInit, AfterViewInit {
     // }else group.markAllAsTouched();
     this.searchBarTeacherStore.setSearchParams(result);
 
-    this.router.navigate(['/layout-teaching-portal/teacher-results']);
+    if (this.routingDetails?.hasRouting && this.routingDetails.route) {
+    this.router.navigate([this.routingDetails.route]);
+    // this.router.navigate(['/layout-teaching-portal/teacher-results']);
+    }
   }
 
   asIsOrder(a: any, b: any) {

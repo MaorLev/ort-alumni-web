@@ -25,16 +25,26 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <ng-container *ngIf="step.stepContent.header">
+        <!-- <ng-container *ngIf="step.stepContent.header">
           <div class="container">
             <h1>{{ step.stepContent.header }}</h1>
             <h2>{{ step.stepContent.subheader }}</h2>
             <h4>{{ step.stepContent.content }}</h4>
           </div>
+        </ng-container> -->
+
+
+        <ng-container >
+          <div>
+            <h1>sdfsdfsdfsdf</h1>
+            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, mollitia!</h2>
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis sit dolor non blanditiis qui odit odio voluptatum suscipit consequatur, commodi recusandae cum? Quod sint odit in tempore voluptatum! Aperiam, reprehenderit!</h4>
+          </div>
         </ng-container>
 
         <ort-form
           [configuration]="step.stepGroupForm"
+          [maxWidthItem]="'400px'"
           (submitted)="onStepSubmit($event)"
           #myform
         >

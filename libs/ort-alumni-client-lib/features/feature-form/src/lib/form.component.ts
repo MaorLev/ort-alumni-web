@@ -32,6 +32,7 @@ export class FormComponent implements OnChanges {
   @Input() dataToPatch: any | undefined;
   @Output() submitted = new EventEmitter<any>();
 
+  @Input() maxWidthItem: string;
   isSubmitted: boolean;
   group: FormGroup;
   statusChanged: Observable<FormControlStatus> | undefined;
@@ -42,7 +43,9 @@ export class FormComponent implements OnChanges {
   get groupControls() {
     return this.group.controls;
   }
-  constructor(private formBuilderService: FormBuilderService) {}
+  constructor(private formBuilderService: FormBuilderService) {
+    this.maxWidthItem = '100%';
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['configuration']) {
       this.initialGroup();

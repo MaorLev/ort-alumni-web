@@ -14,35 +14,23 @@
         .hero-video {
           display: unset;
         }
-        height: auto;
       }
-      .hero-videoo {
+      .video-wrapper {
         width: inherit;
         height: 100%;
       }
     }
-    // font-size: 3rem;
     width: 100%;
-    // height: auto;
     position: relative;
-    // font-size: 30px;
     font-size: 3rem;
-
-    height: auto;
-    // height: calc(100vh - 185px);
-
-
-    $h: height;
     overflow: hidden;
     .hero-image {
-      // z-index: 1008;
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-      width: 100%;
-      height: 100%;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
+      width: 100%;
     }
 
     .title {
@@ -52,17 +40,14 @@
       right: 5%;
       opacity: 0.9;
       margin: 0;
-      // right: 70px;
-      // bottom: 100px;
       font-weight: 600;
       @media #{media.$break1} {
-        // font-size: 30px;
         font-size: 3rem;
         right: 5%;
         bottom: 1%;
       }
       @media #{media.$break2} {
-        // font-size: 50px;
+
         font-size: 5rem;
         right: 6%;
         bottom: 5%;
@@ -77,9 +62,9 @@
         display: none;
       }
       height: auto;
-      // height: 0;
+
       background-color: var(--primary-color);
-      // position: relative;
+
       a {
         cursor: pointer;
         position: relative;
@@ -88,17 +73,16 @@
         -webkit-box-pack: center;
         justify-content: center;
         top: -8rem;
-        // top: -80px;
+
         left: 0px;
-        // height: 80px;
+
         height: 8.8rem;
         width: 100vw;
         background-color: transparent;
         background-blend-mode: multiply;
         color: rgb(255, 255, 255);
         text-align: center;
-        // height: 40px;
-        // top: -40px;
+
         transition: all 0.6s;
         &:hover {
           background-color: var(--trans-primary-color);

@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using static AlumniOrtServer.Extensions.Constants;
 
 namespace OrtAlumniWeb.AlumniOrtServer.Controllers
 {
+  [Authorize(Roles = RolesName.Admin)]
   [Route("[controller]")]
   [ApiController]
   public class ArticleController : ControllerBase
@@ -21,6 +24,7 @@ namespace OrtAlumniWeb.AlumniOrtServer.Controllers
     {
       this.articleService = articleService;
     }
+    [AllowAnonymous]
     [HttpGet]
     [Route("{id?}")]
     public async Task<ActionResult> Get(int id = 0)

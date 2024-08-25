@@ -1,16 +1,11 @@
-<section id="create-article">
-  <div class="container">
-    <h1>עדכון פוסט</h1>
-    <ng-container
-      *ngIf="article | async as art"
-    >
+<section class="container">
+  <h1>עדכון פוסט</h1>
+  <ng-container *ngIf="article | async as art">
     <ort-form
       [configuration]="articleConfig"
       [dataToPatch]="art"
       (submitted)="onSubmit($event)"
     >
     </ort-form>
-
   </ng-container>
-  </div>
 </section>

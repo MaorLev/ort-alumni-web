@@ -11,6 +11,6 @@ export abstract class ProfileAbstractDataState {
   protected abstract readonly activeGroup: string;
   protected abstract readonly groups: FormInterface[];
 
-  public abstract allInOneConfigs(): ProfileStateType ;
+  public abstract allInOneConfigs():ProfileStateType ;
 
 }

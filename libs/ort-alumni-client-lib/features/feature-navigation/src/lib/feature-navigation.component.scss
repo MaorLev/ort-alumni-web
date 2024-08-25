@@ -1,33 +1,58 @@
 @use 'fonts' as font;
+@use 'mixins' as mix;
+:host {
 
-.links {
-  display: flex;
-  &.vertical{
-    border-left: var(--accent-a-color) 0.2rem solid;
-    flex-direction: column;
-    .title {
+  .btn_hide{
+    // width: 100%;
+    // height: auto ;
+    text-align: center;
+    padding: 1rem;
+  }
+  .mat-expansion-panel {
+  box-shadow: none;
+  background-color: transparent;
+  }
+  .mat-expansion-panel-header {
+    background-color: transparent;
+    @include font.large-button;
+    .mat-expansion-panel-header-title {
+      color: var(--black-color);
+    }
+  }
+  .links {
+    display: flex;
+    &.vertical{
+      border-left: var(--accent-a-color) 0.2rem solid;
+      flex-direction: column;
+      .title {
+        padding: 1rem 0.5rem;
+        margin: 0.5rem 2rem 1rem;
+
+      }
+    }
+    &.horizontal{
+      border-bottom: var(--accent-a-color) 0.2rem solid;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .link {
+      display: block;
+      @include mix.dont-break-out;
+      @include mix.trim;
+      @include mix.trim-wrap;
+      background-color: transparent;
+      transition: 0.25s ease;
       padding: 1rem 0.5rem;
       margin: 0.5rem 2rem 1rem;
-
-    }
-  }
-  &.horizontal{
-    border-bottom: var(--accent-a-color) 0.2rem solid;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .link {
-    transition: 0.25s ease;
-    padding: 1rem 0.5rem;
-    margin: 0.5rem 2rem 1rem;
-    @include font.large-button;
-    color: var(--black-color);
-    &:hover {
-      transform: translateX(-4px);
-    }
-    &.active {
-      transform: translateX(-4px);
-      color: var(--stronger-black-color);
+      @include font.large-button;
+      color: var(--black-color);
+      &:hover {
+        transform: translateX(-4px);
+      }
+      &.active {
+        transform: translateX(-4px);
+        color: var(--stronger-black-color);
+      }
     }
   }
 }

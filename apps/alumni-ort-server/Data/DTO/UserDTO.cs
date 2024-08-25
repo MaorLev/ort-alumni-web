@@ -14,5 +14,7 @@ namespace AlumniOrtServer.Data.DTO
     public string Mail { get; set; }
     [JsonProperty(PropertyName = "password")]
     public string Password { get; set; }
+    [JsonProperty(PropertyName = "rolename")]
+    public string RoleName { get; set; }
   }
 }

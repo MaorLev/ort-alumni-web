@@ -19,6 +19,8 @@ export class TeacherStore extends EntityStore<TeacherState> {
     super(createInitialTeacherState());
   }
 
-
+  setEntityActive(id: string) {
+    this.setActive(id);
+  }
 
 }

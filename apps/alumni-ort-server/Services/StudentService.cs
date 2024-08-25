@@ -5,6 +5,7 @@ using AlumniOrtServer.DTO;
 using AlumniOrtServer.Extensions;
 using AlumniOrtServer.Models;
 using Microsoft.EntityFrameworkCore;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,8 +64,6 @@ namespace AlumniOrtServer.Services
           CardId = s.CardId,
           City = s.City,
           College = s.College,
-          //CollegeId = s.CollegeId,
-          //CollegeName = s.College.Name,
           DateOfBirth = s.DateOfBirth,
           FirstName = s.FirstName,
           Id = s.Id,
@@ -73,8 +72,6 @@ namespace AlumniOrtServer.Services
           Password = MD5Service.Decrypt(s.Password),
           Phone = s.Phone,
           StudyProgram = s.StudyProgram,
-          //StudyProgramId = s.StudyProgramId,
-          //StudyProgramName = s.StudyProgram.Name,
           StudyStartYear = s.StudyStartYear
 
         }).ToListAsync();
@@ -98,8 +95,6 @@ namespace AlumniOrtServer.Services
           CardId = s.CardId,
           City = s.City,
           College = s.College,
-          //CollegeId = s.CollegeId,
-          //CollegeName = s.College.Name,
           DateOfBirth = s.DateOfBirth,
           FirstName = s.FirstName,
           Id = s.Id,
@@ -108,8 +103,6 @@ namespace AlumniOrtServer.Services
           Password = MD5Service.Decrypt(s.Password),
           Phone = s.Phone,
           StudyProgram = s.StudyProgram,
-          //StudyProgramId = s.StudyProgramId,
-          //StudyProgramName = s.StudyProgram.Name,
           StudyStartYear = s.StudyStartYear
 
         }).FirstOrDefaultAsync(i => i.Id == id);
@@ -225,6 +218,53 @@ namespace AlumniOrtServer.Services
       }
 
     }
+
+    public async Task<(List<StudentDTO>, int)> SearchStudentsByKey(SearchRequestByKeyDTO searchRequest)
+    {
+      var query = m_db.Students.AsQueryable();
+
+      // Search in all string, number, and date fields
+      if (!string.IsNullOrEmpty(searchRequest.Key))
+      {
+        query = query.Where(s =>
+            s.Id.ToString().Contains(searchRequest.Key) ||
+            s.FirstName.Contains(searchRequest.Key) ||
+            s.LastName.Contains(searchRequest.Key) ||
+            s.Mail.Contains(searchRequest.Key) ||
+            s.Phone.Contains(searchRequest.Key) ||
+            s.CardId.Contains(searchRequest.Key) ||
+            s.StudyStartYear.Contains(searchRequest.Key) ||
+            s.DateOfBirth.ToString().Contains(searchRequest.Key));
+      }
+
+      // Get the total count of students that match the search criteria
+      int totalCount = await query.CountAsync();
+
+      // Apply pagination
+      var students = await query
+          .OrderByDescending(s => s.Id)
+          .Skip((searchRequest.PageIndex - 1) * searchRequest.PageSize)
+          .Take(searchRequest.PageSize)
+          .Select(s => new StudentDTO
+          {
+            Id = s.Id,
+            Mail = s.Mail,
+            FirstName = s.FirstName,
+            LastName = s.LastName,
+            Phone = s.Phone,
+            CardId = s.CardId,
+            DateOfBirth = s.DateOfBirth,
+            StudyStartYear = s.StudyStartYear,
+            College = s.College,
+            StudyProgram = s.StudyProgram,
+            City = s.City
+          })
+          .ToListAsync();
+
+      return (students, totalCount);
+    }
+
+
     public async Task<bool> Validation(string emai)
     {
       if (await m_db.Students.Where(i => i.Mail == emai).FirstOrDefaultAsync() != null)

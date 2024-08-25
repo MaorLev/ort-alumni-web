@@ -1,59 +1,74 @@
 <div id="home-page" ortScrollManager>
-  <div class="hero-about">
-    <app-hero [anchorName]="'short-about'" [withDownScroll]="true" [classVideo]="'videoInHero'" [srcImage]="'/assets/images/bg-footer.jpg'" ></app-hero>
-    <section id="short-about" ortScrollSection="short-about">
-      <!-- <div class="downanchor">&nbsp;</div> -->
-      <div class="container">
-        <h1 class="mat-display-2 main-title">במיוחד בשבילכם</h1>
-        <p class="mat-display-1">
-          בוגרים וסטודנטים יקרים השקנו במיוחד עבורכם אתר המכיל שלל פונקציות, אשר
-          יסייעו לכם עוד במהלך הלימודים וגם לאחרם.
-        </p>
-        <div id="features-links">
-          <div class="feature-link">
-            <ort-button className="custom sz-2" iconName="badge"></ort-button>
-            <h1 class="link-title" >תעסוקה</h1>
-          </div>
-          <div class="feature-link">
-            <ort-button className="custom sz-2" iconName="groups"></ort-button>
-            <h1 class="link-title" >רשת חברתית</h1>
-          </div>
-          <div class="feature-link">
-            <ort-button
-            className="custom sz-2 "
-            iconName="support_agent"
-            ></ort-button>
-            <h1 class="link-title" >מורים פרטיים</h1>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <app-hero
+    [anchorName]="'short-about'"
+    [withDownScroll]="true"
+    [classVideo]="'videoInHero'"
+    [srcImage]="'/assets/images/bg-footer.jpg'"
+  ></app-hero>
+  <section class="short-about" ortScrollSection="short-about">
+    <!-- <div class="downanchor">&nbsp;</div> -->
 
-  <section  id="categories">
-    <div class="category">
+    <h1 class="mat-display-2 main-title">במיוחד בשבילכם</h1>
+    <p class="mat-display-1">
+      בוגרים וסטודנטים יקרים השקנו במיוחד עבורכם אתר המכיל שלל פונקציות, אשר
+      יסייעו לכם עוד במהלך הלימודים וגם לאחרם.
+    </p>
+    <div id="features-links">
+      <div class="feature-link">
+        <div class="icon-wrapper">
+          <ort-button className="custom sz-2" iconName="badge"></ort-button>
+
+          <span class="ribbon">בקרוב</span>
+        </div>
+        <h1 class="link-title">תעסוקה</h1>
+      </div>
+      <div class="feature-link">
+        <div class="icon-wrapper">
+          <ort-button className="custom sz-2" iconName="groups"></ort-button>
+
+
+          <span class="ribbon">בקרוב</span>
+        </div>
+        <h1 class="link-title">רשת חברתית</h1>
+      </div>
+      <div class="feature-link">
+        <ort-button
+          className="custom sz-2 "
+          iconName="support_agent"
+          [routerLink]="'/layout-teaching-portal'"
+        ></ort-button>
+        <h1 class="link-title">מורים פרטיים</h1>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories-wrapper">
+    <div class="categories">
       <ng-container *ngIf="articlesByCategory$ | async as arts">
         <ng-container *ngFor="let articles of arts">
-          <ng-container *ngIf="articles.articles!.length > 0" >
-
+          <ng-container *ngIf="articles.articles!.length > 0">
             <h1 class="mat-display-2 bg-after-primary main-title">
               {{ articles.name }}
             </h1>
             <div class="pre-articles">
-              <ort-carousel
-              [startAt]="articles.articles?.length">
-                <app-articles-cards [style]="'articles'" [articles]="articles.articles"></app-articles-cards>
+              <ort-carousel [startAt]="articles.articles?.length">
+                <app-articles-cards
+                  [style]="'articles'"
+                  [articles]="articles.articles"
+                ></app-articles-cards>
               </ort-carousel>
-              <div class="more">
-                <a
-                  class="more-btn"
-                  [routerLink]="['../articles/articles-by-category', articles.name]"
-                  >
-                  <h4>ראה עוד...</h4>
-                </a>
-              </div>
             </div>
-
+            <div class="more">
+              <a
+                class="more-btn"
+                [routerLink]="[
+                  '../articles/articles-by-category',
+                  articles.name
+                ]"
+              >
+                <h4>ראה עוד...</h4>
+              </a>
+            </div>
           </ng-container>
         </ng-container>
       </ng-container>

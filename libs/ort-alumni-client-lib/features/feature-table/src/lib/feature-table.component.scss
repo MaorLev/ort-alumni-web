@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: white;
+
+  thead {
+    th {
+      text-align: right;
+      padding: 10px 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+}
+
+:host::ng-deep {
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f5f5f5;
+      }
+
+      &:hover {
+        background-color: #eeeeee;
+      }
+    }
+
+    td {
+      padding: 12px;
+      text-align: right;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}

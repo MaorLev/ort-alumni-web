@@ -1,8 +1,7 @@
-<div class="main-hero">
+
   <section [class]="'hero ' + classVideo">
-    <div class="hero-videoo">
-      <img [src]="srcImage" class="hero-image" />
-      <!-- <youtube-player  videoId="JaCoOMPNgJE"  [width]="videoWidth" [height]="videoHeight"  ></youtube-player> -->
+    <img [src]="srcImage" class="hero-image" />
+    <div class="video-wrapper">
       <ort-feature-youtube-player
         class="hero-video"
         [playerConfig]="YT_HERO_DATA"
@@ -18,4 +17,4 @@
       {{ title }}
     </h2>
   </section>
-</div>
+

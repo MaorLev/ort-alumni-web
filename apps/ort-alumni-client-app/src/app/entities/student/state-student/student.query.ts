@@ -14,10 +14,12 @@ export class StudentQuery extends QueryEntity<StudentState> {
 
 
   selectActiveStudent$: Observable<StudentModel | undefined> = this.selectActive();
+  selectStudents$: Observable<StudentModel [] | undefined> = this.selectAll();
 
   isStudentLoaded$: Observable<boolean | undefined> = this.selectLoading();
 
   getActiveStudent() { return this.getActive();}
+  getActiveStudentId() { return this.getActive()?.id;}
 
   isStudentLoaded() { return this.getValue().loading}
 }

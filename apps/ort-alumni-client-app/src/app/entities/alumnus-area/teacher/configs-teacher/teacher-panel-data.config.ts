@@ -6,12 +6,15 @@ import { StaticEntitiesDataQuery } from '../../../static-entities-backend-data/s
 import { AlumnusQuery } from '../../alumnus/state-alumnus/alumnus.query';
 import { CourseByStudyProgramInterface } from '../../../static-entities-backend-data/static-entities-interfaces/course-by-studyprogram.interface';
 import { LanguageInterface } from '../../../static-entities-backend-data/static-entities-interfaces/language.interface';
+import { SessionQuery } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.query';
 
 @Injectable()
 export class TeacherPanelDataConfig {
+  isAdmin: boolean = this.sessionQuery.isAdmin();
   constructor(
     private staticEntitiesDataQuery: StaticEntitiesDataQuery,
-    private alumnusQuery: AlumnusQuery
+    private alumnusQuery: AlumnusQuery,
+    private sessionQuery: SessionQuery
   ) {
     this.teacherForms = [
       {
@@ -131,24 +134,35 @@ export class TeacherPanelDataConfig {
               buttons: [],
               controls: {},
             },
-            stepButtons: [
-              {
-                name: 'RouteTo',
-                label: 'עבור לפרופיל',
-                route: '/profile',
-                role: ButtonAction.RouteTo,
-                color: 'accent',
-                className: 'mat-raised-button',
-              },
-              {
-                name: 'RouteTo',
-                label: 'חזור לדף הבית',
-                route: '/',
-                role: ButtonAction.RouteTo,
-                color: 'accent',
-                className: 'mat-raised-button',
-              },
-            ],
+            stepButtons: this.isAdmin
+              ? [
+                  {
+                    name: 'RouteTo',
+                    label: 'מעבר לדשבורד ניהול מורים',
+                    route: '/admin-dashboard-layout/teachers-management',
+                    role: ButtonAction.RouteTo,
+                    color: 'accent',
+                    className: 'mat-raised-button',
+                  },
+                ]
+              : [
+                  {
+                    name: 'RouteTo',
+                    label: 'עבור לפרופיל',
+                    route: '/profile',
+                    role: ButtonAction.RouteTo,
+                    color: 'accent',
+                    className: 'mat-raised-button',
+                  },
+                  {
+                    name: 'RouteTo',
+                    label: 'חזור לדף הבית',
+                    route: '/',
+                    role: ButtonAction.RouteTo,
+                    color: 'accent',
+                    className: 'mat-raised-button',
+                  },
+                ],
           },
         ],
       },

@@ -1,0 +1,29 @@
+{
+  "name": "ort-alumni-client-lib-features-feature-checkbox",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/ort-alumni-client-lib/features/feature-checkbox/src",
+  "prefix": "ort",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/ort-alumni-client-lib/features/feature-checkbox"
+      ],
+      "options": {
+        "jestConfig": "libs/ort-alumni-client-lib/features/feature-checkbox/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ort-alumni-client-lib/features/feature-checkbox/src/**/*.ts",
+          "libs/ort-alumni-client-lib/features/feature-checkbox/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:client-lib", "type:feature"]
+}

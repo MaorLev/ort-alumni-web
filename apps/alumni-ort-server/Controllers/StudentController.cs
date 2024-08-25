@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.DTO;
-using AlumniOrtServer.Models;
 using AlumniOrtServer.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
+using static AlumniOrtServer.Extensions.Constants;
 
 namespace AlumniOrtServer.Controllers
 {
+  [Authorize(Roles = RolesName.Admin + "," + RolesName.Student)]
   [Route("[controller]")]
   [ApiController]
   public class StudentController : ControllerBase
@@ -20,6 +21,7 @@ namespace AlumniOrtServer.Controllers
     {
       this.service = service;
     }
+    [AllowAnonymous]
     [HttpGet]
     [Route("{id?}")]
     public async Task<ActionResult> Get(int id = 0)
@@ -41,7 +43,7 @@ namespace AlumniOrtServer.Controllers
       }
 
     }
-
+    [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult> PostStudent(StudentDTO student)
     {
@@ -93,6 +95,26 @@ namespace AlumniOrtServer.Controllers
         return StatusCode(500, e);
       }
       return StatusCode(500, "A part from the request faild or not completed");
+    }
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("search-students-by-key")]
+    public async Task<ActionResult> SearchStudentsByKey([FromBody] SearchRequestByKeyDTO searchRequest)
+    {
+      try
+      {
+        (List<StudentDTO> students, int totalCount) result = await service.SearchStudentsByKey(searchRequest);
+        var finalResult = new
+        {
+          users = result.students,
+          total = result.totalCount
+        };
+        return Ok(finalResult);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
     }
 
     [HttpDelete]

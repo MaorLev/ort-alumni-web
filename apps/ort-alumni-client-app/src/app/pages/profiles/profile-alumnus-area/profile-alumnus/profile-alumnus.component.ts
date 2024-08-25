@@ -11,6 +11,9 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { AlumnusModel } from '../../../../entities/alumnus-area/alumnus/configs-alumnus/alumnus-model';
 import { AbstractEditAlumnusService } from '../../../../entities/alumnus-area/alumnus/edit-alumnus/abstract-edit-alumnus.service';
 import { AlertsService } from '@utils/util/core/central-message';
+import { SessionStore } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.store';
+import { AlumnusStore } from 'apps/ort-alumni-client-app/src/app/entities/alumnus-area/alumnus/state-alumnus/alumnus.store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-alumnus',
@@ -18,7 +21,10 @@ import { AlertsService } from '@utils/util/core/central-message';
   styleUrls: ['./profile-alumnus.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileAlumnusComponent extends AbstractEditAlumnusService implements OnInit, OnDestroy {
+export class ProfileAlumnusComponent
+  extends AbstractEditAlumnusService
+  implements OnInit, OnDestroy
+{
   alumnusId: string;
   alumnus$: Observable<AlumnusModel | undefined>;
   onDestroy$: Subject<void>;
@@ -29,9 +35,12 @@ export class ProfileAlumnusComponent extends AbstractEditAlumnusService implemen
     private sessionQuery: SessionQuery,
     alerts: AlertsService,
     alumnusQuery: AlumnusQuery,
-    service: AlumnusService
+    service: AlumnusService,
+    sessionStore: SessionStore,
+    store: AlumnusStore,
+    router: Router
   ) {
-    super(alerts, alumnusQuery, service);
+    super(alerts, alumnusQuery, service, sessionStore, store, router);
     this.onDestroy$ = new Subject<void>();
     this.isEditMode = false;
   }

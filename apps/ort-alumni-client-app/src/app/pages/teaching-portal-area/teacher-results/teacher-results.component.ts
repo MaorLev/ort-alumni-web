@@ -36,7 +36,7 @@ export class TeacherResultsComponent implements OnInit, OnDestroy {
   get modeStudyMap() {
     return ModeStudyMap;
   }
-  
+
   constructor(
     private searchBarQuery: SearchBarTeacherQuery,
     private searchBarStore: SearchBarTeacherStore,
@@ -55,7 +55,7 @@ export class TeacherResultsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isTeacherLoaded$ = this.teacherQuery.isTeacherLoaded$;
-    this.searchBarQuery.result$
+    this.subscription = this.searchBarQuery.result$
       .pipe(
         switchMap((result) => {
           if (result) {

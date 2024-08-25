@@ -6,6 +6,9 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { StudentModel } from '../configs-student/student-model';
 import { StudentQuery } from '../state-student/student.query';
 import { StudentService } from '../state-student/student.service';
+import { StudentStore } from '../state-student/student.store';
+import { Router } from '@angular/router';
+import { SessionStore } from '../../../auth/session/state/session.store';
 
 @Injectable()
 export abstract class AbstractEditStudentService {
@@ -17,7 +20,10 @@ export abstract class AbstractEditStudentService {
   constructor(
     private alerts: AlertsService,
     public studentQuery: StudentQuery,
-    public service: StudentService
+    public studentStore: StudentStore,
+    public service: StudentService,
+    public router: Router,
+    public sessionStore: SessionStore
   ) {}
 
   onSubmit({ group: formGroup }: ProfileSubmittedType) {
@@ -31,10 +37,7 @@ export abstract class AbstractEditStudentService {
       ...group.value,
     };
     this.service
-      .updateStudent(
-        this.studentId,
-        this.currentDataStudent as StudentModel
-      )
+      .updateStudent(this.studentId, this.currentDataStudent as StudentModel)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe();
   }
@@ -44,7 +47,10 @@ export abstract class AbstractEditStudentService {
       .deleteStudent(this.studentId)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe(() => {
-        this.alerts.dynamicAlert('פרופיל בוגר הוסר בהצלחה');
+        this.studentStore.setLoading(false);
+        this.sessionStore.logout();
+        this.router.navigate(['/']);
+        this.alerts.dynamicAlert('פרופיל סטודנט הוסר בהצלחה');
       });
   }
 }

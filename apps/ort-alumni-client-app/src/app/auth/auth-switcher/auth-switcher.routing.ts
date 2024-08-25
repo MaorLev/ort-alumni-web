@@ -21,10 +21,10 @@ const routes: Routes = [
       },
 
       {
-        path: 'reset-password',
+        path: 'forget-password',
         loadChildren: () =>
-          import('../../auth/reset-password/reset-password.module').then(
-            (m) => m.ResetPasswordModule
+          import('../../auth/forget-password/forget-password.module').then(
+            (m) => m.ForgetPasswordModule
           ),
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' },

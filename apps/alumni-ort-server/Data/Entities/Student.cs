@@ -31,7 +31,6 @@ namespace AlumniOrtServer.Models
 
     [Required]
     [StringLength(150)]
-    //[Column("Student_CardId")]
     public string CardId { get; set; }
     [Column(TypeName = "date")]
     public DateTime DateOfBirth { get; set; }

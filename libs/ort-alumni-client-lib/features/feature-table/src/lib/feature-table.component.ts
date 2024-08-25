@@ -1,4 +1,10 @@
-import { Component, ChangeDetectionStrategy, ContentChild, TemplateRef, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ContentChild,
+  TemplateRef,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'ort-feature-table',
@@ -7,8 +13,7 @@ import { Component, ChangeDetectionStrategy, ContentChild, TemplateRef, Input } 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureTableComponent {
-  @ContentChild(TemplateRef) rowTemplate: any;
-
+  @ContentChild(TemplateRef) rowTemplate: TemplateRef<any>;
   @Input() headers: string[] | undefined;
-  @Input() data: any[] | undefined;
+  @Input() dataSource: any[] | null | undefined;
 }

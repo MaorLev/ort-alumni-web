@@ -1,15 +1,14 @@
 @use 'mixins' as mix;
 :host {
   #card {
-    // width: 50%;
-    // max-width: 300px;
+
     position: relative;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    // display: grid;
+
     text-align: start;
 
     background-color: var(--light-background-a);

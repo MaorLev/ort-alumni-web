@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
-using AlumniOrtServer.DTO;
 using AlumniOrtServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
+using static AlumniOrtServer.Extensions.Constants;
 
 namespace AlumniOrtServer.Controllers
 {
+  [Authorize(Roles = RolesName.Admin + "," + RolesName.Alumnus)]
   [Route("[controller]")]
   [ApiController]
   public class TeacherController : ControllerBase
@@ -22,6 +21,7 @@ namespace AlumniOrtServer.Controllers
     {
       this.service = service;
     }
+    [AllowAnonymous]
     [HttpGet]
     [Route("{alumnusId?}")]
     public async Task<ActionResult> Get(int alumnusId = 0)
@@ -167,6 +167,7 @@ namespace AlumniOrtServer.Controllers
 
     }
 
+    [AllowAnonymous]
     [HttpPost]
     [Route("search-teachers")]
     public async Task<ActionResult> SearchTeachers([FromBody] SearchRequestDTO searchRequest)
@@ -182,6 +183,7 @@ namespace AlumniOrtServer.Controllers
       }
     }
 
+    [AllowAnonymous]
     [HttpGet]
     [Route("last-teachers")]
     public async Task<ActionResult> GetLastTeachers([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
@@ -190,6 +192,27 @@ namespace AlumniOrtServer.Controllers
       {
         List<TeacherDTO> result = await service.GetLastTeachers(new PaginationFilterDTO() { PageIndex = pageIndex, PageSize = pageSize });
         return Ok(result);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }
+
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("search-teachers-by-key")]
+    public async Task<ActionResult> SearchteachersByKey([FromBody] SearchRequestByKeyDTO searchRequest)
+    {
+      try
+      {
+        (List<TeacherDTO> teachers, int totalCount) result = await service.SearchTeachersByKey(searchRequest);
+        var finalResult = new
+        {
+          users = result.teachers,
+          total = result.totalCount
+        };
+        return Ok(finalResult);
       }
       catch (Exception e)
       {

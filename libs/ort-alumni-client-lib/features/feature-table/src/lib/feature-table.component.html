@@ -1,33 +1,15 @@
 <table>
   <thead>
-    <!-- <tr>
-      <th *ngFor="let header of headers">{{ header }}</th>
-    </tr> -->
-    <th>
-      <tr *ngFor="let header of headers">
-        {{
-          header
-        }}
-      </tr>
-    </th>
-  </thead>
-  <tbody>
-    <ng-container
-      *ngFor="let entry of data; template: rowTemplate || noTemplate"
-      ;
-    ></ng-container>
-  </tbody>
-</table>
-<!-- <table>
-  <thead>
     <tr>
       <th *ngFor="let header of headers">{{ header }}</th>
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let entry of data template: rowTemplate || noTemplate";  ></ng-container>
+    <ng-container
+      *ngFor="let entry of dataSource; template: rowTemplate || noTemplate";
+    ></ng-container>
   </tbody>
-</table> -->
+</table>
 
 <ng-template #noTemplate>
   <tr class="text-danger">

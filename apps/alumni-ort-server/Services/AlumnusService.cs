@@ -1,7 +1,6 @@
 using AlumniOrtServer.Context;
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Data.Entities;
-using AlumniOrtServer.DTO;
 using AlumniOrtServer.Extensions;
 using AlumniOrtServer.Models;
 using AlumniOrtServer.Models.AlumnusModel;
@@ -23,6 +22,65 @@ namespace AlumniOrtServer.Services
     {
       m_db = db;
       this.claim = claim;
+    }
+    
+    public async Task<(List<AlumnusDTO> FilteredAlumni, int TotalAlumniCount)> SearchAlumniByKey(SearchRequestByKeyDTO searchRequest)
+    {
+      var query = m_db.Alumni.AsQueryable();
+
+      // Search in all string, number and date fields
+      if (!string.IsNullOrEmpty(searchRequest.Key))
+      {
+        query = query.Where(a => a.FirstName.Contains(searchRequest.Key)
+            || a.LastName.Contains(searchRequest.Key)
+            || a.Mail.Contains(searchRequest.Key)
+            || a.Phone.Contains(searchRequest.Key)
+            || a.CardId.Contains(searchRequest.Key)
+            || a.WorkPlace.Contains(searchRequest.Key)
+            || a.StudyStartYear.Contains(searchRequest.Key)
+            || a.StudyFinishYear.Contains(searchRequest.Key)
+            || a.DateOfBirth.ToString().Contains(searchRequest.Key));
+      }
+
+      var totalAlumniCount = await query.CountAsync();
+
+      var filteredAlumni = await query
+          .OrderByDescending(a => a.Id)
+          .Skip((searchRequest.PageIndex - 1) * searchRequest.PageSize)
+          .Take(searchRequest.PageSize)
+          .Select(a => new AlumnusDTO()
+          {
+            Id = a.Id,
+            Mail = a.Mail,
+            FirstName = a.FirstName,
+            LastName = a.LastName,
+            Phone = a.Phone,
+            CardId = a.CardId,
+            DateOfBirth = a.DateOfBirth,
+            StudyStartYear = a.StudyStartYear,
+            StudyFinishYear = a.StudyFinishYear,
+            Linkedin = a.Linkedin,
+            WorkPlace = a.WorkPlace,
+            College = new CollegeDTO
+            {
+              Id = a.College.Id,
+              Name = a.College.Name
+            },
+            StudyProgram = new StudyProgramDTO
+            {
+              Id = a.StudyProgram.Id,
+              Name = a.StudyProgram.Name
+            },
+            City = new CityDTO
+            {
+              Id = a.City.Id,
+              Name = a.City.Name
+            },
+            TeacherId = a.teacher != null ? a.teacher.Id : 0,
+          })
+          .ToListAsync();
+
+      return (FilteredAlumni: filteredAlumni, TotalAlumniCount: totalAlumniCount);
     }
 
     public async Task<List<AlumnusDTO>> GetLastTeachers(int pageIndex, int pageSize)

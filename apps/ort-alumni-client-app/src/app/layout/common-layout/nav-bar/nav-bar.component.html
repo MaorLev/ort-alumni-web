@@ -13,20 +13,24 @@
         <ng-container *ngFor="let link of links">
           <a
             class="clink"
+            *appShowByTheRole="{required:link.requiredPermission, label:link.label} "
             routerLinkActive="active"
             [routerLink]="link.route"
           >
             {{ link.label }}
           </a>
         </ng-container>
-        <a
+        <!-- <ng-container
+          *ngIf="sessionQuery.getRole() === 'student'"
+        ></ng-container> -->
+        <!-- <a
         class="clink"
         routerLinkActive="active"
         [routerLink]="'/profile'"
         *appShowIfLoggedIn="true"
       >
         {{ 'פרופיל' }}
-      </a>
+      </a> -->
       </div>
       <div class="box search">
         <ort-button

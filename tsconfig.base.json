@@ -28,6 +28,9 @@
       "@features/feature-check-list": [
         "libs/ort-alumni-client-lib/features/feature-check-list/src/index.ts"
       ],
+      "@features/feature-checkbox": [
+        "libs/ort-alumni-client-lib/features/feature-checkbox/src/index.ts"
+      ],
       "@features/feature-chips-check-list": [
         "libs/ort-alumni-client-lib/features/feature-chips-check-list/src/index.ts"
       ],

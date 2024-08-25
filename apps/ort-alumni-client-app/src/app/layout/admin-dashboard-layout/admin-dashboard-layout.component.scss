@@ -1,0 +1,26 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: block;
+  .dashboard {
+    display: grid;
+    grid-template-areas:
+      'header'
+      'main';
+
+    .header {
+      grid-area: header;
+    }
+    .main {
+      display: flex;
+      grid-area: main;
+    }
+    .content {
+      padding: 2rem 1rem 0rem 1rem;
+      width: 100%;
+    }
+    .side-nav {
+      padding: 2rem 0rem 0rem 0.5rem;
+    }
+  }
+}

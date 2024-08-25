@@ -32,7 +32,7 @@ namespace AlumniOrtServer.Services
 
     public Task<List<TeacherDTO>> SearchTeachers(SearchRequestDTO searchRequest);
     public Task<List<TeacherDTO>> GetLastTeachers(PaginationFilterDTO paginationRequest);
-
+    public Task<(List<TeacherDTO>, int)> SearchTeachersByKey(SearchRequestByKeyDTO searchRequest);
 
 
   }

@@ -3,6 +3,7 @@ import { cloneDeep, cloneable } from '@utils/util-tools';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NavigationType } from '@features/feature-navigation';
 import { ProfileStateType } from './profile-state-type';
+import { Injectable } from '@angular/core';
 
 export class ProfileState {
   readonly NAGN_DATA: NavigationType;

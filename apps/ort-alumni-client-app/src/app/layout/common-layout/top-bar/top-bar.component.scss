@@ -26,6 +26,7 @@
         justify-content: center;
         height: 100%;
 
+
         &:nth-child(2) {
           align-items: center;
           padding-right: 4rem;
@@ -43,6 +44,27 @@
           width: 3.5rem;
           height: 1.4rem;
         }
+      }
+      .name{
+        h5{
+          display: flex;
+          // transform: skew(-10deg);
+          font-style: italic bold;
+          font-size: 1.7rem;
+          font-weight: 400;
+          font-family: 'David Libre', serif;
+          @media #{media.$break1} {
+            font-size: 0.6rem;
+            font-weight: 400;
+          }
+          @media #{media.$break3max} {
+            font-size: 1.4rem;
+            font-weight: 400;
+          }
+        }
+        color: var(--primary-50);
+        display: inline-block;
+
       }
       .login-item {
         height: 100%;

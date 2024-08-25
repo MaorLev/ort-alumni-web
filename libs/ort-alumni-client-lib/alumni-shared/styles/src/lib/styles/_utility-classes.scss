@@ -1,29 +1,3 @@
-.mat-raised-button,
-.mat-stroked-button,
-.mat-flat-button,
-.mat-icon-button {
-  padding: 1.15rem 1.15rem;
-  margin: 0 0.65rem;
-  min-width: 3rem;
-  line-height: 3.64rem;
-  font-weight: bold;
-}
-.mat-standard-chip {
-  padding: 0.5rem 0.85rem;
-  min-height: 2.5rem;
-}
-.material-icons {
-  direction: rtl;
-  font-size: 2.4rem;
-  font-family: 'Material Icons', 'Material Icons';
-  .mat-badge-content {
-    font-family: 'Open Sans';
-  }
-}
-body .mat-dialog-container {
-  margin: 0;
-  padding: 0;
-}
 .container {
   max-width: 120rem;
   margin: auto;
@@ -32,10 +6,4 @@ body .mat-dialog-container {
 }
 .none {
   display: none !important;
-}
-.mat-expansion-panel-body {
-  padding: 12px 12px 10px ;
-}
-.mat-snack-bar-container {
-  background-color: var(--primary-color) !important;
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+
 
 import { AlumnusService } from './state-alumnus/alumnus.service';
 import { AlumnusStore } from './state-alumnus/alumnus.store';
@@ -10,7 +10,7 @@ import { AlumnusDataService } from './state-alumnus/alumnus.data.service';
 
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   providers: [
     AlumnusService,
     AlumnusStore,

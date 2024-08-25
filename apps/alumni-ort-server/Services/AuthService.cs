@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -16,61 +18,106 @@ namespace AlumniOrtServer.Services
   {
     private readonly AlumniDBContext m_db;
     private readonly IJwtManager _jwtManager;
+    private readonly SmtpClient _smtpClient;
 
     public AuthService(AlumniDBContext db, IJwtManager _jwtManager)
     {
       m_db = db;
       this._jwtManager = _jwtManager;
+      _smtpClient = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+      {
+        Credentials = new NetworkCredential("d56297a79e7218", "bdd12611b866c0"),
+        EnableSsl = true
+      };
     }
 
     public async Task<JwtResultDTO> Authentication(AuthUserDTO authUserDTO)
     {
       try
       {
-        /*                Object user = null;// chack if all work properly
-                        //                    .SingleOrDefault();//search user by mail & password of login
-                        switch (authUserDTO.userType)
-                        {
-                            case "alumnus":
-                                user = m_db.Alumni.Where(x => x.Mail == authUserDTO.Email && x.Password == authUserDTO.Password)
-                                            .SingleOrDefault();
-                                break;
-                            case "student":
-                               user =  m_db.Students.Where(x => x.Mail == authUserDTO.Email && x.Password == authUserDTO.Password)
-                                            .SingleOrDefault();
-                                break;
-                            case "employer":
-                                user = m_db.Employers.Where(x => x.Mail == authUserDTO.Email && x.Password == authUserDTO.Password)
-                                            .SingleOrDefault();
-                                break;
-                            default:
-                                break;
-                        }*/
         var user = await m_db.Users.Include(u => u.Claims).Include(u => u.Role).Where(u => u.Mail.ToLower() == authUserDTO.Mail.ToLower() && u.Password == MD5Service.Encrypt(authUserDTO.Password)).FirstOrDefaultAsync();
 
         if (user != null)
         {
-          //var claimsUser = await m_db.Claim.Where(x => x.UserId == user.Id).ToListAsync();
+
           List<Claim> claims = new List<Claim>();
 
-          foreach (var item in user.Claims)//claim of above user that commit login
+          foreach (var item in user.Claims)
           {
             claims.Add(new Claim(item.Type, item.Value));
           }
-          JwtResultDTO jwtResult = _jwtManager.GenerateToken(claims.ToArray());//שאלה : איך הוא קופץ ישר לסרוויס למרות שהוא מחובר לאינטרפייס ואם הייתי מממש את אותה תכונה שנמצאת באינטרפייס בסרוויס נוסף איך הוא היה מתנהג ??
-          return jwtResult;//required mapping for DTO obj ?
+          JwtResultDTO jwtResult = _jwtManager.GenerateToken(claims.ToArray());
+          return jwtResult;
         }
 
         return null;
 
       }
-      // catch (Exception ex)
       catch
       {
         return null;
       }
 
 
+    }
+
+
+    public async Task<User> GetUser(string email)
+    {
+      try
+      {
+        User user = await m_db.Users.Include(u => u.Claims).Include(u => u.Role).Where(u => u.Mail.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+        return user;
+      }
+      catch
+      {
+
+        throw;
+      }
+    }
+
+    public async Task<JwtResultDTO> GenerateResetToken(string email)
+    {
+      try
+      {
+        var user = await m_db.Users.Include(u => u.Claims).Include(u => u.Role).Where(u => u.Mail.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+
+        if (user != null)
+        {
+
+          List<Claim> claims = new List<Claim>();
+
+          claims.Add(new Claim("role", "resetPassword"));
+          claims.Add(new Claim("email", user.Mail));
+          
+          JwtResultDTO jwtResult = _jwtManager.GenerateToken(claims.ToArray());
+          return jwtResult;
+        }
+
+        return null;
+
+      }
+      catch
+      {
+        return null;
+      }
+    }
+
+
+
+
+    public void SendResetLink(string email, string resetLink)
+    {
+      var mailMessage = new MailMessage
+      {
+        From = new MailAddress("levymaor1@gmail.com"),
+        Subject = "Password Reset",
+        Body = $"Click <a href='{resetLink}'>here</a> to reset your password.",
+        IsBodyHtml = true
+      };
+      mailMessage.To.Add(email);
+
+      _smtpClient.Send(mailMessage);
     }
 
     public async Task<bool> Validation(string emai)
@@ -81,5 +128,50 @@ namespace AlumniOrtServer.Services
       }
       return false;
     }
+
+    public async Task<ResponseDTO> ResetPassword(string email, string newPassword)
+    {
+      try
+      {
+        User user = await m_db.Users.Include(u => u.Claims).Include(u => u.Role).Where(u => u.Mail.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+        if (user == null)
+        {
+          return new ResponseDTO()
+          {
+            Status = StatusCODE.Error,
+            StatusText = $"Item with email {email} not found in DB"
+          };
+        }
+
+        user.Password = MD5Service.Encrypt(newPassword) ?? user.Password;
+
+
+        m_db.Entry(user).State = EntityState.Modified;
+
+        int c = await m_db.SaveChangesAsync();
+        ResponseDTO response = new ResponseDTO();
+        if (c > 0)
+        {
+          response.StatusText = c + " User affected";
+          response.Status = StatusCODE.Success;
+        }
+        else
+        {
+          response.Status = StatusCODE.Faild;
+          response.StatusText = "faild no User affacted";
+        }
+        return response;
+      }
+      catch
+      {
+
+        return new ResponseDTO()
+        {
+          Status = StatusCODE.Error,
+          StatusText = $"Erorrs in service"
+        };
+      }
+    }
+
   }
 }

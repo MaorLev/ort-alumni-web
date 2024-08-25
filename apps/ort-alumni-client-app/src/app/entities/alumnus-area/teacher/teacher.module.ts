@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 import { TeacherService } from './state-teacher/teacher.service';
 import { TeacherStore } from './state-teacher/teacher.store';
@@ -10,7 +9,7 @@ import { AlertsService } from '@utils/util/core/central-message';
 
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   providers: [
     TeacherService,
     TeacherStore,

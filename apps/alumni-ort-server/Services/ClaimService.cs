@@ -28,16 +28,7 @@ namespace AlumniOrtServer.Services
     }
     public async Task<bool> PersistClaimsForUser(User persistUser)
     {
-      /*            if (persistUser is Alumnus)
-                  {
-                      Claim teacherId = new Claim
-                      {
-                          Type = "teacherId",
-                          Value = (Alumnus)persistUser.,
-                          UserId = persistUser.Id
-                      };
 
-                  }*/
       Claim name = new Claim
       {
         Type = "name",
@@ -48,26 +39,24 @@ namespace AlumniOrtServer.Services
       Claim role = new Claim
       {
         Type = "role",
-        //Value = persistUser.RoleId.ToString(),
-        Value = persistUser.Role.Name,//probably better 
+        Value = persistUser.Role.Name,
         UserId = persistUser.Id
       };
 
       Claim userId = new Claim
       {
         Type = "userId",
-        //Value = persistUser.RoleId.ToString(),
-        Value = persistUser.Id.ToString(),//probably better 
+        Value = persistUser.Id.ToString(),
         UserId = persistUser.Id
       };
 
       await m_db.Claim.AddAsync(userId);
-      await m_db.Claim.AddAsync(name);//למה להשתמש בשניים ?
+      await m_db.Claim.AddAsync(name);
       await m_db.Claim.AddAsync(role);
 
 
       int c = await m_db.SaveChangesAsync();
-      return c > 1;//checkk
+      return c > 1;
     }
   }
 }

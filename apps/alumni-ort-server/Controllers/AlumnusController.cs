@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
-using AlumniOrtServer.DTO;
 using AlumniOrtServer.Models.AlumnusModel;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using AlumniOrtServer.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
+using static AlumniOrtServer.Extensions.Constants;
 
 namespace AlumniOrtServer.Controllers
 {
+  [Authorize(Roles = RolesName.Admin + "," + RolesName.Alumnus)]
   [Route("[controller]")]
   [ApiController]
   public class AlumnusController : ControllerBase
@@ -21,6 +20,7 @@ namespace AlumniOrtServer.Controllers
     {
       this.service = service;
     }
+    [AllowAnonymous]
     [HttpGet]
     [Route("{id?}")]
     public async Task<ActionResult> Get(int id = 0)
@@ -43,7 +43,7 @@ namespace AlumniOrtServer.Controllers
       }
 
     }
-
+    [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult> PostAlumnus(AlumnusDTO alumnus)
     {
@@ -120,6 +120,28 @@ namespace AlumniOrtServer.Controllers
       }
     }
 
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("search-alumni-by-key")]
+    public async Task<ActionResult> SearchAlumniByKey([FromBody] SearchRequestByKeyDTO searchRequest)
+    {
+      try
+      {
+        (List<AlumnusDTO> alumni, int totalCount) result = await service.SearchAlumniByKey(searchRequest);
+        var finalResult = new
+        {
+          users = result.alumni,
+          total = result.totalCount
+        };
+        return Ok(finalResult);
+      }
+      catch (Exception e)
+      {
+        return StatusCode(500, e);
+      }
+    }
+
+    [AllowAnonymous]
     [HttpGet]
     [Route("last-teachers")]
     public async Task<ActionResult> GetLastTeachers([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)

@@ -1,29 +1,74 @@
-<nav class="navigation">
+<div class="btn_hide" >
+
+<ort-button (click)="hide = hide ? false : true;" >{{hide ? 'חשוף' :'הסתר'}} </ort-button>
+</div>
+<nav *ngIf="!hide" class="navigation">
   <div [ngClass]="['links', alignment]">
     <ng-template [ngIf]="title">
-      <div class="mat-h1 title">פרופיל {{title}}</div>
+      <div class="mat-h1 title">פרופיל {{ title }}</div>
     </ng-template>
-    <ng-container *ngFor="let link of routes">
-      <ort-button
-        *ngIf="getRoutingMethod('routing'); else menualButton"
-        class="link"
-        [routerLink]="[link.route]"
-        routerLinkActive="active"
-        [skipLocationChange]="true"
-      >
-        {{ link.label }}
-      </ort-button>
-      <ng-template #menualButton>
-        <ng-container *ngIf="currentActivating | async as current">
+
+    <ng-container >
+
+      <ng-container  *ngFor="let link of routes">
+        <ng-container *ngIf="getRoutingMethod('routing'); else menualButton">
           <ort-button
+            *ngIf="link.route; else routechildren"
             class="link"
-            (click)="whenRouteChanging(link.name)"
-            [class.active]="current === link.name"
+            [routerLink]="[link.route]"
+            routerLinkActive="active"
+            [skipLocationChange]="link.skipLC ? true : false"
           >
             {{ link.label }}
           </ort-button>
+          <ng-template #routechildren>
+            <!-- <ort-button class="link">
+              {{ link.label }}
+            </ort-button>
+            <ng-container *ngFor="let sublink of link.children">
+              <ort-button
+                class="link sublinks"
+                [routerLink]="[sublink.route]"
+                routerLinkActive="active"
+                [skipLocationChange]="sublink.skipLC ? true : false"
+              >
+                {{ sublink.label }}
+              </ort-button>
+            </ng-container> -->
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{ link.label }}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-container *ngFor="let sublink of link.children">
+                  <ort-button
+                    class="link sublinks"
+                    [routerLink]="[sublink.route]"
+                    routerLinkActive="active"
+                    [skipLocationChange]="sublink.skipLC ? true : false"
+                  >
+                    {{ sublink.label }}
+                  </ort-button>
+                </ng-container>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </ng-template>
         </ng-container>
-      </ng-template>
+        <ng-template #menualButton>
+          <ng-container *ngIf="currentActivating | async as current">
+            <ort-button
+              class="link"
+              (click)="whenRouteChanging(link.name)"
+              [class.active]="current === link.name"
+            >
+              {{ link.label }}
+            </ort-button>
+          </ng-container>
+        </ng-template>
+      </ng-container>
     </ng-container>
   </div>
 </nav>

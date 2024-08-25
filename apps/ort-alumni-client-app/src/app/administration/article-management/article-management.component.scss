@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  .add-btn{
+    margin-bottom: 10px;
+  }
+  .query {
+    width: 100%;
+    text-align: start;
+    .radio-group {
+      display: block;
+      text-align: center;
+    }
+  }
+  .mat-radio-button {
+    margin: 0px 8px;
+  }
+}
+

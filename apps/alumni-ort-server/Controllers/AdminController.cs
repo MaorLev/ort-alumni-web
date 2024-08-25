@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static AlumniOrtServer.Extensions.Constants;
 
 namespace AlumniOrtServer.Controllers
 {
+  [Authorize(Roles = RolesName.Admin)]
   [Route("[controller]")]
   [ApiController]
   public class AdminController : ControllerBase

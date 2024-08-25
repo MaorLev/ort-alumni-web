@@ -7,4 +7,5 @@ export interface ModalBottomLinks {
 export interface MenuDataModal {
   quickLinks: ModalBottomLinks[];
   dataSource: FilesTreeNodeInterface[];
+  accountRoute?:string;
 }

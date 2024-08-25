@@ -18,7 +18,7 @@ export interface ControlConfigs {
   errors?: VaErrorsInterface[];
 }
 
-import { ControlsFactory } from '../../app-helpers/controls-factory';
+import { ControlsFactory, asyncNullValidator } from '../../app-helpers/controls-factory';
 import {
   StylesControl,
   VaDataInterface,
@@ -52,6 +52,25 @@ export class EntitiesCommonControls extends ControlsFactory {
       ],
     });
   };
+  static Token = (): VaFormInputInterface => {
+    return this.basicInput({
+      name: 'token',
+      label: 'טוקן',
+      type: 'text',
+      validators: [],
+      data: {},
+      errors: [
+        {
+          name: 'required',
+          message: 'שדה חובה',
+        },
+        {
+          name: 'maxLength',
+          message: 'מקסימום 10 אותיות',
+        },
+      ],
+    });
+  };
   static Lastname = (): VaFormInputInterface => {
     return this.basicInput({
       name: 'lastname',
@@ -72,7 +91,7 @@ export class EntitiesCommonControls extends ControlsFactory {
     });
   };
 
-  static Email = (): VaFormInputInterface => {
+  static Email = (asyncEmailValidator?:any): VaFormInputInterface => {
     return this.basicInput({
       name: 'email',
       label: 'אימייל',
@@ -80,8 +99,9 @@ export class EntitiesCommonControls extends ControlsFactory {
       placeholder: 'pat@example.com',
       validators: [
         Validators.required,
-        // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ],
+      // asyncValidators:[asyncEmailValidator ? asyncEmailValidator() : asyncNullValidator],
       data: {},
       errors: [
         {
@@ -155,7 +175,7 @@ export class EntitiesCommonControls extends ControlsFactory {
       name: 'cardid',
       label: 'תעודת זהות',
       type: 'text',
-      validators: [Validators.maxLength(12)],
+      validators: [Validators.required,Validators.maxLength(12)],
       data: {},
       errors: [
         {

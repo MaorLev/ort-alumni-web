@@ -6,15 +6,20 @@ import { CityInterface } from '../../../static-entities-backend-data/static-enti
 import { StudyProgramInterface } from '../../../static-entities-backend-data/static-entities-interfaces/study-program.interface';
 import { CollegeInterface } from '../../../static-entities-backend-data/static-entities-interfaces/college.interface';
 import { StaticEntitiesDataQuery } from '../../../static-entities-backend-data/static-entities-data.query';
+import { SessionQuery } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.query';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AlumnusPanelDataConfig {
-  private cities:CityInterface[];
-  private studyPrograms:StudyProgramInterface [];
-  private colleges:CollegeInterface [];
-  constructor(private staticEntitiesDataQuery: StaticEntitiesDataQuery) {
+  private cities: CityInterface[];
+  private studyPrograms: StudyProgramInterface[];
+  private colleges: CollegeInterface[];
+  isAdmin: boolean = this.sessionQuery.isAdmin();
+  constructor(
+    private staticEntitiesDataQuery: StaticEntitiesDataQuery,
+    private sessionQuery: SessionQuery
+  ) {
     this.cities = staticEntitiesDataQuery.getCities();
     this.studyPrograms = staticEntitiesDataQuery.getStudyPrograms();
     this.colleges = staticEntitiesDataQuery.getColleges();
@@ -64,7 +69,9 @@ export class AlumnusPanelDataConfig {
             phone: AlumnusControls.Phone(),
             dateofbirth: AlumnusControls.Dateofbirth(),
             cardid: AlumnusControls.Cardid(),
-            city: AlumnusControls.City(this.staticEntitiesDataQuery.getCities()),
+            city: AlumnusControls.City(
+              this.staticEntitiesDataQuery.getCities()
+            ),
           },
         },
         stepButtons: [
@@ -94,8 +101,12 @@ export class AlumnusPanelDataConfig {
           buttons: [],
           styleStructure: 'style-grid',
           controls: {
-            college: AlumnusControls.College(this.staticEntitiesDataQuery.getColleges()),
-            studyprogram: AlumnusControls.Studyprogram(this.staticEntitiesDataQuery.getStudyPrograms()),
+            college: AlumnusControls.College(
+              this.staticEntitiesDataQuery.getColleges()
+            ),
+            studyprogram: AlumnusControls.Studyprogram(
+              this.staticEntitiesDataQuery.getStudyPrograms()
+            ),
             studystartyear: AlumnusControls.Studystartyear(),
             studyfinishyear: AlumnusControls.Studyfinishyear(),
           },
@@ -162,18 +173,28 @@ export class AlumnusPanelDataConfig {
           buttons: [],
           controls: {},
         },
-        stepButtons: [
-          {
-            name: 'RouteTo',
-            label: 'התחבר למערכת',
-            route: '/auth/login',
-            role: ButtonAction.RouteTo,
-            color: 'accent',
-            className: 'mat-raised-button',
-          },
-        ],
+        stepButtons: this.isAdmin
+          ? [
+              {
+                name: 'RouteTo',
+                label: 'בחזרה לדשבורד',
+                route: '/admin-dashboard-layout/alumni-management',
+                role: ButtonAction.RouteTo,
+                color: 'accent',
+                className: 'mat-raised-button',
+              },
+            ]
+          : [
+              {
+                name: 'RouteTo',
+                label: 'התחבר למערכת',
+                route: '/auth/login',
+                role: ButtonAction.RouteTo,
+                color: 'accent',
+                className: 'mat-raised-button',
+              },
+            ],
       },
     ],
   };
-
 }

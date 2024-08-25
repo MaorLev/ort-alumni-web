@@ -1,0 +1,14 @@
+:host {
+  display: block;
+
+  .btn-back{
+    color: var(--accent-a-stronger-color);
+    font-size: 3rem;
+    &:hover {
+      color: black;
+      transition: color ease-in-out 250ms;
+      cursor: pointer;
+    }
+    margin-bottom: 2rem;
+  }
+}

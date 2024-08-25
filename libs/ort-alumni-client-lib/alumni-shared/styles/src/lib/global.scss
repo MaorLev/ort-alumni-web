@@ -1,11 +1,11 @@
 @use 'styles/resets/normalize';
 @use 'styles/resets/local-resets';
+@use 'styles/resets/my-resets';
 
 @use 'styles/variables';
+@use 'styles/media';
 @use 'styles/utility-classes';
 
-@use 'styles/resets/my-resets';
-@use 'styles/media';
 
 @import 'styles/theme';
 @import '~@glidejs/glide/src/assets/sass/glide.core';

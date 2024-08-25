@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 // Components
 import { AuthLayoutComponent } from './auth-layout.component';
+import { SessionGurad } from '../../auth/session/session.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,9 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-        import('../../auth/auth-switcher/auth-switcher.module').then((m) => m.AuthSwitcherModule),
+          import('../../auth/auth-switcher/auth-switcher.module').then(
+            (m) => m.AuthSwitcherModule
+          ),
       },
       {
         path: 'register-student',
@@ -25,25 +28,32 @@ const routes: Routes = [
       {
         path: 'register-alumnus',
         loadChildren: () =>
-          import('../../entities/alumnus-area/alumnus/add-alumnus/add-alumnus.module').then(
-            (m) => m.AddAlumnusModule
-          ),
+          import(
+            '../../entities/alumnus-area/alumnus/add-alumnus/add-alumnus.module'
+          ).then((m) => m.AddAlumnusModule),
       },
       {
         path: 'register-teacher',
         loadChildren: () =>
-          import('../../entities/alumnus-area/teacher/add-teacher/add-teacher.module').then(
-            (m) => m.AddTeacherModule
+          import(
+            '../../entities/alumnus-area/teacher/add-teacher/add-teacher.module'
+          ).then((m) => m.AddTeacherModule),
+        canLoad: [SessionGurad],
+      },
+      {
+        path: 'reset-password/:token',
+        loadChildren: () =>
+          import('../../auth/reset-password/reset-password.module').then(
+            (m) => m.ResetPasswordModule
           ),
       },
       {
         path: 'register-employer',
         loadChildren: () =>
-          import('../../entities/employer-area/employer/add-employer/add-employer.module').then(
-            (m) => m.AddEmployerModule
-          ),
+          import(
+            '../../entities/employer-area/employer/add-employer/add-employer.module'
+          ).then((m) => m.AddEmployerModule),
       },
-
     ],
   },
 ];
@@ -53,4 +63,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AuthLayoutRoutingModule {}
-

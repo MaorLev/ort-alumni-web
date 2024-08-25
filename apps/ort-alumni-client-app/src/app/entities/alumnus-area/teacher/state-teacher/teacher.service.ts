@@ -47,10 +47,24 @@ export class TeacherService {
   loadTeacher(alumnusId: string) {
     return this.teacherDataService.getTeacherByAlumnus(alumnusId).pipe(
       map((teacher: TeacherModel) => {
-        this.store.set([teacher]);
+        this.store.add(teacher);
         this.store.setLoading(true);
         this.store.setActive(teacher.id);
         return teacher;
+      }),
+      catchError((error) => {
+        this.store.setLoading(false);
+        return EMPTY;
+      })
+    );
+  }
+  loadTeachers() {
+    return this.teacherDataService.getTeachers().pipe(
+      map((teachers: TeacherModel[]) => {
+        this.store.set(teachers);
+        this.store.setLoading(true);
+
+        return teachers;
       }),
       catchError((error) => {
         this.store.setLoading(false);
@@ -75,14 +89,12 @@ export class TeacherService {
     );
   }
 
-  deleteTeacher(alumnusId: string): Observable<any> {
+  deleteTeacher(alumnusId: string, id:string): Observable<any> {
     return this.teacherDataService.deleteTeacher(alumnusId).pipe(
       tap(() => {
-        this.store.remove(alumnusId);
-        this.store.setLoading(false);
+
+        this.store.remove(id);
         this.store.setActive(null);
-        this.sessionStore.logout();
-        this.router.navigate(['/']);
       })
     );
   }

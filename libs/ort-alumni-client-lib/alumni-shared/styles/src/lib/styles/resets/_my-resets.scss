@@ -15,6 +15,11 @@ html {
 body {
   height: 100%;
   background-color: var(--white);
+  .mat-dialog-container {
+    margin: 0;
+    padding: 0;
+  }
+
 }
 
 h1,

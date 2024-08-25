@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments';
 import { Observable, shareReplay } from 'rxjs';
 import { StudentModel } from '../configs-student/student-model';
+import { IPaginationByKeyFilter, IUserTotalPgn } from '../../../administration/admin-helpers/pagination-and-filters-configs';
+
+
 
 
 @Injectable()
@@ -26,6 +29,10 @@ export class StudentDataService  {
   }
   deleteStudent(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
+  }
+
+  searchStudentsByKey( searchDetails: IPaginationByKeyFilter): Observable<IUserTotalPgn<StudentModel>> {
+    return this.http.post<IUserTotalPgn<StudentModel>>(`${this.baseUrl}/search-students-by-key`, searchDetails);
   }
 
 }

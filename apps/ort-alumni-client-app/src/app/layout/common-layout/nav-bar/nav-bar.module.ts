@@ -8,6 +8,7 @@ import { ShowIfLoggedInDirectiveModule } from '../../../auth/session/show-if-log
 import { FeatureModalModule } from '@features/feature-modal';
 import { UiButtonModule } from '@ui-components/ui-button';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { ShowByTheRoleDirectiveModule } from '../../../auth/session/show-by-the-role.directive';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { QuicklinkModule } from 'ngx-quicklink';
     QuicklinkModule,
     UiButtonModule,
     ShowIfLoggedInDirectiveModule,
-    FeatureModalModule
+    FeatureModalModule,
+    ShowByTheRoleDirectiveModule
 
   ],
   exports: [

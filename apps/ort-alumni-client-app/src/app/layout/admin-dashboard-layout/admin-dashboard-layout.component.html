@@ -1,0 +1,20 @@
+<div class="dashboard">
+  <app-header class="header">
+    <nav>
+      <app-top-bar></app-top-bar>
+    </nav>
+  </app-header>
+
+  <main class="main">
+    <!-- <div class="wrapper"> -->
+    <nav class="side-nav">
+      <ort-feature-navigation
+        [title]="routeTitle"
+        [routes]="routes"
+      ></ort-feature-navigation>
+    </nav>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

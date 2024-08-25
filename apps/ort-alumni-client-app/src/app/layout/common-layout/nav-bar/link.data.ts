@@ -1,34 +1,46 @@
 import { Link } from './link.interface';
-export const linkData:Link [] = [
+export const linkData: Link[] = [
   {
     label: 'בית',
     name: 'home',
     route: '/',
-    order: 1
+    requiredPermission: false,
+    order: 1,
   },
-  //   {
-  //   label: 'פרופיל',
-  //   name: 'account',
-  //   route: '/profile',
-  //   order: 2,
-  //   showIfLogin: true,
-  // },
-  // {
-  //   label: 'אודות',
-  //   name: 'about',
-  //   route: 'about',
-  //   order: 3
-  // },
+  {
+    label: 'אודות',
+    name: 'about',
+    route: '/main/about',
+    requiredPermission: false,
+    order: 2,
+  },
   {
     label: 'מאמרים',
     name: 'articles',
     route: '/main/articles',
-    order: 3
+    requiredPermission: false,
+    order: 3,
   },
   {
     label: 'פורטל מורים פרטים',
     name: 'teaching-portal',
     route: '/layout-teaching-portal',
-    order: 4
+    requiredPermission: false,
+    order: 4,
+  },
+  {
+    label: 'פרופיל',
+    name: 'account',
+    route: '/profile',
+    requiredPermission: true,
+    // showIfLogin: true,
+    order: 5,
+  },
+  {
+    label: 'אזור ניהול',
+    name: 'admin-dashboard',
+    route: '/admin-dashboard-layout/admin-dashboard',
+    requiredPermission: true,
+    order: 6,
   },
 ];

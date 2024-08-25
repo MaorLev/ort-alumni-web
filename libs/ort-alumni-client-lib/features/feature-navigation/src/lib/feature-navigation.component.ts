@@ -25,15 +25,18 @@ export class FeatureNavigationComponent implements AfterViewInit, OnInit {
   @Output() submitted: EventEmitter<string> = new EventEmitter<string>();
   currentActivating: BehaviorSubject<string>;
 
+  hide:boolean;
+
   constructor(private router: Router) {
     this.alignment = 'vertical';
     this.routingMethod = 'routing';
+    this.hide = false;
   }
   ngOnInit(): void {
     this.currentActivating = new BehaviorSubject<string>(this.routes[0].name);
   }
   ngAfterViewInit(): void {
-    if (this.routes && this.getRoutingMethod('routing'))
+    if (this.routes && this.getRoutingMethod('routing') && this.routes[0].route)
       this.router.navigateByUrl(this.routes[0].route, {
         skipLocationChange: true,
       });

@@ -9,7 +9,8 @@ export class TeacherQuery extends QueryEntity<TeacherState> {
   constructor(protected override store: TeacherStore) {
     super(store);
   }
-  selectAll$: Observable<TeacherModel [] | null> = this.selectAll();
+  //Attention:the following line has been changed from null to undefined
+  selectAll$: Observable<TeacherModel [] | undefined> = this.selectAll();
   selectState$: Observable<TeacherState | null> = this.select((state) => state);
 
 
@@ -18,6 +19,7 @@ export class TeacherQuery extends QueryEntity<TeacherState> {
   isTeacherLoaded$: Observable<boolean | undefined> = this.selectLoading();
 
   getActiveTeacher() { return this.getActive();}
+  getAlumnusIdByActiveTeacher() { return this.getActive()?.alumnusid;}
 
 
   isTeacherLoaded() { return this.getValue().loading}

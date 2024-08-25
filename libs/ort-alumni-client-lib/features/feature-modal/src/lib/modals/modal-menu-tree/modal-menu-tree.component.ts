@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MenuDataModal } from './modal-menu.interfaces';
 
@@ -14,6 +14,15 @@ import { MenuDataModal } from './modal-menu.interfaces';
           <div class="logo" mat-dialog-close routerLink="/main/home">
             <img src="assets/images/header_modal.png" alt="ort medium logo" />
           </div>
+
+          <ort-button
+            iconColor="accent"
+            className="custom sz-3"
+            iconName="account_circle"
+            [routerLink]="PathName"
+            (click) = "closeDialog()"
+            >
+          </ort-button>
         </header>
         <div class="node-container">
           <div mat-dialog-content>
@@ -41,6 +50,10 @@ import { MenuDataModal } from './modal-menu.interfaces';
                 >
                   {{ link.label }}
                 </button>
+
+              </div>
+              <div class="item sprt">
+-
               </div>
             </ng-container>
           </div>
@@ -60,6 +73,18 @@ import { MenuDataModal } from './modal-menu.interfaces';
           }
         }
       }
+      .hgroup-1 {
+        display: flex;
+        justify-content: space-between;
+        // padding: 3rem 5rem;
+
+        .account-icon {
+          width: 5rem;
+          height: 5rem;
+          font-size: 5rem;
+        }
+      }
+
       .modal-menu {
         position: relative;
         background-color: var(--black);
@@ -91,6 +116,11 @@ import { MenuDataModal } from './modal-menu.interfaces';
             display: flex;
             justify-content: space-between;
             padding: 3rem 5rem;
+            .close-modal {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
           }
 
           .node-container {
@@ -129,6 +159,11 @@ import { MenuDataModal } from './modal-menu.interfaces';
                   flex-wrap: wrap;
                 }
               }
+              .sprt{
+                &:last-child {
+      display:none;
+    }
+              }
             }
           }
         }
@@ -144,15 +179,26 @@ import { MenuDataModal } from './modal-menu.interfaces';
       button {
         cursor: pointer;
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalMenuTreeComponent {
+export class ModalMenuTreeComponent implements OnInit {
+  pathName: string;
+
+  get PathName(): string {
+    return this.pathName;
+  }
+  set PathName(name: string) {
+    this.pathName = name;
+  }
   constructor(
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: MenuDataModal
   ) {}
+  ngOnInit(): void {
+    this.PathName = this.data.accountRoute ? this.data.accountRoute : "";
+  }
 
   closeDialog() {
     this.matDialog.closeAll();

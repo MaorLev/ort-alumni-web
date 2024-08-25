@@ -1,0 +1,31 @@
+
+<ng-container *ngIf="this.teachers$ | async as teachers;">
+
+<app-search-bar-teacher></app-search-bar-teacher>
+<ort-feature-table [dataSource]="teachers$ | async" [headers]="headers">
+  <ng-template let-teacher>
+    <tr>
+      <td>{{ teacher?.id }}</td>
+      <td>{{ teacher?.alumnusid }}</td>
+      <td>{{ teacher?.alumnus?.firstname + " " + teacher?.alumnus?.lastname }}</td>
+      <td>{{ teacher?.alumnus.phone }}</td>
+      <td>{{ teacher?.mailforstudy }}</td>
+      <td><ort-button (click)="goToUpdateTeacher(teacher.id, teacher.alumnusid)" className="custom minimal brd" [buttonColor]="'accent'" >ערוך/הצג</ort-button></td>
+      <td><ort-button (click)="onDeleteTeacher(teacher.alumnusid, teacher.id)" className="custom minimal brd" [buttonColor]="'warn'"  >מחק</ort-button></td>
+    </tr>
+  </ng-template>
+</ort-feature-table>
+<div class="paginator-buttons">
+  <ort-button
+    class="pgn-btn"
+    className="custom sz-1"
+    (click)="previousPage()"
+  >
+    << עמוד קודם</ort-button
+  >
+  <ort-button class="pgn-btn" className="custom sz-1" (click)="nextPage()">
+    עמוד הבא >></ort-button
+  >
+</div>
+
+</ng-container>

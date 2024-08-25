@@ -6,5 +6,5 @@ export interface ProfileStateType {
   stateName: string;
   NavigationData: NavigationType;
   groups: FormInterface [];
-  activeGroup?:string;
+  activeGroup:string;
 }

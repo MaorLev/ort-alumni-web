@@ -5,6 +5,7 @@
         <ort-icon class="arrow-back" className=".mat-icon" (click)="onBack()">
           turn_right
         </ort-icon>
+
       </ng-container>
       <ng-container *ngFor="let subList of list; let i = index">
         <li [class]="'item-level-' + subList.level">
@@ -19,7 +20,7 @@
               subList.level === 1 ? onActive(i) : null
             "
           >
-            <ng-container *ngIf="!hasChildren(subList)">
+            <ng-container *ngIf="hasChildren(subList)">
               <ort-icon class="arrow-icon" className=".mat-icon">
                 navigate_before
               </ort-icon>

@@ -7,7 +7,7 @@
     <ng-container
       *ngFor="let config of configuration.controls | keyvalue: asIsOrder"
     >
-      <div class="item" [style]="config.value.styles?.width || ''">
+      <div class="item" [style.max-width]="maxWidthItem">
         <ng-container
           *ngComponentOutlet="
             config.value.component!;

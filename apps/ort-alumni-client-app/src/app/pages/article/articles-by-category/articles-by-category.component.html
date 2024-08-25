@@ -1,11 +1,11 @@
 
 <section id="categories" >
-  <ort-button
+  <!-- <ort-button
   type="button"
   routerLink="/main/articles/create-article"
   className="mat-raised-button bar-btn-primary"
   >הוסף מאמר</ort-button
->
+> -->
   <div class="container">
     <ng-container *ngIf="articlesByCategory$ | async as cats;">
       <ng-container *ngFor="let category of cats">

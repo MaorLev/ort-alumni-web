@@ -1,0 +1,56 @@
+<ort-button
+  class="add-btn"
+  type="button"
+  routeTo="/admin-dashboard-layout/management-shell/create-article"
+  className="mat-raised-button"
+  >הוסף מאמר</ort-button
+>
+<mat-form-field class="query" appearance="fill">
+  <mat-label>חיפוש לפי כותרת</mat-label>
+  <input type="text" matInput [formControl]="searchControl" />
+  <ng-container *ngIf="categories | async as cats">
+    <mat-radio-group
+      class="radio-group"
+      [formControl]="radio"
+      aria-label="Select an option"
+    >
+      <mat-radio-button [value]="cType.All"> הכל</mat-radio-button>
+      <ng-container *ngFor="let cat of cats">
+        <mat-radio-button [value]="cat.id"> {{ cat.name }}</mat-radio-button>
+      </ng-container>
+    </mat-radio-group>
+  </ng-container>
+</mat-form-field>
+<ng-container *ngIf="this.articles$ | async as articles">
+  <ort-feature-table [dataSource]="articles" [headers]="headers">
+    <ng-template let-article>
+      <tr>
+        <td>{{ article.id }}</td>
+        <td>{{ article.author }}</td>
+        <td>{{ article.heading }}</td>
+        <td>{{ article.date | date }}</td>
+        <td>{{ article.category.name }}</td>
+
+        <td>
+          <ort-button
+            [routerLink]="[
+              '/admin-dashboard-layout/management-shell/update-article',
+              article.id
+            ]"
+            className="custom minimal brd"
+            [buttonColor]="'accent'"
+            >ערוך/הצג</ort-button
+          >
+        </td>
+        <td>
+          <ort-button
+            (click)="onDeleteArticle(article.id)"
+            className="custom minimal brd"
+            [buttonColor]="'warn'"
+            >מחק</ort-button
+          >
+        </td>
+      </tr>
+    </ng-template>
+  </ort-feature-table>
+</ng-container>

@@ -12,12 +12,22 @@ export class AlumnusQuery extends QueryEntity<AlumnusState> {
 
   selectState$: Observable<AlumnusState | null> = this.select((state) => state);
 
+  selectAlumni$: Observable<AlumnusModel[] | undefined> = this.selectAll();
 
-  selectActiveAlumnus$: Observable<AlumnusModel | undefined> = this.selectActive();
+  selectActiveAlumnus$: Observable<AlumnusModel | undefined> =
+    this.selectActive();
 
   isAlumnusLoaded$: Observable<boolean | undefined> = this.selectLoading();
 
-  getActiveAlumnus() { return this.getActive();}
+  getActiveAlumnus() {
+    return this.getActive();
+  }
+  getActiveAlumnusId() {
 
-  isAlumnusLoaded() { return this.getValue().loading}
+    return this.getActiveId();
+  }
+
+  isAlumnusLoaded() {
+    return this.getValue().loading;
+  }
 }

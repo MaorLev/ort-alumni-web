@@ -5,6 +5,7 @@ import { SessionStore } from './session.store';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map, Observable } from 'rxjs';
 import { PayloadInterface } from './session.types';
+import { ConstantsUsers } from '../../../app-helpers/constants';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,7 @@ export class SessionQuery extends Query<SessionState> {
   ) {
     super(store);
   }
+  isAdmin$ = this.select((state) => this.jwtHelper.decodeToken(state.access_token).role === ConstantsUsers.ADMIN);
 
   selectPayload$: Observable<PayloadInterface> = this.select((state) =>
     this.jwtHelper.decodeToken(state.access_token)
@@ -26,7 +28,7 @@ export class SessionQuery extends Query<SessionState> {
     map((payload) => payload.name)
   );
   selectRole$: Observable<string> = this.selectPayload$.pipe(
-    map((payload) => payload.role)
+    map((payload) => payload?.role)
   );
   selectId$: Observable<string> = this.selectPayload$.pipe(
     map((payload) => payload.userId)
@@ -34,8 +36,11 @@ export class SessionQuery extends Query<SessionState> {
   getPayload(): PayloadInterface {
     return this.jwtHelper.decodeToken(this.getValue().access_token);
   }
-  getRole() {
-    return this.getPayload().role;
+  isTokenExist(): boolean {
+    return toBoolean(this.getValue()?.access_token);
+  }
+  getRole():string {
+    return this.getPayload() ? this.getPayload().role : "NoRole";
   }
   getName() {
     return this.getPayload().name;
@@ -49,8 +54,13 @@ export class SessionQuery extends Query<SessionState> {
   }
 
   isExpired() {
-    return toBoolean(
-      this.jwtHelper.isTokenExpired(this.getValue().access_token)
+    return toBoolean(this.jwtHelper.isTokenExpired(this.getValue().access_token)
     );
+  }
+
+
+  isAdmin(){
+    const sdf = this.getRole() === ConstantsUsers.ADMIN;
+    return sdf;
   }
 }

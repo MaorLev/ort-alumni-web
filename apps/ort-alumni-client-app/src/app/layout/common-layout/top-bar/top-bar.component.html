@@ -5,6 +5,11 @@
         <img src="assets/images/ort-white.png" alt="ort icon" />
       </a>
     </div>
+    <ng-container *appShowIfLoggedIn="true">
+      <div class="item name">
+        <h5>שלום! {{sessionQuary.selectName$ | async}}</h5>
+      </div>
+    </ng-container>
     <div *ngIf="!noLinkLogin" class="item">
       <div class="login-item">
         <ng-container *ngFor="let link of loginLinksDataService.loginLinks">

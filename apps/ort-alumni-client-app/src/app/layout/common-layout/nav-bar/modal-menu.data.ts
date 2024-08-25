@@ -9,7 +9,8 @@ export const MENU_TREE_MODAL: ModalInteface = {
   height: '100vh',
   data: {
     dataSource: MenuRoutes,
-    quickLinks: quickLinks
+    quickLinks: quickLinks,
+    accountRoute: ''
   },
   panelClass: 'menu-bgmp',
   animation: { to: 'bottom' },

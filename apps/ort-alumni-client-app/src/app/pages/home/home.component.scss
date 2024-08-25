@@ -1,15 +1,27 @@
 @use 'media' as media;
 :host {
-  .hero-about {
+  .icon-wrapper {
     position: relative;
-    scroll-behavior: smooth;
-    margin-bottom: -8rem;
-    z-index: 4;
-    overflow: hidden;
-    display: grid;
+    display: inline-block;
   }
-  .container {
-    padding-top: 6.5rem;
+
+  .ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(20deg);
+    transform-origin: bottom left;
+    background-color: rgba(255,0,0,0.7);
+    color: white;
+    padding: 2px 10px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  #home-page{
+    width: 100vw;
   }
   .main-title {
     position: relative;
@@ -33,20 +45,16 @@
       }
     }
   }
-  #short-about {
+  .short-about {
     background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
-    position: relative;
-    top: -8rem;
-
-    padding: 2rem 0;
-    @media #{media.$break3max} {
-      margin-top: 4rem;
-    }
+    padding: 3rem;
+    overflow: hidden;
 
     p {
       padding: 0rem 3rem;
+      margin: 0rem 3rem 6.4rem;
       word-spacing: 0.7rem;
       line-height: 5rem;
       @media #{media.$break3max} {
@@ -107,29 +115,33 @@
     }
   }
 
-  #categories {
+  #categories-wrapper {
     background-color: var(--accent-100);
     color: var(--primary-color);
     text-align: center;
-    .category {
+    padding: 2rem;
+
+    overflow: hidden;
+    .categories {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-content: center;
     }
     .pre-articles {
-      padding: 0.5rem 1rem;
-      .more {
-        text-align: start;
+          // margin: 2rem;
+      padding: 0 3rem 3rem 3rem;
+    }
+    .more {
+      text-align: start;
 
-        .more-btn {
-          display: inline-block;
-          color: var(--accent-color);
-          margin: 2rem 4rem;
+      .more-btn {
+        display: inline-block;
+        color: var(--accent-color);
+        margin: 2rem 4rem;
 
-          &:hover {
-            text-decoration: underline 0.15rem;
-          }
+        &:hover {
+          text-decoration: underline 0.15rem;
         }
       }
     }

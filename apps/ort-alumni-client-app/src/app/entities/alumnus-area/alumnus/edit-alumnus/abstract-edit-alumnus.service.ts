@@ -6,6 +6,9 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { AlumnusModel } from '../configs-alumnus/alumnus-model';
 import { AlumnusQuery } from '../state-alumnus/alumnus.query';
 import { AlumnusService } from '../state-alumnus/alumnus.service';
+import { SessionStore } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.store';
+import { Router } from '@angular/router';
+import { AlumnusStore } from '../state-alumnus/alumnus.store';
 
 @Injectable()
 export abstract class AbstractEditAlumnusService {
@@ -18,7 +21,10 @@ export abstract class AbstractEditAlumnusService {
   constructor(
     private alerts: AlertsService,
     public alumnusQuery: AlumnusQuery,
-    public service: AlumnusService
+    public service: AlumnusService,
+    public sessionStore: SessionStore,
+    public store: AlumnusStore,
+    public router: Router
   ) {}
 
   onSubmit({ group: formGroup }: ProfileSubmittedType) {
@@ -45,6 +51,9 @@ export abstract class AbstractEditAlumnusService {
       .deleteAlumnus(this.alumnusId )
       .pipe(takeUntil(this.onDestroy$))
       .subscribe(() => {
+               this.store.setLoading(false);
+        this.sessionStore.logout();
+        this.router.navigate(['/']);
         this.alerts.dynamicAlert('פרופיל בוגר הוסר בהצלחה');
       });
   }

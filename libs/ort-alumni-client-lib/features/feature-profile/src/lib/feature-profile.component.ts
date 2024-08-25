@@ -9,6 +9,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { ProfileSubmittedType } from './state/profile-submitted-type';
 import { ProfileState } from './state/profile-state';
+import { ProfileAbstractDataState } from './state/profile-abstract-data-state';
 
 @Component({
   selector: 'ort-feature-profile',
@@ -19,7 +20,11 @@ import { ProfileState } from './state/profile-state';
 export class FeatureProfileComponent implements OnDestroy {
   @Output() submitted = new EventEmitter<ProfileSubmittedType>();
   @Input() viewModel: any;
-  constructor(public configState: ProfileState) {}
+  // constructor(public configState: ProfileState) {}
+  configState:ProfileState;
+  constructor(model: ProfileAbstractDataState ) {
+    this.configState = new ProfileState(model.allInOneConfigs());
+  }
 
   onActiveChange(groupName: string) {
     this.configState.setActiveGroupConfig(groupName);

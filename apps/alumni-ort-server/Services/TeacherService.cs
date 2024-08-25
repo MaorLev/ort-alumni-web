@@ -159,12 +159,10 @@ namespace AlumniOrtServer.Services
             !objectsCreated && teacher.Languages.Length > 0 //last condition for situation that front dont fill any language
         )
         {
-          //ResponseDTO res = new ResponseDTO();
-          //await Delete(TeacherFromDB.Id);
+
           response.Status = StatusCODE.Warning;
           response.StatusText +=
               "\nOne or More Languages in Teacher NO Adedd";
-          //return response;
         }
 
       }
@@ -173,21 +171,17 @@ namespace AlumniOrtServer.Services
           await Add_ManyToMany_ModeStudyCity(teacher, TeacherFromDB.Id);
       if (!objectsCreated && teacher.ModeStudyIDs.Length > 0)
       {
-        //await Delete(TeacherFromDB.Id);
         response.Status = StatusCODE.Warning;
         response.StatusText +=
             "\nOne or More ModeStudy or City in Teacher NO Adedd";
-        //return response;
       }
 
       objectsCreated =
           await Add_ManyToMany_TeacherCourses(teacher, TeacherFromDB.Id);
       if (!objectsCreated && teacher.Courses.Length > 0)
       {
-        //await Delete(TeacherFromDB.Id);
         response.Status = StatusCODE.Warning;
         response.StatusText += "\nCourses in Teacher NO Adedd";
-        //return response;
       }
 
       if (response.StatusText == "") response.Status = StatusCODE.Success;
@@ -452,9 +446,17 @@ namespace AlumniOrtServer.Services
 
               Alumanus = new AlumnusDTO
               {
+                Id = t.AlumnusId,
+                Mail = t.Alumanus.Mail,
                 FirstName = t.Alumanus.FirstName,
                 LastName = t.Alumanus.LastName,
                 Phone = t.Alumanus.Phone,
+                CardId = t.Alumanus.CardId,
+                DateOfBirth = t.Alumanus.DateOfBirth,
+                StudyStartYear = t.Alumanus.StudyStartYear,
+                StudyFinishYear = t.Alumanus.StudyFinishYear,
+                Linkedin = t.Alumanus.Linkedin,
+                WorkPlace = t.Alumanus.WorkPlace,
                 College = new CollegeDTO
                 {
                   Id = t.Alumanus.College.Id,
@@ -470,6 +472,7 @@ namespace AlumniOrtServer.Services
                   Id = t.Alumanus.City.Id,
                   Name = t.Alumanus.City.Name
                 },
+                TeacherId = t.Id
               }
             })
             .ToListAsync();
@@ -492,6 +495,8 @@ namespace AlumniOrtServer.Services
         throw;
       }
     }
+
+
     public async Task<List<TeacherDTO>> GetLastTeachers(PaginationFilterDTO paginationRequest)
     {
       try
@@ -569,6 +574,102 @@ namespace AlumniOrtServer.Services
       }
     }
 
+    //public async Task<TeacherDTO> Get(int id)
+    //{
+    //  try
+    //  {
+    //    var query = m_db.Teachers.AsQueryable();
+
+    //    //if (searchRequest.StudyProgram != null)
+    //    //{
+    //    //  query = query.Where(t => t.Alumanus.StudyProgramId == searchRequest.StudyProgram.Id);
+    //    //}
+
+    //    //if (searchRequest.Courses != null && searchRequest.Courses.Length > 0)
+    //    //{
+    //    //  query = query.Where(t => t.TeacherCourses.Any(tc => searchRequest.Courses.Select(c => c.Id).Contains(tc.Course_StudyProgramId)));
+    //    //}
+
+
+    //    //// Considering the logic of Modestudyids and Cities
+    //    //if (searchRequest.ModeStudyIds != null && searchRequest.ModeStudyIds.Length > 0)
+    //    //{
+    //    //  // If "Frontally" is received, we should also check cities
+    //    //  if (searchRequest.ModeStudyIds.Contains(ModeStudiesId.Frontally))
+    //    //  {
+    //    //    query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.ModeStudyIds.Contains(mc.ModeStudyId)));
+    //    //    if (searchRequest.Cities != null && searchRequest.Cities.Length > 0)
+    //    //      query = query.Where(t => t.ModeStudy_Cities.Any(mc => searchRequest.Cities.Select(c => c.Id).Contains(mc.CityId)));
+    //    //  }
+    //    //  // If only "Online" is received, then cities are not checked
+    //    //  else if (searchRequest.ModeStudyIds.Contains(ModeStudiesId.Online))
+    //    //  {
+    //    //    query = query.Where(t => t.ModeStudy_Cities.Any(mc => mc.ModeStudyId == ModeStudiesId.Online));
+    //    //  }
+    //    //}
+
+
+    //    // Apply pagination
+    //    var teacher = await query
+    //        .Select(t => new TeacherDTO()
+    //        {
+    //          Id = t.Id,
+    //          MailForStudy = t.MailForStudy,
+    //          Logo = t.Logo,
+    //          Rate = t.Rate,
+    //          Description = t.Description,
+    //          AlumnusId = t.AlumnusId,
+    //          Languages = t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+    //          Cities = t.ModeStudy_Cities.Select(msc => new CityDTO
+    //          {
+    //            Id = msc.City.Id,
+    //            Name = msc.City.Name
+    //          }).ToArray(),
+    //          Courses = t.TeacherCourses
+    //                            .Select(cs => new Course_StudyProgramDTO
+    //                            {
+    //                              Id = cs.Course_StudyProgram.Id,
+    //                              StudyProgramId = cs.Course_StudyProgram.StudyProgramId,
+    //                              Name = cs.Course_StudyProgram.Name
+    //                            })
+    //                            .ToArray(),
+    //          ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray(),
+
+    //          Alumanus = new AlumnusDTO
+    //          {
+    //            Id = t.Alumanus.Id,
+    //            FirstName = t.Alumanus.FirstName,
+    //            LastName = t.Alumanus.LastName,
+    //            Phone = t.Alumanus.Phone,
+    //            College = new CollegeDTO
+    //            {
+    //              Id = t.Alumanus.College.Id,
+    //              Name = t.Alumanus.College.Name
+    //            },
+    //            StudyProgram = new StudyProgramDTO
+    //            {
+    //              Id = t.Alumanus.StudyProgram.Id,
+    //              Name = t.Alumanus.StudyProgram.Name
+    //            },
+    //            City = new CityDTO
+    //            {
+    //              Id = t.Alumanus.City.Id,
+    //              Name = t.Alumanus.City.Name
+    //            },
+    //          }
+    //        })
+    //        .FirstOrDefaultAsync(i => i.AlumnusId == id);
+
+
+
+    //    return teacher;
+    //  }
+    //  catch
+    //  {
+    //    throw;
+    //  }
+    //}
+
     public async Task<TeacherDTO> Get(int id)
     {
       TeacherDTO teacher =
@@ -582,7 +683,29 @@ namespace AlumniOrtServer.Services
                     Rate = t.Rate,
                     Logo = t.Logo,
                     MailForStudy = t.MailForStudy,
-                    Id = t.Id
+                    Id = t.Id,
+                    Alumanus = new AlumnusDTO
+                    {
+                      Id = t.Alumanus.Id,
+                      FirstName = t.Alumanus.FirstName,
+                      LastName = t.Alumanus.LastName,
+                      Phone = t.Alumanus.Phone,
+                      College = new CollegeDTO
+                      {
+                        Id = t.Alumanus.College.Id,
+                        Name = t.Alumanus.College.Name
+                      },
+                      StudyProgram = new StudyProgramDTO
+                      {
+                        Id = t.Alumanus.StudyProgram.Id,
+                        Name = t.Alumanus.StudyProgram.Name
+                      },
+                      City = new CityDTO
+                      {
+                        Id = t.Alumanus.City.Id,
+                        Name = t.Alumanus.City.Name
+                      },
+                    }
                   })
               .FirstOrDefaultAsync(i => i.AlumnusId == id);
       if (teacher != null)
@@ -594,7 +717,7 @@ namespace AlumniOrtServer.Services
         result.Logo = teacher.Logo;
         result.MailForStudy = teacher.MailForStudy;
         result.Id = teacher.Id;
-
+        result.Alumanus = teacher.Alumanus;
         TeacherDTO teacher1 =
             await m_db
                 .Teachers
@@ -931,5 +1054,46 @@ namespace AlumniOrtServer.Services
       int change = await m_db.SaveChangesAsync();
       return change != 0;
     }
+
+    public async Task<(List<TeacherDTO>, int)> SearchTeachersByKey(SearchRequestByKeyDTO searchRequest)
+    {
+      var query = m_db.Teachers.AsQueryable();
+
+      // Search in all string, number, and date fields
+      if (!string.IsNullOrEmpty(searchRequest.Key))
+      {
+        query = query.Where(t =>
+            t.MailForStudy.Contains(searchRequest.Key) ||
+            t.Rate.Contains(searchRequest.Key) ||
+            t.Description.Contains(searchRequest.Key) ||
+            t.AlumnusId.ToString().Contains(searchRequest.Key));
+      }
+
+      // Get the total count of teachers that match the search criteria
+      int totalCount = await query.CountAsync();
+
+      // Apply pagination
+      var teachers = await query
+          .OrderByDescending(t => t.Id)
+          .Skip((searchRequest.PageIndex - 1) * searchRequest.PageSize)
+          .Take(searchRequest.PageSize)
+          .Select(t => new TeacherDTO
+          {
+            Id = t.Id,
+            MailForStudy = t.MailForStudy,
+            Logo = t.Logo,
+            Rate = t.Rate,
+            Description = t.Description,
+            AlumnusId = t.AlumnusId,
+            Languages = t.TeacherLanguages.Select(tl => new LanguageDTO { Id = tl.Language.Id, Name = tl.Language.Name }).ToArray(),
+            Cities = t.ModeStudy_Cities.Select(msc => new CityDTO { Id = msc.City.Id, Name = msc.City.Name }).ToArray(),
+            Courses = t.TeacherCourses.Select(tc => new Course_StudyProgramDTO { Id = tc.Course_StudyProgram.Id, Name = tc.Course_StudyProgram.Name }).ToArray(),
+            ModeStudyIDs = t.ModeStudy_Cities.Select(msc => msc.ModeStudyId).ToArray()
+          })
+          .ToListAsync();
+
+      return (teachers, totalCount);
+    }
+
   }
 }

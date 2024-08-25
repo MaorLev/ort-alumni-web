@@ -1,9 +1,6 @@
 using AlumniOrtServer.Data.DTO;
-using AlumniOrtServer.DTO;
-using Microsoft.AspNetCore.Mvc;
-using System;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AlumniOrtServer.Models.AlumnusModel
@@ -21,7 +18,10 @@ namespace AlumniOrtServer.Models.AlumnusModel
     public Task<ResponseDTO> Delete(int id);
 
     public Task<bool> Validation(string emai);
+
     public Task<List<AlumnusDTO>> GetLastTeachers(int pageIndex, int pageSize);
+
+    public Task<(List<AlumnusDTO> FilteredAlumni, int TotalAlumniCount)> SearchAlumniByKey(SearchRequestByKeyDTO searchRequest);
 
   }
 }

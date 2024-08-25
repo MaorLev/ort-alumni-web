@@ -3,6 +3,7 @@ export interface Link {
   name: string;
   route: string;
   order?: number;
+  requiredPermission?:boolean;
   showIfLogin?: boolean;
   onClick?:() => void;
 }

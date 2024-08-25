@@ -1,0 +1,59 @@
+<div class="wrapper">
+
+  <ng-container *ngIf="this.alumni$ | async as alumni">
+    <ort-button
+      class="add-btn"
+      type="button"
+      routeTo="/admin-dashboard-layout/management-shell/register-alumnus"
+      className="mat-raised-button"
+      >הוסף בוגר</ort-button
+    >
+    <ort-va-input [config]="keyConfig" [formControl]="keyControl"> </ort-va-input>
+    <ort-feature-table [dataSource]="alumni" [headers]="headers">
+      <ng-template let-alumnus>
+        <tr>
+          <td>{{ alumnus.id }}</td>
+          <td>{{ alumnus.email }}</td>
+          <td>{{ alumnus.firstname + ' ' + alumnus.lastname }}</td>
+          <td>{{ alumnus.phone }}</td>
+          <td>{{ alumnus.cardid }}</td>
+          <td>
+            <ort-button
+              *ngIf="alumnus.teacherid !== 0"
+              (click)="goToUpdateTeacher(alumnus.teacherid, alumnus.id)"
+              className="custom minimal brd"
+              [buttonColor]="'accent'"
+              >ערוך/הצג</ort-button
+            >
+            <ort-button
+              *ngIf="alumnus.teacherid === 0"
+              (click)="goToCreateTeacher(alumnus.id)"
+              className="custom minimal brd"
+              [buttonColor]="'accent'"
+              >הוסף</ort-button
+            >
+          </td>
+          <td>
+            <ort-button
+              (click)="goToUpdateAlumnus(alumnus.id)"
+              className="custom minimal brd"
+              [buttonColor]="'accent'"
+              >ערוך/הצג</ort-button
+            >
+          </td>
+          <td>
+            <ort-button
+              (click)="onDeleteAlumnus(alumnus.id)"
+              className="custom minimal brd"
+              [buttonColor]="'warn'"
+              >מחק</ort-button
+            >
+          </td>
+          <!-- <td>
+            <ort-checkbox>df </ort-checkbox>
+          </td> -->
+        </tr>
+      </ng-template>
+    </ort-feature-table>
+  </ng-container>
+</div>

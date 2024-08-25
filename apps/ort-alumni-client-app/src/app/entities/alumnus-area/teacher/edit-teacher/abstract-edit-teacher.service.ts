@@ -6,6 +6,9 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { TeacherModel } from '../configs-teacher/teacher-model';
 import { TeacherQuery } from '../state-teacher/teacher.query';
 import { TeacherService } from '../state-teacher/teacher.service';
+import { SessionStore } from 'apps/ort-alumni-client-app/src/app/auth/session/state/session.store';
+import { TeacherStore } from '../state-teacher/teacher.store';
+import { Router } from '@angular/router';
 
 @Injectable()
 export abstract class AbstractEditTeacherService {
@@ -18,7 +21,10 @@ export abstract class AbstractEditTeacherService {
   constructor(
     private alerts: AlertsService,
     public teacherQuery: TeacherQuery,
-    public service: TeacherService
+    public service: TeacherService,
+    public sessionStore:SessionStore,
+    public store:TeacherStore,
+    public router:Router
   ) {
   }
 
@@ -48,11 +54,12 @@ export abstract class AbstractEditTeacherService {
       .pipe(takeUntil(this.onDestroy$))
       .subscribe();
   }
-  onDeleteTeacher() {
+  onDeleteTeacher(id:string) {
     this.service
-      .deleteTeacher(this.alumnusId  )
+      .deleteTeacher(this.alumnusId, id )
       .pipe(takeUntil(this.onDestroy$))
       .subscribe(() => {
+        this.store.setLoading(false);
         this.alerts.dynamicAlert('כרטיס מורה הוסר בהצלחה');
       });
   }

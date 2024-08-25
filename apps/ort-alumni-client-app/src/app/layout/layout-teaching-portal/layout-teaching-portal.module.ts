@@ -12,8 +12,7 @@ import { FooterModule } from '../common-layout/footer/footer.module';
 import { HeaderModule } from '../common-layout/header/header.module';
 import { TopBarModule } from './../common-layout/top-bar/top-bar.module';
 import { HeroModule } from '../../layout/common-layout/hero/hero.module';
-// Entity Modules
-import { TeacherModule } from '../../entities/alumnus-area/teacher/teacher.module';
+
 
 // Feature Modules
 import { IntroCardTeacherModule } from '../../pages/teaching-portal-area/teaching-portal-features/intro-card-teacher/intro-card-teacher.module';
@@ -32,7 +31,7 @@ import { NavBarModule } from '../common-layout/nav-bar/nav-bar.module';
     HeaderModule,
     SearchBarTeacherModule,
     IntroCardTeacherModule,
-    TeacherModule,
+    // TeacherModule,
     HeroModule,
     NavBarModule
   ]

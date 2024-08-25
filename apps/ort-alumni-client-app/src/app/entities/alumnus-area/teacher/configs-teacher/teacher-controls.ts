@@ -25,7 +25,7 @@ export class TeacherControls extends EntitiesCommonControls {
       placeholder: 'teacher@example.com',
       validators: [
         Validators.required,
-        // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ],
       data: {},
       errors: [
@@ -45,7 +45,9 @@ export class TeacherControls extends EntitiesCommonControls {
     });
   };
 
-  static Modestudyids = (options:ModeStudyInterface []): VaFormInputInterface => {
+  static Modestudyids = (
+    options: ModeStudyInterface[]
+  ): VaFormInputInterface => {
     return this.checkListInput({
       name: 'modestudyids',
       label: 'מצב למידה',
@@ -56,7 +58,7 @@ export class TeacherControls extends EntitiesCommonControls {
         options: options,
         validate: (control: AbstractControl) =>
           this.CheckBoxValidation(control),
-        style:'style-flex'
+        style: 'style-flex',
       },
       errors: [
         {
@@ -82,9 +84,7 @@ export class TeacherControls extends EntitiesCommonControls {
       ],
     });
   };
-  static Cities = (
-    options: CityInterface[]
-  ): VaFormInputInterface => {
+  static Cities = (options: CityInterface[]): VaFormInputInterface => {
     return this.chipsSelectInput({
       name: 'cities',
       label: 'ערים בהן תלמד',
@@ -127,7 +127,7 @@ export class TeacherControls extends EntitiesCommonControls {
     });
   };
   static Courses = (
-    list?: CourseByStudyProgramInterface []
+    list?: CourseByStudyProgramInterface[]
   ): VaFormInputInterface => {
     return this.selectInput({
       name: 'courses',
@@ -155,7 +155,10 @@ export class TeacherControls extends EntitiesCommonControls {
       type: 'number',
       subtype: 'currency',
       placeholder: '0',
-      validators: [],
+      validators: [
+        Validators.required,
+        Validators.pattern('^([6-9][0-9]|1[0-9]{2}|200)$'),
+      ],
       data: {},
       errors: [
         {
@@ -163,8 +166,8 @@ export class TeacherControls extends EntitiesCommonControls {
           message: 'חובה למלא שכר שעתי משוער',
         },
         {
-          name: 'maxlength',
-          message: 'maxLength error',
+          name: 'pattern',
+          message: 'הכנס מספר בין 60 ל-200',
         },
       ],
     });

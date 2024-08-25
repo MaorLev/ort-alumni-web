@@ -18,5 +18,6 @@ export interface AlumnusModel {
   studyfinishyear : string;
   college : CollegeInterface;
   studyprogram : StudyProgramInterface;
-  teacher:TeacherModel
+  teacher:TeacherModel;
+  teacherid:number;
 }

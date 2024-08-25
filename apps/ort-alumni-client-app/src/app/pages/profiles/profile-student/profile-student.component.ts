@@ -11,6 +11,9 @@ import { StudentModel } from '../../../entities/student/configs-student/student-
 import { AbstractEditStudentService } from '../../../entities/student/edit-student/abstract-edit-student.service';
 import { StudentQuery } from '../../../entities/student/state-student/student.query';
 import { StudentService } from '../../../entities/student/state-student/student.service';
+import { StudentStore } from '../../../entities/student/state-student/student.store';
+import { Router } from '@angular/router';
+import { SessionStore } from '../../../auth/session/state/session.store';
 
 @Component({
   selector: 'app-profile-student',
@@ -33,14 +36,18 @@ export class ProfileStudentComponent
     private sessionQuery: SessionQuery,
     alerts: AlertsService,
     service: StudentService,
-    studentQuery: StudentQuery
+    studentStore: StudentStore,
+    studentQuery: StudentQuery,
+    router: Router,
+    sessionStore: SessionStore
   ) {
-    super(alerts, studentQuery, service);
+    super(alerts, studentQuery,studentStore, service,router, sessionStore);
     this.onDestroy$ = new Subject<void>();
     this.isEditMode = false;
   }
 
   ngOnInit(): void {
+    if(!this.sessionQuery.isAdmin())
     this.studentId = this.sessionQuery.getUserId();
     this.student$ = this.studentQuery.selectActive();
     if (!this.studentQuery.isStudentLoaded())

@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments';
 import { Observable, shareReplay } from 'rxjs';
 import { AlumnusModel } from '../configs-alumnus/alumnus-model';
+import {
+  IPaginationByKeyFilter,
+  IUserTotalPgn,
+} from 'apps/ort-alumni-client-app/src/app/administration/admin-helpers/pagination-and-filters-configs';
 
 @Injectable()
 export class AlumnusDataService {
@@ -30,7 +34,21 @@ export class AlumnusDataService {
   deleteAlumnus(id: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
   }
-  GetAlumniTeachersByPagination( pageIndex: number, pageSize: number): Observable<AlumnusModel []> {
-    return this.http.get<AlumnusModel []>(this.baseUrl + `/last-teachers?pageIndex=${pageIndex}&pageSize=${pageSize}`);
+  GetAlumniTeachersByPagination(
+    pageIndex: number,
+    pageSize: number
+  ): Observable<AlumnusModel[]> {
+    return this.http.get<AlumnusModel[]>(
+      this.baseUrl +
+        `/last-teachers?pageIndex=${pageIndex}&pageSize=${pageSize}`
+    );
+  }
+  searchAlumniByKey(
+    searchDetails: IPaginationByKeyFilter
+  ): Observable<IUserTotalPgn<AlumnusModel>> {
+    return this.http.post<IUserTotalPgn<AlumnusModel>>(
+      `${this.baseUrl}/search-alumni-by-key`,
+      searchDetails
+    );
   }
 }

@@ -1,5 +1,6 @@
 using AlumniOrtServer.Data.DTO;
 using AlumniOrtServer.DTO;
+using OrtAlumniWeb.AlumniOrtServer.Data.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,6 +17,10 @@ namespace AlumniOrtServer.Services
     public Task<ResponseDTO> Update(int id, StudentDTO student);
 
     public Task<ResponseDTO> DeleteStudent(int id);
+
+    public Task<(List<StudentDTO>, int)> SearchStudentsByKey(SearchRequestByKeyDTO searchRequest);
+
     public Task<bool> Validation(string emai);
+
   }
 }

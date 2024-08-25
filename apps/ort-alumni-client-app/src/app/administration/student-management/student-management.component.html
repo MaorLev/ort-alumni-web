@@ -1,0 +1,27 @@
+<ng-container *ngIf="this.students$ | async as students;">
+  <ort-button
+  class="add-btn"
+  type="button"
+  routeTo="/admin-dashboard-layout/management-shell/register-student"
+  className="mat-raised-button"
+  >הוסף סטודנט</ort-button
+>
+  <ort-va-input [config]="keyConfig" [formControl]="keyControl" >
+
+  </ort-va-input>
+<ort-feature-table [dataSource]="students" [headers]="headers">
+  <ng-template let-student>
+    <tr>
+      <td>{{ student.id }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.firstname + " " + student.lastname }}</td>
+      <td>{{ student.phone }}</td>
+      <td>{{ student.cardid }}</td>
+      <td><ort-button (click)="goToUpdateStudent(student.id)" className="custom minimal brd" [buttonColor]="'accent'" >ערוך/הצג</ort-button></td>
+      <td><ort-button (click)="onDeleteStudent(student.id)" className="custom minimal brd" [buttonColor]="'warn'"  >מחק</ort-button></td>
+    </tr>
+  </ng-template>
+
+</ort-feature-table>
+
+</ng-container>
