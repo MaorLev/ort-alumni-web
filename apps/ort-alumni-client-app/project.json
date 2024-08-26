@@ -108,5 +108,8 @@
     }
   },
   "tags": ["scope:ort-alumni-client-app"],
-  "implicitDependencies": ["ort-alumni-client-lib-alumni-shared-styles", "ort-alumni-client-lib-alumni-shared-assets"]
+  "implicitDependencies": [
+    "ort-alumni-client-lib-alumni-shared-styles",
+    "ort-alumni-client-lib-alumni-shared-assets"
+  ]
 }

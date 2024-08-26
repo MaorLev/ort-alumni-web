@@ -14,6 +14,7 @@ import { AddEnvVarPipeModule } from '@utils/util-pipes';
 import { ScrollerModule } from '@utils/directives';
 import { UiSpinnerModule } from '@ui-components/ui-spinner';
 
+
 @NgModule({
   declarations: [HomeComponent],
   imports: [
@@ -27,8 +28,7 @@ import { UiSpinnerModule } from '@ui-components/ui-spinner';
     UiCarouselModule,
     AddEnvVarPipeModule,
     UiSpinnerModule,
-    ArticlesCardsModule
-
+    ArticlesCardsModule,
   ],
   providers: [
 

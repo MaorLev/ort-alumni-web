@@ -41,6 +41,7 @@
     "ng-dialog-animation": "^9.0.4",
     "ng-dynamic-component": "^10.1.0",
     "ngx-glide": "^13.0.0",
+    "ngx-owl-carousel-o": "^7.0.4",
     "ngx-quicklink": "^0.2.7",
     "openai": "^3.2.1",
     "rxjs": "~7.4.0",

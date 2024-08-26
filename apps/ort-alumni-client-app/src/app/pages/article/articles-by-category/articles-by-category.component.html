@@ -1,5 +1,4 @@
-
-<section id="categories" >
+<section id="categories">
   <!-- <ort-button
   type="button"
   routerLink="/main/articles/create-article"
@@ -7,15 +6,22 @@
   >הוסף מאמר</ort-button
 > -->
   <div class="container">
-    <ng-container *ngIf="articlesByCategory$ | async as cats;">
+    <ng-container *ngIf="articlesByCategory$ | async as cats">
       <ng-container *ngFor="let category of cats">
         <h1 class="mat-display-2 bg-after-primary main-title">
           {{ category.name }}
         </h1>
-          <app-articles-cards [style]="'grid'" [articles]="category.articles"></app-articles-cards>
+
+        <div class="articles grid">
+          <!-- <app-articles-cards [style]="'grid'" [articles]="category.articles"></app-articles-cards> -->
+          <ng-container *ngFor="let item of category.articles">
+            <app-articles-cards
+              [style]="'grid'"
+              [article]="item"
+            ></app-articles-cards>
+          </ng-container>
+        </div>
       </ng-container>
     </ng-container>
   </div>
 </section>
-
-

@@ -1,3 +1,4 @@
+@use 'media' as media;
 :host {
   .category {
     display: flex;
@@ -82,5 +83,20 @@
       text-align: center;
       padding-bottom: 1rem;
     }
+  }
+
+
+
+  .articles {
+
+    &.grid{
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+
+    }
+
   }
 }

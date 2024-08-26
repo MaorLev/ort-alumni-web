@@ -48,7 +48,10 @@
 
     .image {
       display: block;
-      width: 100%;
+      // width: 100%;
+      // height: auto;
+      width: 800px;
+      height: 400px;
 
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 

@@ -45,12 +45,23 @@
         <h1 class="bg-after-primary main-title">
           מאמרים וטיפים
           </h1>
-          <ng-container *ngIf="vm.educationArticles as arts">
-            <app-articles-cards
-              [style]="'grid'"
-              [articles]="arts.articles"
-            ></app-articles-cards>
-          </ng-container>
+
+    <div class="articles grid" >
+
+      <ng-container *ngIf="vm.educationArticles as arts">
+        <ng-container *ngFor="let item of arts.articles">
+          <app-articles-cards
+            [style]="'grid'"
+            [article]="item"
+          ></app-articles-cards>
+
+        </ng-container>
+        <!-- <app-articles-cards
+          [style]="'grid'"
+          [articles]="arts.articles"
+        ></app-articles-cards> -->
+      </ng-container>
+    </div>
       </section>
     </ng-container>
   </div>

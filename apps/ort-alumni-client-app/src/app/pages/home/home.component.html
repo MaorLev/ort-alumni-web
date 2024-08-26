@@ -5,6 +5,7 @@
     [classVideo]="'videoInHero'"
     [srcImage]="'/assets/images/bg-footer.jpg'"
   ></app-hero>
+
   <section class="short-about" ortScrollSection="short-about">
     <!-- <div class="downanchor">&nbsp;</div> -->
 
@@ -42,6 +43,10 @@
     </div>
   </section>
 
+
+
+
+
   <section id="categories-wrapper">
     <div class="categories">
       <ng-container *ngIf="articlesByCategory$ | async as arts">
@@ -52,10 +57,13 @@
             </h1>
             <div class="pre-articles">
               <ort-carousel [startAt]="articles.articles?.length">
-                <app-articles-cards
-                  [style]="'articles'"
-                  [articles]="articles.articles"
-                ></app-articles-cards>
+                <ng-container *ngFor="let item of articles.articles">
+                  <app-articles-cards
+                    [style]="'articles'"
+                    [article]="item"
+                  ></app-articles-cards>
+
+                </ng-container>
               </ort-carousel>
             </div>
             <div class="more">

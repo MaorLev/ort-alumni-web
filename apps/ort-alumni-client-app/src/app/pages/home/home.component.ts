@@ -11,7 +11,8 @@ import {
 import {
   Observable
 } from 'rxjs';
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
+// import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -23,6 +24,7 @@ import {
 export class HomeComponent implements OnInit{
   articles$: Observable<ArticleInterface[]>;
   articlesByCategory$: Observable<CategoryInterface[]>;
+
 
   constructor(
     public articleService: ArticleService

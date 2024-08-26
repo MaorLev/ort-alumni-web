@@ -1,6 +1,7 @@
 
-<div [class]="'articles ' + style">
-  <ng-container *ngFor="let article of articles">
+<!-- <div [class]="'articles ' + style"> -->
+  <!-- <ng-container *ngFor="let article of articles"> -->
+  <ng-container *ngIf="!!article">
     <article class="card">
       <a [routerLink]="['/main/articles/article-detail', article.id]">
         <ort-card
@@ -12,4 +13,5 @@
       </a>
     </article>
   </ng-container>
-</div>
+  <!-- </ng-container> -->
+<!-- </div> -->
